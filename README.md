@@ -3,6 +3,9 @@ Hands On with GenAI Application with Agentic Workflow and Fine Tuning the LLM Mo
 
 # Resources to Check
 
+## Langchain CookBook
+https://github.com/langchain-ai/langchain
+
 ## Langchain Docs
 https://python.langchain.com/v0.2/docs/introduction/
 
