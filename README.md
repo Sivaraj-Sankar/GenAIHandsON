@@ -2,6 +2,10 @@
 Hands On with GenAI Application with Agentic Workflow and Fine Tuning the LLM Model 
 
 # Resources to Check
+
+## Langchain Docs
+https://python.langchain.com/v0.2/docs/introduction/
+
 ## Prompt Hub
 https://smith.langchain.com/hub/hwchase17/react/
 
