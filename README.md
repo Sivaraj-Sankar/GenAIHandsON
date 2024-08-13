@@ -7,3 +7,14 @@ https://smith.langchain.com/hub/hwchase17/react/
 
 ## Advanced Document parsing with LlamaParse
 https://cloud.llamaindex.ai/
+
+## Community-built agents (LlamaHub)
+https://llamahub.ai/?tag=agent
+
+## Custom Agent in LlamaIndex
+https://docs.llamaindex.ai/en/stable/examples/agent/custom_agent/
+
+## Data Interpreter - Data Science
+https://arxiv.org/abs/2402.18679
+
+
