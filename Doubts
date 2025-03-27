@@ -22,6 +22,8 @@ Agentic RAG
 19) How to Use the Structured Output 
 20) Data Pipeline 
 21) Handle edge cases explicitly
+22) Actions if needed 
+
 
 General Architecture
 Build modular components
