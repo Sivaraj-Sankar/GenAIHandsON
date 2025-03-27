@@ -1,0 +1,36 @@
+Agentic RAG 
+
+
+1) Router includes capability to request clarification for ambiguous queries
+2) How pass the prompt with query with Agent - In Every call or Single Call
+3) How to Manage the Memory of the Agent 
+4) How to Retrieve the Response for Agentic RAG - Either by Reterival Strategy or through the Agentic CoT Approach with memory management 
+5) Chunking with Metadata - How much have to give in chunk 
+6) How to Manage the Session for Agent 
+7) Preprocessing the Data Properly with Metadata 
+8) Vector Database that support the Metadata 
+9) Query should rewrite based on the prompt 
+10) Summarize Agentic RAG - QA Agentic RAG 
+11) Referencing the Source 
+12) MCP Protocol
+13) Connectors for Multiple Data Sources
+14) Testing the Agentic RAG 
+15) Experimenting the Agentic RAG 
+16) Tool Description - for Agentic RAG 
+17) Error Handling and Fallback Strategies 
+18) Pydantic Object to check we receiving the Structured output from LLM 
+19) How to Use the Structured Output 
+20) Data Pipeline 
+21) Handle edge cases explicitly
+
+General Architecture
+Build modular components
+Implement robust error handling
+Consider scaling requirements
+Plan for monitoring and evaluation
+
+
+
+
+
+
