@@ -29,6 +29,9 @@ Agentic RAG
 24) Evaluating the AI Agent and Decision of AI Agent 
 25) Logging 
 
+26) Agent 1  - Rewrite Query with Selective Retrieval    Agent 2 - Reflect --- Agent 3 -- Prompt with [Respective Ouput] + [Respective Retrieval from LLM ] - Multiple Calls or Single Calls
+
+
 
 
 General Architecture
