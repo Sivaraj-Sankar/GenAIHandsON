@@ -31,7 +31,7 @@ Agentic RAG
 
 26) Agent 1  - Rewrite Query with Selective Retrieval    Agent 2 - Reflect --- Agent 3 -- Prompt with [Respective Ouput] + [Respective Retrieval from LLM ] - Multiple Calls or Single Calls
 
-
+27) How to Evaluate the Retrieved Document 
 
 
 General Architecture
