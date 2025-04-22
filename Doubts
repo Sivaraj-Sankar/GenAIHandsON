@@ -44,6 +44,12 @@ Plan for monitoring and evaluation
 28) how Multi Agent are working so far I created in LangGraph and CrewAI - is it waiting for other agents to complete the work , are passing the task sequentially 
     In Letta - the Multi Agent Concept is different 
 
+29) How to Pass the Tools name to the OpenAI Function Call 
+       Function Definition - Pydantic Object to create the Function Definition
+    How to create the Actual Python function tool --> whith doc string to --> for LLM to understand 
+
+
+
 
 
 
