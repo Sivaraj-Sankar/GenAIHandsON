@@ -41,6 +41,10 @@ Consider scaling requirements
 Plan for monitoring and evaluation
 
 
+28) how Multi Agent are working so far I created in LangGraph and CrewAI - is it waiting for other agents to complete the work , are passing the task sequentially 
+    In Letta - the Multi Agent Concept is different 
+
+
 
 
 
