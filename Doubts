@@ -50,6 +50,11 @@ Plan for monitoring and evaluation
 
 30) How Manager Agent calls the other agents, by reasoning - Check the course learned crewAI, AutoGen, etc
 
+31) How Async works with    - concurrently run all three agents - parallely 
+async def main():
+    msg = input( )
+    orchestrator_output = await Runner.run(manager_agent,msg)
+
 
 
 
