@@ -48,6 +48,8 @@ Plan for monitoring and evaluation
        Function Definition - Pydantic Object to create the Function Definition
     How to create the Actual Python function tool --> whith doc string to --> for LLM to understand 
 
+30) How Manager Agent calls the other agents, by reasoning - Check the course learned crewAI, AutoGen, etc
+
 
 
 
