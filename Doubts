@@ -63,6 +63,20 @@ async def main():
 36) Evaluation - Instructor - https://github.com/instructor-ai/instructor - MIT License 
                  (If you’re importing an LLM API SDK, use Instructor; if you’re importing Huggingface for a self-hosted model, use Outlines.)
 
+37) Applied LLM - https://applied-llms.org/
+
+38) MegaPrompt - Approach 
+39) The specificity of task-oriented prompts means they aren't suitable for general, open-ended conversations.
+    https://www.godaddy.com/resources/news/llm-from-the-trenches-10-lessons-learned-operationalizing-models-at-godaddy#h-1-sometimes-one-prompt-isn-t-enough
+
+
+********** I'm Going to Create the Project and Sell the AI Agent ***********
+Quantum Revolution 
+------------------
+
+
+
+
 
 
 
