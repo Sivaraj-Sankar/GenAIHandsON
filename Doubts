@@ -56,6 +56,12 @@ async def main():
     orchestrator_output = await Runner.run(manager_agent,msg)
 
 
+32) Prompt Should be build up from the layers and layers of input data 
+33) Evaluation - getmaxim.ai has built a very comprehensive agent simulation and evals platform. 
+34) Evaluation - Wayfound.ai 
+35) Evaluation - Noveum.ai 
+36) Evaluation - Instructor - https://github.com/instructor-ai/instructor - MIT License 
+
 
 
 
