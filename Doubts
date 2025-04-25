@@ -61,6 +61,7 @@ async def main():
 34) Evaluation - Wayfound.ai 
 35) Evaluation - Noveum.ai 
 36) Evaluation - Instructor - https://github.com/instructor-ai/instructor - MIT License 
+                 (If you’re importing an LLM API SDK, use Instructor; if you’re importing Huggingface for a self-hosted model, use Outlines.)
 
 
 
