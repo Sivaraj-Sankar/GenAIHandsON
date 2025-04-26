@@ -1,5 +1,5 @@
 Agentic RAG 
-
+ 
 
 1) Router includes capability to request clarification for ambiguous queries
 2) How pass the prompt with query with Agent - In Every call or Single Call
