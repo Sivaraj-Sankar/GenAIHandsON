@@ -66,6 +66,57 @@ c = input('Enter Numbers:').split()
 d = map(int, input('Enter Number: ').split())
 e = list(map(str, input('Enter a Numbers :').strip().split()))
 
+String Manipulation Functions
+a.lower()
+a.upper()
+a.capitalize()
+a.title()
+a.swapcase()
+
+a.islower()
+a.isupper()
+a.isalpha()
+a.isdigit()
+a.isalphanum()
+a.isspace()
+
+a.startswith('Si')
+a.endswith('j')
+a.find('a') --> Find First Occurence 
+a.rfind('a') --> Find Last Occurence
+
+a.index('a') 
+a.rindex('a') --> Find index 
+a.count('a')
+a.count('a',2) --> second argument tells, it starts from 2 
+a.replace('Si','ja') --> Replaces the Word 
+a.split('a') --> Split string into list
+a.rsplit('a') --> Split from right Side
+a.partition('a') --> Split like before, separator, after
+a.rpartition('a') --> 
+
+a.join([]) 
+a.strip()
+a.rstrip()
+a.lstrip()
+input = 'Sivaraj {}'
+input.format('Sankar')
+input = 'Sivaraj {name}'
+input.format(name='Sankar')
+
+
+lambda function, map function,filter 
+numbers = [1, 2, 3, 4]
+squared = list(map(lambda x: x ** 2, numbers)) --> apply the function for all elements 
+print(squared)  # Output: [1, 4, 9, 16]
+-----------
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+
+-------
+pairs = [(1, 3), (2, 2), (3, 1)]
+# Sort by the second element of each tuple
+sorted_pairs = sorted(pairs, key=lambda x: x[1])
+
 
 
 
