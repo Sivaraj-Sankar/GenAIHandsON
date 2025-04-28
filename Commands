@@ -59,6 +59,15 @@ with my_context() as msg:
 
 
 
+Getting Inputs from Python 
+a = input('Enter a Name:')
+b = int(input('Enter a Age: '))
+c = input('Enter Numbers:').split()
+d = map(int, input('Enter Number: ').split())
+e = list(map(str, input('Enter a Numbers :').strip().split()))
+
+
+
 
 
 
