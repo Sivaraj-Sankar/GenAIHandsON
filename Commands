@@ -6,9 +6,9 @@ conda activate myenv
 Decorator Useful for 
 Logging
 Timing
-Authentication
-Caching
-Validation
+Authentication - like checking if a user is logged in
+Caching - results to make things faster
+Validation - before running a function
 
 
 *args - Positional Arguments - List
