@@ -19,5 +19,46 @@ normal_args, *args, default_args=default_value, **kwargs
 *value - unpack
 merged = {**dict1, **dict2}
 
+Simple API Client
+def call_api(endpoint, **params):
+    response = requests.get(endpoint, params=params)
+    return response.json()
+
+print(call_api("https://api.weatherapi.com/v1/current.json", q="London", key="yourapikey"))
+
+
+Context Manager [Created Special Environment] - file handling, database connections, network sockets, threading locks
+To do some setup ➡️ work inside ➡️ do cleanup automatically — even if an error happens.
+with open('data.txt', 'r') as file:
+    content = file.read()
+class Door:
+    def __enter__(self):
+        print("🚪 The door opens.")
+        return "Welcome inside!"
+    
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("🚪 The door closes.")
+
+# Using it
+with Door() as message:
+    print(message)
+    print("Enjoying inside!")
+
+print("Outside the door now.")
+
+from contextlib import contextmanager
+
+@contextmanager
+def my_context():
+    print("Start")
+    yield "You are inside"
+    print("End")
+
+with my_context() as msg:
+    print(msg)
+
+
+
+
 
 
