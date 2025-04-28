@@ -34,6 +34,21 @@ Agentic RAG
 27) How to Evaluate the Retrieved Document 
 
 
+Complex PDF RAG Pipeline 
+------------------------
+1) Dropping relevant graphics from your context
+2) Gemini 2.5 with a multimodal Embedding model like Cohere's latest Embed v4
+3) Unlock vision RAG and avoid image-to-markdown conversion.
+4) Combines Gemini Flash 2.5 (vision LLM) with Cohere Embed v4 (retrieval).
+5) Directly retrieves & understands complex images (slides, charts, graphs, infographics).
+6) Cohere Supports processing of documents up to 128,000 tokens, approximately equivalent to 200 pages, making it suitable for large-scale document analysis - adjustable embedding dimensions (e.g., 256, 512, 1024, 1536)
+
+Cost Effective 
+---------------
+LlamaParse - Cost=300×0.0015=0.45 USD
+Cohere     - Cost=1.5×0.47=0.705 USD
+
+
 General Architecture
 Build modular components
 Implement robust error handling
