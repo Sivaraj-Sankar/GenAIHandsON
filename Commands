@@ -1,2 +1,23 @@
 Set-up Command 
 conda create --name myenv python=3.10
+conda activate myenv 
+
+
+Decorator Useful for 
+Logging
+Timing
+Authentication
+Caching
+Validation
+
+
+*args - Positional Arguments - List
+**kwargs - Keyword Arguments - Dict 
+normal_args, *args, default_args=default_value, **kwargs
+
+
+*value - unpack
+merged = {**dict1, **dict2}
+
+
+
