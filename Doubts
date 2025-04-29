@@ -174,6 +174,48 @@ We used JMeter to find the maximum load on AWS instances until we found the most
 
 Developing Robust API's 
 -----------------------
+1. Designing High-Quality APIs,
+KISS - Keep It Simple, Stupid.
+2.Use Standard, concrete and shared terms that are familiar to most people 
+3.Allow application developers to do things in only one way, rather than offering multiple confusing options.
+4.Design the API with the needs of the client in mind
+5.Medium Grained Resources - You Should use medium grained, not fine nor coarse. 
+  Resources shouldn't be nested more than two level deep 
+6. Snake_Case or CamelCase for attributes and parameters. 
+7. for using more than one word in URL - spinal-case 
+8. Versioning mandatory in the URL at the highest scope (major versions). 
+9. You may support at most two versions at the same time (Native apps need a longer cycle)
+
+Collection Resource: /employees
+Instance Resources: /employees/11
+
+
+
+Django Views
+------------
+Function-Based Views (FBV)
+    ↓
+Class-Based Views (CBV)
+    ↓
+Generic Class-Based Views (GCBV) → Special ready-made
+    ↓
+ViewSets → For APIs (Django REST Framework)
+
+
+
+API UseCase for our project
+----------------------------
+1) CRM Data - Connecting other API and getting the DATA.  - GET Method 
+2)
+
+CRUL 
+-----
+curl -X POST https://api.example.com/login -d "username=admin&password=1234"
+curl -X POST https://api.example.com/login \
+-H "Content-Type: application/json" \
+-d '{"username": "admin", "password": "1234"}'
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" https://api.example.com/secure-data
+
 
 RAG And AI Agents Notebooks
 ---------------------------
