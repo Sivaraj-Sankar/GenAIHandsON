@@ -121,6 +121,27 @@ Redis / Memcached for caching frequent results
 CDN (like Cloudflare) for caching static API responses
 
 
+1.Scaling a highly loaded API that processes resource-intensive requests, 
+2.Also show how to calculate the future load on the system and choose the most suitable instances 
+  for scaling, as well as our scaling Scheme and debugging activities.
+2. Look for a balance system performace and required computing resources.
+Vertical Scaling[up or down] - more VM's  vs Horizontal Scaling [in or out] - several endpoints
+--------------------------------------
+Horizontal Scaling - enhance your system with additional physical computing power. create Sharded database 
+                     deploy more nodes. 
+
+
+What type of scaling should you choose for your system?
+How can you calculate the future load on your system?
+How can you choose instances for scaling?
+How can you design and debug a cloud scaling system?
+
+Eg:Each request takes between 30 seconds and one minute and up to 20% of server CPU power.
+An excessive number of requests should not cause the machine to freeze and make it inoperable.
+
+Be able to process up to five million requests per day
+Withstand a heavy bandwidth load in order to communicate with third-party services
+
 
 RAG And AI Agents Notebooks
 ---------------------------
