@@ -93,6 +93,34 @@ API Integration
 Event Web API 
 HTTP Web API's 
 
+API Scaling
+-----------
+How to Scale API Performance in a High-Load System and Avoided CPU Overload
+API - Plays a Role of Gateway that manages incoming requests from all entities 
+Each API has a limited number of requests it can process 
+When API is overloaded, your Whole System essentially stops, as it can't output any results without 
+processing requests first 
+
+USER (Millions of users)
+         ↓
+      Internet
+         ↓
+    [Load Balancer]
+         ↓
+ ┌─────────────┬─────────────┬─────────────┐
+ │             │             │             │
+[Backend Server 1] [Backend Server 2] [Backend Server 3] ... (Auto-scaled instances)
+ (Async API App)    (Async API App)    (Async API App)
+         ↓             ↓               ↓
+ ┌─────────────┬─────────────┬─────────────┐
+ │             │             │             │
+[Cache Layer] [Database (Read Replica)] [External Services]
+ (Redis Memcachedetc.)  (Async ORM, Pooling)      (if needed)
+
+Redis / Memcached for caching frequent results
+CDN (like Cloudflare) for caching static API responses
+
+
 
 RAG And AI Agents Notebooks
 ---------------------------
