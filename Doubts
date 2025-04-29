@@ -87,6 +87,14 @@ async def main():
 
 40) Important Techniques - https://www.godaddy.com/resources/news/llm-from-the-trenches-10-lessons-learned-operationalizing-models-at-godaddy#h-1-sometimes-one-prompt-isn-t-enough
 
+
+Common Doubts
+-------------
+1) MessagePlaceholder in Langchain - AgentsSracthPad
+2) Azure DevOps
+3) Azure Cosmos DB 
+4) Azure AI Foundry Services - Project Creation 
+
 API Integration
 ----------------
 Event Web API 
@@ -229,6 +237,8 @@ Quantum Revolution
 ------------------
 
 
+
+
 AI Interview 
 https://www.interview.micro1.ai/start/micro1/?candidate=8817e0dd-2947-4078-a7b3-8c038b95415d&ping=ok
 
@@ -240,7 +250,6 @@ https://adaptive.ai/ - Adaptive AI
 
 Research Papers
 SQL-PaLM: Improved Large Language ModelAdaptation for Text-to-SQL
-
 
 What to Learn Next
 ------------------
