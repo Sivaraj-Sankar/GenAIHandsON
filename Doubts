@@ -1,6 +1,4 @@
 Agentic RAG 
- 
-
 1) Router includes capability to request clarification for ambiguous queries
 2) How pass the prompt with query with Agent - In Every call or Single Call
 3) How to Manage the Memory of the Agent 
@@ -64,6 +62,7 @@ Plan for monitoring and evaluation
     How to create the Actual Python function tool --> whith doc string to --> for LLM to understand 
 
 30) How Manager Agent calls the other agents, by reasoning - Check the course learned crewAI, AutoGen, etc
+          giving other agents as tool or how ?
 
 31) How Async works with    - concurrently run all three agents - parallely 
 async def main():
@@ -171,6 +170,10 @@ We used JMeter to find the maximum load on AWS instances until we found the most
 4.This worker takes one task at a time from the queue after completing the previous one. In our case, the CPU load per worker was 7%.
 5.Next, we increased the number of workers until the CPU was 80% loaded. This way, we got an isolated process with a predictable load and created a number of parallel tasks for the instance to process.
 6.Our API keeps the connection active until it gets a response. Under a heavy load, it took our system three to five minutes to respond, and during this time the application load balancer ended the connection. We increased the maximum connection time for the API to three to four minutes. During this time, we can create a new instance if needed.  
+7.However, this method of scaling has several disadvantages you need to be aware of. The request queue inside the instance helps to manage API performance, but it shouldn’t accumulate more requests than the instance can process within three minutes. Since the API connection lasts for three to four minutes, the API won’t get responses to requests that take longer. That’s why we need to launch a new instance during this time.
+
+Developing Robust API's 
+-----------------------
 
 RAG And AI Agents Notebooks
 ---------------------------
