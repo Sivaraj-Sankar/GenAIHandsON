@@ -142,6 +142,35 @@ An excessive number of requests should not cause the machine to freeze and make 
 Be able to process up to five million requests per day
 Withstand a heavy bandwidth load in order to communicate with third-party services
 
+REST API
+SQS
+Lambda
+DynamoDB
+
+Application Load Balancer
+EC2
+DynamoDB
+
+Application Load Balancer
+EC2
+DynamoDB
+
+4 CPUs, 8 GB RAM - instance can process 60 to 120 requests per minute, or 2 to 3 requests per second, before crashing.
+
+
+Wrote a simple application prototype with unchangeable logic.
+Launched the easiest and cheapest instance on AWS and loaded it until it failed.
+Saw how many queries this instance completed and which criteria made it fail.
+Launched a more powerful instance and tried to crash it with our prototype.
+
+We used JMeter to find the maximum load on AWS instances until we found the most suitable ratio of instance parameters and time to crash
+
+1.Failure of one API request can affect other requests.
+2.When one request overloaded a browser, it couldn’t process subsequent requests. To fix this, we isolated each process and limited the load by creating internal requests and a request queue for each server.
+3.The first step was to create a worker that would run our program independently so that in case of errors, we would lose only one request instead of all operations. 
+4.This worker takes one task at a time from the queue after completing the previous one. In our case, the CPU load per worker was 7%.
+5.Next, we increased the number of workers until the CPU was 80% loaded. This way, we got an isolated process with a predictable load and created a number of parallel tasks for the instance to process.
+6.Our API keeps the connection active until it gets a response. Under a heavy load, it took our system three to five minutes to respond, and during this time the application load balancer ended the connection. We increased the maximum connection time for the API to three to four minutes. During this time, we can create a new instance if needed.  
 
 RAG And AI Agents Notebooks
 ---------------------------
