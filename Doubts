@@ -427,8 +427,9 @@ docker exec -it my-container /bin/bash
 
 25. Azure Functions = Azure Functions or Logic Apps	Automates document processing and retrieval workflows.
 
+26. Azure Logic Apps - Azure Logic Apps is a serverless workflow integration platform. 
 
-
+27. Azure API Management - 
 
 
 CRUL 
@@ -640,6 +641,7 @@ The function.json file acts as the blueprint of your Azure Function, linking it 
 
 
 Azure Logic Apps
+Azure Logic Apps is a serverless workflow integration platform. 
 Azure Web Apps 
 Azure DevOps - How to Use the container Instance - Kubernetes Service  
 
