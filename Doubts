@@ -431,6 +431,10 @@ docker exec -it my-container /bin/bash
 
 27. Azure API Management - 
 
+28. 3072 dimensions - Text-embedding-3-large
+29. 1536 dimensions - Text-embedding-3-small
+30 - 512 dimensions - 
+
 
 CRUL 
 -----
