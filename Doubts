@@ -216,6 +216,42 @@ API UseCase for our project
 1) CRM Data - Connecting other API and getting the DATA.  - GET Method 
 2)
 
+
+Interview Question
+------------------
+1.What is Whitelist - Whitelisting in APIs is a security practice used to control access to an API by explicitly allowing only certain clients, 
+                      IP addresses, domains, or applications to use it
+This is common for internal APIs or services accessed only from a specific office or server.
+IP addresses
+API keys or tokens
+Domains or referrers
+User agents
+Applications or client IDs
+-Limitations of Whitelisting
+IP spoofing (though rare if HTTPS is used) can be a risk if relying only on IP addresses.
+Not suitable for mobile apps or dynamic IPs.
+Managing large or changing whitelists can become complex
+
+2. How Whitelist Implemented - 
+Firewall or API Gateway level (e.g., AWS API Gateway, Apigee, NGINX)
+Within application logic (e.g., checking IP or key manually)
+Cloud IAM policies (e.g., Google Cloud IAM, AWS IAM roles)
+
+3.Different Whitelisting 
+IP Address Whitelisting
+API Key Whitelisting - Developer should register for whitelisting 
+Domain/Origin Whitelisting
+OAuth Client Whitelisting
+
+4.IP Spoofing
+IP spoofing occurs when a hacker modifies the packet headers to insert a fake (spoofed) source IP address.
+eg. of of the example of attacking[Session Hijacking] - Rare, but spoofing can be used to hijack a TCP session if sequence numbers are predictable.
+Authentication mechanisms: Don't rely on IP alone—use tokens, keys, or certificates.
+
+
+2.Rate Limiting - Only allow approved users to consume API resources, which protects performance
+
+
 CRUL 
 -----
 curl -X POST https://api.example.com/login -d "username=admin&password=1234"
