@@ -374,6 +374,11 @@ Think of shallow copy as cloning the outer shell but sharing the same inner data
    How to Use the Azure Web App
    Little Bit Knowledge about the VNet, Firewall, Network 
    Reduce function 
+
+
+20 Decorator - behavior to objects or functions dynamically without modifying their structure
+
+21 Abstract Method - from abc import ABC, abstractmethod
    
    
 
