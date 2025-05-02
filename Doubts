@@ -379,8 +379,54 @@ Think of shallow copy as cloning the outer shell but sharing the same inner data
 20 Decorator - behavior to objects or functions dynamically without modifying their structure
 
 21 Abstract Method - from abc import ABC, abstractmethod
-   
-   
+
+22 Access modifiers such as public, private, and protected.
+   Public (+): Attributes and methods are accessible from outside the class
+   Private (-): Attributes and methods are only accessible within the class. They are denoted by a double underscore __.
+   Protected (#): Attributes and methods are accessible within the class and its subclasses. They are denoted by a single underscore _.
+
+23 import requests
+
+# Your Azure endpoint URL
+azure_endpoint_url = "https://your-azure-endpoint.azurewebsites.net/predict"
+
+# Sample data to be sent for prediction
+data = {"feature1": 10, "feature2": 5, "feature3": 7}
+
+# Send a POST request to the Azure endpoint with the data
+response = requests.post(azure_endpoint_url, json=data)
+
+# Check if the request was successful (HTTP status code 200)
+if response.status_code == 200:
+    # Parse the predictions from the response
+    predictions = response.json()
+    print("Predictions:", predictions)
+else:
+    print("Error:", response.status_code, response.text)
+
+
+24 Creation of Docker Image 
+# Base image
+FROM python:3.9
+# Set the working directory
+WORKDIR /app
+# Copy application files
+COPY . /app
+# Install dependencies
+RUN pip install -r requirements.txt
+# Expose a port (for web apps)
+EXPOSE 5000
+# Define the default command to run
+CMD ["python", "app.py"]
+
+docker build -t my-python-app .
+docker run -p 5000:5000 my-python-app
+docker tag my-python-app mydockerhubusername/my-python-app
+docker push mydockerhubusername/my-python-app
+docker exec -it my-container /bin/bash
+
+25. Azure Functions = Azure Functions or Logic Apps	Automates document processing and retrieval workflows.
+
 
 
 
@@ -398,8 +444,9 @@ RAG And AI Agents Notebooks
 ---------------------------
 https://colab.research.google.com/drive/1RdkYOTpx41WNLCA8BJoh3egQRMX8fpJZ?usp=sharing#scrollTo=FL8y37hhnGWn
 
-API UseCase for our project
+UseCase for our Project Architecture 
 ----------------------------
+1) Data Ingestion Pipeline - Azure Functions or Logic Apps	Automates document processing and retrieval workflows.
 1) CRM Data - Connecting other API and getting the DATA.  - GET Method 
 2)
 
@@ -435,6 +482,50 @@ SQL-PaLM: Improved Large Language ModelAdaptation for Text-to-SQL
 Quantum Revolution 
 ------------------
 
+
+Today's Learning
+----------------
+Azure VNET - Not all Azure services run inside an Azure Virtual Network (VNet) by default
+           - Some services are publicly accessible over the internet, while others can be integrated into a VNet for security and private access.
+
+These services can be deployed inside a VNet and accessed securely:
+Virtual Machines (VMs)
+Azure Kubernetes Service (AKS)
+✅ Azure Virtual Machines Scale Sets
+✅ Azure App Service (with VNet integration)
+✅ Azure SQL Managed Instance
+✅ Azure Synapse Analytics (Dedicated Pools)
+✅ Azure Firewall, Azure VPN Gateway
+These services can communicate privately using private IPs inside a VNet.
+They can also use Network Security Groups (NSGs) to control access.
+
+2. Services That Are Public by Default (Can Use Private Link)
+These services are publicly accessible, but can be made private using Azure Private Link or VNet integration:
+✅ Azure Storage (Blob, Queue, Table, File)
+✅ Azure SQL Database (PaaS)
+✅ Azure AI Services (OpenAI, AI Search, etc.)
+✅ Azure Functions
+✅ Azure App Services (Web Apps, Logic Apps)
+✅ Azure Key Vault
+By default, these services are publicly exposed over the internet.
+Private Link allows them to be accessed privately from a VNet.
+
+How to Ensure Services Are Private?
+Use Private Link to restrict access to Azure Storage, SQL, AI services, etc.
+Deploy resources inside a VNet when possible.
+Use VNet Peering to connect different VNets securely.
+Enable Service Endpoints to allow VNet traffic to reach public services securely.
+
+What Does "Service Running Inside a Virtual Network" Mean?
+When a service is running inside an Azure Virtual Network (VNet), it means:
+✔️ The service is isolated from the public internet and can be accessed only within the VNet or through a private connection.
+✔️ The service uses private IP addresses inside the VNet.
+✔️ You can control access using Network Security Groups (NSGs), firewalls, and routing rules.
+
+Azure Functions
+Azure Logic Apps
+Azure Web Apps 
+Azure 
 
 Quantum 
 https://iqti.iisc.ac.in/academics/
