@@ -87,14 +87,7 @@ async def main():
 
 40) Important Techniques - https://www.godaddy.com/resources/news/llm-from-the-trenches-10-lessons-learned-operationalizing-models-at-godaddy#h-1-sometimes-one-prompt-isn-t-enough
 
-
-Common Doubts
--------------
-1) MessagePlaceholder in Langchain - AgentsSracthPad
-2) Azure DevOps
-3) Azure Cosmos DB 
-4) Azure AI Foundry Services - Project Creation 
-
+--------------------------------------------------------------------
 API Integration
 ----------------
 Event Web API 
@@ -126,7 +119,6 @@ USER (Millions of users)
 
 Redis / Memcached for caching frequent results
 CDN (like Cloudflare) for caching static API responses
-
 
 1.Scaling a highly loaded API that processes resource-intensive requests, 
 2.Also show how to calculate the future load on the system and choose the most suitable instances 
@@ -198,7 +190,6 @@ Collection Resource: /employees
 Instance Resources: /employees/11
 
 
-
 Django Views
 ------------
 Function-Based Views (FBV)
@@ -208,13 +199,6 @@ Class-Based Views (CBV)
 Generic Class-Based Views (GCBV) → Special ready-made
     ↓
 ViewSets → For APIs (Django REST Framework)
-
-
-
-API UseCase for our project
-----------------------------
-1) CRM Data - Connecting other API and getting the DATA.  - GET Method 
-2)
 
 
 Interview Question
@@ -249,7 +233,139 @@ eg. of of the example of attacking[Session Hijacking] - Rare, but spoofing can b
 Authentication mechanisms: Don't rely on IP alone—use tokens, keys, or certificates.
 
 
-2.Rate Limiting - Only allow approved users to consume API resources, which protects performance
+5.Rate Limiting - Only allow approved users to consume API resources, which protects performance
+These can be global (per user/IP) or granular (per endpoint, per API key, per method, etc.)
+429 Too Many Requests
+system keeps track of requests per client, and once a client exceeds their quota, the system can
+-Reject the request with an HTTP status (e.g., 429 Too Many Requests)
+-Queue the request (in some APIs)
+-Temporarily block the client (a "cooldown" or "timeout")
+-Apply backoff logic (e.g., wait before retrying)
+
+Rate Limiting Algorithms
+ Token Bucket
+Tokens are added to a “bucket” at a fixed rate
+Each request consumes a token.
+If no tokens are left → request is denied.
+
+Leaky Bucket
+Similar to token bucket but allows tokens to “leak” at a constant rate.
+Smoothens traffic spikes over time.
+
+Fixed Window
+Counts requests in a fixed time window (e.g., per minute).
+Simple but has boundary issues (spike at end/start of window).
+
+ Sliding Window
+Improves on fixed window by using rolling time periods
+More accurate in evenly enforcing limits
+
+How to implement the Rate Limit 
+API Gateways (e.g., AWS API Gateway, NGINX, Kong)
+Backend servers or middleware
+Web Application Firewalls (WAF)
+CDNs (e.g., Cloudflare)
+
+
+6.Azure API Management (APIM) [You need a centralized API management layer across different backends
+                               You're integrating with Azure services]
+Centralized API gateway for managing REST and SOAP APIs
+Rate limiting, quotas, throttling via policies
+Supports OpenAPI, WSDL, Swagger, and GraphQL (preview)
+Backend integration with Azure Functions, App Services, Logic Apps, etc
+Built-in analytics, logging, and monitoring
+Security via OAuth2, JWT validation, IP filtering, and more
+Supports multi-region deployments and versioning
+
+7.Different API 
+REST, HTTP, WebSocket
+REST, SOAP, GraphQL
+
+8.Authentication - Think of it as a login check.
+  -username and password
+  -Using Multi-Factor Authentication (MFA)
+  -Presenting a valid API key or token
+  -Signing in with Google, Azure AD, or GitHub(OAuth/OpenID)
+
+
+9.Authorization - Authorization is the process of checking what actions an authenticated user is allowed to perform
+Think of it as permission checking
+  -An API token may only allow read access to data, not write
+
+10.Authentication
+Authentication methods:
+In Web/API Context
+  -Basic Auth
+  -OAuth2 / OpenID Connect
+  -JWT (JSON Web Tokens)
+  -API Keys
+  -SAML
+
+11.Oauth ==== -  - - - - - Client redirects user to Authorization Server
+App opens browser: https://accounts.google.com/o/oauth2/v2/auth?...
+Includes client_id, scope, and redirect_uri
+User logs in & approves access
+Google shows login + consent screen
+User clicks “Allow”
+Authorization Server redirects back to Client
+Sends an Authorization Code to the app via redirect_uri
+Client exchanges Code for Access Token
+App sends code + secret to Authorization Server
+Server returns an Access Token (and optionally a Refresh Token)
+Client uses Access Token to access Resource
+App calls the API with the token:
+Authorization: Bearer ACCESS_TOKEN
+
+12. Middleware Task in Django
+Modify request before view	Add user data, parse headers, attach tokens
+Process response after view	Add CORS headers, compress response
+Handle exceptions globally	Catch and log errors or show error pages
+Control access	Block IPs, enforce authentication
+Performance measurement	Log timing or request metrics
+
+13. Central Configuration Hub - central configuration hub - Settings.py
+   How should your app behave 
+   database setup, installed apps, middleware, templates, and security settings.
+   Defines where static files (CSS, JS) and uploaded media files live
+
+Python Question
+14. Tuple - Immutability Enables Optimization
+    Allocate less memory (no need for over-allocation like lists)
+    compact, contiguous memory blocks → which boosts CPU cache performance
+Memory layout optimization
+Better cache locality
+Precomputed metadata (like size and type)
+
+15. List - Allocate extra space ("overhead")
+    Store pointers to objects rather than the objects directly
+
+16. Generators - 
+           memory-efficient, lazy iteration, especially over large datasets or streams
+    A generator is a special type of iterator that generates values on the fly instead of storing them all in memory at once.
+    Instead of using return, it uses the yield keyword to produce a value, pause execution, and resume later
+✅ Memory Efficient	Doesn’t load all data in memory – great for big data, files, or streams
+✅ Lazy Evaluation	Values are computed only when needed
+✅ Clean Syntax	Easier to read and write than manually implementing iterators
+✅ Pause & Resume	Execution state is saved between yields
+
+def count_num(maxs):
+    count = 1 
+    while count <= maxs:
+        yield count
+        count +=  1 
+gen = count_num(3)
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+
+17.nums = [1, 2, 3]        # This is an iterable
+it = iter(nums)         # This is now an iterator
+print(next(it))
+
+18.DeepCopy and ShallowCopy 
+Think of shallow copy as cloning the outer shell but sharing the same inner data, while deep copy clones everything inside too.
+
 
 
 CRUL 
@@ -265,32 +381,49 @@ RAG And AI Agents Notebooks
 ---------------------------
 https://colab.research.google.com/drive/1RdkYOTpx41WNLCA8BJoh3egQRMX8fpJZ?usp=sharing#scrollTo=FL8y37hhnGWn
 
-Quantum 
-https://iqti.iisc.ac.in/academics/
+API UseCase for our project
+----------------------------
+1) CRM Data - Connecting other API and getting the DATA.  - GET Method 
+2)
+
+AI Interview 
+------------
+https://www.interview.micro1.ai/start/micro1/?candidate=8817e0dd-2947-4078-a7b3-8c038b95415d&ping=ok
+
+AI Website 
+----------
+https://bolt.new/~/sb1-mp4hj8v2 - Quick Protyping 
+https://designwithai.substack.com/p/i-ran-the-same-prompt-through-three-ai-prototyping-tools - Prototyping website 
+https://adaptive.ai/ - Adaptive AI 
+
+Common Doubts
+-------------
+1) MessagePlaceholder in Langchain - AgentsSracthPad
+2) Azure DevOps
+3) Azure Cosmos DB 
+4) Azure AI Foundry Services - Project Creation 
+
+
+What to Learn Next
+------------------
+Event Driven Architecture 
+Solution Architecture for GenAI - All Azure Service 
+
+Research Papers
+---------------
+SQL-PaLM: Improved Large Language ModelAdaptation for Text-to-SQL
+
 
 ********** I'm Going to Create the Project and Sell the AI Agent ***********
 Quantum Revolution 
 ------------------
 
 
+Quantum 
+https://iqti.iisc.ac.in/academics/
 
 
-AI Interview 
-https://www.interview.micro1.ai/start/micro1/?candidate=8817e0dd-2947-4078-a7b3-8c038b95415d&ping=ok
 
-AI Website 
-https://bolt.new/~/sb1-mp4hj8v2 - Quick Protyping 
-https://designwithai.substack.com/p/i-ran-the-same-prompt-through-three-ai-prototyping-tools - Prototyping website 
-https://adaptive.ai/ - Adaptive AI 
-
-
-Research Papers
-SQL-PaLM: Improved Large Language ModelAdaptation for Text-to-SQL
-
-What to Learn Next
-------------------
-Event Driven Architecture 
-Solution Architecture for GenAI
 
 
 
