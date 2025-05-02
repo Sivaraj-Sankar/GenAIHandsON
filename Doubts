@@ -366,6 +366,16 @@ print(next(it))
 18.DeepCopy and ShallowCopy 
 Think of shallow copy as cloning the outer shell but sharing the same inner data, while deep copy clones everything inside too.
 
+19.Thread Execution
+   Embedding Size 
+   How to Deploy the OpenSource model in Azure AI 
+   How to Build the Cloud Native Application
+   How to Use the Azure Logic App and Azure Function App
+   How to Use the Azure Web App
+   Little Bit Knowledge about the VNet, Firewall, Network 
+   
+
+
 
 
 CRUL 
