@@ -641,10 +641,23 @@ The function.json file acts as the blueprint of your Azure Function, linking it 
                               Azure Logic Apps
                               WebJobs
 
-
-
+-Triggers have associated data, which is often provided as the payload of the function.
+-bindings might be connected as input bindings, output bindings, or both
+-Data from bindings is provided to the function as parameters
+-When you develop your functions locally, you need to take trigger and binding behaviors into consideration
+-For Non-HTTP Trigger - The easiest way to test bindings during local development is to use connection strings that target live Azure services.
+-You can target live services by adding the appropriate connection string settings in the Values array in the local.settings.json file
+-For storage-based triggers, you can use the local Azurite emulator when testing functions with Azure Storage bindings (Queue Storage, Blob Storage, and Table Storage)
+     without having to connect to remote storage services
+-You can manually run non-HTTP trigger functions by using special administrator endpoints
+Language	Configure triggers and bindings by...
+C# class library	decorating methods and parameters with C# attributes
+Java	decorating methods and parameters with Java annotations
+JavaScript/PowerShell/Python/TypeScript	updating function.json schema
+***As a security best practice, Azure Functions takes advantage of the application settings functionality of Azure App Service***
 
 Azure Logic Apps
+-----------------
 Azure Logic Apps is a serverless workflow integration platform. 
 Azure Web Apps 
 Azure DevOps - How to Use the container Instance - Kubernetes Service  
