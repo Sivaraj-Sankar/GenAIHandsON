@@ -1,0 +1,20 @@
+Layer 1
+   1. Internal User (Bank Employee/RM) - RM, Underwriter, Credit Analyst
+   2. Identity Provider - Provides role-based access to different sections of the app
+   3. Django + React App Gateway - Secure HTTPS entry point
+                        - Routes requests to different analysis modules 
+                        - Allows modular section access based on RBAC
+                        - Optional: Include Azure WAF if required
+            Gateway routes to the modular UI (each section like Financials, Risk, Management, etc.)
+   4. Private DNS Zones - Required if you want private endpoint access for internal services (e.g., LLMs or storage)
+
+   Layer 1.1  - 3
+        1. Django - Azure Functions (background tasks)
+        2. Azure Logic Apps (workflows for document ingestion / preprocessing)
+        3. Azure Blob Storage (uploaded documents)
+
+
+Deploying in Azure Virtual Network 
+1. What is Application Gateway Subnet - with Azure Web Application Firewall
+2. 
+     
