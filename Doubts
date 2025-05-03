@@ -654,6 +654,26 @@ Azure CI/CD Pipelines
 Quantum 
 https://iqti.iisc.ac.in/academics/
 
+Cosmos DB
+https://learn.microsoft.com/en-us/training/paths/integrate-azure-cosmos-db-sql-api-azure-services/
+https://microsoftlearning.github.io/dp-420-cosmos-db-dev/gen-ai/python/instructions/07-04-implement-rag-with-langchain.html
+https://learn.microsoft.com/en-us/training/paths/execute-queries-azure-cosmos-db-sql-api/
+https://learn.microsoft.com/en-us/training/paths/integrate-azure-cosmos-db-sql-api-azure-services/
+https://colab.research.google.com/github/run-llama/llama_index/blob/main/docs/docs/examples/vector_stores/AzureCosmosDBMongoDBvCoreDemo.ipynb - Notebook Implementation
+https://python.langchain.com/docs/integrations/vectorstores/azure_cosmos_db/
+https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore/CosmosDB-MongoDB-vCore_AzureOpenAI_Tutorial.ipynb
+https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search - Vector Search Indexing Policies 
+https://learn.microsoft.com/en-us/azure/cosmos-db/index-policy#vector-indexes
+https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database
+Tracing the AI Application - https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/trace
+https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/get-started-projects-vs-code
+https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/ai-template-get-started#start-with-a-sample-application
+https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-evaluate - Custom Chat application with AI Foundry 
+https://learn.microsoft.com/en-us/azure/ai-foundry/ - Learning Material 
+https://github.com/azure-ai-foundry/foundry-samples/tree/main/use-cases/agents/setup/basic-agent-setup-with-workarounds
+https://github.com/microsoft/promptflow/tree/main/examples/flows/chat/chat-math-variant
+
+
 
 Tomorrow's Learning Plan 
 ------------------------
