@@ -14,7 +14,10 @@ Layer 1
         3. Azure Blob Storage (uploaded documents)
 
 
-Deploying in Azure Virtual Network 
+Deploying in Azure Virtual Network
+
+Doubts
 1. What is Application Gateway Subnet - with Azure Web Application Firewall
-2. 
-     
+2. Gateway routes to the modular UI (each section like Financials, Risk, Management, etc.) - How, 
+           Either by Azure API Management 
+3. If I have the Gateway in App Service, and also have App Service instance in the Zone 1, Zone2, Zone3 --> How it will automatically scale-out
