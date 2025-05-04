@@ -13,7 +13,16 @@ Layer 1
         2. Azure Logic Apps (workflows for document ingestion / preprocessing)
         3. Azure Blob Storage (uploaded documents)
 
+Private DNS Zone is an Azure-managed DNS service that resolves domain names privately inside your Virtual Network (VNet) — especially when you’re using Private Endpoints.
+When you create a Private Endpoint for an Azure PaaS service (like Azure App Service, Storage, OpenAI, etc.), it gets a private IP inside your VNet.
+But DNS (domain name resolution) still needs to resolve the service name (e.g., myapp.azurewebsites.net) to that private IP — otherwise, traffic will go to the public internet address.
+Private DNS Zones solve this by:
 
+Overriding the default public DNS.
+
+Resolving the name to the private IP address instead.
+
+Ensuring traffic stays inside the Azure network, not over the public internet.
 Deploying in Azure Virtual Network
 
 Doubts
