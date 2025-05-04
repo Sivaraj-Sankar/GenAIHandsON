@@ -654,6 +654,8 @@ Key Points
 2) Where Exactly Scaling Happening - Application Gateway, Azure App Service, API Management - Done
 3) How to Deploy all the Resources - any service in Azure  - Done
 4) How Container Automatically Scales the Worker Node Compute by IaaC, 
+5) What is IaaS 
+6) How to Creat all the Resources for Dev & Production etc
 
 
 
