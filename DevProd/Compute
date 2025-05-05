@@ -719,93 +719,6 @@ You’d use IaaS when you need full control over the environment or are migratin
 
 Would you like a visual diagram showing the difference between IaaS, PaaS, and SaaS?
 
-1) Deploying the Model -- Azure OpenAI Model - Manged Compute in Azure Infrastructure 
-2) Deploying Own Model -- Config the Compute Environment[ACI,AKS,Managed Endpoints with GPUs] - Inference Server 
-3) Django App[inside have AI model inference API] in Azure App Service - compute for Django is from Azure App and for AI Inference is from Azure AI 
-4) Django App in Dev Container[Docker] to run and test , won't use the Web App Service 
-5) Use the App Service only in Staging and Production Environment 
-6) Applicatino Gateway - scales - Layer 7 Load Balancer - it distributes traffic across your scaled App Service instances
-7) App Service - Scales the Instance count, CPU, Memory you Configure
-8) API Management - It sits in front of your backend APIs, managing security, throttling, caching, etc.
-                    It does not scale your backend, it only manages traffic to it.
-9) IaC* - for deploying the resources in Development Environment. Bicep, Terraform, ARM Templates, Azure Developer CLI tool azd[Template] [azd end to end -scaffolding] 
-             Bicep template - az deployment 
-             azd - template 
-      Full [code + infra + deployment] ?
-      ready-made azd template repo for your use case (Django + App Service + Azure ML + APIM) ?
-10) how Kubernetes (specifically Azure Kubernetes Service - AKS) scales worker nodes automatically using Infrastructure as Code (IaC) or configurations
-           1. Two Types of Scaling in Kubernetes 
-Pod Autoscaling (Horizontal Pod Autoscaler - HPA)
--------------------------------------------------
-Scales pods up/down based on CPU/memory/load.
-Happens inside existing worker nodes.
-No new VM (node) is added here.
-Node Autoscaling (Cluster Autoscaler or Virtual Node/VMSS)
-----------------------------------------------------------
-Scales worker nodes (i.e., VM compute) when pods can’t be scheduled due to resource shortage
-AKS uses VM Scale Sets (VMSS) under the hood.
-⚙️ IaC Config for Autoscaling in AKS (Bicep/Terraform Example)
-✅ Bicep Example:
-bicep
-Copy
-Edit
-resource aks 'Microsoft.ContainerService/managedClusters@2023-01-01' = {
-  name: 'myAksCluster'
-  location: resourceGroup().location
-  properties: {
-    agentPoolProfiles: [
-      {
-        name: 'nodepool1'
-        count: 3
-        minCount: 2
-        maxCount: 5
-        enableAutoScaling: true
-        vmSize: 'Standard_DS2_v2'
-        type: 'VirtualMachineScaleSets'
-        mode: 'System'
-      }
-    ]
-    ...
-  }
-}
-This config creates a node pool with autoscaling enabled (between 2 and 5 nodes). Kubernetes adds/removes VM compute automatically within those bounds.
-🧠 How It Works Internally (Simplified)
-You deploy AKS with autoscaling enabled via IaC.
-A Cluster Autoscaler daemon watches for unschedulable pods.
-If a pod can’t be scheduled (e.g., CPU/memory constraints), the autoscaler:
-Requests a new VM from the underlying VMSS.
-Azure spins up the VM, joins it to the cluster.
-Kubelet starts accepting pods.
-----
-🔐 Bonus: Node Pools for Mixed Workloads
-You can have:
-CPU-optimized pool
-GPU-enabled pool
-Spot instance pool (cost-saving)
-Each with its own autoscaling policy.
-✅ TL;DR
-Kubernetes doesn’t scale nodes by itself — in cloud platforms like AKS, the Cluster Autoscaler + VM Scale Sets combo does it. IaC like Bicep/Terraform defines the autoscale rules.
-Would you like a complete Bicep or Terraform example to deploy an autoscaling AKS cluster with a node pool?
---------------
-11.IaaS - You are responsible for:
-
-Operating system
-Runtime
-Middleware
-Applications
-Data
-Patching & scaling (partially automated)
-The cloud provider manages:
-Physical servers
-Virtualization
-Storage/network layers
-Power, hardware, cooling
-
-Where it is useful - Dev/test environments	Fast, disposable infrastructure for testing
-                     Kubernetes clusters (e.g., AKS nodes)	Underlying compute (VMSS) is IaaS
------
-12) CI/CD - CI - Build, Scan, Run Tests, Package App(Zip,Container) - CD - Deploys Code, Use Service Conections to push artifacts to Azure Resources 
-13) 
 
 In Azure DevOps , how CI/CD pipeline will , basically how the compute resources are deploying for Development , Test, Staging , and Production ? are we created the compute resources already and just using the CI/CD pipeline to continue with workflow changes ?
 
@@ -1462,16 +1375,159 @@ Would you like a visual showing where Azure ML Registry fits in a GenAI + RAG pi
 
 
 
+1) Deploying the Model -- Azure OpenAI Model - Manged Compute in Azure Infrastructure 
+2) Deploying Own Model -- Config the Compute Environment[ACI,AKS,Managed Endpoints with GPUs] - Inference Server 
+3) Django App[inside have AI model inference API] in Azure App Service - compute for Django is from Azure App and for AI Inference is from Azure AI 
+4) Django App in Dev Container[Docker] to run and test , won't use the Web App Service 
+5) Use the App Service only in Staging and Production Environment 
+6) Applicatino Gateway - scales - Layer 7 Load Balancer - it distributes traffic across your scaled App Service instances
+7) App Service - Scales the Instance count, CPU, Memory you Configure
+8) API Management - It sits in front of your backend APIs, managing security, throttling, caching, etc.
+                    It does not scale your backend, it only manages traffic to it.
+9) IaC* - for deploying the resources in Development Environment. Bicep, Terraform, ARM Templates, Azure Developer CLI tool azd[Template] [azd end to end -scaffolding] 
+             Bicep template - az deployment 
+             azd - template 
+      Full [code + infra + deployment] ?
+      ready-made azd template repo for your use case (Django + App Service + Azure ML + APIM) ?
+10) how Kubernetes (specifically Azure Kubernetes Service - AKS) scales worker nodes automatically using Infrastructure as Code (IaC) or configurations
+           1. Two Types of Scaling in Kubernetes 
+Pod Autoscaling (Horizontal Pod Autoscaler - HPA)
+-------------------------------------------------
+Scales pods up/down based on CPU/memory/load.
+Happens inside existing worker nodes.
+No new VM (node) is added here.
+Node Autoscaling (Cluster Autoscaler or Virtual Node/VMSS)
+----------------------------------------------------------
+Scales worker nodes (i.e., VM compute) when pods can’t be scheduled due to resource shortage
+AKS uses VM Scale Sets (VMSS) under the hood.
+⚙️ IaC Config for Autoscaling in AKS (Bicep/Terraform Example)
+✅ Bicep Example:
+bicep
+Copy
+Edit
+resource aks 'Microsoft.ContainerService/managedClusters@2023-01-01' = {
+  name: 'myAksCluster'
+  location: resourceGroup().location
+  properties: {
+    agentPoolProfiles: [
+      {
+        name: 'nodepool1'
+        count: 3
+        minCount: 2
+        maxCount: 5
+        enableAutoScaling: true
+        vmSize: 'Standard_DS2_v2'
+        type: 'VirtualMachineScaleSets'
+        mode: 'System'
+      }
+    ]
+    ...
+  }
+}
+This config creates a node pool with autoscaling enabled (between 2 and 5 nodes). Kubernetes adds/removes VM compute automatically within those bounds.
+🧠 How It Works Internally (Simplified)
+You deploy AKS with autoscaling enabled via IaC.
+A Cluster Autoscaler daemon watches for unschedulable pods.
+If a pod can’t be scheduled (e.g., CPU/memory constraints), the autoscaler:
+Requests a new VM from the underlying VMSS.
+Azure spins up the VM, joins it to the cluster.
+Kubelet starts accepting pods.
+----
+🔐 Bonus: Node Pools for Mixed Workloads
+You can have:
+CPU-optimized pool
+GPU-enabled pool
+Spot instance pool (cost-saving)
+Each with its own autoscaling policy.
+✅ TL;DR
+Kubernetes doesn’t scale nodes by itself — in cloud platforms like AKS, the Cluster Autoscaler + VM Scale Sets combo does it. IaC like Bicep/Terraform defines the autoscale rules.
+Would you like a complete Bicep or Terraform example to deploy an autoscaling AKS cluster with a node pool?
+--------------
+11.IaaS - You are responsible for:
+
+Operating system
+Runtime
+Middleware
+Applications
+Data
+Patching & scaling (partially automated)
+The cloud provider manages:
+Physical servers
+Virtualization
+Storage/network layers
+Power, hardware, cooling
+
+Where it is useful - Dev/test environments	Fast, disposable infrastructure for testing
+                     Kubernetes clusters (e.g., AKS nodes)	Underlying compute (VMSS) is IaaS
+-----
+12) CI/CD - CI - Build, Scan, Run Tests, Package App(Zip,Container) - CD - Deploys Code, Use Service Conections to push artifacts to Azure Resources 
+13) CI/CD - Deploying the IaC Environment with like kind of DevTest Lab 
+    ✅ 3. Ephemeral Environments
+Use tools like Azure DevTest Labs or preview environments in AKS.
+
+Create temporary environments per PR, destroy after testing.
+
+🔹 Great for testing, but more advanced.
+
+⚙️ Azure DevOps Pipeline Example (App Service + IaC)
+yaml
+Copy
+Edit
+trigger:
+  - main
+
+stages:
+  - stage: 'Infrastructure'
+    jobs:
+      - job: 'DeployIaC'
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az deployment group create --resource-group dev-rg \
+                  --template-file main.bicep --parameters env='dev'
+
+  - stage: 'DeployApp'
+    dependsOn: 'Infrastructure'
+    jobs:
+      - job: 'AppDeploy'
+        steps:
+          - task: AzureWebApp@1
+            inputs:
+              appName: 'my-dev-app'
+              package: '$(System.DefaultWorkingDirectory)/drop/app.zip'
+🧩 What About AKS or Kubernetes?
+If you're deploying to AKS:
+
+The compute (cluster + node pools) is provisioned via IaC.
+
+The pipeline pushes Docker images to ACR and applies manifests to AKS using kubectl or Helm.
+-----------------
+14. Azure DevTest Labs is a service that allows you to quickly create, manage, and auto-shutdown dev/test environments (typically using VMs) in a controlled and cost-efficient way.
+🔹 Think of it as a sandbox VM factory for your dev/test teams, integrated with governance, policies, and automation.
+15.Target	Deployment Type
+App Service	ZIP, FTP, Git
+AKS	Helm, kubectl
+VMs	SSH, WinRM
+Function Apps	Zip deploy
+DevTest Lab VMs	Artifact install, script execution
+16. DevOps Pipeline, that will do both Iac + Deploy the app in the Pipeline Itself
+
 
 
 Key Points 
 1) Where Compute is Exaclty Using  - App Service & Azure AI Foundry - Done
 2) Where Exactly Scaling Happening - Application Gateway, Azure App Service, API Management - Done
 3) How to Deploy all the Resources - any service in Azure  - Done
-4) How Container Automatically Scales the Worker Node Compute by IaaC, 
-5) What is IaaS 
-6) Azure CI/CD Pipeline 
-6) How to Create all the Resources for Dev & Production etc
+4) How Container Automatically Scales the Worker Node Compute by IaaC, - Done
+5) What is IaaS - Done
+6) Azure CI/CD Pipeline   - Done 
+6) How to Create all the Resources for Dev & Production etc - Done
+7) How Pods are creating and managing 
+8) When Multiple app instance created due to the load, how the request handles, because each app instance will have different endpoint name, will APIM will manage 
+
 
 
 
