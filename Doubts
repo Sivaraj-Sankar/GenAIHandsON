@@ -672,8 +672,8 @@ When the workflow runs, the designer sends your workflow's definition to the Azu
 The execution engine launches your workflow when the specified condition is met and manages the compute resources needed to run the process
 Azure Web Apps 
 Azure DevOps - How to Use the container Instance - Kubernetes Service  
-Azure AI Apps - How to Depoly the AI Model 
-Azure CI/CD Pipelines 
+Azure AI Apps - How to Depoly the AI Model - Done 
+Azure CI/CD Pipelines  - Done 
 Azure Authen
       Managed Identity - feature of Azure Active Directory (Azure AD) - is a service principal 
              System Assigned 
@@ -682,7 +682,7 @@ Azure Authen
       Web/mobile apps can authenticate users via Entra ID using OpenID Connect, OAuth 2.0, or SAML.
       SSO and MFA for SaaS apps like Salesforce, ServiceNow
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Quantum 
 https://iqti.iisc.ac.in/academics/
@@ -715,7 +715,7 @@ https://docs.cohere.com/v2/page/aya-vision-intro#question-answering
 
 
 
-Tomorrow's Learning Plan 
+Learning Plan 
 ------------------------
 Agentic AI Memory 
 Azure Services - Diffiently DevOps 
@@ -725,12 +725,12 @@ Find the Resource for Document Filling
 Agentic AI Course from Berkely RDI
 -----
 Azure DevOps - Completely 
-How to Create the Resources for Azure for Development and Production
+How to Create the Resources for Azure for Development and Production - Done
 Low Level Design Architect + Zone Level Scaling 
 DevOps Architect - To Devlop and Test and Staging and Prod 
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Full Prompt for Solution Architect Diagram 
 ✅ Full Prompt: Assist & Teach Enterprise-Level Solution Architecture Design (Generative AI on Azure)
@@ -1264,12 +1264,29 @@ Kubernetes handles the worker nodes (compute resources), and you specify your ap
 
 Does that make sense? Would you like to dive deeper into any part of this? Or maybe see how this applies to scaling your application?
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Doubt Cleared 
+1. Kubernetes Worker node - You Define the "Desired State" in Code:
+With Kubernetes YAML files (or Helm charts), you define the resources that Kubernetes will manage for you:
+2. With IaC (e.g., using Kubernetes + YAML or Terraform):
+You write a YAML file that says:
+yaml
+Copy
+Edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-backend
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+      - name: django
+        image: mycompany/django-app:latest
+Kubernetes reads that and spins up 3 containers of your app, automatically.
+It's repeatable — you can give this file to a teammate or use it in CI/CD.
 
-
-
-
-
-         
 
 
 
