@@ -472,6 +472,7 @@ Common Doubts
 2) Azure DevOps
 3) Azure Cosmos DB 
 4) Azure AI Foundry Services - Project Creation 
+5) How compute used in Azure Logic Apps, and How Compute used in Azure Data Factory 
 
 
 What to Learn Next
@@ -663,6 +664,9 @@ Azure Files doesn't support using managed identity when accessing the file share
 Azure Logic Apps
 -----------------
 Azure Logic Apps is a serverless workflow integration platform. 
+Automate business processes with integration workflows in Azure Logic Apps
+1,000+ prebuilt connectors
+connectors, triggers, and actions work together
 Azure Web Apps 
 Azure DevOps - How to Use the container Instance - Kubernetes Service  
 Azure AI Apps - How to Depoly the AI Model 
