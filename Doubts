@@ -667,6 +667,9 @@ Azure Logic Apps is a serverless workflow integration platform.
 Automate business processes with integration workflows in Azure Logic Apps
 1,000+ prebuilt connectors
 connectors, triggers, and actions work together
+The result might be a decision, some data, or a notification.
+When the workflow runs, the designer sends your workflow's definition to the Azure Logic Apps execution engine
+The execution engine launches your workflow when the specified condition is met and manages the compute resources needed to run the process
 Azure Web Apps 
 Azure DevOps - How to Use the container Instance - Kubernetes Service  
 Azure AI Apps - How to Depoly the AI Model 
