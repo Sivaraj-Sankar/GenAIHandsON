@@ -4,6 +4,9 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema.output_parser import StrOutputParser
 from langchain.vectorstores import DocArrayInMemorySearch
 from langchain.schema.runnable import RunnableMap
+from langchain.utils.openai_functions import convert_pydantic_to_openai_function
+from typing import List
+from pydantic import BaseModel, Field
 Chapter - 1
 1) Routing - Tool selection and routing using LangChain tools and LLM function calling
 2) LCEL - 
@@ -66,7 +69,26 @@ retriever.get_relevant_documents("where did harrison work?")
     "question": lambda x: x["question"]
 }) | prompt | model | output_parser
 
-12.
+12.chain.invoke({"question": "where did harrison work?"})
+
+13. Binding the Functions 
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("human", "{input}")
+    ]
+)
+model = ChatOpenAI(temperature=0).bind(functions=functions)
+runnable = prompt | model
+
+14. Fallback - final_chain = simple_chain.with_fallbacks([chain])   --> [chain] is advanced chain 
+15. Structured Output 
+          - get the string from LLM - chain = model | StrOutputParser() | json.loads
+
+16. Interface 
+        invoke    ainvoke
+        batch     abatch
+        stream    astream 
+17. 
 
 
 
