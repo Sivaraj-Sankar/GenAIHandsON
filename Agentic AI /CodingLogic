@@ -1,1 +1,59 @@
+LangChain - Course -1
+from langchain.prompts import ChatPromptTemplate
+from langchain.chat_models import ChatOpenAI
+from langchain.schema.output_parser import StrOutputParser
+from langchain.vectorstores import DocArrayInMemorySearch
+from langchain.schema.runnable import RunnableMap
+Chapter - 1
+1) Routing - Tool selection and routing using LangChain tools and LLM function calling
+2) LCEL - 
+
+Code 
+1.response = openai.ChatCompletion.create(
+    # OpenAI Updates: As of June 2024, we are now using the GPT-3.5-Turbo model
+    model="gpt-3.5-turbo",
+    messages=messages,
+    functions=functions
+)
+2.response = openai.ChatCompletion.create(
+    # OpenAI Updates: As of June 2024, we are now using the GPT-3.5-Turbo model
+    model="gpt-3.5-turbo",
+    messages=messages,
+    functions=functions,
+    function_call="auto",
+)
+3.response = openai.ChatCompletion.create(
+    # OpenAI Updates: As of June 2024, we are now using the GPT-3.5-Turbo model
+    model="gpt-3.5-turbo",
+    messages=messages,
+    functions=functions,
+    function_call="none",
+)
+4.response = openai.ChatCompletion.create(
+    # OpenAI Updates: As of June 2024, we are now using the GPT-3.5-Turbo model
+    model="gpt-3.5-turbo",
+    messages=messages,
+    functions=functions,
+    function_call={"name": "get_current_weather"},
+)
+5.Prompt - 
+prompt = ChatPromptTemplate.from_template(
+    "tell me a short joke about {topic}"
+)
+6.Output Parser - output_parser = StrOutputParser()
+7.Chain
+  chain = prompt | model | output_parser
+  chain.invoke({"topic": "bears"})
+8.Document storing for sample - vectorstore = DocArrayInMemorySearch.from_texts(
+    ["harrison worked at kensho", "bears like to eat honey"],
+    embedding=OpenAIEmbeddings()
+)
+  retriever = vectorstore.as_retriever()
+retriever.get_relevant_documents("where did harrison work?")
+9.RunnableMap - chain = RunnableMap({
+    "context": lambda x: retriever.get_relevant_documents(x["question"]),
+    "question": lambda x: x["question"]
+}) | prompt | model | output_parser
+
+
 
