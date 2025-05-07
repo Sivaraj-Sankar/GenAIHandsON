@@ -55,5 +55,18 @@ retriever.get_relevant_documents("where did harrison work?")
     "question": lambda x: x["question"]
 }) | prompt | model | output_parser
 
+10 Runnable - 
+       Logging
+       Fallback 
+       Parallelsim 
+       Streaming Support 
+11.Runnable Map 
+      chain = RunnableMap({
+    "context": lambda x: retriever.get_relevant_documents(x["question"]),
+    "question": lambda x: x["question"]
+}) | prompt | model | output_parser
+
+12.
+
 
 
