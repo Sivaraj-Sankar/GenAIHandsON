@@ -105,6 +105,22 @@ input = 'Sivaraj {name}'
 input.format(name='Sankar')
 
 
+reduce function
+---------------
+from functools import reduce
+reduce(function, iterable[, initializer])
+from functools import reduce
+nums = [1, 2, 3, 4]
+total = reduce(lambda x, y: x + y, nums)
+print(total)  # Output: 10
+from functools import reduce
+nums = [1, 2, 3]
+product = reduce(lambda x, y: x * y, nums, 10)
+print(product)  # Output: 60  (10 * 1 * 2 * 3)
+
+
+
+
 lambda function, map function,filter 
 numbers = [1, 2, 3, 4]
 squared = list(map(lambda x: x ** 2, numbers)) --> apply the function for all elements 
