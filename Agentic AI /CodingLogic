@@ -7,9 +7,24 @@ from langchain.schema.runnable import RunnableMap
 from langchain.utils.openai_functions import convert_pydantic_to_openai_function
 from typing import List
 from pydantic import BaseModel, Field
+from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
+from typing import Optional
+from langchain.output_parsers.openai_functions import JsonKeyOutputFunctionsParser
+from langchain.output_parsers.openai_functions import JsonKeyOutputFunctionsParser
+from langchain.document_loaders import WebBaseLoader
+from langchain.document_loaders import PlaywrightURLLoader
+from langchain.document_loaders import SeleniumURLLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema.runnable import RunnableLambda
 Chapter - 1
 1) Routing - Tool selection and routing using LangChain tools and LLM function calling
 2) LCEL - 
+3) Function Definition by Pydantic 
+4) Function Binding by two methods 
+5) Using Function for Tagging 
+6) extraction_chain = prompt | extraction_model | JsonKeyOutputFunctionsParser(key_name="people")  ---> Parse Based on Only Particular key
+7) WebBaseLoader 
+
 
 Code 
 1.response = openai.ChatCompletion.create(
@@ -88,7 +103,22 @@ runnable = prompt | model
         invoke    ainvoke
         batch     abatch
         stream    astream 
-17. 
+17. Function Binding and Function is giving at invoking 
+18. Pydantic - creating OpenAI Function Description, 
+19. Pydantic - Optional Usage 
+        from typing import Optional
+class Person(BaseModel):
+    """Information about a person."""
+    name: str = Field(description="person's name")
+    age: Optional[int] = Field(description="person's age")
+20. Runnable Lambda - prep = RunnableLambda(
+    lambda x: [{"input": doc} for doc in text_splitter.split_text(x)]
+)
+
+
+Agentic AI Links 
+https://lilianweng.github.io/posts/2023-06-23-agent/
+
 
 
 
