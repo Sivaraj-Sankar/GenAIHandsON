@@ -137,11 +137,33 @@ Langchain Course - 3 - LangChain for LLM Application Development
 
 
 
+Project First Step
+------------------
+1) How Memory Maintaining, from the Prompt[System + Instruction Prompt] --> Prompt[System + Instruction] Probably not saving ---> only Human Question and AI Answer is Storing 
+2) How follow up questions asking and it will take 
+             so basically Prompt + Instruction --> Finally it adding 
+                          Memory Chat History 
+                          Follow Up Question 
+                          Standlone Question of overall 
+
+      order is  
+            Prompt for follow up question
+            chat history + Second Question 
+            Standlone 
+            Now the Prompt + Instruction 
+                    Context 
+                    Standlone Question 
+
+
+
 Agentic AI Links 
 https://lilianweng.github.io/posts/2023-06-23-agent/
 
 OpenAI API Key 
 https://platform.openai.com/account/api-keys
+
+LangSmith
+https://www.langchain.com/langsmith
 
 
 
