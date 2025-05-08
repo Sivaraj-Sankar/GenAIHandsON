@@ -133,6 +133,7 @@ Langchain Course - 3 - LangChain for LLM Application Development
 6.Agents: explore the powerful emerging development of LLM as reasoning agents.
 
 1.From ChatPromptTemplate use the from template , From Prompt Template - use the from message
+2.Using Sequential Chain or Simple Squential Chain to find and classify the Query Type and Prompt Specific Type 
 
 
 
