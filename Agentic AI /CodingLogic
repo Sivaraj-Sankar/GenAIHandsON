@@ -153,6 +153,14 @@ Project First Step
             Now the Prompt + Instruction 
                     Context 
                     Standlone Question 
+3) Conversation Retreival Chain[chat memory] + Conversational Chain[ chat Memory]
+
+Step1: Use Input the question + Indentifier of Which section is passing from the UI 
+Step2: Getting the Correct Prompt for that Section + Routing to the Respective Retrival + Memory saved in unconventional for Justification 
+                                                                                        + Memory saved for follow up question 
+Step3: Once First question routed, second question from the same section should take that routing and retrieval every time. 
+
+Single API + should identify and route the traffic to the respect retrieval 
 
 
 
