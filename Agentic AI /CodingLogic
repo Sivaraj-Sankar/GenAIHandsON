@@ -16,6 +16,8 @@ from langchain.document_loaders import PlaywrightURLLoader
 from langchain.document_loaders import SeleniumURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema.runnable import RunnableLambda
+from langchain.output_parsers import ResponseSchema
+from langchain.output_parsers import StructuredOutputParser
 Chapter - 1
 1) Routing - Tool selection and routing using LangChain tools and LLM function calling
 2) LCEL - 
@@ -124,6 +126,8 @@ Langchain Course - 3 - LangChain for LLM Application Development
 4.Memories for LLMs: memories to store conversations and manage limited context space
 5.Chains: creating sequences of operations
 6.Agents: explore the powerful emerging development of LLM as reasoning agents.
+
+1.From ChatPromptTemplate use the from template , From Prompt Template - use the from message
 
 
 
