@@ -174,5 +174,112 @@ LangSmith
 https://www.langchain.com/langsmith
 
 
+____________________________________________________________________Project API Creation____________________________________________________________
+I will give you step by step 
+1) First it needs to identify if this is first question for this section , then route correctly 
+2) for second question onwards it uses the same route and same memory chat history --> chat history will be maintianed separately 
+3) and if user toggling back & forth with section, memory should maintain sequentially as per back and forth for respective section, 
+
+
+ChatGPT said:
+Perfect — thanks for the step-by-step breakdown. Based on your updated flow, here's how to structure your backend to meet all three requirements precisely.
+
+✅ Recap of Your Steps & What They Mean for Code
+✅ Step 1: First question routing
+Detect if it’s the first message in this section for the session, and then pick the correct vector store & prompt template.
+
+✅ Step 2: Subsequent questions
+For all later messages in the same section and session:
+
+Use the same retriever and prompt (no rerouting).
+
+Use a separate chat history/memory per section.
+
+✅ Step 3: Switching back & forth between sections
+The memory/chat history must be preserved per section, so users can return to previous sections without losing context.
+
+✅ Architectural Design
+We’ll use a nested session store, keyed by:
+
+session_id
+
+section_id: contains the chain + memory
+
+1. Your Global Session Store (replace with Redis in production)
+python
+Copy
+Edit
+# Structure: SESSION_STATE[session_id][section_id] = { "chain": ..., "memory": ... }
+SESSION_STATE = {}
+
+
+SECTION_CONFIGS = {
+    "finance": {
+        "vectorstore": get_finance_vectorstore(),
+        "prompt_template": get_finance_prompt_template(),
+    },
+    "legal": {
+        "vectorstore": get_legal_vectorstore(),
+        "prompt_template": get_legal_prompt_template(),
+    },
+    # etc...
+}
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from langchain.chains import ConversationRetrievalChain
+from langchain.memory import ConversationBufferMemory
+
+class ChatbotAPIView(APIView):
+    def post(self, request):
+        session_id = request.data.get("session_id")
+        section = request.data.get("section")
+        message = request.data.get("message")
+
+        if not session_id or not section or not message:
+            return Response({"error": "Missing session_id, section, or message"}, status=400)
+
+        # Step 1: Initialize session if not present
+        if session_id not in SESSION_STATE:
+            SESSION_STATE[session_id] = {}
+
+        # Step 2: First question for this section
+        if section not in SESSION_STATE[session_id]:
+            if section not in SECTION_CONFIGS:
+                return Response({"error": "Invalid section"}, status=400)
+
+            config = SECTION_CONFIGS[section]
+            retriever = config["vectorstore"].as_retriever()
+            prompt = config["prompt_template"]
+
+            memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+            chain = ConversationRetrievalChain.from_llm(
+                llm=your_llm_instance,
+                retriever=retriever,
+                memory=memory,
+                combine_docs_chain_kwargs={"prompt": prompt}
+            )
+
+            # Save this section's config and memory
+            SESSION_STATE[session_id][section] = {
+                "chain": chain,
+                "memory": memory,
+            }
+
+        # Step 3: Use existing chain and memory
+        chain = SESSION_STATE[session_id][section]["chain"]
+
+        response = chain.run(message)
+
+        return Response({
+            "response": response,
+            "session_id": session_id,
+            "section": section
+        })
+
+
+
 
 
