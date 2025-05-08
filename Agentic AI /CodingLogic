@@ -116,8 +116,22 @@ class Person(BaseModel):
 )
 
 
+--------
+Langchain Course - 3 - LangChain for LLM Application Development
+1.Apply LLMs to your proprietary data to build personal assistants and specialized chatbots
+2.Use agents, chained calls, and memories to expand your use of LLMs
+3.Models, Prompts and Parsers: calling LLMs, providing prompts and parsing the response
+4.Memories for LLMs: memories to store conversations and manage limited context space
+5.Chains: creating sequences of operations
+6.Agents: explore the powerful emerging development of LLM as reasoning agents.
+
+
+
 Agentic AI Links 
 https://lilianweng.github.io/posts/2023-06-23-agent/
+
+OpenAI API Key 
+https://platform.openai.com/account/api-keys
 
 
 
