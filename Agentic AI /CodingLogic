@@ -350,6 +350,108 @@ Otherwise, your backend won’t know what context to use.
 Would you like a Redis-based version of SESSION_STATE, or help with scaling this to multiple processes/containers?
 
 
+-------------------------------------
+Great! Here's how you can design a clean and developer-friendly OpenAPI (Swagger) specification for your chatbot API — supporting multiple sections dynamically via one endpoint.
+
+✅ OpenAPI Spec (YAML Format)
+yaml
+Copy
+Edit
+openapi: 3.0.1
+info:
+  title: Chatbot API
+  version: 1.0.0
+  description: |
+    Chatbot API that supports multiple knowledge sections (e.g., finance, legal, etc.).
+    Route to the correct vector DB and prompt template based on the section provided in the request.
+
+paths:
+  /api/chat/:
+    post:
+      summary: Chat with the bot in a specific knowledge section
+      operationId: chatWithBot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                  description: Unique session identifier per user chat
+                  example: "abc123"
+                section:
+                  type: string
+                  description: The section/topic of knowledge base (e.g., finance, legal, tech)
+                  enum: [finance, legal, tech, healthcare, hr, marketing]
+                message:
+                  type: string
+                  description: The user's message
+              required:
+                - session_id
+                - section
+                - message
+      responses:
+        '200':
+          description: Successful response from the chatbot
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: The chatbot's response
+                    example: "The current tax rate for corporations is 21%."
+                  session_id:
+                    type: string
+                  section:
+                    type: string
+        '400':
+          description: Invalid input (e.g., missing section or session)
+✅ Example Request (Frontend → API)
+POST /api/chat/
+
+json
+Copy
+Edit
+{
+  "session_id": "abc123",
+  "section": "finance",
+  "message": "What's the corporate tax rate?"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "response": "The corporate tax rate is 21% as of 2023.",
+  "session_id": "abc123",
+  "section": "finance"
+}
+✅ Frontend Integration (Pseudocode Example)
+javascript
+Copy
+Edit
+async function sendMessage(message, section, sessionId) {
+  const response = await fetch('/api/chat/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      session_id: sessionId,
+      section: section,
+      message: message
+    })
+  });
+
+  const data = await response.json();
+  return data.response;
+}
+Would you like me to generate a Swagger UI preview or help add this to Django REST Framework with drf-spectacular or drf-yasg?
+
+
 
 
 
