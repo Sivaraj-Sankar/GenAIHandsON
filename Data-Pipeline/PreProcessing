@@ -5,8 +5,161 @@ Steps in Docling
 1. OCR Model downloading on Top of the Document 
 2. Need Hardware Dependencies Accelerator 
 
-How Going to Setup the Production Pipeline for this Docling 
------------------------------------------------------------
+How Going to Setup the Production Pipeline for this Docling  - Azure Service 
+-----------------------------------------------------------------------------
+1.To containerize Docling and run it on Azure Machine Learning (AML) Compute as a Docker-based job, follow these steps
+2.This is the most scalable and reproducible method for running complex dependency-heavy pipelines like Docling's preprocessing + Markdown output generation
+
+3.Create Dockerfile for Docling
+This will define all dependencies including CUDA (for GPU), OCR tools, and Hugging Face model handling.
+# Use a CUDA-enabled base image (adjust CUDA version as needed)
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+
+# Set non-interactive frontend
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip python3-dev python3-venv \
+    git wget curl \
+    tesseract-ocr \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up Python
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Install Python libraries
+RUN pip install \
+    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
+    transformers \
+    opencv-python \
+    pytesseract \
+    docling
+
+# Set workdir and copy code
+WORKDIR /app
+COPY . /app
+
+# Entrypoint for preprocessing
+CMD ["python", "run_docling.py"]
+
+4.2. Create Your run_docling.py Script
+This should run Docling on an input (e.g. PDF or image) and output Markdown.
+import docling
+
+# Adjust paths as needed
+input_file = "input_data/scanned.pdf"
+output_file = "output_data/processed.md"
+
+doc = docling.Document(input_file)
+doc.preprocess()
+doc.export(output_file, format="markdown")
+
+5.3. Build & Push Docker Image to Azure Container Registry (ACR)
+Assuming your ACR name is myacr:
+# Login to ACR
+az acr login --name myacr
+
+# Tag and push Docker image
+docker build -t docling-preprocess .
+docker tag docling-preprocess myacr.azurecr.io/docling-preprocess:v1
+docker push myacr.azurecr.io/docling-preprocess:v1
+
+6.Run on Azure ML
+Use the Azure ML SDK or CLI to submit the job using the Docker image.
+
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import Environment, CommandJob
+from azure.ai.ml.entities import AmlCompute
+
+# Connect to workspace
+ml_client = MLClient(DefaultAzureCredential(), "<subscription_id>", "<resource_group>", "<workspace_name>")
+
+# Define compute cluster
+compute_name = "gpu-cluster"
+
+# Define environment from Docker
+env = Environment(
+    name="docling-env",
+    image="myacr.azurecr.io/docling-preprocess:v1"
+)
+
+# Define job
+job = CommandJob(
+    code="./",  # location of script
+    command="python run_docling.py",
+    environment=env,
+    compute=compute_name,
+    display_name="docling-preprocess-job",
+    experiment_name="docling-experiment",
+    inputs={},
+    outputs={}
+)
+
+ml_client.jobs.create_or_update(job)
+
+7.5. Monitor & Retrieve Output
+You can stream logs using:
+az ml job show --name <job-name>
+az ml job download --name <job-name> --output ./outputs
+If saving to outputs/processed.md, Azure ML will automatically track and store that in the job's artifacts.
+8.Tips for Better Performance & Usability
+Model Caching: Pre-download Hugging Face models and mount them via Azure Blob Storage or include them in the container.
+Multiple File Support: Extend your script to process a directory of files.
+Use Volume Mounts: If working with large datasets, consider mounting datasets using Azure ML Datasets or Datastores.
+
+
+GitHub Project Structure 
+docling-azureml/
+├── Dockerfile
+├── run_docling.py
+├── azureml_job.yaml
+├── input_data/
+│   └── scanned.pdf
+├── output_data/
+└── README.md
+
+azureml_job.yaml
+This YAML file defines the Azure ML job configuration to run the containerized Docling process.
+
+yaml
+Copy
+Edit
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: >-
+  python run_docling.py
+code: .
+environment:
+  image: myacr.azurecr.io/docling-preprocess:v1
+compute: azureml:gpu-cluster
+display_name: docling-preprocess-job
+experiment_name: docling-experiment
+inputs: {}
+outputs:
+  output_data:
+    mode: upload
+    path: ./output_data
+
+
+Deployment Steps
+# Log in to ACR
+az acr login --name myacr
+
+# Build the Docker image
+docker build -t docling-preprocess .
+
+# Tag the image
+docker tag docling-preprocess myacr.azurecr.io/docling-preprocess:v1
+
+# Push the image to ACR
+docker push myacr.azurecr.io/docling-preprocess:v1
+
+
 
 
 
