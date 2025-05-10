@@ -1,0 +1,22 @@
+https://arxiv.org/pdf/2408.09869
+
+
+Steps in Docling 
+1. OCR Model downloading on Top of the Document 
+2. Need Hardware Dependencies Accelerator 
+
+How Going to Setup the Production Pipeline for this Docling 
+-----------------------------------------------------------
+
+
+
+Docling - Architecture view with Ollama with installation
+Integrating docling with IBM Granite Model 
+End-End RAG Pipelin with Langchain 
+MultiModality Document 
+
+**Replicate 
+
+
+Docling Tutorial 
+https://www.youtube.com/watch?v=Bpv53WoMxys
