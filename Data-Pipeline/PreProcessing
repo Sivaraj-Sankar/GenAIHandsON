@@ -856,6 +856,85 @@ A clean, minimal Dockerfile + requirements.txt for this setup?
 Or an Azure ML job YAML to run this container with environment secrets?
 -----------------------------------------------------------------------------
 
+okay now im choosing which VLM setup from docling right, 
+that script will be in the running script ?
+
+
+ChatGPT said:
+Yes — exactly. The VLM setup selection (Ollama or Watsonx) happens within your running script, and you control it through code and environment variables. Here’s how it fits in:
+
+✅ Where Does the VLM Setup Happen?
+It happens in the Python script that you're running as the entry point of the container (e.g., run_docling_remote.py). This script includes logic like:
+
+python
+Copy
+Edit
+pipeline_options = VlmPipelineOptions(enable_remote_services=True)
+
+# Choose VLM backend — Ollama or Watsonx
+pipeline_options.vlm_options = ollama_vlm_options(
+    model="granite3.2-vision:2b",
+    prompt="OCR the full page to markdown.",
+)
+
+# OR
+# pipeline_options.vlm_options = watsonx_vlm_options(
+#     model="ibm/granite-vision-3-2-2b", 
+#     prompt="OCR the full page to markdown."
+# )
+So yes, the selection of which VLM service to use is done in the script you run inside the container.
+
+🔄 Dynamic Switching (Optional)
+If you want to switch models dynamically based on input (like env vars or CLI flags), you can modify the script like this:
+
+python
+Copy
+Edit
+import os
+
+vlm_provider = os.getenv("VLM_PROVIDER", "ollama")
+
+if vlm_provider == "ollama":
+    pipeline_options.vlm_options = ollama_vlm_options(
+        model="granite3.2-vision:2b", prompt="OCR the full page to markdown."
+    )
+elif vlm_provider == "watsonx":
+    pipeline_options.vlm_options = watsonx_vlm_options(
+        model="ibm/granite-vision-3-2-2b", prompt="OCR the full page to markdown."
+    )
+else:
+    raise ValueError("Invalid VLM provider specified.")
+Then at runtime, just pass:
+
+bash
+Copy
+Edit
+VLM_PROVIDER=watsonx python run_docling_remote.py
+Or define VLM_PROVIDER in your Azure ML job/environment.
+
+✅ Final Flow Recap
+You build the container once with this script included.
+
+Azure ML job spins up, runs your script (CMD ["python", "run_docling_remote.py"])
+
+The script:
+
+Reads VLM_PROVIDER or similar setting
+
+Chooses the remote API setup
+
+Sends your document for inference
+
+Outputs Markdown
+
+Would you like me to help you rewrite your script to support this dynamic model switching via environment variable?
+
+
+
+
+
+
+
 
 Docling - Architecture view with Ollama with installation
 Integrating docling with IBM Granite Model 
