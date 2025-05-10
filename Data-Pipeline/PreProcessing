@@ -626,6 +626,236 @@ Job Execution	Depends on workload and file size
 
 By pre-provisioning the cluster or using AKS and optimizing your container, you can minimize latency and make your preprocessing pipeline efficient for high-frequency processing. Would you like more details on setting up pre-provisioned clusters or AKS for job speed-up?
 
+Running Remote Hosted VLM 
+------------
+okay now I prepared the Docling in container to run the script to preprocess, but that is docling using default pipeline inside what they set up. 
+So all the models downloading locally and running on preprocessing stage 
+
+We can also use the remote model as mentioned below - now how the setup will be, is there any change will be in image creation, or in the script running 
+VLM pipeline with remote model
+import logging
+import os
+from pathlib import Path
+import requests
+from dotenv import load_dotenv
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.pipeline_options import (
+    ApiVlmOptions,
+    ResponseFormat,
+    VlmPipelineOptions,
+)
+from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling.pipeline.vlm_pipeline import VlmPipeline
+def ollama_vlm_options(model: str, prompt: str):
+    options = ApiVlmOptions(
+        url="http://localhost:11434/v1/chat/completions",  # the default Ollama endpoint
+        params=dict(
+            model=model,
+        ),
+        prompt=prompt,
+        timeout=90,
+        scale=1.0,
+        response_format=ResponseFormat.MARKDOWN,
+    )
+    return options
+def watsonx_vlm_options(model: str, prompt: str):
+    load_dotenv()
+    api_key = os.environ.get("WX_API_KEY")
+    project_id = os.environ.get("WX_PROJECT_ID")
+
+    def _get_iam_access_token(api_key: str) -> str:
+        res = requests.post(
+            url="https://iam.cloud.ibm.com/identity/token",
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            data=f"grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey={api_key}",
+        )
+        res.raise_for_status()
+        api_out = res.json()
+        print(f"{api_out=}")
+        return api_out["access_token"]
+
+    options = ApiVlmOptions(
+        url="https://us-south.ml.cloud.ibm.com/ml/v1/text/chat?version=2023-05-29",
+        params=dict(
+            model_id=model,
+            project_id=project_id,
+            parameters=dict(
+                max_new_tokens=400,
+            ),
+        ),
+        headers={
+            "Authorization": "Bearer " + _get_iam_access_token(api_key=api_key),
+        },
+        prompt=prompt,
+        timeout=60,
+        response_format=ResponseFormat.MARKDOWN,
+    )
+    return options
+def main():
+    logging.basicConfig(level=logging.INFO)
+
+    # input_doc_path = Path("./tests/data/pdf/2206.01062.pdf")
+    input_doc_path = Path("./tests/data/pdf/2305.03393v1-pg9.pdf")
+
+    pipeline_options = VlmPipelineOptions(
+        enable_remote_services=True  # <-- this is required!
+    )
+
+    # The ApiVlmOptions() allows to interface with APIs supporting
+    # the multi-modal chat interface. Here follow a few example on how to configure those.
+
+    # One possibility is self-hosting model, e.g. via Ollama.
+    # Example using the Granite Vision  model: (uncomment the following lines)
+    pipeline_options.vlm_options = ollama_vlm_options(
+        model="granite3.2-vision:2b",
+        prompt="OCR the full page to markdown.",
+    )
+
+    # Another possibility is using online services, e.g. watsonx.ai.
+    # Using requires setting the env variables WX_API_KEY and WX_PROJECT_ID.
+    # Uncomment the following line for this option:
+    # pipeline_options.vlm_options = watsonx_vlm_options(
+    #     model="ibm/granite-vision-3-2-2b", prompt="OCR the full page to markdown."
+    # )
+
+    # Create the DocumentConverter and launch the conversion.
+    doc_converter = DocumentConverter(
+        format_options={
+            InputFormat.PDF: PdfFormatOption(
+                pipeline_options=pipeline_options,
+                pipeline_cls=VlmPipeline,
+            )
+        }
+    )
+    result = doc_converter.convert(input_doc_path)
+    print(result.document.export_to_markdown())
+if __name__ == "__main__":
+    main()
+
+
+ChatGPT said:
+Great — you've now reached the remote VLM (Vision-Language Model) setup phase for Docling, which means you're shifting inference from local models to remote APIs like Ollama or Watsonx. This has direct implications on:
+
+Container image creation
+
+Script execution
+
+Environment variables/secrets
+
+Networking (API access)
+
+Let’s break it down for you clearly:
+
+✅ 1. What's Changing in Your Setup
+From:
+Heavy container with local models downloaded and run at preprocessing time.
+
+To:
+Lightweight container that sends OCR/image data to remote APIs (Ollama or Watsonx) for inference and gets back results in Markdown.
+
+🧱 2. Changes in Docker Image Creation
+✅ What stays the same:
+You still need basic Python + docling + transformers + HTTP support.
+
+You do not need to install/download models locally anymore (no heavy OCR/transformer downloads).
+
+🚫 What you can now remove:
+Model download steps in Dockerfile (AutoModel.from_pretrained, etc.)
+
+Onnx, GPU dependencies — unless needed by other parts.
+
+✨ Example Updated Dockerfile (Minimal for Remote VLM):
+Dockerfile
+Copy
+Edit
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Copy script
+COPY run_docling_remote.py .
+
+# Set environment (or use runtime override)
+ENV WX_API_KEY=your_key_here
+ENV WX_PROJECT_ID=your_project_id_here
+
+CMD ["python", "run_docling_remote.py"]
+📄 3. Your Python Script (run_docling_remote.py)
+Looks good! Make sure:
+
+.env is either loaded from mounted volume or set via environment variables.
+
+You uncomment the VLM option that matches your service (Ollama or Watsonx).
+
+🔑 For secrets:
+If using Azure ML, you can:
+
+Use Azure ML Environment Variables
+
+Use Key Vault integration for secure storage
+
+🌍 4. Networking Requirements
+If you're calling:
+
+Ollama (localhost:11434) → container must be on same VM or host network
+
+Watsonx (external HTTPS) → container must allow outbound HTTP/S access
+
+✅ Azure ML allows outbound HTTP by default.
+So Watsonx works without changes.
+
+If you’re calling Ollama running outside Azure, you need:
+
+Public IP + open port
+
+Or, a custom VNET with peered resources
+
+🧠 5. Triggering from Azure ML: No Big Change
+Azure ML will:
+
+Spin the container
+
+Pass input file
+
+Run your script
+
+Output the markdown file
+
+You're simply replacing local model usage with remote inference logic, which makes the image:
+
+Lighter
+
+Faster to spin
+
+More scalable
+
+✅ Summary: What to Change for Remote VLM Pipeline
+Component	Change Needed?	What to Do
+Dockerfile	✅ Yes	Remove model downloads, keep Docling, add HTTP libraries
+Python Script	✅ Yes	Use VlmPipelineOptions with API configs as you posted
+Environment	✅ Yes	Inject secrets (WX_API_KEY, WX_PROJECT_ID) via env vars or Azure Key Vault
+Azure ML Job	❌ No major change	Same job setup, just use new container image and updated script
+Network Access	⚠️ Possibly	Ensure outbound HTTPS access for Watsonx; or internal access for Ollama
+
+Would you like me to generate:
+
+A clean, minimal Dockerfile + requirements.txt for this setup?
+
+Or an Azure ML job YAML to run this container with environment secrets?
+-----------------------------------------------------------------------------
+
 
 Docling - Architecture view with Ollama with installation
 Integrating docling with IBM Granite Model 
