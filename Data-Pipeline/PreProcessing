@@ -159,8 +159,472 @@ docker tag docling-preprocess myacr.azurecr.io/docling-preprocess:v1
 # Push the image to ACR
 docker push myacr.azurecr.io/docling-preprocess:v1
 
+az ml job create --file azureml_job.yaml
+
+# Monitor the job
+az ml job show --name <job-name>
+
+# Download the output
+az ml job download --name <job-name> --output ./outputs
 
 
+--------------------------------------------------------
+1) Deploying the Container in Production with Django Backend
+Option A: Trigger Azure ML job from Django
+Your Django backend can call the Azure ML REST API or use the Azure SDK to dynamically launch a job each time a file is uploaded.
+File is uploaded (e.g. to Azure Blob).
+Django captures the upload event.
+Django launches a job by calling AML with that file as input.
+
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import CommandJob
+
+ml_client = MLClient(DefaultAzureCredential(), "sub_id", "rg", "ws")
+
+def start_docling_job(input_path):
+    job = CommandJob(
+        code="./",
+        command=f"python run_docling.py --input_path {input_path}",
+        environment="azureml:docling-env@latest",
+        compute="gpu-cluster",
+        display_name="docling-job",
+        experiment_name="docling-experiment"
+    )
+    ml_client.jobs.create_or_update(job)
+
+2) 2) Using Azure Functions to Trigger Container Execution
+Also yes — Azure Functions can act as a serverless trigger, which is ideal for event-driven jobs (like new file arrival).
+A file is uploaded to Azure Blob Storage.
+Blob Trigger on an Azure Function is fired.
+The Azure Function starts the Azure ML job with the container.
+
+[File Upload to Blob Storage] ---> [Azure Function Triggered] ---> [Start AML Job with Container]
+
+import logging
+import azure.functions as func
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import CommandJob
+
+def main(myblob: func.InputStream):
+    ml_client = MLClient(DefaultAzureCredential(), "sub_id", "rg", "ws")
+    
+    job = CommandJob(
+        code="./",
+        command=f"python run_docling.py --input_path {myblob.name}",
+        environment="azureml:docling-env@latest",
+        compute="gpu-cluster"
+    )
+    ml_client.jobs.create_or_update(job)
+
+➡️ Pro: Auto-scaled, lightweight, and event-driven. No need for Django to manage job scheduling.
+➡️ Con: Requires proper blob path and possibly a shared location for input/output.
+
+
+
+
+-----Pre Baking all the containers----------------------------
+okay fine, 
+docker file have dependencies right, to install , like docling, transformers, hugging face, installation, how I can pre installed all the libraries for the container, so that when file comes each time it will trigger the ml job to pre process 
+
+
+ChatGPT said:
+Perfect — you're on the right track. To pre-install all dependencies so they don’t re-download every time the Azure ML job runs, you must bake everything into your Docker image during the image build process.
+
+Here’s a fully optimized strategy to do exactly that 👇
+
+✅ Goals:
+Include Docling, Transformers, OCR libs, etc.
+
+Pre-download Hugging Face models into the image.
+
+Push the container once to Azure Container Registry (ACR).
+
+Reuse the image with zero download latency on every job.
+
+📦 1. Updated Optimized Dockerfile
+dockerfile
+Copy
+Edit
+# CUDA-based base image with Python
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install base dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip python3-dev python3-venv \
+    git wget curl \
+    tesseract-ocr \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Link python
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Install Python packages
+RUN pip install \
+    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
+    transformers \
+    opencv-python \
+    pytesseract \
+    docling \
+    onnxruntime-gpu
+
+# Pre-download Hugging Face models
+RUN python -c "from transformers import AutoModel, AutoTokenizer; \
+    AutoModel.from_pretrained('bert-base-uncased'); \
+    AutoTokenizer.from_pretrained('bert-base-uncased')"
+
+# Optional: Download any OCR/DOC models used by Docling if possible
+# You may need to inspect docling's codebase or docs to locate those URLs
+
+# Set working directory
+WORKDIR /app
+
+# Copy preprocessing script into the container
+COPY run_docling.py .
+
+CMD ["python", "run_docling.py"]
+📁 2. Add File: run_docling.py (can be static or param-driven)
+python
+Copy
+Edit
+import docling
+import os
+
+# Example hardcoded path — you can parametrize via env vars
+input_file = "input_data/scanned.pdf"
+output_file = "output_data/processed.md"
+
+doc = docling.Document(input_file)
+doc.preprocess()
+doc.export(output_file, format="markdown")
+🚀 3. Build and Push the Container to ACR
+bash
+Copy
+Edit
+# Login to your Azure Container Registry (ACR)
+az acr login --name <your-acr-name>
+
+# Build the image
+docker build -t docling-preprocess:latest .
+
+# Tag it with ACR path
+docker tag docling-preprocess:latest <your-acr-name>.azurecr.io/docling-preprocess:v1
+
+# Push the image to ACR
+docker push <your-acr-name>.azurecr.io/docling-preprocess:v1
+📂 4. Use the Container in Azure ML Job
+In your Azure ML job definition (YAML or SDK), use:
+
+yaml
+Copy
+Edit
+environment:
+  image: <your-acr-name>.azurecr.io/docling-preprocess:v1
+Now:
+
+The container is pre-baked with all dependencies and models.
+
+Each job is just:
+
+Spin container
+
+Mount inputs
+
+Run
+
+Exit
+
+No re-downloading of models or packages. ⚡
+
+📌 Pro Tips
+Add --cache-dir and set Hugging Face to offline mode in the script if you want no internet at all.
+
+You can mount external inputs/outputs in your Azure ML job, so only data moves — container stays static.
+
+Would you like a downloadable, complete template repo (Dockerfile + script + job config) in ZIP or GitHub link?
+
+
+----------------------------
+Multiple Files 
+I have multiple files to preprocess, each time job will trigger, so each time dependencies will run from the docker file ? to run the job ?
+
+
+ChatGPT said:
+Excellent question — and a critical one for performance and cost-efficiency in production.
+
+❓Does each Azure ML job re-run the Docker container from scratch?
+✅ Short Answer:
+Yes, each time a job is triggered in Azure ML, the platform pulls the Docker image, starts a fresh container, and executes the command inside it. This includes installing models or setting up dependencies unless already baked into the container.
+
+💡 Optimization Strategies for Your Use Case
+If you're processing multiple files individually, triggering a full container spin-up every time is inefficient. Here's how to optimize:
+
+✅ 1. Bake All Heavy Dependencies Into the Docker Image
+Include:
+
+Pre-installed OCR/ML libraries
+
+Hugging Face models (if fixed)
+
+CUDA/PyTorch/Tesseract
+
+Dockerfile
+Copy
+Edit
+# Pre-download Hugging Face models
+RUN python -c "from transformers import AutoModel; AutoModel.from_pretrained('bert-base-uncased')"
+⏱ Result: No need to download models at runtime → faster startup.
+
+✅ 2. Use Azure ML Parallel Batch Inference (if files are many)
+Instead of launching one job per file, you can:
+
+Submit one job to Azure ML with a directory of files.
+
+Use ParallelRunStep or Batch Endpoint to parallelize processing.
+
+Benefits:
+Only one container spin-up.
+
+Faster processing via concurrency.
+
+Ideal if files arrive in batches.
+
+✅ 3. Use Long-Running Service Instead (Advanced)
+If your use case demands ultra-low latency:
+
+Deploy Docling as a containerized web API (e.g., on Azure Kubernetes Service, Azure Container Apps, or App Service with GPU).
+
+Django/Function sends a request for each file → immediate processing.
+
+⏱ Result: Always-on container, sub-second response time.
+
+✅ Summary
+Option	Startup Time	Cost Efficiency	Ideal Use Case
+One job per file	Medium–High	🟠 Moderate	Occasional triggers
+Batch job (ParallelRun)	Low (1x start)	✅ High	High volume, batched files
+Long-running container API	✅ Low	🟠 Depends	Real-time or near-real-time needs
+
+Would you prefer to batch files together in one job or explore long-running container deployment?
+
+--------------
+pre Installed 
+Oh, when docker file is build and push to the container image, it will have already all dependencies to run , just spinning the container with the compute in ml job ? 
+
+
+ChatGPT said:
+✅ Exactly right!
+
+Once your Docker image is built and pushed to Azure Container Registry (ACR) with all dependencies and models already inside, then every time an Azure ML job runs:
+
+💡 What Happens on Each Job Trigger?
+Azure ML pulls your pre-built Docker image from ACR (cached if previously used on the compute node).
+
+It spins up a container on the selected compute (e.g., GPU VM).
+
+It runs your script inside the container — no need to install anything again.
+
+Inputs (like PDF/image files) and outputs (like Markdown) are mounted into the container automatically.
+
+✅ Benefits:
+🚀 Fast startup time (no pip install, no model downloads).
+
+🔁 Reusable across many jobs — even thousands of files.
+
+💰 Cost-efficient — pay only for compute, not setup time.
+
+🔒 Stable environment — same version of everything each time.
+
+📌 Summary:
+Step	One-Time or Per Job?	Notes
+Docker build (with deps)	✅ One-time	Done locally, then pushed to ACR
+Container spin-up	🔁 Per job	Fast because image is pre-built
+Dependency setup	❌ Already inside	Nothing extra is installed at runtime
+File input/output mount	🔁 Per job	Azure ML handles this automatically
+
+You're now ready to run Docling preprocessing at scale with minimal latency.
+
+Would you like a full deployment checklist or Terraform/Bicep snippet to automate the entire pipeline (ACR + ML job + trigger)?
+
+---------
+Absolutely! To automate your Docling preprocessing pipeline on Azure, you can leverage Infrastructure as Code (IaC) tools like Bicep or Terraform. This approach ensures consistent, repeatable deployments and streamlines the management of your Azure resources.
+
+🚀 Deployment Checklist: Automating Docling Preprocessing on Azure
+1. Containerize Your Docling Application
+Dockerfile: Ensure your Dockerfile includes all necessary dependencies, such as Docling, Transformers, and any OCR libraries.
+
+Pre-download Models: Incorporate commands to pre-download any models or data required at runtime to avoid delays during job execution.
+
+2. Push Docker Image to Azure Container Registry (ACR)
+Build and Tag Image:
+
+bash
+Copy
+Edit
+docker build -t docling-preprocess:latest .
+docker tag docling-preprocess:latest <your-acr-name>.azurecr.io/docling-preprocess:v1
+Push to ACR:
+
+bash
+Copy
+Edit
+docker push <your-acr-name>.azurecr.io/docling-preprocess:v1
+3. Define Azure Resources Using Bicep or Terraform
+Azure Machine Learning Workspace: Set up a workspace to manage experiments, models, and deployments.
+
+Compute Resources: Provision compute targets (e.g., GPU clusters) for running your jobs.
+
+Storage Accounts: Create storage accounts for input/output data.
+DevOps.dev
+
+Container Registry: Ensure your ACR is accessible by the ML workspace.
+
+4. Create Azure ML Job Definition
+Command Job YAML: Define a YAML file specifying the command to run, inputs/outputs, environment (Docker image), and compute target.
+
+Bicep/Terraform Integration: Use deployment scripts or modules to deploy the job definition as part of your infrastructure.
+
+5. Set Up Triggers for Job Execution
+Azure Functions: Implement a function that triggers on events (e.g., file upload to Blob Storage) and submits the ML job.
+
+Event Grid: Configure Event Grid to listen for storage events and invoke your Azure Function accordingly.
+
+6. Implement CI/CD Pipelines
+Azure DevOps or GitHub Actions: Set up pipelines to automate the build and deployment of your infrastructure and application code.
+Medium
++1
+DevOps.dev
++1
+
+Stages:
+
+Build Stage: Build Docker images and validate Bicep/Terraform templates.
+
+Deploy Stage: Deploy infrastructure and application components to Azure.
+GitHub
+
+7. Monitor and Manage Jobs
+Azure ML Studio: Use the studio to monitor job statuses, view logs, and manage artifacts.
+
+Logging: Ensure your application logs relevant information for debugging and auditing purposes.
+ScholarHat
++2
+Medium
++2
+Microsoft Learn
++2
+
+📘 Resources
+Azure ML Bicep Templates: Explore official templates to understand resource definitions and job configurations.
+Microsoft Learn
+
+Azure ML Documentation: Refer to the official documentation for detailed guidance on setting up and managing ML resources.
+
+MLOps V2 Solution Accelerator: Consider using Microsoft's MLOps V2 accelerator for a standardized and scalable ML lifecycle.
+Medium
+
+By following this checklist, you'll establish a robust, automated pipeline for preprocessing documents with Docling on Azure. If you need assistance with specific Bicep or Terraform templates, feel free to ask!
+
+-----------
+Cluster Spin up Time 
+so when ever the ML job is triggering, 
+it will spin the compute cluster, how much time it will take ?
+
+
+ChatGPT said:
+Great follow-up question! When you trigger a Machine Learning job in Azure, especially one that uses a GPU-based compute cluster, the time it takes to spin up the compute cluster can vary based on several factors. Let’s break this down:
+
+1. How long does it take to spin up an Azure ML Compute Cluster?
+Factors Influencing the Spin-up Time:
+Cluster Type:
+
+Standard CPU clusters are typically quicker to spin up compared to GPU-based clusters.
+
+Pre-provisioned clusters (with VMs already running) are faster than clusters that require on-demand provisioning.
+
+VM Size and Configuration: The larger and more powerful the VM, the longer it might take to provision (though GPU VMs are generally provisioned faster than general-purpose ones).
+
+Azure Region: Availability of resources in a specific region can affect provisioning time.
+
+Typical Spin-up Times:
+On-Demand GPU Cluster: Between 5 to 15 minutes.
+
+This is the time it will take for the cluster to be fully provisioned and ready for running the job. Azure ML will allocate VMs, install necessary software (if required), and ensure everything is in place.
+
+Pre-Provisioned Cluster: Between 1 to 5 minutes.
+
+If you have a cluster that's always running, the job just schedules a task on an available VM, and the job starts almost immediately. But this depends on the cluster's load and VM availability.
+
+Job Initialization Time: After the cluster is ready, the job itself (container) may take another 1-2 minutes to start running, especially if it involves heavy libraries like PyTorch or TensorFlow that load models or have dependencies.
+
+2. How Can You Minimize Job Startup Time?
+A. Use Pre-Provisioned (Always-On) Clusters
+Azure ML Compute allows you to create a "dedicated compute cluster" where the VMs remain running even if no jobs are actively running. This way, when a job triggers, the cluster is already ready, reducing spin-up time to just a few minutes.
+
+Best for high-frequency jobs or workloads that need to minimize latency.
+
+**B. Use Azure Kubernetes Service (AKS)
+AKS can be used to host containers in a Kubernetes environment and supports autoscaling. This could allow for faster scaling, and if containers are pre-warmed (in a ready state), job execution can be faster.
+
+Containerized jobs can be prepared in AKS for immediate execution once a trigger occurs.
+
+C. Optimize Your Docker Container
+Make sure your Docker image is as optimized as possible. For example:
+
+Use a smaller base image.
+
+Ensure that all dependencies are pre-installed (e.g., Hugging Face models, Tesseract, etc.).
+
+This helps reduce the container's start time after the cluster is spun up.
+
+**D. Consider using Batch Endpoints or Parallel Run Steps
+For large workloads, you can use Batch Endpoints in Azure ML, which can be optimized for multiple file processing with concurrent job execution. This reduces overhead by processing many files with fewer cluster spin-up events.
+
+3. How to Check Cluster Spin-Up Time?
+You can monitor the cluster provisioning time using the Azure ML SDK or Azure Portal. Here's how:
+
+Azure ML SDK Example:
+
+python
+Copy
+Edit
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from datetime import datetime
+
+# Connect to Azure ML
+ml_client = MLClient(DefaultAzureCredential(), "<subscription_id>", "<resource_group>", "<workspace_name>")
+
+# Get cluster info
+cluster = ml_client.compute.get("<compute_name>")
+print(cluster.provisioning_state)
+print(cluster.provisioning_duration)  # If available
+Azure Portal: You can monitor compute instances in the Azure ML Studio. The portal shows provisioning time, as well as job execution metrics.
+
+4. How Much Time Will the ML Job Take (After Cluster Spin-Up)?
+Once the cluster is provisioned and your job starts, the actual processing time will depend on:
+
+Job Complexity: The type of processing (e.g., OCR + model inference) and the number of files.
+
+File Size: Larger files will take more time to process.
+
+Compute Power: The specs of the VMs in the compute cluster.
+
+Summary of Expected Timings
+Event	Estimated Time
+Spin-Up GPU Cluster	5 to 15 minutes
+Spin-Up CPU Cluster	2 to 5 minutes
+Pre-Provisioned Cluster	1 to 5 minutes
+Container Start-up Time	1 to 2 minutes
+Job Execution	Depends on workload and file size
+
+By pre-provisioning the cluster or using AKS and optimizing your container, you can minimize latency and make your preprocessing pipeline efficient for high-frequency processing. Would you like more details on setting up pre-provisioned clusters or AKS for job speed-up?
 
 
 Docling - Architecture view with Ollama with installation
