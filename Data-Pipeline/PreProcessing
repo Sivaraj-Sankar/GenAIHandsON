@@ -2361,9 +2361,160 @@ Terraform/Bicep templates for this infrastructure?
 
 Python code for the Azure Function that submits the Batch job?
 
+Final Script 
+-------------------------------
+Great — here's a professional Python Azure Function that:
 
+Is triggered by Blob Created Event (via Event Grid)
 
+Extracts metadata from the blob
 
+Submits a job to Azure Batch
+
+Uses a Docker container that runs docling + preprocessing
+
+Assumes resources are secured in a VNet and access is via Managed Identity
+
+✅ Assumptions
+Before using the code:
+
+Blob container is already wired to Event Grid
+
+Your Azure Function app is Premium Plan and VNet-injected
+
+Function has a Managed Identity with access to:
+
+Azure Batch account
+
+Azure Blob Storage
+
+Azure Key Vault (optional)
+
+You are using a container image from ACR
+
+📦 Required Libraries
+Install with:
+
+bash
+Copy
+Edit
+pip install azure-functions azure-batch azure-identity azure-storage-blob
+📄 function_app.py
+python
+Copy
+Edit
+import logging
+import os
+import azure.functions as func
+from azure.identity import DefaultAzureCredential
+from azure.batch import BatchServiceClient
+from azure.batch.models import *
+from azure.storage.blob import BlobClient
+
+# Load from environment
+BATCH_ACCOUNT_NAME = os.getenv("BATCH_ACCOUNT_NAME")
+BATCH_ACCOUNT_URL = os.getenv("BATCH_ACCOUNT_URL")
+BATCH_POOL_ID = os.getenv("BATCH_POOL_ID")
+BATCH_JOB_ID = "docling-job-" + os.getenv("WEBSITE_INSTANCE_ID", "default")
+ACR_IMAGE = os.getenv("ACR_IMAGE")  # e.g., "myregistry.azurecr.io/docling:latest"
+OUTPUT_CONTAINER_SAS_URL = os.getenv("OUTPUT_CONTAINER_SAS_URL")  # With write access
+
+# Triggered by Event Grid → Blob Created
+def main(event: func.EventGridEvent):
+    logging.info('Blob created event received.')
+
+    data = event.get_json()
+    blob_url = data['url']
+    file_name = blob_url.split("/")[-1]
+    input_file_name = "input.pdf"
+    output_file_name = file_name.replace(".pdf", ".md")
+
+    logging.info(f"Triggering Batch job for: {file_name}")
+
+    credential = DefaultAzureCredential()
+    batch_client = BatchServiceClient(
+        credential=credential,
+        batch_url=BATCH_ACCOUNT_URL
+    )
+
+    try:
+        # Create a job
+        batch_client.job.add(JobAddParameter(
+            id=BATCH_JOB_ID,
+            pool_info=PoolInformation(pool_id=BATCH_POOL_ID)
+        ))
+    except BatchErrorException as e:
+        if "JobExists" in str(e):
+            logging.info("Job already exists, using existing job.")
+        else:
+            raise
+
+    # Define task to run the docling container
+    task = TaskAddParameter(
+        id="task-" + file_name,
+        command_line=f"/bin/bash -c \"python preprocess.py --input {input_file_name} --output {output_file_name}\"",
+        container_settings=TaskContainerSettings(
+            image_name=ACR_IMAGE
+        ),
+        resource_files=[
+            ResourceFile(
+                file_path=input_file_name,
+                http_url=blob_url
+            )
+        ],
+        output_files=[
+            OutputFile(
+                file_pattern=output_file_name,
+                destination=OutputFileDestination(
+                    container=OutputFileBlobContainerDestination(
+                        container_url=OUTPUT_CONTAINER_SAS_URL
+                    )
+                ),
+                upload_options=OutputFileUploadOptions(
+                    upload_condition=OutputFileUploadCondition.task_completion
+                )
+            )
+        ]
+    )
+
+    # Submit the task
+    batch_client.task.add(job_id=BATCH_JOB_ID, task=task)
+    logging.info(f"Task submitted for file: {file_name}")
+🔐 Environment Variables (Function App Configuration)
+Key	Description
+BATCH_ACCOUNT_NAME	Name of your Azure Batch account
+BATCH_ACCOUNT_URL	Full endpoint URL of the Batch account
+BATCH_POOL_ID	The ID of the Batch Pool
+ACR_IMAGE	Container image name from ACR
+OUTPUT_CONTAINER_SAS_URL	Blob Container SAS URL for output markdown
+
+Use Azure Key Vault or Application Settings to store sensitive values.
+
+🔄 Event Grid Binding Example (function.json)
+json
+Copy
+Edit
+{
+  "bindings": [
+    {
+      "type": "eventGridTrigger",
+      "name": "event",
+      "direction": "in"
+    }
+  ]
+}
+✅ What This Code Does
+Gets triggered when a PDF lands in Blob Storage
+
+Submits a task to Azure Batch running your container
+
+Pulls PDF into container
+
+Runs preprocess.py to generate markdown
+
+Uploads markdown back to Blob using OutputFile mechanism
+
+Would you also like a sample Dockerfile for the container, or the preprocess.py entry point script?
 
 ✅ Summary
 Task	Responsibility	Tool
