@@ -1955,6 +1955,76 @@ Key Vault	docling-vnet	private-endpoints-subnet	✅ Yes (via PE)
 Would you like a Bicep or Terraform sample to provision this entire VNet and its subnets with correct NSGs and private endpoints?
 
 
+Azure Batch
+-----------
+shall I use the Azure Batch , instead of ML job ?
+
+
+ChatGPT said:
+Yes, you can use Azure Batch instead of Azure ML jobs — but the right choice depends on your use case. Let’s compare Azure Batch vs Azure ML jobs for your architecture and requirements.
+
+✅ Your Use Case Recap
+Containerized app (docling + preprocessing script)
+
+Runs per file input (file classification, markdown generation)
+
+Scales independently for multiple input files
+
+Triggered by Django backend or Azure Function
+
+Requires output back to Blob Storage
+
+🔁 Azure Batch vs Azure ML Jobs — Feature Comparison
+Feature	Azure ML Jobs	Azure Batch
+Best for	ML/AI workloads, notebooks, model training	Generic batch jobs, container-based processing
+Supports Docker containers	✅ Yes	✅ Yes
+Job-level compute scaling	✅ Yes (Auto-scale clusters)	✅ Yes (Pool auto-scaling)
+Ease of use (SDK/API)	✅ Easier with ML SDK	🟡 More complex (Batch SDK, config heavy)
+Job submission via function	✅ Straightforward with Azure ML SDK	✅ But more boilerplate with Batch SDK
+Integrated logging/monitoring	✅ Built-in in AML Studio + logs	🟡 Needs setup with Azure Monitor
+Private VNet compute	✅ Supported	✅ Supported
+Execution time per job	Short/long (good for ML)	Short/long (good for doc processing)
+Pricing	ML pricing (managed clusters)	⚡ Generally cheaper for compute-only tasks
+Output to Blob	✅ Native	✅ Native (via script or output file settings)
+Built-in environments	✅ Conda, MLFlow, tracking, etc.	❌ You manage all dependencies in the container
+
+✅ When to Choose Azure ML Jobs
+Choose Azure ML Jobs if:
+
+You already use Azure ML or want integration with ML pipelines
+
+You want built-in tracking/logging/UI (AML Studio)
+
+You need GPU support with ML-friendly configuration
+
+Your job logic may evolve into ML training, model scoring, etc.
+
+You are already using Azure ML Compute, so you’re already aligned with this.
+
+✅ When to Choose Azure Batch
+Choose Azure Batch if:
+
+Your workload is pure batch compute, not ML
+
+You want to minimize cost
+
+You're fine managing low-level config (start tasks, pool setup)
+
+You need very high job parallelism (1000s of jobs)
+
+You don’t need ML tooling or metrics
+
+🔍 Final Recommendation for You
+Scenario	Recommendation
+🧠 You need ML integration, ease of job tracking, or existing AML use	✅ Stick with Azure ML Jobs
+⚙️ You just need parallel container processing for PDFs, no ML logic, want to optimize cost	🔁 Azure Batch is a good alternative (but more setup effort)
+
+Would You Like:
+A side-by-side code example for submitting the same job to Azure Batch vs Azure ML?
+
+Or a cost comparison estimate between the two for your workload?
+
+Let me know how deep you'd like to go.
 
 
 ✅ Summary
@@ -1970,6 +2040,12 @@ Would you like a template of the Django view and job trigger function?
 
 
 
+
+
+Architecting Link
+https://medium.com/henkel-data-and-analytics/azure-architecture-for-user-input-based-batch-inferencing-a8673b51c60e
+https://learn.microsoft.com/en-us/azure/batch/batch-technical-overview
+https://learn.microsoft.com/en-us/azure/machine-learning/concept-endpoints?view=azureml-api-2
 
 
 
