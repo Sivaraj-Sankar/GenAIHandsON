@@ -2027,6 +2027,155 @@ Or a cost comparison estimate between the two for your workload?
 Let me know how deep you'd like to go.
 
 
+Azure Batch - Docling Container
+-------------
+if Im using the Azure Batch, how to deploy the container, that have the docling and all other dependencies ?
+
+
+ChatGPT said:
+Great — if you're moving to Azure Batch, and want to run your custom container (docling + dependencies), here's a clear step-by-step guide on how to deploy and execute your containerized job using Azure Batch.
+
+✅ Overview: What You Need
+Docker Image:
+
+Contains your docling + preprocessing script
+
+Pushed to Azure Container Registry (ACR) or Docker Hub
+
+Azure Batch Account + Pool:
+
+Pool uses container-enabled VMs
+
+Pool runs jobs with your container
+
+Azure Storage Account:
+
+For input PDFs and output markdowns
+
+Batch Job and Task:
+
+The task runs your container and processes one file at a time
+
+🐳 Step 1: Build and Push Your Container
+Dockerfile Example:
+Dockerfile
+Copy
+Edit
+FROM python:3.10-slim
+
+# Install dependencies
+RUN pip install docling pandas markdown etc...
+
+# Copy scripts
+COPY preprocess.py /app/preprocess.py
+
+WORKDIR /app
+
+# Entry point — accepts file path
+ENTRYPOINT ["python", "preprocess.py"]
+Push to ACR:
+bash
+Copy
+Edit
+az acr login --name <your-acr-name>
+docker tag docling-job <your-acr-name>.azurecr.io/docling-job:latest
+docker push <your-acr-name>.azurecr.io/docling-job:latest
+🔧 Step 2: Configure Azure Batch Pool with Container Support
+You can define a pool with container support using Azure CLI:
+bash
+Copy
+Edit
+az batch pool create \
+  --id docling-pool \
+  --vm-size Standard_D2_v3 \
+  --image canonical:ubuntuserver:20.04-lts \
+  --node-agent-sku-id "batch.node.ubuntu 20.04" \
+  --container-configuration \
+      type=docker \
+  --target-dedicated-nodes 0 \
+  --auto-scale-enabled true \
+  --auto-scale-formula "..." \
+  --start-task-command-line "/bin/bash -c 'echo ready'"
+🧾 Step 3: Submit Job and Task to Azure Batch
+Define a Job
+bash
+Copy
+Edit
+az batch job create \
+  --id docling-job-001 \
+  --pool-id docling-pool
+Define a Task to Run the Container
+You tell Azure Batch to run your container and mount blob paths:
+
+bash
+Copy
+Edit
+az batch task create \
+  --job-id docling-job-001 \
+  --task-id docling-task-001 \
+  --container-settings imageName=<your-acr-name>.azurecr.io/docling-job:latest \
+  --command-line "python preprocess.py --input /mnt/input.pdf --output /mnt/output.md" \
+  --resource-files input.json \
+  --output-files output.json
+If you want to mount Azure Blob containers via Azure Batch resource files:
+
+You can stage input/output files using Batch ResourceFile.
+
+🔒 Step 4: Authentication & Access
+Use Managed Identity on the Batch Pool to:
+
+Read/write from Blob Storage securely
+
+Pull container image from Azure Container Registry
+
+Make sure to assign proper RBAC roles:
+
+bash
+Copy
+Edit
+az role assignment create \
+  --assignee <batch_pool_managed_identity> \
+  --role "AcrPull" \
+  --scope /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.ContainerRegistry/registries/<acr>
+📦 Batch SDK Option (Python)
+Here’s a snippet using Azure Batch Python SDK:
+
+python
+Copy
+Edit
+from azure.batch import BatchServiceClient
+from azure.batch.models import *
+
+task = TaskAddParameter(
+    id="docling-task-001",
+    container_settings=TaskContainerSettings(
+        image_name="myacr.azurecr.io/docling-job:latest"
+    ),
+    command_line="/bin/bash -c 'python preprocess.py --input input.pdf --output output.md'",
+    resource_files=[ResourceFile(http_url=input_url, file_path="input.pdf")],
+    output_files=[
+        OutputFile(
+            file_pattern="output.md",
+            destination=OutputFileDestination(
+                container=OutputFileBlobContainerDestination(container_url=output_container_sas)
+            ),
+            upload_options=OutputFileUploadOptions(upload_condition=OutputFileUploadCondition.task_completion)
+        )
+    ]
+)
+
+batch_client.task.add(job_id="docling-job-001", task=task)
+✅ Summary
+Step	Tool
+Containerize your app	Dockerfile + push to ACR
+Create pool	Azure CLI / Python SDK
+Submit job & task	CLI or Python SDK
+Use resource/output files	Batch ResourceFile / OutputFile
+Secure image & blob access	Managed Identity + RBAC
+
+Would you like a full Terraform or Bicep template for this deployment?
+
+
 ✅ Summary
 Task	Responsibility	Tool
 Upload File	Django	Azure Blob SDK
