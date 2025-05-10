@@ -2195,6 +2195,11 @@ Architecting Link
 https://medium.com/henkel-data-and-analytics/azure-architecture-for-user-input-based-batch-inferencing-a8673b51c60e
 https://learn.microsoft.com/en-us/azure/batch/batch-technical-overview
 https://learn.microsoft.com/en-us/azure/machine-learning/concept-endpoints?view=azureml-api-2
+https://github.com/Azure-Samples/azure-batch-samples/tree/master/Python/Batch
+https://learn.microsoft.com/ko-kr/azure/batch/tutorial-parallel-python
+https://learn.microsoft.com/ko-kr/azure/batch/tutorial-batch-functions
+https://learn.microsoft.com/ko-kr/azure/batch/quick-deploy-batch-account-two-pools-start-task-terraform
+https://learn.microsoft.com/ko-kr/azure/batch/quick-run-python
 
 
 
