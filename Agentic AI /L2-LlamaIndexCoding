@@ -17,3 +17,10 @@ Reasoning over the Tool retaining the memory - Reasoning
 
 Llamaindex - query engine from driectly index 
 Langchain - Retrieval only, not query engine - Prompts Structrued Properly 
+
+
+**Llamaindex agent
+Agent worker - is responsbile for executing the next step for the given agent 
+Agent Runner - Orchestrator, task dispatcher 
+              Responsible for creating task, 
+              Orchestrating runs of agent worker on top of the given task 
