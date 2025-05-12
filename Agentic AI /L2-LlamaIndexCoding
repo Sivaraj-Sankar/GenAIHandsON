@@ -12,3 +12,5 @@ Build a research assistant agent. Instead of tool calling in a single-shot setti
 Routing to Pick the Correct Tool - Decision Making 
 Generate the Tool Argument - Function Call 
 Reasoning over the Tool retaining the memory - Reasoning 
+
+**Human Guidance in the middle of the Execution
