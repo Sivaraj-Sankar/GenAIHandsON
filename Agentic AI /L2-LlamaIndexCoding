@@ -24,3 +24,7 @@ Agent worker - is responsbile for executing the next step for the given agent
 Agent Runner - Orchestrator, task dispatcher 
               Responsible for creating task, 
               Orchestrating runs of agent worker on top of the given task 
+           and able to return back the final response to the user 
+**FunctionCalling Agent worker - primary responsibility is to take the conversation history and memory and any passed state , along user input , call the tool and decide 
+                               - whether or not to return the final response 
+
