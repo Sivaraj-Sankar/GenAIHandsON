@@ -1,0 +1,14 @@
+1.Learn how to build an agent that can reason over your documents and answer complex questions.
+2.Build a router agent that can help you with Q&A and summarization tasks, and extend it to handle passing arguments to this agent.
+3.Design a research agent that handles multi-documents and learn about different ways to debug and control this agent.
+4.designed to build research agents skilled in tool use, reasoning, and decision-making with your data.
+
+Build the simplest form of agentic RAG – a router. Given a query, the router will pick one of two query engines, Q&A or summarization, to execute a query over a single document.
+Add tool calling to your router agent where you will use an LLM to not only pick a function to execute but also infer an argument to pass to the function.
+Build a research assistant agent. Instead of tool calling in a single-shot setting, an agent is able to reason over tools in multiple steps.
+**Additionally, you’ll learn how to debug these agents, ensuring you can guide their actions effectively
+
+
+Routing to Pick the Correct Tool - Decision Making 
+Generate the Tool Argument - Function Call 
+Reasoning over the Tool retaining the memory - Reasoning 
