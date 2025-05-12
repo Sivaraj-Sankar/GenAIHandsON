@@ -14,3 +14,6 @@ Generate the Tool Argument - Function Call
 Reasoning over the Tool retaining the memory - Reasoning 
 
 **Human Guidance in the middle of the Execution
+
+Llamaindex - query engine from driectly index 
+Langchain - Retrieval only, not query engine - Prompts Structrued Properly 
