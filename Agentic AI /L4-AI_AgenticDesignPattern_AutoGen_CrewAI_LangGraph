@@ -36,6 +36,13 @@ A custom group chat with multiple agents that collaborate to generate a detailed
 4) Coding Agent  - seek human feedback - feeback loop getting from human 
 5) Tool Use Agent - Chess Agent 
 6) Custom Group Agent with multiple agents - customizing the conversational flow between different agents 
+          Best Practices for Multi-Agent Group Chat 
+  This Complex Task Requried Planning 
+           Agent have to think, what sequence of task have to take 
+            getting data, 
+            analyzing  
+            writing 
+            revising 
 
 Another interaction pattern - **Nested Chat - Which means when agent given a task and it calls bunch of other agents and iterates with them for a while before it returns the result 
   Blog Post Agent
