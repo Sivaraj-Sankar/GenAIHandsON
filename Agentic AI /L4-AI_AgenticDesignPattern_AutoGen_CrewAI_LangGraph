@@ -47,6 +47,15 @@ A custom group chat with multiple agents that collaborate to generate a detailed
 Another interaction pattern - **Nested Chat - Which means when agent given a task and it calls bunch of other agents and iterates with them for a while before it returns the result 
   Blog Post Agent
   Chess Game 
+
+------
+Generate Reply - don't alter the internal state of the agent 
+Initiate Chat - have memory state management 
+Send - to re initiate the conversation
+
+
+Conversation Pattern 
+Agentic Design Pattern 
   
 
 
@@ -78,6 +87,13 @@ AI Agent Definition
    * Effectively Tool Using 
    * Autonomously Making Decision 
    * Using Reasoning - Thinking - Observing - Act Over the Tool ---> Based on Environment - Perceiving 
+   * Send Messages - Receive Messages - 
+   * Generate Replies 
+   * Interact with Other Agents
+   * Perform Actions
+   * Keeping the Human in the Loop 
+   * stopping the response
+   * Ask for human input before it generating the reply by LLM
 
 
 
