@@ -32,5 +32,8 @@ Agent - Steerability
 **Listen to the Human Feedback in the middle of the agent execution 
 
 **Create Some sort of async queue  - where you able to listen to inputs from human throughout the middle of the agent execution 
-  if human input comes in, you can actually interrupt and modify the execution of the agent , as going on to larger task 
+  if human input comes in, you can actually interrupt and modify the execution of the agent , as going on to larger task
+
+Stuffing Too many Tool Selections into the LLM prompt leads to the following issues:
+
 
