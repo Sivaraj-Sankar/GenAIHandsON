@@ -31,7 +31,7 @@ A custom group chat with multiple agents that collaborate to generate a detailed
 
 
 1) Conversable Agent - Two Standup Comedian 
-2) Multi Agent Collaboration - Sequence Chat
+2) Multi Agent Collaboration - Sequence Chat - Craft the Task for sequential chat - to finish sequential dependent task 
 3) Reflection Agent Pattern - Nested Agent Design Pattern 
 4) Coding Agent  - seek human feedback - feeback loop getting from human 
 5) Tool Use Agent - Chess Agent 
