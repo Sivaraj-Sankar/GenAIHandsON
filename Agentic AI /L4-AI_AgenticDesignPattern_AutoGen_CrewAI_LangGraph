@@ -32,7 +32,13 @@ A custom group chat with multiple agents that collaborate to generate a detailed
 
 1) Conversable Agent - Two Standup Comedian 
 2) Multi Agent Collaboration - Sequence Chat - Craft the Task for sequential chat - to finish sequential dependent task 
-3) Reflection Agent Pattern - Nested Agent Design Pattern 
+3) Reflection Agent Pattern - Nested Agent Design Pattern - chat or sequence of chat nested within another chat - as in monologue of agent 
+             - nested chat conversation pattern to realize the sophisticated reflection pattern 
+             - where a set of reviewer agent nested within in the critique agent as in the monologue to reflect on the blog post by a writer agent 
+     **Model Based Assistant as writier 
+     **use the sequential conversation pattern to construct a series of chat b/w critic and reviewers
+    Each Reviewer sending the review to the critic, how critic getting and calling the other reviewer agent,? 
+    and also finally meta reviewer getting the json output of all the reviewer first by critic , and aggregate the review and sending it to the critic 
 4) Coding Agent  - seek human feedback - feeback loop getting from human 
 5) Tool Use Agent - Chess Agent 
 6) Custom Group Agent with multiple agents - customizing the conversational flow between different agents 
