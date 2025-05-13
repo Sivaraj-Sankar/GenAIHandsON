@@ -34,8 +34,19 @@ A custom group chat with multiple agents that collaborate to generate a detailed
 2) Multi Agent Collaboration - Sequence Chat
 3) Reflection Agent Pattern - Nested Agent Design Pattern 
 4) Coding Agent  - seek human feedback - feeback loop getting from human 
-5) Tool Use Agent 
+5) Tool Use Agent - Chess Agent 
 6) Custom Group Agent with multiple agents - customizing the conversational flow between different agents 
+
+Another interaction pattern - **Nested Chat - Which means when agent given a task and it calls bunch of other agents and iterates with them for a while before it returns the result 
+  Blog Post Agent
+  Chess Game 
+  
+
+
+Researcher 
+Data Collector 
+Co-writer 
+Executor 
 
 Decorator 
 Binary Search, Linear Search 
