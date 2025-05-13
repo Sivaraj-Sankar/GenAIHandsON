@@ -36,4 +36,10 @@ Agent - Steerability
 
 Stuffing Too many Tool Selections into the LLM prompt leads to the following issues:
 
+**sentence-window retrieval and auto-merging retrieval
+RAG triad for evaluating the relevance and truthfulness of an LLM’s response:
+Context Relevance, 
+Groundedness, and 
+Answer Relevance.
 
+**Monitor - Evaluate - Optimize the AI Agents & App effectiveness 
