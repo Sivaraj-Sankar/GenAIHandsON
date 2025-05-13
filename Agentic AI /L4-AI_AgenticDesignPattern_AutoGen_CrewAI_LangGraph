@@ -1,0 +1,67 @@
+AI Agentic Desgin Pattern 
+Pattern 1 - AI Agent will wait for Other AI Agent 
+          - Delegate[Manager Agent, Orchestration Agent] the Task to other AI Agent 
+          - Hierarchical Agent 
+          - Workflow Agent 
+Pattern 2 - ReAct Agent - Reflecting - Acting 
+Pattern 3 - 
+
+
+AI Agentic 
+Workflow Pattern 
+Autonomous Decision Making Pattern - with Tool Use
+Personal Assistant Pattern - AI Assistant 
+Real Person Memory Managing work async Pattern - and also send the work to other AI Agents 
+
+
+AutoGen 
+AutoGen framework to build multi-agent systems with diverse **roles and **capabilities for implementing complex AI applications.
+**Reflection, Tool use, Planning, and Multi-agent collaboration using AutoGen.
+
+
+AutoGen Agents Design Pattern 
+ConversableAgent - Two Agent Chat 
+sequence of chats between agents[multi-agent collaboration design pattern.] - Fun Collaboration customer onboarding 
+A high-quality blog post by using the agent reflection framework. You’ll use the **“nested chat” structure to develop a system where reviewer agents, nested within a critic agent, reflect on the blog post written by another agent.
+      critic agent 
+          reviewer agent 
+tool use design pattern - Agent 
+Agents with coding capabilities to complete a financial analysis task. You’ll create two systems where agents collaborate and seek human feedback. The first system will generate code from scratch using an LLM, and the second will use user-provided code
+A custom group chat with multiple agents that collaborate to generate a detailed stock performance report, incorporating a planning agent and customizing how the conversation flows between different agents.
+
+
+1) Conversable Agent - Two Standup Comedian 
+2) Multi Agent Collaboration - Sequence Chat
+3) Reflection Agent Pattern - Nested Agent Design Pattern 
+4) Coding Agent  - seek human feedback - feeback loop getting from human 
+5) Tool Use Agent 
+6) Custom Group Agent with multiple agents - customizing the conversational flow between different agents 
+
+Decorator 
+Binary Search, Linear Search 
+ReRank Model Name - Check the Llamaindex
+Embedding Model Name and size 
+Reasoning Model is working 
+OOps Concept Brushup 
+LLM Architecture Brushup 
+
+
+
+
+
+AutoGen Update [community-driven development approach - AG2]
+To introduce significant architectural changes, including integration with Microsoft's broader AI ecosystem and tools like Semantic Kernel
+
+
+AI Agent Definition 
+   * Function Calling 
+   * Effectively Tool Using 
+   * Autonomously Making Decision 
+   * Using Reasoning - Thinking - Observing - Act Over the Tool ---> Based on Environment - Perceiving 
+
+
+
+
+
+
+
