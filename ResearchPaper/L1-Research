@@ -41,3 +41,7 @@ Llamaindex
 https://docs.llamaindex.ai/en/stable/module_guides/deploying/agents/ - custom agents 
 https://llamahub.ai/?tab=agent - RAG application in No Time - community built agents 
 https://cloud.llamaindex.ai/login - advance document parsing 
+
+Lamini
+https://docs.lamini.ai/  --> Prompt Tuning, Prompt Template, Memory Tuning, Memory 
+
