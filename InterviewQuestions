@@ -1085,4 +1085,40 @@ Manager Interview Preparation
 8) decorator done
 9) Abstract Method 
 10) Inheritence 
-11) 
+11) abstract method pass --> calling the child method 
+12) super to call the parent init and passing the attributes 
+13) supet to call the parent method from the child method 
+14) Polymorphism - Same Interface, Different Behavior
+class Bird:
+    def speak(self):
+        return "Bird makes a sound"
+
+class Crow(Bird):
+    def speak(self):  # Overriding method
+        return "Caw Caw"
+
+class Parrot(Bird):
+    def speak(self):  # Overriding method
+        return "Hello!"
+
+# Function that calls the speak method 
+def make_bird_speak(bird):
+    print(bird.speak())
+15) Encapsulation
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self.account_number = account_number  # Public attribute
+        self.__balance = balance  # Private attribute (denoted by `__`)
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):  # Public method to access private data
+        return self.__balance
+
+# Creating an object
+account = BankAccount("12345", 1000)
+account.deposit(500)
+print(account.get_balance())  # Output: 1500
+
+print(account.__balance)  # ❌ This will raise an AttributeError
