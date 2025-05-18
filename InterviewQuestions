@@ -1070,3 +1070,16 @@ Forms the foundation of Transformer-based models like GPT, BERT, and T5.
 The attention mechanism helps neural networks decide what to focus on when processing information. It assigns dynamic weights to parts of the input, making models more accurate and context-aware, especially in NLP tasks.
 
 Let me know if you'd like a visual diagram or code walkthrough for attention in Transformers!
+
+
+----------------------
+Manager Interview Preparation
+
+1) Map = lambda x:x**2
+2) Filter = lambda x:x%2==0 
+3) Reduce = lam
+4) defalutdict(lambda: unknown,person)
+5) list(map(str,input().strip().split()))
+6) a = float('-inf')
+7) dictionary done
+8) decorator done
