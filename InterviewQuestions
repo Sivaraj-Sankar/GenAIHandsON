@@ -1122,3 +1122,194 @@ account.deposit(500)
 print(account.get_balance())  # Output: 1500
 
 print(account.__balance)  # ❌ This will raise an AttributeError
+15.Tasks that are I/O-bound (e.g., downloading files, reading/writing to disk).
+Situations where tasks share memory and need to run concurrently.
+16.import threading 
+import time 
+
+
+def printnumbers():
+    for i in range(5):
+        print(f'Number in {i}')
+        time.sleep(1)
+        
+        
+def printletters():
+    for i in 'ABCDEF':
+        print(f'Letters in {i}')
+        time.sleep(1)
+        
+t1 = threading.Thread(target=printnumbers)
+t2 = threading.Thread(target=printletters)
+
+# Start threads
+t1.start()
+t2.start()
+
+# Wait for both to finish
+t1.join()
+t2.join()
+
+print("Done with multithreading")
+16.Multiprocessing is a technique where multiple processes run independently with their own memory space. Each process runs in a separate Python interpreter. This avoids the Global Interpreter Lock (GIL) limitation in Python.
+     CPU-bound tasks (e.g., calculations, data processing).
+     Tasks that can run truly in parallel on multi-core CPUs.
+17. Multithreading - for i/o  bounded tasks, shared memory 
+18. Multiporcessing - for calculation + data processing 
+import multiprocessing
+import time
+
+def compute_square(numbers):
+    for n in numbers:
+        print(f"Square of {n}: {n*n}")
+        time.sleep(1)
+
+def compute_cube(numbers):
+    for n in numbers:
+        print(f"Cube of {n}: {n*n*n}")
+        time.sleep(1)
+
+if __name__ == "__main__":
+    numbers = [1, 2, 3, 4, 5]
+
+    # Create processes
+    p1 = multiprocessing.Process(target=compute_square, args=(numbers,))
+    p2 = multiprocessing.Process(target=compute_cube, args=(numbers,))
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Wait for both to finish
+    p1.join()
+    p2.join()
+
+    print("Done with multiprocessing")
+19. Real World Example for Multi Threading and Multi Processing 
+for training deep neural networks, which can suit ?
+
+
+ChatGPT said:
+Great question.
+
+When it comes to training deep neural networks, multiprocessing (or even distributed processing) is generally more suitable than multithreading.
+
+✅ Why Multiprocessing Is Better for Deep Learning:
+1. CPU/GPU-Intensive (Not I/O-Bound)
+Training deep neural networks is CPU- and GPU-bound, involving heavy matrix operations, gradient calculations, and backpropagation—these require parallel execution across cores or devices.
+
+2. Bypasses Python's GIL
+In Python, the Global Interpreter Lock (GIL) restricts true multithreading—only one thread can execute Python bytecode at a time. This makes multithreading ineffective for parallelizing computation-heavy tasks like deep learning.
+
+Multiprocessing, on the other hand:
+
+Spawns separate processes, each with its own Python interpreter.
+
+Bypasses the GIL, allowing true parallel computation on multiple CPU cores or GPUs.
+
+3. Parallel Data Loading (PyTorch / TensorFlow)
+Frameworks like PyTorch and TensorFlow already use multiprocessing under the hood:
+
+PyTorch DataLoader: Has a num_workers parameter that uses multiprocessing to load data in parallel.
+
+python
+Copy
+Edit
+train_loader = torch.utils.data.DataLoader(
+    dataset, batch_size=64, shuffle=True, num_workers=4
+)
+TensorFlow tf.data.Dataset: Uses prefetch() and interleave() with num_parallel_calls.
+
+⚠️ When Is Multithreading Used in Deep Learning?
+Multithreading can still be used, but mostly for:
+
+I/O operations (reading files, writing logs).
+
+Asynchronous task scheduling.
+
+GUI or dashboard updates.
+
+🚀 TL;DR Recommendation:
+Task	Use
+Training neural networks	✅ Multiprocessing
+Loading large datasets	✅ Multiprocessing
+Model inference (light)	✅ Multithreading (optional)
+Logging / file saving	✅ Multithreading
+
+Would you like an example of multiprocessing with PyTorch or TensorFlow?
+
+
+
+
+
+You said:
+for multithreading explain real world scenario, you told shared memory space 
+
+
+ChatGPT said:
+Certainly! Let's explore a real-world scenario where multithreading and shared memory play a crucial role.
+
+🖥️ Real-World Example: Text Editor with Spell Checker
+Imagine you're using a text editor that checks spelling as you type. To ensure a smooth user experience, the application employs multithreading.
+
+How It Works:
+Main Thread: Handles user interactions, such as typing, cursor movement, and UI updates.
+
+Spell Checker Thread: Runs concurrently to analyze the text for spelling errors.
+
+Both threads access the same document data in memory. This shared memory approach allows the spell checker to read the latest text without duplicating data, ensuring efficient performance.
+
+Benefits:
+Responsiveness: The main thread remains responsive to user input, as the spell checking doesn't block UI updates.
+
+Efficiency: Shared memory eliminates the need to copy data between threads, reducing overhead.
+
+Considerations:
+Synchronization: Proper mechanisms (like mutexes or semaphores) are necessary to prevent conflicts when both threads access or modify the shared data.
+
+Thread Safety: Ensuring that shared resources are accessed in a thread-safe manner is crucial to prevent data corruption.
+
+📱 Another Example: Smartphone Multitasking
+Your smartphone often runs multiple applications simultaneously. For instance, you might be:
+
+Listening to music.
+
+Browsing the web.
+
+Receiving notifications.
+
+Each of these tasks operates in its own thread, sharing system resources like memory and processing power. This multithreaded approach allows for seamless multitasking without significant performance degradation.
+
+🔄 Summary
+Multithreading with shared memory is prevalent in applications where:
+
+Concurrent Tasks: Multiple operations need to run simultaneously.
+
+Shared Data: Tasks operate on the same data set.
+
+Performance: Efficient resource utilization is essential.
+
+By sharing memory, threads can communicate quickly and efficiently, but they must be carefully managed to avoid issues like race conditions.
+
+If you're interested in a code example demonstrating this concept, feel free to ask!
+
+--------------------------------------------------------------
+20. async 
+import asyncio
+
+async def fetch_data():
+    print("Start fetching")
+    await asyncio.sleep(2)  # Simulates a network delay
+    print("Done fetching")
+    return {'data': 123}
+
+async def main():
+    print("Start main")
+    data = await fetch_data()
+    print(f"Received data: {data}")
+
+asyncio.run(main())
+
+21. generator vs iterator 
+22  private, protect, public variable 
+
