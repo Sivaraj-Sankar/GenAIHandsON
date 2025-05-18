@@ -1312,4 +1312,10 @@ asyncio.run(main())
 
 21. generator vs iterator 
 22  private, protect, public variable 
+23 from functools import reduce
+
+nums = [1, 2, 3]
+
+result = reduce(lambda x, y: x + y, nums, 10)
+print(result)  # Output: 16
 
