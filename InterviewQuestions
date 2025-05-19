@@ -1322,3 +1322,31 @@ print(result)  # Output: 16
     print(i)
 
 
+25. append + popleft → FIFO (Queue)
+append + pop → FILO (Stack)
+appendleft + pop → Reverse queue
+appendleft + popleft → Stack from the other side
+
+from collections import deque
+
+dq = deque()
+
+# Adding
+dq.append(10)         # Right
+dq.appendleft(5)      # Left
+dq.append(20)
+
+print("Deque:", dq)   # deque([5, 10, 20])
+
+# Removing
+right = dq.pop()      # Removes 20
+left = dq.popleft()   # Removes 5
+
+print("After pop:", dq)  # deque([10])
+print("Right popped:", right)
+print("Left popped:", left)
+
+26.A generator is a simpler way to create an iterator using yield instead of manually defining __iter__() and __next__().
+Generators automatically create an iterator object.
+
+
