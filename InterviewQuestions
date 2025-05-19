@@ -1362,3 +1362,40 @@ def add(a, b):
 print(add(3, 4))  # Logs: Arguments: (3, 4) {}
 
 
+------------------------------------------------------******-----------------------------------------*******--------------------------------------
+Introduce myself with overall experience 
+1st Project - Worked for Morgan Stanely Client - have worked in software application developer in BFSI - Financial Market Settelements Domain, 
+       its a very complex application, to work with that application , need to be aware of end-end business workflow 
+       and code migration and logic migration from the legacy system to the renovation system 
+       i have appreciated by the client and received two times best team member award 
+2nd Project - I'm very passionate about the AI/ML , so i have crossed skilled from scracth statistics to GenAI and Agentic AI 
+            - So I have 2+ years works experience in GenAI - Currently working as a Data Engineer[Preprocessing data for LLM ready application]
+                                                                                    AI Engineer[Architecting the RAG Application + Agentic AI]- have worked on 2 projects 
+                                                 1. R&D project - Insurance Underwriting Agentic RAG Approach - , 
+                                                                       getting the data from API for the particular customer and reasoning over with Insurance Underwriting document 
+                                                                        and predicting the risk assessment of that customer isurance policy. as per the policy.
+                                                 2. Credit Loan Application Automation 
+                                                                      Institute Brrower getting the Loan from the Bank , 
+                                                            usually, if I'm as a customer going and asking the loan from the bank , i have to fill the certain application right ? 
+                                                                 and then there will be traditional machine learning model to classify whether loan has to be provide or not 
+                                                                         based on my credit score, and other features 
+                                                Now Leveraging the GenAI Capabilities -   for Institute Borrower if asks loan to the bank -  they have to fill the Credit Application Form 
+                                                           by Relationship Manager - which spans over the 4 to 5 pages with different sections 
+                                                      based on analyzing the different document - Eg: Financial Report, Credit Score Report, Security Documents, 
+                                                                                                                   Cash&Balance Statement 
+                                                                                                                   Profit& Loss Statement 
+                                                                                                                   Scraping the Data from company website 
+                                                                                                                   Financial Ratios's etc 
+                                                     we are automating the different document analysis with GenAI RAG Architecture 
+                                                                      Agent 1 - Routing with specific prompt template 
+                                                                      Agent 2 - Query Expansion 
+                                                                      Agent 3 - retrieving with the metadata 
+                                                                      Agent 4 - reasoning over the query 
+                                                     and finally justifying the analyzing with score and citation & reference 
+
+
+
+
+
+
+
