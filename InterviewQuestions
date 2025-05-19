@@ -1349,4 +1349,16 @@ print("Left popped:", left)
 26.A generator is a simpler way to create an iterator using yield instead of manually defining __iter__() and __next__().
 Generators automatically create an iterator object.
 
+27.Decorator def log_args(func):
+    def wrapper(*args, **kwargs):
+        print("Arguments:", args, kwargs)
+        return func(*args, **kwargs)
+    return wrapper
+
+@log_args
+def add(a, b):
+    return a + b
+
+print(add(3, 4))  # Logs: Arguments: (3, 4) {}
+
 
