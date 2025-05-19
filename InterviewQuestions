@@ -1362,6 +1362,10 @@ def add(a, b):
 print(add(3, 4))  # Logs: Arguments: (3, 4) {}
 
 
+1. One by One Going to Retrieve for query 
+2. How the document sending to the LLM , with metadata 
+
+
 ------------------------------------------------------******-----------------------------------------*******--------------------------------------
 Introduce myself with overall experience 
 1st Project - Worked for Morgan Stanely Client - have worked in software application developer in BFSI - Financial Market Settelements Domain, 
@@ -1392,6 +1396,24 @@ Introduce myself with overall experience
                                                                       Agent 3 - retrieving with the metadata 
                                                                       Agent 4 - reasoning over the query 
                                                      and finally justifying the analyzing with score and citation & reference 
+
+
+Caching 
+Fallback Mechanism 
+Logging 
+Error Handling 
+Horizontal Scaling 
+Async 
+MultiProcessing
+MultiThreading 
+Architecting the services for AI Strategies 
+Cost Optimization for LLM 
+Deployment & Inferencing 
+Computation 
+
+
+
+
 
 
 
