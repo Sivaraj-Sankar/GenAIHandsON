@@ -1,0 +1,40 @@
+Agentic AI vs AI Agents
+AI Agents operate with strict guidelines. They require specific instructions, focus on short-term tasks, only update through reprogramming, respond to direct commands, and handle simple tasks in predictable settings.
+Agentic AI operates differently. These systems work independently with minimal human input, focus on long-term goals with adaptive approaches, learn continuously from experiences, consider multiple factors in decisions, and tackle complex tasks in changing environments.
+ -Agentic AI represents an architectural shift. These systems involve multiple collaborating agents with dynamic task decomposition, persistent memory, and orchestration layers. They enable higher-level coordination and are suited for complex workflows like research automation, robotic swarms, and medical diagnostics.
+Agentic Workflow 
+    have Copule of AI Agents 
+
+Types of AI Agents 
+1.Learning Agents - AI Learning Agent is a Software Agent that can learn from past experiences and improve its performance
+2.Simple Reflex Agents
+3.Model Based Reflex Agents
+4.Goal-Based Agents 
+5.Utility[Tool]-Based Agents
+6.
+
+
+Agentic AI Architecture 
+Key Architectural and Algorithmic Solutions
+- Retrieval-Augmented Generation (RAG)
+- Tool-augmented reasoning (function calling)
+- Agentic Loop: Reasoning, Action, Observation
+- Memory Architectures (Episodic, Semantic, Vector)
+- Multi-agent orchestration with Role Specialization
+- Reflexive and Self-Critique Mechanisms
+- Programmatic Prompt Engineering Pipelines
+- Causal Modeling and Simulation-based Planning
+- Monitoring, Auditing, and Explainability Pipelines
+- Governance-aware design with role isolation and traceability
+There are all important areas that researchers and developers need to get familiar with to build reliable and robust agentic systems.
+
+
+Future RoadMap 
+--------------
+For AI Agents: Proactive intelligence, continuous learning, trust & safety.
+For Agentic AI: Multi-agent scaling, simulation-based planning, ethical governance, and domain-specific systems.
+These are all areas that need huge innovations in algorithms, architectures, infrastructure, protocols, and enhancing the models themselves.  
+
+
+
+
