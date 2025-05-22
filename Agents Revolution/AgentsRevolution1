@@ -1,3 +1,12 @@
+AutoGen Agent [Nested Chat Register, Task Register, Register Function]
+Create the Task in Json Format and Register 
+Register the Nested Chat - for Nested Conversational Agent 
+Register the Tools to the Agent by Register Function, and Provide the tools available in Agent System Message 
+**Nested Chat is Important in Chess Game, first agent will take with board to choose the legal move 
+
+
+
+
 Agentic AI vs AI Agents
 AI Agents operate with strict guidelines. They require specific instructions, focus on short-term tasks, only update through reprogramming, respond to direct commands, and handle simple tasks in predictable settings.
 Agentic AI operates differently. These systems work independently with minimal human input, focus on long-term goals with adaptive approaches, learn continuously from experiences, consider multiple factors in decisions, and tackle complex tasks in changing environments.
