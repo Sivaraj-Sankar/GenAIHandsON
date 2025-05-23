@@ -1,3 +1,4 @@
+Ai Agent Automation - No Need of Condition and Complex Edge Cases 
 AI Agentic Desgin Pattern 
 -------------------------
 Pattern 1 - AI Agent will wait for Other AI Agent 
@@ -6,6 +7,14 @@ Pattern 1 - AI Agent will wait for Other AI Agent
           - Workflow Agent 
 Pattern 2 - ReAct Agent - Reflecting - Acting 
 Pattern 3 - Perform series, in parallel, and hierarchically
+
+Cooperation
+Guardrails
+Focus
+Tools
+Memory
+Role-Play 
+
 
 
 
