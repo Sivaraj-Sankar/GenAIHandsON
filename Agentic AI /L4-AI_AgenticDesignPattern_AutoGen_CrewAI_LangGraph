@@ -4,7 +4,8 @@ Pattern 1 - AI Agent will wait for Other AI Agent
           - Hierarchical Agent 
           - Workflow Agent 
 Pattern 2 - ReAct Agent - Reflecting - Acting 
-Pattern 3 - 
+Pattern 3 - Perform series, in parallel, and hierarchically
+
 
 
 AI Agentic 
@@ -70,24 +71,39 @@ Data Collector
 Co-writer 
 Executor 
 
-Decorator  - Done
-Binary Search, Linear Search - Done
-ReRank Model Name - Check the Llamaindex - Done
-Embedding Model Name and size - done
-Reasoning Model is working - Done
-OOps Concept Brushup - Done 
-LLM Architecture Brushup  - Done
-Resume Quick Review  - Done
 
 
 
+---------------------------------****-------------------******________________________----*******
+AutoGen [Description, Specific Agent, System Message]
+CrewAI [specific role[act as code executor, code writer], goal[Output going to achieve], backstory for each agent]
+
+
+CrewAI 
+------
+Multi AI Agent Systems with crewAI
+**Memory: Provide agents with short-term, long-term, and shared memory
+**Focus: Break down the tasks, goals, and tools and assign to multiple AI agents for better performance
+**Guardrails: Effectively handle errors, hallucinations, and infinite loops
+**Desgin Pattern: Cooperation: Perform tasks in series, in parallel, and hierarchically
+
+Tailor resumes and interview prep for job applications
+Research, write and edit technical articles
+Automate customer support inquiries
+Conduct customer outreach campaigns
+Plan and execute events
+Perform financial analysis
 
 
 
+AutoGen Community 
+------------------
 AutoGen Update [community-driven development approach - AG2]
 To introduce significant architectural changes, including integration with Microsoft's broader AI ecosystem and tools like Semantic Kernel
 
 
+AI Agent Definition
+-------------------
 AI Agent Definition 
    * Function Calling 
    * Effectively Tool Using 
@@ -100,6 +116,20 @@ AI Agent Definition
    * Keeping the Human in the Loop 
    * stopping the response
    * Ask for human input before it generating the reply by LLM
+   * Memory - Long Term, Short Term, Shared Memory 
+
+
+Done
+-----
+Decorator  - Done
+Binary Search, Linear Search - Done
+ReRank Model Name - Check the Llamaindex - Done
+Embedding Model Name and size - done
+Reasoning Model is working - Done
+OOps Concept Brushup - Done 
+LLM Architecture Brushup  - Done
+Resume Quick Review  - Done
+
 
 
 
