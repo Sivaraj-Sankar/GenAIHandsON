@@ -1,4 +1,5 @@
 AI Agentic Desgin Pattern 
+-------------------------
 Pattern 1 - AI Agent will wait for Other AI Agent 
           - Delegate[Manager Agent, Orchestration Agent] the Task to other AI Agent 
           - Hierarchical Agent 
@@ -8,7 +9,8 @@ Pattern 3 - Perform series, in parallel, and hierarchically
 
 
 
-AI Agentic 
+AI Agentic Types 
+----------------
 Workflow Pattern 
 Autonomous Decision Making Pattern - with Tool Use
 Personal Assistant Pattern - AI Assistant 
