@@ -1386,6 +1386,93 @@ BSTs allow for fast searching, insertion, and deletion — on average O(log n) t
 A balanced BST like an AVL Tree or Red-Black Tree keeps operations close to O(log n)
 In a binary tree, traversal means visiting each node exactly once in a specific order. This is crucial for processing or displaying tree data.
 
+29.1
+class Node:
+    def __init__(self,value):
+        self.value = value 
+        self.left = None
+        self.right = None 
+        
+
+
+root = Node(5)
+print(root.value)
+print(root.left)
+root.left = Node(5)
+print(root.left.value)
+print(root.right)
+root.right = Node(5)
+print(root.right.value)
+print(root.left.left)
+print(root.right.right)
+
+29.2:
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None  # Left child
+        self.right = None  # Right child
+
+class BinaryTree:
+    def __init__(self, root_value):
+        self.root = Node(root_value)
+
+    def insert_left(self, current_node, value):
+        if current_node.left is None:
+            current_node.left = Node(value)
+        else:
+            new_node = Node(value)
+            new_node.left = current_node.left
+            current_node.left = new_node
+
+    def insert_right(self, current_node, value):
+        if current_node.right is None:
+            current_node.right = Node(value)
+        else:
+            new_node = Node(value)
+            new_node.right = current_node.right
+            current_node.right = new_node
+
+    def traverse_inorder(self, node):
+        if node:
+            self.traverse_inorder(node.left)
+            print(node.value, end=' ')
+            self.traverse_inorder(node.right)
+
+tree = BinaryTree(10)
+tree.insert_left(tree.root, 5)
+tree.insert_right(tree.root, 15)
+tree.insert_left(tree.root.left, 2)
+
+print("Inorder Traversal:")
+tree.traverse_inorder(tree.root)  # Output: 2 5 10 15
+
+
+Before:
+   current_node
+      /
+     B
+
+After:
+   current_node
+      /
+     A
+      \
+       B
+
+def insert_left(self, current_node, value):
+    if current_node.left is None:
+        current_node.left = Node(value)
+    else:
+        print("Left child already exists!")
+
+def insert_right(self, current_node, value):
+    if current_node.right is None:
+        current_node.right = Node(value)
+    else:
+        print("Right child already exists!")
+
+
 
 30.Could you please list the topics on introduction to graph theory; basic graph algorithms
 
@@ -1396,81 +1483,57 @@ Absolutely! Here's a well-structured list of essential topics covering the Intro
 📘 Introduction to Graph Theory
 1. What is a Graph?
 Definition of a graph (G = V, E)
-
 Vertices (nodes) and Edges (connections)
 
 2. Types of Graphs
 Undirected vs Directed
-
 Weighted vs Unweighted
-
 Simple, Multi-graph, Pseudograph
-
 Cyclic vs Acyclic
-
 Connected vs Disconnected
-
 Complete Graph
-
 Sparse vs Dense Graph
 
 3. Graph Representations
 Adjacency Matrix
-
 Adjacency List
-
 Edge List
 
 4. Graph Terminology
 Degree (In-degree / Out-degree)
-
 Path, Walk, Cycle
-
 Connected Components
-
 Subgraphs
-
 Bipartite Graphs
-
 Trees (as a special form of graph)
-
 Planar Graphs
 
 ⚙️ Basic Graph Algorithms
 1. Graph Traversal Algorithms
 Depth-First Search (DFS)
-
 Breadth-First Search (BFS)
 
 2. Shortest Path Algorithms
 Dijkstra’s Algorithm (for weighted graphs with non-negative edges)
-
 Bellman-Ford Algorithm (handles negative weights)
-
 Floyd-Warshall Algorithm (all pairs shortest path)
-
 A Search Algorithm* (heuristic-based pathfinding)
 
 3. Minimum Spanning Tree (MST) Algorithms
 Prim’s Algorithm
-
 Kruskal’s Algorithm
 
 4. Cycle Detection
 In Undirected Graphs (using DFS or Union-Find)
-
 In Directed Graphs (using DFS or Topological Sort)
 
 5. Topological Sorting
 For Directed Acyclic Graphs (DAGs)
-
 Kahn’s Algorithm
-
 DFS-based Topological Sort
 
 6. Connected Components
 Finding all components in an undirected graph
-
 Strongly Connected Components (Tarjan’s / Kosaraju’s algorithm)
 
 7. Union-Find / Disjoint Set Union (DSU)
@@ -1478,31 +1541,23 @@ For cycle detection, connected components, Kruskal’s MST
 
 📚 Optional Advanced Topics (for deeper exploration)
 Graph Coloring
-
 Network Flow Algorithms (Ford-Fulkerson, Edmonds-Karp)
-
 Bridge and Articulation Point Detection
-
 Eulerian and Hamiltonian Paths
-
 Graph Isomorphism
-
 Line Graphs, Complement Graphs
 
 🔧 Tools to Visualize Graphs
 Graphviz
-
 NetworkX (Python Library)
-
 Gephi (GUI Tool)
-
 Would you like a roadmap for learning these, or code examples of any specific algorithm like BFS or Dijkstra’s?
 
 
 Doubts
-1. One by One Going to Retrieve for query 
-2. How the document sending to the LLM , with metadata 
-3. How the traversal happens in the hardvard search alogrithm, checks for checking the if the node is visited or not 
+1. One by One Going to Retrieve for query ?
+2. How the document sending to the LLM , with metadata ?
+3. How the traversal happens in the hardvard search alogrithm, checks for checking the if the node is visited or not ?
 
 
 
