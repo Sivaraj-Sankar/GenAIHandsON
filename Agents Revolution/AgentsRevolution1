@@ -7,6 +7,13 @@ Register the Tools to the Agent by Register Function, and Provide the tools avai
        Contrast - Sequential Chat involves human to build the design for concrete steps and concrete agent involved in each step
 **Tool Calling & Code Execution is different in AutoGen(It Uses own, no need of function call or tool call capability by model)
 
+MultiAgent
+Reflection 
+Tool Use
+Code Generation 
+Planning
+
+
 
 
 Agentic AI vs AI Agents
