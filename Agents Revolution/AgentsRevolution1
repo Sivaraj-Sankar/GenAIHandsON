@@ -3,7 +3,8 @@ Create the Task in Json Format and Register
 Register the Nested Chat - for Nested Conversational Agent 
 Register the Tools to the Agent by Register Function, and Provide the tools available in Agent System Message 
 **Nested Chat is Important in Chess Game, first agent will take with board to choose the legal move 
-**Group Chat Conversation Pattern [Multi Agent Group Chat]
+**Group Chat Conversation Pattern [Multi Agent Group Chat] 
+       Contrast - Sequential Chat involves human to build the design for concrete steps and concrete agent involved in each step
 **Tool Calling & Code Execution is different in AutoGen(It Uses own, no need of function call or tool call capability by model)
 
 
