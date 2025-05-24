@@ -105,6 +105,26 @@ Conduct customer outreach campaigns
 Plan and execute events
 Perform financial analysis
 
+**Differentiate between tools and context in the agent is very important 
+**Guardrails - for not hallunicating 
+               for not stuck in the random loop 
+               for not using the same tool repeatedly 
+               for not taking the too long to answer the question
+               ** Prevent the Agents from Derailing 
+**Nudge the Agents to Stay on Track 
+
+Fuzzy Input - Fuzzy Transformation - Fuzzy Output 
+Different Ways to Give Agents Tools
+Agent Level: The Agent can use the Tool(s) on any Task it performs.
+Task Level: The Agent will only use the Tool(s) when performing that specific Task.
+Note: Task Tools override the Agent Tools.
+
+**Task Tool Override the Agent Tool 
+
+
+
+
+
 
 
 AutoGen Community 
