@@ -147,6 +147,9 @@ Action
     PAUSE 
 Observation 
 
+**LangChain Runnable is a Standard Interface, for calling and invoking the LangGraph 
+
+
 
 
 
