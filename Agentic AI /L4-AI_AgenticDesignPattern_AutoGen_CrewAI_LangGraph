@@ -127,6 +127,20 @@ Note: Task Tools override the Agent Tools.
 **Herarichal 
 **Asynchronous - no need to wait others to complete, no dependency with other agents 
 
+-------------------------------------
+LangGraph 
+---------
+Learn about LangGraph’s components and how they enable the development, debugging, and maintenance of AI agents
+This extension allows developers to create highly controllable agents
+**Implement persistence in agents - for both Debugging and Productionaizng
+**enabling state management across multiple threads
+**conversation switching, and the ability to reload previous states
+**Incorporate human-in-the-loop into agent systems
+
+Design Pattern 
+Tool Use 
+Reflection
+Complete Editing Cycle 
 
 
 
