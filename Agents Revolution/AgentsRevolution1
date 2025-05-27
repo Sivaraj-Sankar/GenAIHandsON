@@ -60,7 +60,7 @@ Generate action and Reflect and goes down based on that action and generates som
 Throughout all these reflections and it can basically reflect on where in the tree of action states, it want to jump back
 So it can backpropagate and update the parent nodes to have more information --> Which may inform future direction from that previous state 
 **Persistance is more important 
-Langgraph is more controllable - Cyclic and Acyclic graph 
+Langgraph is more controllable - Cyclic and Acyclic graph.
 
 Future RoadMap 
 --------------
