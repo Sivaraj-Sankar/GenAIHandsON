@@ -149,8 +149,12 @@ Observation
 
 **LangChain Runnable is a Standard Interface, for calling and invoking the LangGraph 
 
-
-
+State Memory 
+------------
+- Current State Update --> Which is Fine 
+- Time Travel ---> Resuming from old Message , Which is Fine --> but how
+- Intermediate State Update --> branch State will create ?
+- Adding New Message - Pretending Some Action Takes Place Really 
 
 
 
