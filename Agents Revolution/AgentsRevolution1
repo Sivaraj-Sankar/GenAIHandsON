@@ -46,6 +46,21 @@ Key Architectural and Algorithmic Solutions
 - Governance-aware design with role isolation and traceability
 There are all important areas that researchers and developers need to get familiar with to build reliable and robust agentic systems.
 
+Multi Agent Architecture 
+------------------------
+Comes with Different Architecture 
+**Multiple Agents works on the same Shared State
+**Supervisor
+**Plan and Execute - Plan Execute Replan --There are different variant - Each Task Replan, complete task replan
+**Flow Engineering [Graphical Solution]
+-What is the right information flow for your agents to take action and think
+**Language Agent Tree Search - 
+     Tree Search over the state of Possible actions
+Generate action and Reflect and goes down based on that action and generates some other sub-actions reflects on that
+Throughout all these reflections and it can basically reflect on where in the tree of action states, it want to jump back
+So it can backpropagate and update the parent nodes to have more information --> Which may inform future direction from that previous state 
+**Persistance is more important 
+Langgraph is more controllable - Cyclic and Acyclic graph 
 
 Future RoadMap 
 --------------
