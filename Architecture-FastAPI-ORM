@@ -277,7 +277,153 @@ A reverse proxy is like a smart middleman that sits in front of your backend ser
 Clients only talk to the reverse proxy — it hides, protects, and optimizes access to backend servers.
 Common for load balancing, routing, SSL, and security.
 
+[Inputs: Text | Image | Audio | Video]
+        ↓
+1. **Modality-Specific Encoders**
+   - Text → Token Embedding (LLM-style)
+   - Image → CNN/Vision Transformer (ViT)
+   - Audio → Spectrogram → CNN/RNN
+   - Video → Frames → Vision + Time encoders
+        ↓
+2. **Unified Representation Layer**
+   - All modalities projected into a common embedding space
+        ↓
+3. **Cross-Modal Attention / Fusion Layers**
+   - Learn interactions between text ↔ image ↔ audio
+        ↓
+4. **Decoder or Output Layer**
+   - Text generation, classification, retrieval, etc.
 
 
+Feature	LLM	Multimodal Model
+Input Types	Text only	Text, images, audio, video, etc.
+Modality Encoders	Text tokenizer + embeddings	Separate encoders per modality
+Core Processing	Transformer (text only)	Cross-modal transformer / fusion layers
+Use Cases	Chatbots, writing, coding, etc.	Image captioning, VQA, AI assistants
+Example Models	GPT-3, GPT-4, LLaMA, Claude	GPT-4o, Gemini, CLIP, Flamingo
+
+         +-----------------------------+
+         |      Multimodal Inputs      |
+         |  (Text, Image, Audio, etc.) |
+         +-----------------------------+
+                       ↓
+     +-------------------------------------+
+     | 1. Modality-Specific Encoders       |
+     | - Text → Token Embedding (LLM)      |
+     | - Image → CNN / ViT Encoder         |
+     | - Audio → Spectrogram + CNN / RNN   |
+     | - Video → Vision + Temporal Module  |
+     +-------------------------------------+
+                       ↓
+     +--------------------------------------+
+     | 2. Unified Multimodal Representation |
+     | - All modalities mapped to same space|
+     | - Cross-modal attention / fusion     |
+     +--------------------------------------+
+                       ↓
+     +--------------------------+
+     | 3. Task Decoder Layer    |
+     | - Text → LLM-style decoder       |
+     | - Image → Image generator (e.g. VAE, Diffusion) |
+     | - Audio → Text-to-speech decoder |
+     +--------------------------+
+                       ↓
+         +-----------------------------+
+         |     Multimodal Outputs      |
+         | (Text, Image, Audio, Action)|
+         +-----------------------------+
+
+Modality	Encoder Examples	Output Decoders
+Text	BERT, GPT, LLaMA (tokenizer + transformer)	LLM decoder
+Image	ViT, ResNet, CLIP-Image	VAE, Stable Diffusion
+Audio	Wav2Vec, Whisper	Tacotron, WaveNet
+Video	TimeSformer, SlowFast	VideoGAN, Motion transformers
+
+Layer	Description
+Modality-Specific Encoders	Convert raw data (text/image/audio) into embeddings
+Fusion Layer	Align and combine multiple modalities into a shared space
+Cross-Modal Attention	Learn interactions between, say, text and image
+Unified Embedding	A single representation that holds multimodal meaning
+Task-Specific Decoders	Generate appropriate output (text/image/audio/action)
+
+
+https://www.youtube.com/watch?v=helW1httyO8
+This video tutorial from CVPR 2022 delves into multimodal machine learning technologies, behaviors, and signals. It provides a visual and auditory learning experience, complementing the textual resources.
+https://www.v7labs.com/blog/multimodal-deep-learning-guide
+This article offers a comprehensive overview of multimodal deep learning, including its definition, challenges, and various applications. It's a great starting point for understanding the broader context and significance of multimodal models.
+https://github.com/dsaidgovsg/multimodal-learning-hands-on-tutorial
+This practical tutorial guides you through building a multimodal classifier that processes both text and images using Transformer models. It's ideal for those looking to apply multimodal learning techniques in real-world scenarios.
+https://arxiv.org/abs/2405.17927
+This research paper categorizes and analyzes four prevalent multimodal model architectural patterns, offering insights into their methodologies for integrating multimodal inputs. It's a valuable resource for understanding the evolution and design choices in multimodal architectures.
+arXiv
++1
+arXiv
++1
+https://slds-lmu.github.io/seminar_multimodal_dl/c02-00-multimodal.html
+This chapter provides an in-depth exploration of multimodal learning, focusing on integrating different input modalities like images and text. It discusses various architectures and fusion techniques used in multimodal models.
+
+            +--------------------+
+            |  User Input (Goal) |
+            +--------------------+
+                      ↓
+          +-------------------------+
+          | 1. Perception Layer     | ← Interpret input context
+          | (LLM, tokenizer)        |
+          +-------------------------+
+                      ↓
+          +-------------------------+
+          | 2. Memory / Context     | ← Stores past state, history
+          | (short-term / long-term)|
+          +-------------------------+
+                      ↓
+          +-------------------------+
+          | 3. Planner Module       | ← Plans sequence of steps
+          | (LLM + reasoning prompt)|
+          +-------------------------+
+                      ↓
+          +-------------------------+
+          | 4. Tool Selector        | ← Chooses APIs/tools/functions
+          | (via function calling) |
+          +-------------------------+
+                      ↓
+         +------------------------------------+
+         | 5. Tool Execution / Environment    | ← Calls external tools |
+         | (e.g. web, DB, calculator, Python) |
+         +------------------------------------+
+                      ↓
+          +-------------------------+
+          | 6. Result Interpreter   | ← Evaluates tool output
+          +-------------------------+
+                      ↓
+          +-------------------------+
+          | 7. Action / Response    | ← Final answer or next action
+          +-------------------------+
+
+Component	Description
+LLM	Core reasoning engine (e.g., GPT-4, Claude, Gemini)
+Memory	Stores history, facts, task state
+Planner	Uses chain-of-thought or scratchpad prompting to decide what to do next
+Tool Use	Executes external actions (e.g., search, code, math, API calls)
+Executor	Actually runs the tool or code (e.g., Python REPL, web scraper)
+Environment	Context where the agent acts (e.g., browser, file system, game)
+Reflection / Critic	Optional step for self-evaluation and correction
+
+Framework / System	Description
+LangChain Agents	Tool-using LLMs with planning and execution
+AutoGPT / BabyAGI	Autonomous LLM agents with looping goals
+ReAct Framework	Combines reasoning and action into prompts
+LangGraph (by LangChain)	Graph-based agent planning architecture
+OpenAI Function Calling + Tools	Call external tools via LLM reasoning
+Voyager (Minecraft agent)	LLM-based lifelong learning agent in a virtual world
+
+LLM Agentic Architecture turns a static language model into a dynamic, goal-oriented system capable of:
+Reasoning over complex tasks
+Calling tools/APIs
+Maintaining memory
+Interacting with environments
+It’s a foundational step toward AI that can autonomously solve problems, not just generate text.
+
+
+https://cohere.com/blog/embed-4
 
 
