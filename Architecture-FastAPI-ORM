@@ -1,0 +1,281 @@
+Fast API
+
+fastapi_project/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py                  # Entry point of the application
+│   ├── config.py                # Configuration settings (can use Pydantic BaseSettings)
+│   ├── dependencies/            # Reusable dependencies
+│   │   ├── __init__.py
+│   │   └── auth.py              # Auth-related dependencies
+│   ├── models/                  # ORM models (e.g., SQLAlchemy)
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── schemas/                 # Pydantic schemas for request/response validation
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── crud/                    # CRUD logic separated from routes
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── services/                # Business logic or integrations
+│   │   ├── __init__.py
+│   │   └── user_service.py
+│   ├── api/                     # Route files
+│   │   ├── __init__.py
+│   │   ├── deps.py              # Dependencies specific to routes
+│   │   └── v1/                  # Versioned APIs
+│   │       ├── __init__.py
+│   │       └── user.py
+│   ├── db/                      # Database utilities
+│   │   ├── __init__.py
+│   │   ├── base.py              # Base class for all models
+│   │   └── session.py           # DB session management
+│   ├── core/                    # Core functionality (e.g., JWT, hashing)
+│   │   ├── __init__.py
+│   │   ├── security.py
+│   │   └── hashing.py
+│   ├── middleware/              # Custom middlewares
+│   │   ├── __init__.py
+│   │   └── logging.py
+│   └── utils/                   # Utility functions
+│       ├── __init__.py
+│       └── helpers.py
+│
+├── tests/                       # Test suite
+│   ├── __init__.py
+│   └── test_user.py
+│
+├── .env                         # Environment variables
+├── alembic/                     # Alembic migrations (if using SQLAlchemy)
+│   └── ...
+├── alembic.ini
+├── requirements.txt             # Dependencies
+├── README.md
+├── Dockerfile                   # Docker configuration
+├── docker-compose.yml
+└── pyproject.toml               # Optional - for Poetry projects
+
+
+main.py
+from fastapi import FastAPI
+from app.api.v1 import user
+
+app = FastAPI(title="My FastAPI Project")
+
+# Register routers
+app.include_router(user.router, prefix="/api/v1/users", tags=["Users"])
+
+
+
+Use SQLAlchemy or Tortoise ORM for database interaction.
+Use Pydantic for request and response validation.
+Version your API with folders like /api/v1/.
+Use Alembic for database migrations.
+Use dotenv to manage secrets and configurations.
+
+MVP Architecture 
+----------------
+MVP Architecture stands for Model-View-Presenter. It is a design pattern commonly used in software development, especially in GUI applications like web and mobile apps
+MVP separates the application logic into three interconnected components to improve code maintainability, testability, and separation of concerns.
+
+
+Components of MVP
+Model
+What it is: Represents the data layer and business logic
+Fetching data (from database, API, etc.)
+Performing business operations
+
+Software Architecture and Design Patterns[Specifically under Application Architecture / UI Architecture strategies.]
+Software Architecture	High-level structure of a system, defining major components and their interactions.	MVC, MVT, MVP, Clean Architecture
+Software Design Patterns	Reusable solutions to common problems in software design.	Singleton, Factory, Repository, etc.
+Application Layer	Defines how user requests are processed (Controllers, Views, APIs).	MVC Controller, FastAPI routes
+Domain Layer / Business Logic	Encapsulates core logic/rules of the application.	Services, Use Cases, Interactors
+Data Access Layer	Responsible for database access and persistence.	Models, ORM, Repositories
+Presentation Layer	User interface or API output generation.	HTML Templates, JSON responses
+
+
++-------------------------------------------------------------+
+|                    Presentation Layer (UI/API)              |
+|-------------------------------------------------------------|
+|  - HTML/CSS/JS (Web UI)                                     |
+|  - React, Vue, Angular (Frontend)                           |
+|  - JSON/HTML Templates (Django Templates)                   |
+|  - REST APIs / FastAPI Routes                               |
+|                                                             |
+|  🌐 [ MVT (Templates), MVC (View), MVP (View), Routers ]    |
++-------------------------------------------------------------+
+|                    Application / Logic Layer                |
+|-------------------------------------------------------------|
+|  - Controllers / Views / Presenters                         |
+|  - Business Logic / Services                                |
+|  - Validation (Pydantic, Forms)                             |
+|                                                             |
+|  🧠 [ MVC (Controller), MVT (View), MVP (Presenter),         |
+|       Clean Architecture (Use Cases/Services) ]             |
++-------------------------------------------------------------+
+|                    Domain / Model Layer                     |
+|-------------------------------------------------------------|
+|  - Database Models (ORMs like Django Models, SQLAlchemy)    |
+|  - Domain Logic / Rules                                     |
+|                                                             |
+|  🧩 [ MVC/MVT/MVP (Model), Clean Architecture (Entities) ]  |
++-------------------------------------------------------------+
+|                    Data Access / Infrastructure             |
+|-------------------------------------------------------------|
+|  - Database Drivers / Repositories                          |
+|  - External Services / APIs                                 |
+|                                                             |
+|  🗃️ [ Clean Architecture (Repository), ORM, etc. ]          |
++-------------------------------------------------------------+
+|                        Configuration                        |
+|-------------------------------------------------------------|
+|  - Settings, Env Vars, Middleware, Security Config          |
+|                                                             |
+|  ⚙️ [ Shared across layers ]                                |
++-------------------------------------------------------------+
+🔍 Explanation by Architecture:
+Architecture	Fits In	Usage in Practice
+MVC	UI, Controller, Model	Web apps, backend APIs, frameworks like Laravel
+MVT (Django)	Templates, Views, Models	Django-specific apps
+MVP	UI apps with heavy logic separation	Mobile apps, desktop apps
+Clean Architecture	All layers, well-separated	Modern scalable apps (FastAPI, Flask, etc.)
+
+
+Microservices 
+-------------
+Microservice Architecture is a software architectural style where an application is composed of small, independent services that communicate over well-defined APIs. 
+Each microservice focuses on a specific business capability, can be developed, deployed, and scaled independently, and often has its own database
+
+📦 Tools Commonly Used in Microservice Architecture
+Category	Tools/Technologies
+API Gateway	Kong, NGINX, AWS API Gateway
+Service Discovery	Consul, Eureka, Etcd
+Messaging	RabbitMQ, Apache Kafka
+Config Management	Spring Cloud Config, Consul
+Logging & Monitoring	ELK Stack, Prometheus, Grafana
+Containers	Docker
+Orchestration	Kubernetes
+CI/CD	Jenkins, GitHub Actions, GitLab CI
+
+
+What Are Microservices?
+Microservices are:
+Small, focused modules
+Loosely coupled
+Autonomously deployable
+Built around business domains
+Communicate via HTTP/REST, gRPC, message queues, etc.
+
+📋 Key Characteristics of Microservice Architecture
+Feature	Description
+Modularity	Each service implements a specific business function
+Independence	Services are self-contained and can be deployed separately
+Technology diversity	Each microservice can use different languages/frameworks
+Decentralized data	Each service can manage its own database
+Resilience	Failure in one service does not crash the whole system
+Scalability	Services can be scaled independently
+Continuous delivery	Easier CI/CD due to small scope
+
+🧱 Components of Microservice Architecture
+Here’s a breakdown of the core components commonly found in microservices:
+
+1. API Gateway
+Entry point for all clients
+Handles routing, authentication, and rate limiting
+Example: Kong, NGINX, AWS API Gateway
+
+2. Service Registry and Discovery
+Keeps track of service instances and enables dynamic service discovery
+Example: Eureka, Consul, Etcd
+
+3. Microservices
+Independently deployable business units
+Often deployed in containers
+Communicate via REST/gRPC/message brokers
+
+4. Database per Service
+Each service manages its own schema and data
+Prevents tight coupling at the database level
+
+5. Inter-Service Communication
+REST APIs (HTTP)
+gRPC
+Message brokers (RabbitMQ, Kafka)
+
+6. Centralized Configuration Management
+Externalized configuration for all services
+Tools: Spring Cloud Config, Consul, Vault
+
+7. Distributed Logging & Tracing
+Monitor and debug across services
+Tools: ELK Stack, Jaeger, Zipkin
+
+8. Monitoring
+Health checks, metrics, alerting
+Tools: Prometheus, Grafana, Datadog
+
+9. Security
+Authentication & Authorization (e.g., OAuth2, JWT)
+Service-to-service encryption (TLS/mTLS)
+
+10. Containerization & Orchestration
+Services are packaged in containers and managed with:
+Docker
+Kubernetes
+
+🧩 Examples of Microservices in an E-commerce App
+Microservice	Responsibilities
+User Service	Handles user registration/authentication
+Product Service	Manages product catalog
+Order Service	Handles orders and transactions
+Payment Service	Manages payment processing
+Inventory Service	Tracks stock levels
+Notification Service	Sends emails, SMS, alerts
+Shipping Service	Calculates and tracks delivery
+
+
+Reverse Proxy 
+🧰 Reverse Proxy Use Cases
+Use Case	Example / Benefit
+Load Balancing	Distribute requests across multiple servers
+SSL Termination	Handle HTTPS encryption centrally
+Caching	Store and serve frequently requested content
+Security & DDoS Protection	Hide backend IPs, rate limiting, IP filtering
+URL Routing	Forward requests to different apps by path
+Authentication Gateway	Central login/token verification
+
+💡 Real Tools That Act as Reverse Proxies
+Tool	Description
+NGINX	Most common reverse proxy server
+HAProxy	High-performance load balancer
+Apache	Can be configured as a reverse proxy
+Traefik	Dynamic reverse proxy for microservices
+Cloudflare	Acts as a global reverse proxy (CDN + protection)
+
+
+✅ Example (NGINX Reverse Proxy for FastAPI)
+Imagine your FastAPI app runs at http://localhost:8000. NGINX can reverse proxy this:
+nginx
+Copy
+Edit
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+When a browser hits http://yourdomain.com, it talks to NGINX, which forwards it to FastAPI running behind the scenes.
+
+✅ Summary
+A reverse proxy is like a smart middleman that sits in front of your backend services.
+Clients only talk to the reverse proxy — it hides, protects, and optimizes access to backend servers.
+Common for load balancing, routing, SSL, and security.
+
+
+
+
+
