@@ -56,6 +56,8 @@ fastapi_project/
 ├── docker-compose.yml
 └── pyproject.toml               # Optional - for Poetry projects
 
+ORM Model
+An ORM model refers to an Object-Relational Mapping (ORM) approach where you interact with a database using objects in your programming language — instead of writing raw SQL queries.
 
 main.py
 from fastapi import FastAPI
