@@ -1,2 +1,79 @@
 Jørgen Randers is a Norwegian academic and expert in climate strategy, sustainablity
 He is renowned for his work in system dynamics and scenario analysis
+
+
+
+GRPO stands for Guided Reinforcement Preference Optimization, and it falls under the category of preference-based reinforcement learning used in fine-tuning large language models (LLMs) — specifically in alignment training.
+
+🧠 GRPO: Where It Fits in LLM Training
+LLMs are usually trained in three stages:
+
+Pretraining
+
+Massive unsupervised learning on internet-scale data using next-token prediction.
+
+Supervised Fine-Tuning (SFT)
+
+Models are trained on curated instruction-following datasets (e.g., question-answer pairs, human-written prompts/responses).
+
+Reinforcement Learning from Human Feedback (RLHF) or Alternatives
+
+This stage improves alignment with human preferences.
+
+🔁 GRPO in Stage 3: RLHF Alternatives
+GRPO is a direct preference optimization method, conceptually similar to DPO (Direct Preference Optimization) and IPO (Implicit Preference Optimization). Here's how it compares:
+
+Method	Training Type	Key Idea
+RLHF (PPO)	Reinforcement Learning	Optimize policy via rewards based on human preferences
+DPO	Supervised-style	Directly learn a scoring function from preferences
+GRPO	Preference-based Reinforcement Learning	Uses guidance signals with RL to optimize for preferred behaviors more stably
+
+🎯 What Makes GRPO Different?
+Uses a reward function based on human preferences (like PPO), but introduces guidance to reduce variance and instability in training.
+
+Aims to combine the stability of DPO with the flexibility of RL-based methods.
+
+Think of it as a hybrid between PPO and DPO: reinforcement learning, but "guided" toward good outputs without the full complexity or instability of PPO.
+
+✅ Summary
+GRPO is part of the alignment training phase in LLMs.
+
+It belongs to the preference-based reinforcement learning category.
+
+It's used after supervised fine-tuning, to fine-tune models using human feedback or preference data.
+
+Would you like a comparison of GRPO vs PPO vs DPO in terms of stability, sample efficiency, or implementation complexity?
+
+
+ Post-Training (a.k.a. Fine-Tuning)
+This is where general-purpose LLMs are made safe, helpful, and aligned with user intentions or specific tasks.
+
+🚀 Supervised Fine-Tuning (SFT)
+Method	Description
+Instruction Tuning	Train on curated examples that teach the model to follow instructions.
+Task-Specific Fine-Tuning	Fine-tune on a narrow task (e.g., summarization, coding).
+Chain-of-Thought Fine-Tuning	Add intermediate reasoning steps to answers to teach step-by-step thinking.
+
+🤖 Reinforcement and Preference-Based Alignment
+Method	Description
+RLHF (PPO)	Reinforcement Learning from Human Feedback (OpenAI used this for InstructGPT, ChatGPT).
+DPO (Direct Preference Optimization)	A supervised-style method using human preferences instead of rewards.
+GRPO (Guided Reinforcement Preference Optimization)	A hybrid of PPO and DPO — reinforcement learning guided by preferences.
+RLAIF (RL from AI Feedback)	Replace humans with LLMs to generate preference data.
+IPO (Implicit Preference Optimization)	Learns preference alignment without explicit reward modeling.
+
+🧪 Other Specialized Post-Training Techniques
+Method	Purpose
+LoRA / QLoRA	Low-rank fine-tuning methods to save memory and training costs.
+Adapters / Prefix Tuning	Add lightweight layers or tokens for domain-specific tasks.
+Distillation	Teach a smaller student model using a larger teacher model.
+Retrieval-Augmented Fine-Tuning	Fine-tune models to work with external knowledge sources.
+Multimodal Fine-Tuning	Tune the model to work with images, audio, or video along with text.
+
+🔁 Summary Table
+Stage	Category	Methods
+Pre-Training	Self-supervised	CLM, MLM, Infilling, Denoising
+Post-Training	Supervised	SFT, Instruction Tuning, CoT
+Post-Training	Preference-Based	PPO, DPO, GRPO, IPO, RLAIF
+Post-Training	Parameter-Efficient	LoRA, QLoRA, Adapters
+Post-Training	Distillation & Transfer	Distillation, RAG, Cross-task Fine-tuning
