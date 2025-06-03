@@ -340,3 +340,88 @@ Reward Model Training	Learn to rank outputs like a human	Pairwise ranking loss
 PPO-based RL	Align model to maximize reward	Proximal Policy Optimization
 
 Would you like a visualization or code sketch of PPO in action?
+
+
+------------------------------------
+Test Time Compute 
+
+Test Time Compute in the context of Large Language Models (LLMs) refers to the amount of computational resources used when the model is running inference—that is, when it's generating outputs based on user inputs (not during training).
+
+📌 What Is “Test Time”?
+In machine learning, test time (or inference time) is when the trained model is used to make predictions on new, unseen inputs—like when ChatGPT responds to a prompt. This is in contrast to training time, when the model is learning from data.
+
+💡 What Is “Compute”?
+Compute refers to the amount of computational power used, often measured in:
+
+FLOPs (Floating Point Operations)
+
+Latency (how long it takes to get a result)
+
+Memory usage
+
+Power/energy consumption
+
+GPU/TPU/CPU resources
+
+🧠 So What Is Test Time Compute in LLMs?
+It is the computational cost of running an LLM to generate outputs at inference time.
+
+More formally:
+
+Test Time Compute = Compute required to generate output for a given input (e.g., prompt) using a trained LLM.
+
+🔍 Detailed Breakdown
+1. What Factors Influence Test Time Compute?
+Factor	Explanation
+Model Size	Bigger models (more parameters) need more computation per token.
+Input Length	Longer prompts increase compute, since attention mechanism scales roughly quadratically with input length in transformers.
+Output Length	More tokens to generate means more compute.
+Batch Size	Running inference for multiple inputs at once increases total compute (though can be more efficient per input).
+Precision	Using FP16 or quantized models reduces compute vs. full FP32.
+Architecture	Optimized architectures (e.g., mixture-of-experts, retrieval-augmented models) may reduce test time compute.
+Caching (KV cache)	Speeds up inference by storing previously computed key-value pairs for the transformer attention layers.
+
+2. Compute per Token
+Most LLMs process text token by token. The per-token inference cost is significant and scales with:
+
+O(n²) complexity for attention (where n = number of tokens in context)
+
+O(n × d) for feedforward and other linear layers (where d = hidden size)
+
+3. Optimizations for Test Time Compute
+Method	How It Helps
+Quantization	Use lower-precision arithmetic (e.g. INT8 or FP16) to speed up and shrink model.
+Pruning	Remove unused parts of the network to reduce size and inference cost.
+Distillation	Use smaller models trained to mimic large models.
+Mixture-of-Experts (MoE)	Activate only parts of the model per input (e.g., 2 of 64 experts), saving compute.
+KV Caching	Speeds up generation by avoiding recomputation of self-attention for previous tokens.
+Streaming & Chunking	Process large inputs in parts to manage memory/compute.
+
+4. Why Is Test Time Compute Important?
+🏢 Operational Cost: LLMs deployed at scale (e.g. ChatGPT, Claude, Gemini) can cost millions per day in inference compute.
+
+⚡ Latency/User Experience: Users expect fast responses.
+
+🌱 Environmental Impact: Inference energy use at scale is significant.
+
+💰 Monetization & Pricing: API costs are often based on tokens, which correlate to test time compute.
+
+5. Real-World Numbers (Illustrative)
+Model	Parameters	Typical FLOPs/token	Inference Cost
+GPT-2	1.5B	~5 GFLOPs/token	Low
+GPT-3	175B	~350 GFLOPs/token	High
+GPT-4 (estimated)	>500B	~800+ GFLOPs/token	Very High
+
+(Note: These are ballpark figures, actual depends on architecture and deployment strategy.)
+
+✅ Summary
+Test Time Compute = Computational resources used when an LLM processes and responds to a prompt.
+
+It scales with model size, prompt length, and output length.
+
+It affects speed, cost, and scalability.
+
+Optimizations like quantization, KV caching, and distillation aim to reduce it.
+
+Would you like a visual diagram to summarize this?
+
