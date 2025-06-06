@@ -1,0 +1,19 @@
+command 
+  python -m venv llmstudio
+  venv\Scripts\activate 
+  deactivate 
+
+different types of running mcp server 
+   -> running with python file.py --server_type=stdio, sse 
+   -> running with mcp cli command - with inspector -> mcp dev file.py 
+   -> running with uv command -> uv run 
+                uv run mcp run MCP_HandsOn.py
+                uv run mcp dev MCP_HandsOn.py 
+                uv run mcp install MCP_HandsOn.py
+
+pip install uv 
+
+
+1) Docker Installed 
+2) LLMStudio Installed 
+
