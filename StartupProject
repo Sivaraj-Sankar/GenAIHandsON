@@ -25,7 +25,17 @@ different types of running mcp server
                 uv run mcp install MCP_HandsOn.py
    -> Connecting server with different server_type = http_client, sse_client[Server-Sent Events], local_client[stdio client] - passing arguments python server.py
 
-What is resources passing in the MCPToolSpec
+1.What is resources passing in the MCPToolSpec
+2.Prompts in MCP are predefined templates that can:
+Accept dynamic arguments
+Include context from resources
+3.Have to Learn the Context and import Contextlib
+  What is the context providing for the tools and resources
+https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#context
+4.mcp-use - Multiple MCP Server, using the config for client connection 
+https://github.com/mcp-use/mcp-use?utm_source=chatgpt.com
+5.Context Management 
+https://huggingface.co/blog/lynn-mikami/mcp-use?utm_source=chatgpt.com
  
 
 
