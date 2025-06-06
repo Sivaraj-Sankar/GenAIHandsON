@@ -36,6 +36,7 @@ https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#context
 https://github.com/mcp-use/mcp-use?utm_source=chatgpt.com
 5.Context Management 
 https://huggingface.co/blog/lynn-mikami/mcp-use?utm_source=chatgpt.com
+6. You host MCP server with --server_type = sse using FastAPI/uvicorn server 
  
 
 
