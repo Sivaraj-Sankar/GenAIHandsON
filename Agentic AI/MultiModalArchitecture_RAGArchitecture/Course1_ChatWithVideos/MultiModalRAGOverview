@@ -67,6 +67,7 @@ VideoPreprocessing
 
 LanceDB 
 1) Vision Language Data can be represented as embeddings in a common multi modal Semantic space
+2) Augment the transcript associated with each time frame with neighbouring time frame transcript 
 
 MultiModal 
 1) TowerBridge - Joint Embedding - Image and Caption - Separate Transformer 
