@@ -62,7 +62,8 @@ https://www.youtube.com/watch?v=7Hcg-rLYwdM
 
 
 MultiModal 
-1) TowerBridge - Image and Caption - Separate Transformer 
+1) TowerBridge - Joint Embedding - Image and Caption - Separate Transformer 
 2) VisionLM - How it will take the Image with text or without text and reason over it 
 3) How Llamaparse working, converting image okay fine, and then how that image is dechipering with Model, using the LVLM or OCR Modal, because Image have both Image and text
-4) 
+4) Native Multimodal for generating response, 
+5) Multimodal Embedding How it is working 
