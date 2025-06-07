@@ -69,6 +69,11 @@ LanceDB
 1) Vision Language Data can be represented as embeddings in a common multi modal Semantic space
 2) Augment the transcript associated with each time frame with neighbouring time frame transcript 
 
+LLaVa - 
+LLaVA (Large Language-and-Vision Assistant), an end-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding.
+LLaVA doesn't just see images but understands them, reads the text embedded in them, and reasons about their context—all while conversing with you in a way that feels almost natural.
+LLaVA is adept at tasks like explaining a complex chart, recognizing and reading text in photos, or identifying intricate details in high-resolution images.
+
 MultiModal 
 1) TowerBridge - Joint Embedding - Image and Caption - Separate Transformer 
 2) VisionLM - How it will take the Image with text or without text and reason over it 
