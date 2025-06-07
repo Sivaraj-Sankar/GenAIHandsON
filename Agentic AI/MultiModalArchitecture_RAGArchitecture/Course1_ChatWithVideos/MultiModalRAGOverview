@@ -50,7 +50,7 @@ Throughout the course, you’ll build a complete multimodal RAG system that:
 
 
 From this Course 
-1)LVLM - LLaVa, reasoning over the Image - [Q/A,Summary,Image Captioning,Memory]
+1)LVLM - LLaVa, reasoning over the Image - [Q/A,Summary,Image Captioning,Memory]  - Contextualizing the transcript, question and the video frame
 2)Multimodal VectorDB - [Retrieval System] - LanceDB, Langchain, Performing Similarity Searches on Multimodal data 
 3)Whisper Model - Audio to text - generate transcriptions using the Whisper model
 4)Video Preprocessing - Extracting frame and transcripts from video 
