@@ -1,0 +1,61 @@
+
+Multimodal RAG: Chat with Videos
+
+Explore the concept of multimodal semantic space and its importance in AI
+Semantic - relating to meaning in language or logic.
+Learn the differences between traditional RAG and multimodal RAG systems, focusing on the complexities of integrating different models
+**Querying video content using multimodal AI
+**You will understand and use a multimodal embedding model to embed images and captions in a **multimodal semantic space
+**Using that common space, you will build and use a retrieval system that returns images using text prompts
+**You will use a **Large Vision Language Model (LVLM)** to generate a response using the images and text from the retrieval.
+Advanced search engines that understand visual context, creating AI assistants capable of discussing video content
+and building automated systems for video content analysis and summarization.
+
+Looking to enhance content Management systems, 
+                           Improve accessibility features, or 
+                           Push the boundaries of human-AI interaction.
+
+Model 
+1) Native Multimodal 
+2) Multimodal Embedding to capture the **multimodal semantic space 
+3) Large Vision Language Model[LVLM] to generate a response using the images and text from the retrieval 
+3) Multimodal Foundation Model 
+4)   - Scaling up the model causes the vision and text representation aligns with each other 
+
+RAG Architecture 
+1) Understand the architecture of multimodal RAG systems and interact with a Gradio app demonstrating multimodal video chat capabilities.
+2) Multimodal Embedding with BridgeTower: Explore the BridgeTower model to create joint embeddings for image-caption pairs, measure similarities, and visualize high-dimensional embeddings
+3) Video Pre-processing for Multimodal RAG: Learn to extract frames and transcripts from videos, generate transcriptions using the Whisper model, and create captions using Large Vision Language Models (LVLMs).
+4) Building a Multimodal Vector Database: Implement multimodal retrieval using LanceDB and LangChain, performing similarity searches on multimodal data.
+5) Leveraging Large Vision Language Models (LVLMs): Understand the architecture of LVLMs like LLaVA and implement image captioning, visual question answering, and multi-turn conversations.
+
+
+Key technologies and concepts
+Multimodal Embedding Models: BridgeTower for creating joint embeddings of image-caption pairs
+Video Processing: Whisper model for transcription, LVLMs for captioning
+Vector Stores: LanceDB for efficient storage and retrieval of high-dimensional vectors
+Retrieval Systems: LangChain for building a retrieval pipeline 
+Large Vision Language Models (LVLMs): LLaVA 1.5 for advanced visual-textual understanding
+APIs and Cloud Infrastructure: PredictionGuard APIs, Intel Gaudi AI accelerators, Intel Developer Cloud
+
+Project Step by Step 
+Hands-on project
+Throughout the course, you’ll build a complete multimodal RAG system that:
+
+1)Processes and embeds video content (frames, transcripts, and captions)
+2)Stores multimodal data in a vector database
+3)Retrieves relevant video segments given text queries
+4)Generates contextual responses using LVLMs
+5)Maintains multi-turn conversations about video content
+
+
+From this Course 
+1)LVLM - LLaVa, reasoning over the Image - [Q/A,Summary,Image Captioning,Memory]
+2)Multimodal VectorDB - [Retrieval System] - LanceDB, Langchain, Performing Similarity Searches on Multimodal data 
+3)Whisper Model - Audio to text - generate transcriptions using the Whisper model
+4)Video Preprocessing - Extracting frame and transcripts from video 
+5) Multimodal Embedding with BridgeTower - Joint Embedding for image-caption pairs
+6) Architecture of Multimodal RAG 
+
+Resources
+https://www.youtube.com/watch?v=7Hcg-rLYwdM
