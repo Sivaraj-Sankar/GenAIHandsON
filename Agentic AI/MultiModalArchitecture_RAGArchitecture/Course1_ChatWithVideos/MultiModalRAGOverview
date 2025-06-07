@@ -65,6 +65,9 @@ VideoPreprocessing
 2)Maintaining aspect ratio of the image for the BridgeTower embedding model 
 3) 
 
+LanceDB 
+1) Vision Language Data can be represented as embeddings in a common multi modal Semantic space
+
 MultiModal 
 1) TowerBridge - Joint Embedding - Image and Caption - Separate Transformer 
 2) VisionLM - How it will take the Image with text or without text and reason over it 
