@@ -33,7 +33,10 @@ Chapter - 1
 6) extraction_chain = prompt | extraction_model | JsonKeyOutputFunctionsParser(key_name="people")  ---> Parse Based on Only Particular key
 7) WebBaseLoader 
 
-
+Runnable Pass Through 
+The RunnableParallel primitive is essentially a dict whose values are runnables (or things that can be coerced to runnables, like functions). It runs all of its values in parallel, and each value is called with the overall input of the RunnableParallel. The final return value is a dict with the results of each value under its appropriate key.
+The RunnablePassthrough on its own allows you to pass inputs unchanged. This typically is used in conjuction with RunnableParallel to pass data through to a new key in the map.
+The RunnableLambda converts a python function into a Runnable. Wrapping a function in a RunnableLambda makes the function usable within either a sync or async context.
 Code 
 1.response = openai.ChatCompletion.create(
     # OpenAI Updates: As of June 2024, we are now using the GPT-3.5-Turbo model
