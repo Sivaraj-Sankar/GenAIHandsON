@@ -19,7 +19,7 @@ Server
 
 1.gunicorn - Most popular WSGI server
 2.uwsgi - Feature-rich, production-grade
-3.mod_wsgi - Used with Apache HTTP Server
+3.mod_wsgi - Used with Apache HTTP Server.
 
 ASGI ensures the kitchen and delivery person speak the same language, especially for real-time orders (WebSockets) or multiple orders at once (async)
 Term	Meaning
