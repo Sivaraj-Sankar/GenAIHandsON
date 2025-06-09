@@ -1,3 +1,33 @@
+Swagger UI
+🚀 Explore your API endpoints (GET, POST, etc.)
+🧪 Test endpoints directly from the browser
+📝 See request/response formats
+✅ Validate your OpenAPI schema
+📚 Generate API documentation automatically
+FastAPI generates Swagger UI automatically from your code using Python type hints and decorators (@app.get(), @app.post(), etc.).
+
+
+Server 
+🖥️ Starts your app
+📡 Listens on a port (e.g., 8000)
+📥 Accepts HTTP requests (like GET, POST)
+🧠 Passes those requests to your FastAPI functions
+📤 Sends back responses (like JSON)
+1.uvicorn is an ASGI web server for Python. It is commonly used with FastAPI.
+2.It understands the ASGI[Asynchronous Server Gateway Interface] interface (like WSGI, but async).
+3.FastAPI is ASGI-native, and Uvicorn is one of the best ASGI servers
+
+1.gunicorn - Most popular WSGI server
+2.uwsgi - Feature-rich, production-grade
+3.mod_wsgi - Used with Apache HTTP Server
+
+ASGI ensures the kitchen and delivery person speak the same language, especially for real-time orders (WebSockets) or multiple orders at once (async)
+Term	Meaning
+ASGI	Async Server Gateway Interface — defines how async Python servers/apps talk
+Purpose	Enables modern async apps with HTTP/2, WebSockets, long-lived requests
+Example	FastAPI uses ASGI; Uvicorn is an ASGI server
+
+
 Fast API
 
 fastapi_project/
