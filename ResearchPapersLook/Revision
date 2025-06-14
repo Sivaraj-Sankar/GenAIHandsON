@@ -50,8 +50,10 @@ Steps for Memories in Conversation
 - **The system converts working memory into episodic memory at the **end of conversations, ensuring that relevant information is stored for future reference. This process allows for continuity in user interactions.
 
 1.Working memory acts as the immediate cognitive workspace.
+   - conversational context observed through real-time interactions
 2.Episodic memory retains historical experiences and insights.
 3.Semantic memory provides a representation of knowledge separate from personal experiences, enabling models to access explicit facts that ground their responses and integrate dynamic knowledge.
 4.Procedural memory encompasses the model's weights and code structure, influencing how other memory systems operate and fundamentally altering the agent's functional behavior.
 
 Understanding different memory systems can significantly enhance the **cognitive capabilities of language models
+Implementing advanced **cognitive architectures can lead to better contextualization in language models, addressing limitations commonly found in less complex systems.
