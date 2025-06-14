@@ -3,9 +3,15 @@ Revision and Preparation
 2) What is Context 
 3) MCP Context giving 
 4) How to interact with Database
+5) How to Run the Docker Compose File
+6) Check the OpenAI and ChatOpenAI and ConversationChain 
 
 Preparation
 1) Resume the MultiAgentic System 
+2) Memory Component - Done [ How to save the Memory to Generate the Justification]
+3) 
+
+
 
 Memory Component 
 ----------------
