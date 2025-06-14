@@ -51,7 +51,19 @@ Steps for Memories in Conversation
 
 1.Working memory acts as the immediate cognitive workspace.
    - conversational context observed through real-time interactions
+   - Remembering and Learning from Short-Term memory 
+
+    Learning from short-term memory - dynamic integration of new messages into the active context 
+      - Updating the stateful representation of the entire conversation 
 2.Episodic memory retains historical experiences and insights.
+    - essentially being able to recall over a series of Prior Working Memory 
+    - Included Raw Conversations, 
+    - Included Analytical Understanding from raw data
+   - Remembering in episodic memory - done with few-shot prompting 
+   - Learning from past recall as well - 
+     - Two Processes 
+     Automatic Storage of past complete conversation 
+     Generation of Post Conversation Analysis 
 3.Semantic memory provides a representation of knowledge separate from personal experiences, enabling models to access explicit facts that ground their responses and integrate dynamic knowledge.
 4.Procedural memory encompasses the model's weights and code structure, influencing how other memory systems operate and fundamentally altering the agent's functional behavior.
 
