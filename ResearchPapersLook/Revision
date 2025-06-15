@@ -142,3 +142,8 @@ Langchain Prompt Template - from Template
 ChatPromptTemplate(input_variables=['topic'], messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['topic'], template='tell me a short joke about {topic}'))])
 Langchain OpenAI - ChatOpenAI
 AIMessage(content='Why did the bear bring a flashlight to the party? \n\nBecause he heard it was going to be a "beary" good time!')
+
+Key Things to Discuss for MCP 
+------------------------------
+1) How Functions Converting to the Pydantic Objects 
+2) 
