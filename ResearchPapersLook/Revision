@@ -75,3 +75,70 @@ Steps for Memories in Conversation
 
 Understanding different memory systems can significantly enhance the **cognitive capabilities of language models
 Implementing advanced **cognitive architectures can lead to better contextualization in language models, addressing limitations commonly found in less complex systems.
+
+
+OpenAI Response 
+<OpenAIObject chat.completion id=chatcmpl-AVCsmqFCt4FILgYpy7wDxpjahOZvC at 0x7f9d08a55270> JSON: {
+  "id": "chatcmpl-AVCsmqFCt4FILgYpy7wDxpjahOZvC",
+  "object": "chat.completion",
+  "created": 1732001052,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "function_call": {
+          "name": "get_current_weather",
+          "arguments": "{\"location\":\"Boston\",\"unit\":\"celsius\"}"
+        },
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "function_call"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 82,
+    "completion_tokens": 20,
+    "total_tokens": 102,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": null
+}
+response_message = response["choices"][0]["message"]
+<OpenAIObject at 0x7f9cd9678b80> JSON: {
+  "role": "assistant",
+  "content": null,
+  "function_call": {
+    "name": "get_current_weather",
+    "arguments": "{\"location\":\"Boston\",\"unit\":\"celsius\"}"
+  },
+  "refusal": null
+}
+
+response_message["content"]
+
+response_message["function_call"]
+<OpenAIObject at 0x7f9cd9678bd0> JSON: {
+  "name": "get_current_weather",
+  "arguments": "{\"location\":\"Boston\",\"unit\":\"celsius\"}"
+}
+
+json.loads(response_message["function_call"]["arguments"])
+{'location': 'Boston', 'unit': 'celsius'}
+
+Langchain Prompt Template - from Template
+ChatPromptTemplate(input_variables=['topic'], messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['topic'], template='tell me a short joke about {topic}'))])
+Langchain OpenAI - ChatOpenAI
+AIMessage(content='Why did the bear bring a flashlight to the party? \n\nBecause he heard it was going to be a "beary" good time!')
