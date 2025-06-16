@@ -228,3 +228,113 @@ UI	PDF renderer with highlight overlay and navigation links
 Scale & Performance	Ray/Anyscale for workers, GPU indexing, async fetch, benchmarks
 
 By combining multimodal chunk processing, structured citation strategies, and UI-integrated PDF highlighting, you can build a robust, trustworthy RAG app ready for production. If you'd like code samples or help choosing specific frameworks, I’d be happy to dive deeper!
+
+What are the Evaluation Techniques for RAG application
+
+
+ChatGPT said:
+Evaluating a Retrieval-Augmented Generation (RAG) system is critical to ensuring high-quality, factually grounded, and relevant answers. Evaluation can be done automatically, manually, or using hybrid methods.
+
+Here’s a clear breakdown of the main evaluation techniques:
+
+✅ 1. Retrieval Evaluation
+Focuses on whether the retriever is finding relevant information.
+
+📌 Metrics:
+Recall@k: Fraction of queries for which a relevant document is in the top-k results.
+
+Precision@k: Fraction of the top-k retrieved documents that are relevant.
+
+Hit Rate: Whether at least one relevant passage was retrieved.
+
+Mean Reciprocal Rank (MRR): Measures rank position of the first relevant document.
+
+nDCG (Normalized Discounted Cumulative Gain): Considers relevance and rank position.
+
+🧪 Tools:
+Annotate relevant contexts for each query (gold passages).
+
+Use vector similarity benchmarks (if using dense retrieval).
+
+✅ 2. Generation Evaluation
+Focuses on how well the language model generates answers using retrieved content.
+
+📌 Metrics:
+Factuality / Faithfulness:
+
+Does the output only use retrieved content?
+
+Measured with:
+
+SelfCheckGPT
+
+LlamaIndex Eval
+
+RAGAS Faithfulness Score
+
+QAG (Question-Answer Generation) Consistency
+
+Relevance:
+
+Is the answer directly relevant to the user question?
+
+Measured with:
+
+Semantic similarity
+
+BERTScore
+
+Embedding-based cosine similarity
+
+Correctness:
+
+Does the output answer the question accurately?
+
+Requires comparison to gold answers (manual or automatic via QA).
+
+Fluency and Grammar:
+
+Readability and coherence of the output.
+
+BLEU, ROUGE, METEOR (but limited in open-ended QA tasks)
+
+✅ 3. End-to-End Task Evaluation
+Measuring the entire RAG pipeline’s performance.
+
+📌 Approaches:
+Exact Match / F1 Score: Compare answers to ground-truth answers.
+
+Human Evaluation: Rate on correctness, factuality, helpfulness.
+
+QA over QA pairs: Generate question-answer pairs from documents and test if RAG recovers them.
+
+Closed-book vs. RAG comparison: Measure performance improvement with RAG over pure LLM.
+
+✅ 4. RAG-Specific Frameworks
+These tools help automate RAG evaluations:
+
+Tool	Key Features
+RAGAS	Measures faithfulness, answer relevance, context recall
+TruLens	LLM-based evaluation with feedback tracking
+LlamaIndex	Has built-in evaluation for context relevance and answer quality
+LangChain evals	Supports custom criteria and LLM-based scoring
+Promptfoo	Experiment tracking and scoring pipelines
+
+👀 Real-World Strategy
+In practice, a good evaluation pipeline looks like this:
+
+Offline Retrieval Eval (Recall@k, etc.)
+
+Answer Quality Eval:
+
+Human-labeled or LLM-based scores for correctness/factuality.
+
+Feedback Loop:
+
+Logging real user queries, comparing LLM answers to retrieved context.
+
+A/B Testing in production:
+
+Compare different retrievers, chunking strategies, or prompt templates.
+
+Would you like a template for building an eval pipeline using RAGAS, LangChain, or LlamaIndex?
