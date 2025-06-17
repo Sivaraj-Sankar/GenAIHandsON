@@ -143,7 +143,9 @@ https://www.llamaindex.ai/blog/pdf-parsing-llamaparse - Llamaparse
 https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore/CosmosDB-MongoDB-vCore_AzureOpenAI_Tutorial.ipynb - Azure Cosmos DB v Core
 https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore/CosmosDB-MongoDB-vCore_AzureOpenAI_Tutorial.ipynb - Azure MongoDB
 https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/azurecosmosmongo/ - Azure Cosmos DB VectorStoreQuery
-
+https://www.llamaindex.ai/llamaparse
+https://www.llamaindex.ai/llamaextract
+https://www.llamaindex.ai/?gad_source=1&gad_campaignid=21116317807&gbraid=0AAAAA9du_J319zjjlJvIMn6uTgCKT0Nwx&gclid=CjwKCAjwravBBhBjEiwAIr30VC2W2frN8WWnvAC-7KJmgt12buF4Yg9WgGXsKamAzpC0AbT_JANt4RoCav4QAvD_BwE
 
 
 
