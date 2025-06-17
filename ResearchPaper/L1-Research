@@ -125,6 +125,26 @@ https://github.com/docling-project/docling?tab=readme-ov-file - Docling
 https://docling-project.github.io/docling/integrations/llamaindex/
 https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-docling
 https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/node_parser/llama-index-node-parser-docling
+https://github.com/run-llama/llama_cloud_services/blob/main/examples/parse/demo_advanced.ipynb - Advanced RAG Llamaindex
+https://medium.com/@chetanpp30/advance-rag-using-llama-parse-metadata-linking-ddab8193b016
+https://docs.llamaindex.ai/en/stable/module_guides/loading/ingestion_pipeline/
+https://github.com/run-llama/llama_index/blob/main/docs/docs/examples/low_level/ingestion.ipynb
+https://docs.llamaindex.ai/en/stable/examples/retrievers/auto_merging_retriever/
+https://medium.com/@chetanpp30/advance-rag-using-llama-parse-metadata-linking-ddab8193b016 - Advanced Parsing 
+https://docs.cloud.llamaindex.ai/llamaparse/features/parsing_options - Parsing Options
+https://docs.cloud.llamaindex.ai/llamaparse/features/parsing_options
+https://docs.llamaindex.ai/en/stable/examples/metadata_extraction/PydanticExtractor/
+https://docs.llamaindex.ai/en/stable/examples/metadata_extraction/MetadataExtractionSEC/
+https://docs.llamaindex.ai/en/stable/examples/metadata_extraction/MetadataExtraction_LLMSurvey/
+https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_metadata_extractor/
+https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_documents/
+https://docs.llamaindex.ai/en/stable/module_guides/indexing/document_management/
+https://www.llamaindex.ai/blog/pdf-parsing-llamaparse - Llamaparse
+https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore/CosmosDB-MongoDB-vCore_AzureOpenAI_Tutorial.ipynb - Azure Cosmos DB v Core
+https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore/CosmosDB-MongoDB-vCore_AzureOpenAI_Tutorial.ipynb - Azure MongoDB
+https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/azurecosmosmongo/ - Azure Cosmos DB VectorStoreQuery
+
+
 
 
 Later Explore 
