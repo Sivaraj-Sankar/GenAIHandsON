@@ -403,3 +403,12 @@ Json_Schema
 }
 
 
+Document Generation 
+Method	Pros	Cons
+python-docx	Easy, popular	No direct column control
+python-docx-template	Works with column templates	Manual template needed
+Pandoc	Converts LaTeX/Markdown perfectly	Needs install, CLI tool
+Word COM (win32com)	Full control	Windows-only, needs MS Word installed
+
+
+
