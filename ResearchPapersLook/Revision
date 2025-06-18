@@ -410,5 +410,75 @@ python-docx-template	Works with column templates	Manual template needed
 Pandoc	Converts LaTeX/Markdown perfectly	Needs install, CLI tool
 Word COM (win32com)	Full control	Windows-only, needs MS Word installed
 
+Method 3 — Using Word COM Automation (Windows-only):
+python
+Copy
+Edit
+import win32com.client
 
+word = win32com.client.Dispatch("Word.Application")
+word.Visible = False
+
+doc = word.Documents.Add()
+
+# Set columns
+section = doc.Sections(1)
+section.PageSetup.TextColumns.SetCount(2)
+
+# Add text
+range = doc.Range(0,0)
+range.InsertAfter("The Impact of Artificial Intelligence on Modern Healthcare Systems\n")
+range.InsertAfter("Abstract\nArtificial Intelligence (AI) is revolutionizing healthcare...\n")
+
+# Save doc
+doc.SaveAs(r"generated_two_column.docx")
+doc.Close()
+word.Quit()
+
+-----------------
+pandoc paper.md -o paper.docx --reference-doc=template.docx
+
+Method 2 — Using Pandoc (best for LaTeX → DOCX conversion)
+If you write the paper in Markdown or LaTeX, you can generate a two-column DOCX like this:
+
+bash
+Copy
+Edit
+pandoc paper.md -o paper.docx --reference-doc=template.docx
+Or:
+
+bash
+Copy
+Edit
+pandoc paper.tex -o paper.docx --reference-doc=template.docx
+
+Pandoc is great for:
+✅ Converting LaTeX to Word
+✅ Converting Markdown to Word
+✅ Applying two-column styles via reference DOCX
+
+
+-----------------------
+Great question — if you want to generate a .docx Word file with a two-column layout programmatically, you can do it with Python using libraries like:
+
+python-docx → general DOCX creation/editing (but does not support columns natively)
+
+python-docx-template → if you pre-make a .docx template with columns
+
+pydocx → convert HTML to .docx (you can style columns in HTML)
+
+docxtpl + jinja2 → generate dynamic DOCX content with templates
+
+win32com.client → control MS Word COM API (only on Windows — full Word feature control)
+
+pandoc → convert LaTeX / Markdown → Word with columns (very powerful!)
+
+
+In Word, LaTeX, or Google Docs, this is done by using:
+
+Two-column layout (Page Layout → Columns → Two)
+
+Sometimes, section breaks to control where columns start
+
+Figures and tables can either span both columns or stay in one
 
