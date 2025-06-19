@@ -1572,6 +1572,32 @@ class LinkedList:
     def __init__(self):
         self.head = None 
         
+        
+    def insert_at_position(self,data,position):
+        new_node = Node(data)
+        
+        
+        # Case 1: Insert at the head (position 0)
+        if position == 0:
+            new_node.next = self.head 
+            self.head = new_node 
+            return 
+        
+        current = self.head
+        index = 0
+
+        # Traverse to the node just before the position
+        while current is not None and index < position - 1:
+            current = current.next
+            index += 1 
+        
+        if current is None:
+            print("Position out of bounds!") 
+            return 
+        
+        new_node.next = current.next 
+        current.next = new_node
+        
     def append(self,data):
         new_node = Node(data)
         
@@ -1614,6 +1640,9 @@ L.append(5)
 L.append(6)
 L.print()
 L.at_begin(7)
+L.insert_at_position(10,1)
+L.print()
+L.insert_at_position(12,1)
 L.print()
         
 
