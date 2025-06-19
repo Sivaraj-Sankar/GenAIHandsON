@@ -69,5 +69,27 @@ For Agentic AI: Multi-agent scaling, simulation-based planning, ethical governan
 These are all areas that need huge innovations in algorithms, architectures, infrastructure, protocols, and enhancing the models themselves.  
 
 
+Agentic Framework 
+-----------------
+1.Langchain - Modular Framework  - Tool use and Chaining - Agent Executors 
+2.CrewAi - Collaborative Framework - Multi-Agent System for role-based framework and task delegation - Task Orchestration - Role Assignment - Agent Collaboration 
+3.AutoGen - Conversational Multi-Agent framework for LLM to LLM - Assistant-user loops - conversational planning - tool integration - LLM dialogues and planning tasks 
+4.MetaGPT - Engineering Framework - Structured Software Engineering agent mimicking a dev team  - PM/Engineer/QA Roles - Design First Approach - Output Validation 
+                 Build Production-Ready Software with AI Agents 
+5.LangGraph - Reactive Framework - Graph Based Execution Model for reactive stateful agents - Node-Based Planning - Cycles and retries - Multi-Agent Workflows 
+            - Great for memory + loop handling 
+6.AgentOps - Monitoring Framework - Manage Observe and debug AI agents in production - Agent Health Metrics, Logs & traceability, Performance alerts = Ops Dashboard for live agents
+7.SuperAgent - Open-Source Framework - Plug and Play framework with built-in-tools, UI and API access - Quick Deploy + Testing Sandbox 
+             - Vector DB memory + REST API Endpoints + UI for Agent Interaction 
+8.Haystack Agents - Developer-Centric + Robust framework for RAG pipelines with reasoning and agent tasks. - Great for search + reasoning agents 
+                    Modular Pipelines + Toolkits for RAG + LLMs + Multi Turn Tasks 
+9.AutoGen Studio - GUI-Based Tool - No-Code Visual Platform for designing AutoGen agents - Drag-Drop agent setup 
+                 - Agent Configuration UI 
+                 - Workflow Visualization 
+                 - Best for Non-Devs and quick prototyping 
+10.AgentForge - Multi-LLM Support - Toolkit to run agents using various LLMs (GPT-4, Claude, Mistral) - Multi Modal agent Orchestration 
+                                  - 
+
+
 
 
