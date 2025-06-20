@@ -11,3 +11,26 @@ Locofy.ai -
 AI generator that converts design files into production-ready, responsive frontend code (HTML/CSS/React/Vue) 
 Anima - 
 Turns Figma/Adobe XD/Sketch designs into developer-friendly code (HTML, React, Vue, etc.), with an AI chat mode for changes in real time
+
+
+ 1. Adaptive (adaptive.ai)
+A no-code, conversational app builder for building interconnected tools by describing workflows naturally. Best for non-technical users. 
+arxiv.org
+itsbetterwithai.com
+tiktok.com
+Training/foundation: Under the hood, leverages large language models (LLMs), though specifics aren't public. Likely fine-tuned on app-building patterns.
+Frontend vs Backend: Primarily focused on frontend/business logic and workflows; it can link apps and data flows, but doesn't generate raw backend code.
+
+
+ 2. Google Stitch
+Text + image → UI design + frontend code tool from Google (Gemini 2.5 Pro-powered), launched at I/O 2025. Supports iterative prompts and export/import from Figma/CSS/HTML. 
+theverge.com
+timesofindia.indiatimes.com
+Training: Built on Gemini 2.5 Pro (Google’s advanced LLM fine-tuned for UI/code).
+Used for: Frontend UI generation only—does not generate backend services or APIs.
+
+3. Devin AI
+A fully autonomous coding assistant that plans, writes, debugs, tests, and deploys code. Developed by Cognition Labs using LLMs with reinforcement learning, among others. 
+en.wikipedia.org
+Training: Custom-trained LLMs similar to GPT models, further enhanced via reinforcement learning and online search.
+Capability: Full-stack—can independently generate both frontend (websites, UI) and backend logic, including deployment and tests.
