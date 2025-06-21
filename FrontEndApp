@@ -533,6 +533,20 @@ you take the /dist folder → upload it to:
 ✅ GitHub Pages
 ✅ Any static web server (like Nginx)
 
+Full Stack 
+Next.js	React + Backend API Routes + Fullstack support
+Nuxt.js (Vue)	Vue-based fullstack
+SvelteKit	Svelte fullstack
+RedwoodJS	Fullstack React + GraphQL
+
+Example — Next.js
+pages/index.jsx           → Frontend React page (UI)
+pages/api/hello.js        → API route (backend logic)
+
+Your UI lives at: http://localhost:3000/
+Your API endpoint lives at: http://localhost:3000/api/hello
+
+
 
 
 
