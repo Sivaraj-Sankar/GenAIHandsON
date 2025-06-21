@@ -74,4 +74,208 @@ Reasoning ability: Yes — performs CoT (chain-of-thought) reasoning and logic t
 
 
 -----------------------------------------------------------------------
+POST /api/documents/upload
+Body: {
+  fileName: string;
+  fileBase64: string;
+  fileType: string;
+}
+Response: { id: string; fileName: string; fileUrl: string; fileType: string; uploadedAt: string; }
+
+
+POST /api/documents/upload
+
+GET /api/documents
+Response: Array of documents:
+
+[
+  {
+    id: string;
+    fileName: string;
+    fileUrl: string;
+    fileType: string;
+    uploadedAt: string;
+    reports: [
+      {
+        id: string;
+        status: string;
+        createdAt: string;
+      }
+    ]
+  }
+]
+
+POST /api/reports/generate
+Body: { documentId: string }
+Response: { reportId: string; taskId: string }
+
+
+GET /api/reports/{reportId}/status
+Response: 
+{
+  id: string;
+  status: string;
+  content: string;
+  fileUrl: string | null;
+  taskStatus: any;
+}
+
+
+GET /api/reports
+Response: 
+[
+  {
+    id: string;
+    document: {
+      id: string;
+      fileName: string;
+      fileUrl: string;
+      fileType: string;
+    };
+    status: string;
+    content: string;
+    fileUrl: string | null;
+    createdAt: string;
+  }
+]
+
+POST /api/chat/send
+Body: { content: string; documentId?: string }
+Response:
+{
+  userMessage: { id, content, createdAt, role },
+  aiMessage: { id, content, createdAt, role }
+}
+
+
+You can use marked (lightweight), or react-markdown (better)
+→ For simplicity here: use react-markdown (very easy)
+
+Endpoint	Method	Description
+/api/documents	GET	Get list of documents
+/api/documents/upload	POST	Upload a document
+/api/reports	GET	Get list of reports
+/api/reports/generate	POST	Start report generation
+/api/reports/{report_id}/status	GET	Get status of report
+/api/chat/{document_id}	GET	Get chat history for document
+/api/chat/{document_id}/send	POST	Send chat message
+
+
+React Query
+---------
+Keep React Query for caching + state
+Keep toast notifications
+
+Chat For That Document
+=======================
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+Perfect — you want Chat with UserDocuments → meaning:
+📄 Chat per document — so user can click on document → open chat panel just for that document.
+Plan:
+✅ In UserDocuments list → for each document
+✅ Add "Chat" button
+✅ When clicked → show ChatBox for that document (pass documentId)
+
+Step 1: Update UserDocuments.tsx
+Add showChatForDocId state:
+
+import React, { useEffect, useState } from "react";
+import { getUserDocuments } from "../client/api";
+import GenerateReportButton from "./GenerateReportButton";
+import ReportStatus from "./ReportStatus";
+import ChatBox from "./ChatBox";
+
+type Document = {
+  id: string;
+  fileName: string;
+  fileUrl: string;
+  fileType: string;
+  uploadedAt: string;
+  reports: {
+    id: string;
+    status: string;
+    createdAt: string;
+  }[];
+};
+
+export default function UserDocuments() {
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showChatForDocId, setShowChatForDocId] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchDocuments() {
+      try {
+        const docs = await getUserDocuments();
+        setDocuments(docs);
+      } catch (err: any) {
+        setError(err.message || "Failed to load documents");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDocuments();
+  }, []);
+
+  return (
+    <div style={{ border: "1px solid #ccc", padding: "16px", marginTop: "24px" }}>
+      <h2>Your Documents</h2>
+
+      {loading && <p>Loading documents...</p>}
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+
+      {!loading && documents.length === 0 && <p>No documents uploaded yet.</p>}
+
+      {!loading && documents.length > 0 && (
+        <ul>
+          {documents.map((doc) => (
+            <li key={doc.id} style={{ marginBottom: "16px" }}>
+              <strong>{doc.fileName}</strong> ({doc.fileType}) <br />
+              Uploaded: {new Date(doc.uploadedAt).toLocaleString()} <br />
+              <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer">
+                View Document
+              </a>
+              <br />
+              {doc.reports.length > 0 ? (
+                <ReportStatus reportId={doc.reports[0].id} />
+              ) : (
+                <p>No report generated yet.</p>
+              )}
+
+              <GenerateReportButton documentId={doc.id} />
+
+              <button
+                onClick={() =>
+                  setShowChatForDocId(showChatForDocId === doc.id ? null : doc.id)
+                }
+                style={{ marginTop: "8px" }}
+              >
+                {showChatForDocId === doc.id ? "Hide Chat" : "Chat with AI"}
+              </button>
+
+              {showChatForDocId === doc.id && (
+                <ChatBox documentId={doc.id} />
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+Now in UserDocuments:
+Each document has "Chat with AI" button
+If clicked → opens ChatBox for that document
+AI will see document context (documentId passed to API)
+You can remove global ChatBox from App.tsx if you want → now chat is per-document.
+
+Summary:
+You can now chat with individual documents
+ChatBox is tied to documentId
+The API already supports this
+
+
 
