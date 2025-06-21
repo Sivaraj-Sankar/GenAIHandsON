@@ -147,6 +147,12 @@ Response:
   aiMessage: { id, content, createdAt, role }
 }
 
+GET /api/chat/history?documentId=<docId>
+Response:
+[
+  { id, role, content, createdAt }
+]
+
 
 You can use marked (lightweight), or react-markdown (better)
 → For simplicity here: use react-markdown (very easy)
@@ -276,6 +282,147 @@ Summary:
 You can now chat with individual documents
 ChatBox is tied to documentId
 The API already supports this
+
+
+Update ChatBot.tsx
+import React, { useEffect, useState } from "react";
+import { sendChatMessage, getChatHistory } from "../client/api";
+
+export default function ChatBox({ documentId }: { documentId?: string }) {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<
+    { role: string; content: string; createdAt?: string }[]
+  >([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [historyLoading, setHistoryLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        const history = await getChatHistory({ documentId });
+        setMessages(history);
+      } catch (err: any) {
+        console.error("Failed to load chat history", err);
+      } finally {
+        setHistoryLoading(false);
+      }
+    }
+
+    fetchHistory();
+  }, [documentId]);
+
+  const handleSend = async () => {
+    if (!input.trim()) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await sendChatMessage({
+        content: input,
+        documentId,
+      });
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: res.userMessage.content },
+        { role: "assistant", content: res.aiMessage.content },
+      ]);
+
+      setInput("");
+    } catch (err: any) {
+      setError(err.message || "Failed to send message");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ border: "1px solid #ccc", padding: "16px", marginTop: "12px" }}>
+      <h3>Chat with AI {documentId ? `(Document Context)` : ``}</h3>
+
+      <div
+        style={{
+          minHeight: "150px",
+          border: "1px solid #999",
+          padding: "8px",
+          marginBottom: "12px",
+          backgroundColor: "#fafafa",
+          overflowY: "auto",
+          maxHeight: "300px",
+        }}
+      >
+        {historyLoading ? (
+          <p>Loading chat history...</p>
+        ) : messages.length === 0 ? (
+          <p>No messages yet.</p>
+        ) : (
+          messages.map((msg, index) => (
+            <div
+              key={index}
+              style={{
+                marginBottom: "8px",
+                color: msg.role === "user" ? "black" : "blue",
+              }}
+            >
+              <strong>{msg.role === "user" ? "You" : "AI"}:</strong> {msg.content}
+            </div>
+          ))
+        )}
+      </div>
+
+      <textarea
+        rows={3}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        style={{ width: "100%", marginBottom: "8px" }}
+        placeholder="Type your message..."
+      />
+
+      <button onClick={handleSend} disabled={loading || !input.trim()}>
+        {loading ? "Sending..." : "Send"}
+      </button>
+
+      {error && (
+        <div style={{ marginTop: "8px", color: "red" }}>Error: {error}</div>
+      )}
+    </div>
+  );
+}
+
+✅ Now:
+
+When you click "Chat with AI" →
+👉 It will load previous chat history
+👉 Show in chat panel
+👉 You can continue chatting — new messages added live
+
+
+✅ Now:
+
+When you click "Chat with AI" →
+👉 It will load previous chat history
+👉 Show in chat panel
+👉 You can continue chatting — new messages added live
+
+Summary:
+
+✅ Upload document
+✅ View documents
+✅ Generate report
+✅ Check report status
+✅ View reports + preview
+✅ Chat per document with history
+
+Next step?
+
+1️⃣ Styling — make it nice
+2️⃣ Refresh UserDocuments after GenerateReport → auto show new status
+3️⃣ Any other feature
+4️⃣ You test first
+
+Just tell me — ready for next? 🚀
 
 
 
