@@ -1,3 +1,10 @@
+│   ├── context/             # React Context providers (global state management)
+│   ├── store/               # State management (Redux, Zustand, Jotai, etc.)
+   -----> State Management 
+
+HMR is a feature of modern development tools (like Vite, Webpack, Next.js) — it allows your app to update in real time, without reloading the whole page.
+
+
 my-react-app/
 ├── public/                  # Static files, HTML template
 │   └── index.html
