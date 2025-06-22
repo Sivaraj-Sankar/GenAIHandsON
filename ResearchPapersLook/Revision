@@ -39,6 +39,7 @@ SecurityUtils	Built-in security flows	High	OAuth2, password login, etc.
 4.2) State Mangement 
 5) Different User Logins at same time - means Thread 
 6) Database connection for different database and schema handled by FastAPI, or I have to create the query for No-SQL Database 
+SQLAlchemy ORM and Alembic migrations
 7) Middle ware in FastAPI
 8) Plugin and Dependencies 
 🧱 Common Plugin-Like Patterns in FastAPI
