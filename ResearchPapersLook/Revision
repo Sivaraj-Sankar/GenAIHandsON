@@ -14,6 +14,14 @@ OAuth2 / JWT Tokens	Token-based authentication
 API Keys (Header/Query)	Simple service-to-service authentication
 Session Cookies	Browser-based login
 Custom Middleware	Low-level request inspection
+
+from fastapi.security import OAuth2PasswordBearer
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+@app.get("/users/me")
+async def read_users_me(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
+
+
 4) Session Management  - again user logins - how to reload the resume of their work - That's why we need session management 
 5) Different User Logins at same time - means Thread 
 6) Database connection for different database and schema handled by FastAPI, or I have to create the query for No-SQL Database 
