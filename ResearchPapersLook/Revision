@@ -6,6 +6,322 @@ Revision and Preparation
 5) How to Run the Docker Compose File
 6) Check the OpenAI and ChatOpenAI and ConversationChain 
 
+Using Free Databases
+PostgreSQL	SQLAlchemy + psycopg
+db.py:
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+# Example: PostgreSQL URL
+DATABASE_URL = "postgresql+psycopg://username:password@localhost/dbname"
+
+engine = create_engine(DATABASE_URL, echo=True)  # echo shows SQL queries in logs
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+
+models.py:
+from sqlalchemy import Column, Integer, String
+from .db import Base
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    email = Column(String, unique=True, index=True)
+
+one-time
+One-time (quick start):
+# In some script or startup:
+from .db import engine, Base
+from . import models
+
+Base.metadata.create_all(bind=engine)
+main.py:
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+from .db import SessionLocal
+
+app = FastAPI()
+
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+CRUD Example 
+from fastapi import HTTPException
+from .models import User
+
+@app.post("/users/")
+def create_user(name: str, email: str, db: Session = Depends(get_db)):
+    db_user = User(name=name, email=email)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+@app.get("/users/")
+def read_users(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return db.query(User).offset(skip).limit(limit).all()
+
+
+To use the DB freely:
+
+✅ 1. Setup engine + session
+✅ 2. Define models
+✅ 3. Create tables / migrations
+✅ 4. Inject DB session into your routes
+✅ 5. Use session: .add(), .query(), .delete(), etc.
+
+--------------------------------
+app/db/database.py
+# app/db/database.py
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/mydb")
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+app/models/document.py
+from sqlalchemy import Column, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+from app.db.database import Base
+
+class Document(Base):
+    __tablename__ = "documents"
+
+    id = Column(String, primary_key=True, index=True)
+    file_name = Column(String, nullable=False)
+    file_url = Column(String, nullable=False)
+    file_type = Column(String, nullable=False)
+    uploaded_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    reports = relationship("Report", back_populates="document")
+
+app/models/report.py
+from sqlalchemy import Column, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+from app.db.database import Base
+
+class Report(Base):
+    __tablename__ = "reports"
+
+    id = Column(String, primary_key=True, index=True)
+    document_id = Column(String, ForeignKey("documents.id"), nullable=False)
+    status = Column(String, nullable=False)
+    content = Column(String)
+    file_url = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    document = relationship("Document", back_populates="reports")
+
+
+Pydantic Schema
+app/schemas/document.py
+from pydantic import BaseModel
+from typing import List, Optional
+from datetime import datetime
+
+class ReportOut(BaseModel):
+    id: str
+    status: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class DocumentOut(BaseModel):
+    id: str
+    file_name: str
+    file_url: str
+    file_type: str
+    uploaded_at: datetime
+    reports: List[ReportOut] = []
+
+    class Config:
+        orm_mode = True
+
+API Route
+app/api/documents.py
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from typing import List
+from app.db.database import get_db
+from app.models.document import Document
+from app.schemas.document import DocumentOut
+
+router = APIRouter(prefix="/api/documents", tags=["Documents"])
+
+@router.get("", response_model=List[DocumentOut])
+def get_documents(db: Session = Depends(get_db)):
+    documents = db.query(Document).all()
+    return documents
+
+
+app/main.py
+from fastapi import FastAPI
+from app.api import documents
+from app.db.database import Base, engine
+
+# Create tables
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI()
+
+# Register routers
+app.include_router(documents.router)
+
+
+
+SQLite	SQLAlchemy + sqlite3
+MySQL	SQLAlchemy + pymysql
+MongoDB	ODMantic, Motor
+MongoDB is NoSQL (no tables) — so we don’t use SQLAlchem
+Tools for MongoDB + FastAPI:
+
+Tool / Library	Purpose
+motor	Async MongoDB driver
+beanie	ODM (Object Document Mapper, like ORM for MongoDB, works great with FastAPI)
+odmantic	Another popular ODM, simple and FastAPI-friendly
+
+db.py:
+from motor.motor_asyncio import AsyncIOMotorClient
+
+MONGO_URL = "mongodb://localhost:27017"
+client = AsyncIOMotorClient(MONGO_URL)
+db = client["mydatabase"]
+
+main.py:
+from fastapi import FastAPI
+from db import db
+
+app = FastAPI()
+
+@app.post("/users/")
+async def create_user(user: dict):
+    result = await db.users.insert_one(user)
+    return {"id": str(result.inserted_id)}
+
+@app.get("/users/")
+async def list_users():
+    users = []
+    cursor = db.users.find({})
+    async for doc in cursor:
+        doc["_id"] = str(doc["_id"])  # Convert ObjectId to string
+        users.append(doc)
+    return users
+
+pip install beanie
+Option 2️⃣ — Using beanie (recommended ODM, much easier)
+models.py:
+from beanie import Document
+from pydantic import BaseModel, EmailStr
+
+class User(Document):
+    name: str
+    email: EmailStr
+
+db.py:
+from motor.motor_asyncio import AsyncIOMotorClient
+from beanie import init_beanie
+from models import User
+
+async def init_db():
+    client = AsyncIOMotorClient("mongodb://localhost:27017")
+    await init_beanie(database=client.mydatabase, document_models=[User])
+
+main.py:
+from fastapi import FastAPI
+from models import User
+from db import init_db
+
+app = FastAPI()
+
+@app.on_event("startup")
+async def start_db():
+    await init_db()
+
+@app.post("/users/")
+async def create_user(user: User):
+    await user.insert()
+    return user
+
+@app.get("/users/")
+async def list_users():
+    return await User.find_all().to_list()
+
+➡️ Beanie ODM has its own “schema versioning” and “migrations” support — no need for Alembic:
+Beanie can manage collections and indexes on startup
+You can write migration scripts for schema changes (optional)
+
+db.py:
+from motor.motor_asyncio import AsyncIOMotorClient
+from beanie import init_beanie
+from models import User  # your document model
+
+MONGO_URL = "mongodb://localhost:27017"
+
+async def init_db():
+    client = AsyncIOMotorClient(MONGO_URL)
+    await init_beanie(database=client.mydatabase, document_models=[User])
+
+models.py:
+from beanie import Document
+from pydantic import EmailStr
+
+class User(Document):
+    name: str
+    email: EmailStr
+
+    class Settings:
+        name = "users"  # collection name
+
+main.py:
+from fastapi import FastAPI
+from models import User
+from db import init_db
+
+app = FastAPI()
+
+@app.on_event("startup")
+async def app_init():
+    await init_db()
+
+@app.post("/users/")
+async def create_user(user: User):
+    await user.insert()
+    return user
+
+@app.get("/users/")
+async def list_users():
+    return await User.find_all().to_list()
+
+
 FastAPI 
 1) Request and Response Schema   vs Django 
 2) Database Schema 
@@ -40,6 +356,25 @@ SecurityUtils	Built-in security flows	High	OAuth2, password login, etc.
 5) Different User Logins at same time - means Thread 
 6) Database connection for different database and schema handled by FastAPI, or I have to create the query for No-SQL Database 
 SQLAlchemy ORM and Alembic migrations
+alembic init alembic
+alembic/
+    env.py
+    script.py.mako
+    versions/
+alembic.ini
+
+myapp/
+    app/
+        __init__.py
+        main.py
+        models.py
+        crud.py
+        db.py
+    alembic/
+        versions/
+    alembic.ini
+    requirements.txt
+
 7) Middle ware in FastAPI
 8) Plugin and Dependencies 
 🧱 Common Plugin-Like Patterns in FastAPI
