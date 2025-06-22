@@ -6,6 +6,7 @@ command
   deactivate 
   pip freeze > requirements.txt 
   uvicorn main:app --reload 
+  uvicorn app.main:app --reload
 
 pip install mcp
 pip install "mcp[cli]"
