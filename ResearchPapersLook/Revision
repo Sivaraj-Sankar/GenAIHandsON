@@ -21,6 +21,10 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 async def read_users_me(token: str = Depends(oauth2_scheme)):
     return {"token": token}
 
+Middleware	Global checks for every route	Medium	API token headers, IP blocking
+Dependencies	Per-route security	Low	JWT, OAuth, API Key
+SecurityUtils	Built-in security flows	High	OAuth2, password login, etc.
+
 
 4) Session Management  - again user logins - how to reload the resume of their work - That's why we need session management 
 5) Different User Logins at same time - means Thread 
