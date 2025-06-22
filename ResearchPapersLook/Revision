@@ -75,6 +75,15 @@ def health_check():
 # Plug into main app
 app.include_router(router)
 
+Real Examples of “Plugin” Libraries
+Plugin Type	Example Library	What It Adds
+Auth/JWT	fastapi-jwt-auth, fastapi-users	Auth systems, user mgmt, token support
+Rate Limiting	slowapi	Add rate limiting via middleware
+CORS	CORSMiddleware from fastapi	Cross-origin request support
+Monitoring	prometheus_fastapi_instrumentator	Metrics for Prometheus/Grafana
+Tracing/Logs	opentelemetry-instrumentation-fastapi	Tracing support (OpenTelemetry)
+Admin UI	fastapi-admin	Admin dashboards
+
 
 React - Router 
 --------------
