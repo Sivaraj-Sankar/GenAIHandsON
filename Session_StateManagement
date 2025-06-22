@@ -1,0 +1,226 @@
+Session Management & State Management 
+1. Creating Application Id 
+2. Using it in all other pages application id and other parameters to GET or POST
+
+1️⃣ Session Management
+Session management refers to the process of securely handling user interactions with a web application across multiple requests
+Because HTTP is stateless (each request is independent), the server doesn't automatically know which requests belong to which user.
+Why it matters: You want the server to "remember" users — for example:
+Are they logged in?
+What's in their shopping cart?
+What page were they viewing?
+
+Working steps
+The server creates a session (usually when the user logs in).
+A unique session ID is generated and stored on the client (usually in a cookie).
+On each subsequent request, the client sends this session ID.
+The server uses this ID to look up the user's session data.
+
+Common technologies:
+Cookies
+Server memory (not scalable)
+Databases
+Distributed caches (Redis, Memcached)
+
+State Management
+State management is a broader term — it’s about tracking the “state” (data) of an application over time, for all users and components — whether on the client side, server side, or both.
+
+Is the sidebar open or closed?
+What's in the user’s shopping cart?
+What items have been liked?
+What filters are selected on a product list?
+
+Why it matters:
+Modern web apps are interactive. They need to remember things as users click around — otherwise the experience would be broken.
+
+Common state management patterns/tools:
+Frontend: React state (useState, useReducer), Redux, MobX
+Backend: Session state, database records
+Persistent vs ephemeral: Does the state survive page reloads?
+
+Session Management	Keeping track of which user is making requests across time (user identity)
+State Management	Keeping track of application data over time (UI state, business logic state, etc.)
+
+Practical Example
+The server returns a session ID to the client (usually in a cookie or token)
+The user uploads a document (HTTP POST request to your backend).
+The client sends the session ID (or token) along with the request (usually browser handles this automatically if you're using cookies).
+The backend:
+Identifies the user by user_id from the session.
+Stores the uploaded document in the DB, with metadata:
+uploaded_by_user_id = <user_id from session>
+
+User opens the "My Documents" page (GET request to backend).
+Client sends the session ID (or token) with the request.
+
+The server:
+Validates the session.
+Gets the user_id from session.
+Runs a query:
+sql
+Copy
+Edit
+SELECT * FROM documents WHERE uploaded_by_user_id = <user_id>
+
+
+Session management ensures identity across pages
+
+
+Django 
+Django’s built-in User model (or a custom one if needed)
+Django’s session framework (enabled by default)
+Django’s LoginView, logout, and @login_required decorators
+
+You can use Django’s built-in login system (django.contrib.auth.views.LoginView)
+
+When the user logs in:
+Django sets a session cookie (sessionid) in the user’s browser.
+On the server, Django stores session data:
+
+request.session['_auth_user_id'] = <user_id>
+
+
+Models
+from django.db import models
+from django.contrib.auth.models import User
+class Document(models.Model):
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from .forms import DocumentForm
+
+@login_required
+def upload_document(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            doc = form.save(commit=False)
+            doc.uploaded_by = request.user  # session gives you request.user
+            doc.save()
+            return redirect('my_documents')
+    else:
+        form = DocumentForm()
+    return render(request, 'upload.html', {'form': form})
+
+
+from django.contrib.auth.decorators import login_required
+from .models import Document
+
+@login_required
+def my_documents(request):
+    user = request.user  # session gives you request.user
+    documents = Document.objects.filter(uploaded_by=user)
+    return render(request, 'my_documents.html', {'documents': documents})
+
+✅ Session is stored on the server (by default in the DB — django_session table)
+✅ User identity (request.user) is automatic once they are logged in
+✅ You don’t have to manage session tokens manually — Django does it
+
+Application ID
+request.session['application_id'] = <generated_id>
+
+current_app_id = request.session.get('application_id')
+
+from django.db import models
+from django.contrib.auth.models import User
+import uuid
+
+class Application(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Document(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+from django.contrib.auth.decorators import login_required
+from .models import Application
+
+@login_required
+def start_application(request):
+    application = Application.objects.create(owner=request.user)
+    # Store current app_id in session
+    request.session['application_id'] = str(application.id)
+    return redirect('upload_document')
+
+
+from .forms import DocumentForm
+from .models import Document, Application
+
+@login_required
+def upload_document(request):
+    app_id = request.session.get('application_id')
+    if not app_id:
+        return redirect('start_application')  # No active app → force user to start one
+
+    application = Application.objects.get(id=app_id, owner=request.user)
+
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            doc = form.save(commit=False)
+            doc.application = application
+            doc.save()
+            return redirect('my_documents')
+    else:
+        form = DocumentForm()
+    return render(request, 'upload.html', {'form': form})
+
+
+@login_required
+def my_documents(request):
+    app_id = request.session.get('application_id')
+    if not app_id:
+        return redirect('start_application')
+
+    application = Application.objects.get(id=app_id, owner=request.user)
+    documents = Document.objects.filter(application=application)
+    return render(request, 'my_documents.html', {'documents': documents})
+
+
+
+🎯 Option 2: application_id persists after logout
+You save the current application_id in the user profile (DB), not in session.
+
+Example:
+
+python
+Copy
+Edit
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    current_application = models.ForeignKey(Application, null=True, blank=True, on_delete=models.SET_NULL)
+On login:
+
+Read current_application from DB
+
+Restore it into session: request.session['application_id'] = profile.current_application.id
+
+When this makes sense:
+✅ You want users to resume where they left off after logout
+✅ Applications can be “in progress” for a long time
+✅ Users can have a "continue working" experience
+
+Summary: should application_id persist?
+Goal / App type	Should application_id persist?
+Short-lived forms, draft, single session	❌ No — reset after logout
+Long-lived applications (weeks/months)	✅ Yes — restore after logout
+Multiple concurrent apps per user	✅ Yes — but user chooses which
+
+
+
+
+
+
+
+
+
+
+
+
