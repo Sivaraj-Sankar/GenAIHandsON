@@ -10,10 +10,24 @@ FastAPI
 1) Request and Response Schema   vs Django 
 2) Database Schema 
 3) Authentication and Authorization 
+OAuth2 / JWT Tokens	Token-based authentication
+API Keys (Header/Query)	Simple service-to-service authentication
+Session Cookies	Browser-based login
+Custom Middleware	Low-level request inspection
 4) Session Management  - again user logins - how to reload the resume of their work - That's why we need session management 
 5) Different User Logins at same time - means Thread 
 6) Database connection for different database and schema handled by FastAPI, or I have to create the query for No-SQL Database 
 7) Middle ware in FastAPI
+
+React - Router 
+import { useParams } from 'react-router-dom';
+const { record_id } = useParams();
+fetch(`/records/${record_id}`, { method: 'POST' });
+
+Sometimes you’ve previously loaded a record or selected it, and the ID is in app state (React state, Redux, etc).
+const recordId = selectedRecord.id;
+fetch(`/records/${recordId}`, { method: 'POST' });
+
 
 
 
