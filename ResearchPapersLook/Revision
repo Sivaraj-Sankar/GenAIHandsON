@@ -6,6 +6,17 @@ Revision and Preparation
 5) How to Run the Docker Compose File
 6) Check the OpenAI and ChatOpenAI and ConversationChain 
 
+FastAPI 
+1) Request and Response Schema   vs Django 
+2) Database Schema 
+3) Authentication and Authorization 
+4) Session Management  - again user logins - how to reload the resume of their work - That's why we need session management 
+5) Different User Logins at same time - means Thread 
+6) Database connection for different database and schema handled by FastAPI, or I have to create the query for No-SQL Database 
+7) Middle ware in FastAPI
+
+
+
 Preparation
 1) Resume the MultiAgentic System 
 2) Memory Component - Done [ How to save the Memory to Generate the Justification]
