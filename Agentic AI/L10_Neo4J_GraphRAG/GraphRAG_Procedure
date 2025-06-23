@@ -113,3 +113,45 @@ GQL	Declarative	Future standard
 SPARQL	Declarative	RDF graphs (semantic web)
 GraphQL	Declarative API	API layer on top of any DB
 
+
+How to leverage knowledge graphs within retrieval augmented generation (RAG) applications.
+1.Understand the basics of how knowledge graphs store data by using nodes to represent entities and edges to represent relationships between nodes.
+2.Add a vector index to a knowledge graph to represent unstructured text data and find relevant texts using vector similarity search.
+3.Build a knowledge graph of text documents from scratch, using publicly available financial and investment documents as the demo use case
+4.Explore advanced techniques for connecting multiple knowledge graphs and using complex queries for comprehensive data retrieval.
+5.Write advanced Cypher queries to retrieve relevant information from the graph and format it for inclusion in your prompt to an LLM.
+
+Key Points
+1.Relationships and Metadata in the Graph to improve the relevance of the text 
+2.Using Similarity Search and the Chunk traverse the graph and find other similar other chunks - Knowledge Graph
+
+**To Build a Knowledge Graph for Collection of EDGAR Forms 
+Compaines are requires to file the Securities Exchange Commission
+
+1.One Set of SEC Forms
+2.Second Set of SEC forms
+3.Connect Two Graphs Using Linking data
+
+
+
+SEC - Government Agency    U.S 
+-----------------------
+Protect investors
+Maintain fair, orderly, and efficient markets
+Facilitate capital formation (help companies raise money from the public)
+
+When a company wants to raise money from the public by selling stocks or bonds, or if it's already publicly traded (meaning its stock is bought and sold on stock exchanges like the NYSE or NASDAQ), the SEC requires the company to regularly file reports that give a clear and truthful picture of its financial health and operations.
+Transparency — Investors need reliable information to make informed decisions.
+Accountability — Helps prevent fraud and dishonest practices.
+Market Stability — Keeps financial markets fair and efficient.
+
+Filing	Purpose
+10-K	Annual report with detailed financial statements
+10-Q	Quarterly report with financial updates
+8-K	Reports major events (mergers, leadership changes, etc.)
+S-1	Used when a company is going public (IPO)
+
+
+
+
+
