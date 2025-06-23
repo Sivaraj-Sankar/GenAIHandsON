@@ -1,0 +1,57 @@
+Neo4J
+
+Knowledge Graphs for RAG
+
+Use Neo4j’s query language Cypher to manage and retrieve data stored in knowledge graphs.
+Write knowledge graph queries that find and format text data to provide more relevant context to LLMs for Retrieval Augmented Generation.
+
+1.Knowledge graphs are used in development to structure complex data relationships
+2.Drive intelligent search functionality, and build powerful AI applications that can reason over different data types.
+3.Knowledge graphs can connect data from both structured and unstructured sources (databases, documents, etc.)
+4.knowledge graphs can capture the meaning and context behind the data, allowing you to uncover insights and connections that would be difficult to find with conventional databases
+5.This rich, structured context is ideal for improving the output of large language models (LLMs)
+     ** Because you can build more relevant context for the model than with semantic search alone. 
+
+Understand the basics of how knowledge graphs store data by using nodes to represent entities and edges to represent relationships between nodes
+
+1.Graph database stores data in the form of nodes, edges (relationships), and properties
+2.It's designed to model and query relationships between data, which makes it well-suited for use cases like social networks, recommendation engines, fraud detection, knowledge graphs
+
+Component	Description
+Node	Represents an entity (person, product, location, etc.)
+Edge/Relationship	Represents a connection or relationship between two nodes
+Property	Key-value pairs that store information about nodes and edges
+Labels (optional)	Tags on nodes to categorize them (like "Person", "Movie", etc.)
+Relationship Types	Names given to relationships (like "FRIENDS_WITH", "BOUGHT", etc.)
+
+1.Think of a node like a record or row in a table.
+(Person: {name: "Alice", age: 30}) 
+2.Each relationship connects two nodes.
+Can have direction and properties of their own.
+(Alice)-[:FRIENDS_WITH {since: 2015}]->(Bob) 
+
+Database Engine
+1.Nodes and relationships are stored as unique records.
+2.Indexes can be used on node properties for faster lookup.
+3.Adjacency lists or pointers often store direct links between connected nodes, making graph traversal very fast (compared to join-heavy relational databases)
+(Neo4j, JanusGraph, Amazon Neptune, etc.)
+4.Data structures often optimized for graph traversal, not just data retrieval.
+
+(Alice)-[:FRIENDS_WITH]->(Bob)
+  |
+  v
+(Movie: "Inception")
+
+
+Cypher	Neo4j, Memgraph, SAP Hana Graph	Declarative language similar to SQL but for graphs. Very expressive and human-friendly.
+Gremlin	Apache TinkerPop, JanusGraph, AWS Neptune, Azure Cosmos DB	A graph traversal language — procedural in style — allows complex path queries.
+GQL (Graph Query Language)	Coming as an ISO standard, with early support in Neo4j and others	Emerging standard, designed to unify Cypher & other concepts — similar in spirit to SQL for graphs.
+SPARQL	RDF triple stores (Apache Jena, GraphDB, Stardog, Virtuoso)	For querying RDF graphs (semantic web). Based on triples (subject-predicate-object).
+Query Language	Primary Graph DBs Using It	Description
+Cypher	Neo4j, Memgraph, SAP Hana Graph	Declarative language similar to SQL but for graphs. Very expressive and human-friendly.
+Gremlin	Apache TinkerPop, JanusGraph, AWS Neptune, Azure Cosmos DB	A graph traversal language — procedural in style — allows complex path queries.
+GQL (Graph Query Language)	Coming as an ISO standard, with early support in Neo4j and others	Emerging standard, designed to unify Cypher & other concepts — similar in spirit to SQL for graphs.
+SPARQL	RDF triple stores (Apache Jena, GraphDB, Stardog, Virtuoso)	For querying RDF graphs (semantic web). Based on triples (subject-predicate-object).
+GraphQL	Not technically a graph DB language — but used as an API query language that can query graph databases or other APIs. Often used on top of graph DBs.
+
+
