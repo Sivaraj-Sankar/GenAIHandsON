@@ -167,8 +167,28 @@ Compaines are requires to file the Securities Exchange Commission
 1.One Set of SEC Forms
 2.Second Set of SEC forms
 3.Connect Two Graphs Using Linking data
+4) Adding Context , by additional form , about net app investors
 
 
+Demo Project
+-------------
+1) Nodes - 10-K Chunks of different section items and followed the sequence of chunks 
+2) Nodes - of 10-K Form Itself
+3) Relationship - 1:many Form:Chunk  ---> linked list of chunks for each section of items
+    Realtionship 
+           chunk - next - chunk 
+           chunk - part of - form
+           first chunk - section - form [enabling them easily navigate from a form to the begining of the particular section
+
+4) Just Matched a pattern - with 3 nodes and 2 relationships 
+    path - path are powerful features of the graph - shortest path b/w two nodes
+5.0) first chunk id - no path  no preceding - 
+     second chunk id - path , have preceding
+5) Variable Length Path - Change the pattern to look for variable length path - you can specify range of relationship to match
+6) Window of chunk around the node - we want longest possible path
+7) If you want to look two chunks either side
+
+8) Retrieve chunk window to add context with adjacent chunk
 
 SEC - Government Agency    U.S 
 -----------------------
