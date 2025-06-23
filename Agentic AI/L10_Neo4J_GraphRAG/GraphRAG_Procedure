@@ -47,6 +47,7 @@ Cypher	Neo4j, Memgraph, SAP Hana Graph	Declarative language similar to SQL but f
 Gremlin	Apache TinkerPop, JanusGraph, AWS Neptune, Azure Cosmos DB	A graph traversal language — procedural in style — allows complex path queries.
 GQL (Graph Query Language)	Coming as an ISO standard, with early support in Neo4j and others	Emerging standard, designed to unify Cypher & other concepts — similar in spirit to SQL for graphs.
 SPARQL	RDF triple stores (Apache Jena, GraphDB, Stardog, Virtuoso)	For querying RDF graphs (semantic web). Based on triples (subject-predicate-object).
+
 Query Language	Primary Graph DBs Using It	Description
 Cypher	Neo4j, Memgraph, SAP Hana Graph	Declarative language similar to SQL but for graphs. Very expressive and human-friendly.
 Gremlin	Apache TinkerPop, JanusGraph, AWS Neptune, Azure Cosmos DB	A graph traversal language — procedural in style — allows complex path queries.
@@ -54,4 +55,61 @@ GQL (Graph Query Language)	Coming as an ISO standard, with early support in Neo4
 SPARQL	RDF triple stores (Apache Jena, GraphDB, Stardog, Virtuoso)	For querying RDF graphs (semantic web). Based on triples (subject-predicate-object).
 GraphQL	Not technically a graph DB language — but used as an API query language that can query graph databases or other APIs. Often used on top of graph DBs.
 
+Cypher
+Declarative (like SQL)
+MATCH (a:Person)-[:FRIENDS_WITH]->(b:Person)
+WHERE a.name = 'Alice'
+RETURN b.name
+
+
+Gremlin
+Imperative (you describe how to traverse)
+Part of Apache TinkerPop framework
+g.V().hasLabel('person').has('name', 'Alice').out('FRIENDS_WITH').values('name')
+
+3️⃣ GQL
+ISO standard in progress
+Goal: cross-DB compatibility
+Builds on Cypher ideas
+
+4️⃣ SPARQL
+For RDF graphs (semantic web)
+
+Example:
+
+sparql
+Copy
+Edit
+SELECT ?friendName
+WHERE {
+  ?person foaf:name "Alice" .
+  ?person foaf:knows ?friend .
+  ?friend foaf:name ?friendName .
+}
+
+5️⃣ GraphQL
+API query language (not a DB language itself)
+
+Often used with graph DBs to expose data via an API
+
+Example:
+
+graphql
+Copy
+Edit
+{
+  person(name: "Alice") {
+    friends {
+      name
+    }
+  }
+}
+
+
+Language	Style	Use Case
+Cypher	Declarative	Neo4j, property graphs
+Gremlin	Imperative	TinkerPop, property graphs
+GQL	Declarative	Future standard
+SPARQL	Declarative	RDF graphs (semantic web)
+GraphQL	Declarative API	API layer on top of any DB
 
