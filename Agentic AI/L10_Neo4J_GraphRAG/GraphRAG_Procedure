@@ -115,6 +115,39 @@ GQL	Declarative	Future standard
 SPARQL	Declarative	RDF graphs (semantic web)
 GraphQL	Declarative API	API layer on top of any DB
 
+🛠️ 1. Graph Database Native Tools
+Tool	Database	Notes
+Neo4j Bloom / Browser	Neo4j	User-friendly visualization with interactive exploration.
+ArangoDB Graph Viewer	ArangoDB	Built-in, good for simple visualizations.
+Amazon Neptune Workbench	AWS Neptune	Jupyter Notebook integration.
+OrientDB Studio	OrientDB	Web-based visual exploration.
+
+🌐 2. Open-source & General-purpose Graph Visualization Tools
+If you have your graph in RDF, JSON, CSV, or any other format:
+
+Tool	Notes
+Gephi	Powerful, flexible — supports large graphs; requires some manual setup.
+Cytoscape.js	JavaScript library — good for embedding interactive graphs into web apps.
+Graphistry	GPU-accelerated visualization, handles large-scale graphs.
+Sigma.js	Lightweight JS library for web-based graph visualization.
+
+
+📚 3. Semantic Web / RDF / Knowledge Graph-Specific Tools
+If your knowledge graph is RDF or OWL-based:
+
+Tool	Notes
+Protege	Ontology editor — good for editing and simple visualization.
+RDF4J Workbench	Basic SPARQL query & visualization tool.
+GraphDB Workbench	From Ontotext — SPARQL endpoint with visualization.
+OntoGraf plugin (Protege)	For visualizing ontology structures.
+
+📈 4. Custom Visualization
+You can also use tools like:
+
+D3.js (if you want to build a fully custom interactive graph).
+
+NetworkX + Matplotlib (for Python-based static visualizations).
+
 
 How to leverage knowledge graphs within retrieval augmented generation (RAG) applications.
 1.Understand the basics of how knowledge graphs store data by using nodes to represent entities and edges to represent relationships between nodes.
