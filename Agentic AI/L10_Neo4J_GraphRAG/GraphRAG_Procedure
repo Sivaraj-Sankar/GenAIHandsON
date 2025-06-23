@@ -24,6 +24,7 @@ Property	Key-value pairs that store information about nodes and edges
 Labels (optional)	Tags on nodes to categorize them (like "Person", "Movie", etc.)
 Relationship Types	Names given to relationships (like "FRIENDS_WITH", "BOUGHT", etc.)
 **Lables are the way of grouping multiple nodes together
+**Intution about patterns that describes the structure of the graph
 
 1.Think of a node like a record or row in a table.
 (Person: {name: "Alice", age: 30}) 
