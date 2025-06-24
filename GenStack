@@ -41,8 +41,10 @@
                           MLC
 
 12) Prompting for Different LLMs 
+
           OpenAi 
           Llama 
+             Prompt format has been Enhanced with special tokens to identify this roles 
               Prompt of LLama 3.2 vision instrut similar to the prompt of the llama 3.1 text instruct model 
                    only image addition special token
               Messasge List of LLama 3.2 - High - level
