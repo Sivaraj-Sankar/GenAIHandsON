@@ -16,3 +16,11 @@ Features
 4.Understand how Llama uses the tiktoken tokenizer, and how it has expanded to a **128k vocabulary size that improves encoding efficiency and enables support for seven non-English languages.
 5.Learn how to prompt Llama to call both built-in and custom tools with examples for web search and solving math equations.
 6.Learn about ‘Llama Stack API’, which is a standardized interface for canonical toolchain components like fine-tuning or synthetic data generation to customize Llama models and build agentic applications.
+
+Vision Architecture 
+    Compositional Approach 
+       1. Parallelize the development of vision and language model 
+
+       Pre-Trained Image Encoder 
+       Pre-Trained Text Model - AutoRegressive Decoder - Cross Attention Layer to get the input of image while inference 
+       Speech-Encoder - Speech-to-Text , and giving the input tokens to the text model 
