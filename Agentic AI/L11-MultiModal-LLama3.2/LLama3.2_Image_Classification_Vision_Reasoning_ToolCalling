@@ -24,3 +24,11 @@ Vision Architecture
        Pre-Trained Image Encoder 
        Pre-Trained Text Model - AutoRegressive Decoder - Cross Attention Layer to get the input of image while inference 
        Speech-Encoder - Speech-to-Text , and giving the input tokens to the text model 
+
+Different Vision Tasks by fine tuned image Model 
+1. Captioning 
+2. Image Reasoning
+3. Visual Recognition
+
+
+
