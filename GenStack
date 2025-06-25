@@ -73,6 +73,16 @@ image_analysis	For interpreting user-uploaded images
 code_interpreter	Alias of python, for advanced data ops
 
 
+Example Prompt
+User: “How will summer energy usage in California compare to last year?”
+Step-by-step tool workflow by o3:
+Web search – o3 identifies and uses the browser tool to pull in public utility data.
+Python execution – It writes and runs Python code to parse that data, build a time‑series forecast, and generate charts.
+Analysis – It interprets the results, highlighting key factors (e.g. heatwaves, policy changes).
+Reporting – The model presents a graph and narrative summary based on its findings.
+This entire process—from search → code → output → reasoning—is orchestrated autonomously by o3 in a ~minute span 
+
+
             AI 21 - Labs
 Model	Release Date	Highlights
 Jurassic‑1	Aug 2021	250K token vocab
