@@ -47,6 +47,20 @@
                  
 
     GPT-4 -> GPT - 4-Turbo -> GPT-4o - 
+
+Model	Release Year	Estimated Parameters	Notes
+GPT‑1	2018	117 million	First autoregressive transformer
+GPT‑2	2019	117M, 345M, 762M, 1.5B	Multi‑scale releases
+GPT‑3	2020	175 billion	Major leap in scale
+GPT‑3.5	2022	~175 billion	Fine‑tuned GPT‑3
+GPT‑4	2023	Estimated 1–1.8 trillion	MoE architecture (not officially disclosed)
+GPT‑4o	2024	Estimated ~1.8 trillion	Multimodal (text, vision, audio), MoE
+GPT‑4o Mini	2024	~8 billion	Cost‑efficient, real-time multimodal
+O1	2024 (Sep)	~200 billion (dense)	Reasoning‑focused, high inference-time compute
+O3	2025 (Apr)	~200 billion (dense)	Successor to O1, with tool use
+O4‑Mini	2025 (Q1)	Not disclosed (~200B est)	High throughput, efficient inference and tool use
+
+
             AI 21 - Labs
 Model	Release Date	Highlights
 Jurassic‑1	Aug 2021	250K token vocab
@@ -65,7 +79,99 @@ Jamba 1.6 Mini & Large	Mar 2025	Enhanced performance, private deployment, open-w
             Jamba 1.5 series via Amazon’s enterprise AI stack - September 2024 
             Jamba 1.6 for private enterprise deployments and launched Maestro, an AI orchestration system enhancing reasoning and reducing hallucinations - March 2025
             Maestro cited for 95%+ reasoning accuracy and 50% fewer hallucinations -May 2025
-       OpenSource 
+        Claude 1 - March 2023 strong on summarization and creative tasks but limited in advanced math and coding
+        Claude Instant 1.1 / 1.2 (mid‑2023): Lightweight, speed‑optimized variants with ~100k token context, geared towards real-time interactions
+        Claude 2 Series (2023)
+               Claude 2.0 (July 11, 2023): Context expanded to 100k tokens; became publicly available via API and web
+               Claude 2.1 (November 2023): Context doubled to 200k tokens; improved factual accuracy and reduced hallucination
+         Claude 3 Family (March 2024) - Claude 3 introduced three tiers—each with 200k token context and multimodal (text + image) suppor
+         Claude 3 Haiku (March 7, 2024): Fastest, lightweight.
+Claude 3 Sonnet (Feb 29, 2024): Balanced intelligence and responsiveness.
+Claude 3 Opus (Feb 29, 2024): Most capable; excels at complex reasoning
+
+       Claude 3.5 Updates (2024)
+       Claude 3.5 Sonnet (June 20, 2024): Major upgrade—improved coding, image reasoning, and added experimental "computer use" capabilities
+       Claude 3.5 Sonnet v2 and 3.5 Haiku (Oct 22, 2024): Sonnet v2 further refines performance; Haiku added as a fast and efficient counterpart, matching Opus benchmarks 
+
+Claude 3.7 Sonnet (Feb 24, 2025)
+       Claude 3.7 Sonnet: Debuted as a “hybrid reasoning” model—offering a user-controlled mode between quick responses and in-depth reasoning. Context window remains 200k, with extended output capabilities
+
+       Claude 4 Family (May 22, 2025)
+         Claude Opus 4: Anthropic’s most powerful model yet, engineered for complex, long-running tasks (e.g. code projects lasting hours), with 200k context and up to 32k output tokens
+         Claude Sonnet 4: Efficient successor to 3.7 Sonnet; balances top-tier reasoning with performance, also featuring 200k context and 64k output token support 
+
+         📋 Summary Table
+Model	Release	Notes
+Claude 1	Mar 2023	Original, basic capabilities
+Claude Instant 1.x	mid‑2023	Fast, light variant (~100k context)
+Claude 2.0	Jul 2023	Public, 100k tokens
+Claude 2.1	Nov 2023	200k tokens, factual improvements
+C3 Haiku/Sonnet/Opus	Mar 2024	200k tokens, multimodal support
+C3.5 Sonnet	Jun 2024	Coding, vision, computer use beta
+C3.5 Sonnet v2/Haiku	Oct 2024	Refined performance and speed
+C3.7 Sonnet	Feb 2025	Hybrid reasoning
+Opus 4 / Sonnet 4	May 2025	Cutting-edge capabilities & code-heavy use
+
+
+       OpenSource  [Falcon, Yi, Gemma]
+           Large Language Model Meta AI
+           LLaMA 1 (Released: February 2023)
+  Sizes: 7B, 13B[especially the 13B model rivaled GPT-3 in some tasks], 33B, and 65B parameters
+           LLaMA 2 (Released: July 2023)
+                         Sizes: 7B, 13B, and 70B parameters
+
+                                    Variants:
+                                              Base (pretrained)
+                                                Chat (instruction-tuned)
+                    Trained with over 2 trillion tokens
+
+                  Open weights with a commercial-friendly license
+
+                        Strong performance and fine-tuning capabilities
+              LLaMA 3 (Released: April 2024) - Major improvements in reasoning, coding, and multilingual understanding
+                        Sizes:
+                      LLaMA 3: 8B and 70B
+                      LLaMA 3-Instruct: 8B and 70B
+                        Used for Meta AI products like Meta AI assistant in WhatsApp, Instagram, and Facebook
+Trained on a larger and higher-quality dataset (~15T tokens)
+Optimized for scalability and fine-tuning
+                    Meta confirmed that LLaMA 3 models up to 400B+ parameters are planned for release later in 2025
+
+                      Code LLaMA (fine-tuned for coding)
+                      Initial Release – August 24, 2023: 7B, 13B, 34B code-tuned models
+                      Code LLaMA 70B – Released January 29, 2024
+
+                         LLaMA 3
+                        LLaMA 3.1 – July 23, 2024
+                        Sizes: 8B, 70B, 405B parameters
+                        Instruction‑tuned & pre-trained variants
+                        Multi‑lingual support (8 languages)
+                       Extended context window (~128K tokens)
+                        LLaMA 3.2 – Late September 2024: 
+                               Text: lightweight 1B and 3B models
+                               Vision: multimodal 11B and 90B models
+                        LLaMA 3.3 – Early December 2024: Updated 70B model with online alignment & reinforcement learning
+
+
+                        LLaMA 4 – April 5, 2025
+Native mixture-of-experts (MoE) architecture with multi-modal input
+Variants:
+Scout: 17B active params + experts = 109B
+Maverick: another 17B active + experts = 400B
+Behemoth: heavy model (~2 trillion total params), still in training
+
+Version	Date	Sizes (Params)	Highlights
+LLaMA 1	Feb 2023	7B, 13B, 33B, 65B	Original foundation
+LLaMA 2	Jul 2023	7B, 13B, 70B	Base & chat variants
+Code LLaMA	Aug 2023–Jan 2024	7B, 13B, 34B, 70B	Code fine-tuning
+LLaMA 3.0	Apr 2024	8B, 70B	15T tokens, ~8K context
+LLaMA 3.1	Jul 2024	8B, 70B, 405B	128K context, instruct-tuned
+LLaMA 3.2	Sep 2024	1B, 3B, 11B, 90B	Text + vision models
+LLaMA 3.3	Dec 2024	70B	RL-aligned, smaller efficient
+LLaMA 4	Apr 2025	Scout/H ≈ 109B, Maverick/H ≈ 400B, Behemoth (training)	MoE, multimodal, multi‑lingual
+
+
+  
             July - 2023 Llama 2.0[4K]   32K voc         - 7B, 13B, 70B                 - English
             Apr - 2024 Llama 3.0[8K]  128K voc 8B 70B                                     - English 
             July 2024 Llama 3.1[128K token] 128 voc - 8B,7B,405 B         - iPython Role - Tool Calling Role yes    - 8 Languages
