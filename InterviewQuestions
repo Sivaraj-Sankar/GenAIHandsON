@@ -1644,6 +1644,58 @@ L.insert_at_position(10,1)
 L.print()
 L.insert_at_position(12,1)
 L.print()
+
+------------
+Async Function
+In Jupyter Notebook
+async def run_d():
+    print("Running")
+
+await run_d()
+------------------
+import asyncio
+async def run_d():
+    print("Running")
+
+asyncio.run(run_d())
+--------------------------
+import asyncio
+async def greet():
+    print("Hello...")
+    await asyncio.sleep(2)
+    print("...world after 2 seconds!")
+
+asyncio.run(greet())
+
+-----------
+import asyncio
+async def say_after(delay, text):
+    await asyncio.sleep(delay)
+    print(text)
+
+async def main():
+    # Run two coroutines concurrently
+    await asyncio.gather(
+        say_after(2, "First done after 2s"),
+        say_after(3, "Second done after 3s")
+    )
+
+await main()
+-------------
+async def main_sequential():
+    await say_after(2, "First")
+    await say_after(3, "Second")
+
+await main_sequential()
+
+
+Summary
+Code	Works in Jupyter?	Description
+async def fun_name(): ...	✅	Defines the async function
+await fun_name()	✅	Runs the async function properly
+fun_name()	⚠️	Returns a coroutine, does not execute it
+asyncio.run(fun_name())	❌	May raise RuntimeError due to nested event loop
+
         
 
 
