@@ -33,6 +33,10 @@ Different Vision Tasks by fine tuned image Model
 Tokenizier 
 1) Have Tokenizier - reserved for special tokens
 
+Meta Standardized Interface 
+1) Customizing the Model 
+2) Building Agentic Application with LlamaModel
+
 
 
 
