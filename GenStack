@@ -77,7 +77,7 @@ Jamba 1.6 Mini & Large	Mar 2025	Enhanced performance, private deployment, open-w
                            1 B  -  Llama 3.2 - no multimodal
                            3 B  -  Llama 3.2 - no multimodal
 9) Endpoints of LLM Model 
-                         text-embedding-3-small, text-embedding-3-large 3072, text-embedding-ada-002 - 1536
+                         text-embedding-3-small[Optional sizes: 256, 512, 1024, 1536], text-embedding-3-large 3072[Optional sizes: 256–3072], text-embedding-ada-002 - 1536 - 
 
                          /v1/assistants, /v1/threads, /v1/messages, /v1/runs
                          /v1/completions - Prompt
