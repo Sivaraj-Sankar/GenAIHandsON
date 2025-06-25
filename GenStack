@@ -60,6 +60,18 @@ O1	2024 (Sep)	~200 billion (dense)	Reasoning‑focused, high inference-time comp
 O3	2025 (Apr)	~200 billion (dense)	Successor to O1, with tool use
 O4‑Mini	2025 (Q1)	Not disclosed (~200B est)	High throughput, efficient inference and tool use
 
+If you're building a persistent agent with memory and tool use:
+Use the Assistants v2 API
+Define tools (code_interpreter, browser, etc.)
+Add files
+Call the assistant with a thread
+
+Tool Name	Purpose
+python	For calculations, data parsing, charts
+browser	For real-time web searches
+image_analysis	For interpreting user-uploaded images
+code_interpreter	Alias of python, for advanced data ops
+
 
             AI 21 - Labs
 Model	Release Date	Highlights
