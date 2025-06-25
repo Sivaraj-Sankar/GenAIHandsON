@@ -12,6 +12,59 @@
 6) BenchMarks for LLM Evaluation [Pretrain & Fine-Tune]
 7) BenchMarks for RAG Evaluation
 8) All Versions of Models 
+          OpenAI Models - 
+              Official names [gpt-4.1,gpt-4o-mini,gpt-4o-search-preview,
+                  gpt-4o-mini
+                 
+                  gpt-4 November 2023 - A faster and more cost-effective version of GPT-4
+                  gpt-4 Turbo 
+                  gpt-4.5-Turbo 
+                  gpt-4.1-turbo
+
+                  handles text, image, and audio I/O, with support for function calling, JSON outputs, and a large 128 k token context window
+                  GPT-4o - Multimodal(text,image,audio) - May 13 2024 - with larger context windows   - not a reasoning engine - but perform for reasoning 
+                  GPT-4o-mini - July 18 2024 - Compact, Cheaper multimodal variant
+
+                  All versions support a massive 1 million token context window, text + image, and excel in long-context understanding, coding, instruction-following, and vision benchmarks
+                  Multimodality: strong image understanding (MMMU and Video‑MME) surpassing GPT‑4o
+                  The GPT‑4.1 family is both reasoning-capable and multimodal, bridging powerful reasoning with massive context and image support
+                  GPT-4.1 - April 14 2025 - New multimodal series outperforming GPT-4o in coding, long-context and cost
+                  GPT-4.1 mini - April 14 2025
+                  GPT-4.1-nano
+                   These were designed with explicit private chain‑of‑thought and reasoning capabilities
+                  o1-pro - March 2025 - Premium reasoning-capable model with high compute 
+                  o1 - Full reasoning model Dec 2024   - solving 83% of IMO‑level math problems versus GPT‑4o’s 13%
+                  GPT-4.5 - Orion - improved accuracy and conversational quality - general-purpose LLM, focused more on natural, emotionally intelligent conversation than on deep reasoning
+                          - In direct reasoning tasks, GPT‑4o outperforms GPT‑4.5 in logic, multi-step reasoning, consistency, and self-correction
+                          - GPT‑4.5 is multimodal-ish (text+image)
+                  o1-mini - Sept 2024 First reasoning model
+                  o1-preview - first reasoning model Sept 2024 and its smaller variant 
+                  o3-pro - June 10, 2025 - most advanced reasoning model to date
+                  o3   - April 16 2025 - Stronger reasoning and logic model  - o3 & o4‑mini: Further refined successors, with even stronger structured reasoning, chain‑of‑thought, and lower latency
+                  o3-mini - April 16  - Next-Gen reasoning small model 
+                  o4-mini - April 16 2025 - Lighter, efficient reasoning model that succeeds o3-mini
+
+                 
+
+    GPT-4 -> GPT - 4-Turbo -> GPT-4o - 
+            AI 21 - Labs
+Model	Release Date	Highlights
+Jurassic‑1	Aug 2021	250K token vocab
+Jurassic‑2	Mar 2023	Multilingual, instruction-following
+Jamba (v0)	Mar 2024	SSM‑Transformer hybrid, open weights, 256K context
+Jamba‑Instruct	Late 2024	Instruction-tuned Jamba, optimized for prompts
+Jamba 1.5 Mini & Large	Aug 2024	MoE, JSON output, enterprise-ready
+Jamba 1.6 Mini & Large	Mar 2025	Enhanced performance, private deployment, open-weight
+
+             Open-source: Jamba series (v0, 1.5, 1.6) – weights freely available.
+             Closed-source: Jurassic‑1 & Jurassic‑2 – accessible only via API.
+
+             Jurassic‑1 - 250K-token vocabulary - August 2021 
+            Jurassic‑2, a faster, multilingual LLM with improved instruction-following -March 9, 2023
+            Jamba, an open-weight hybrid Transformer/SSM model with a massive 256 K token context window - March 29, 2024
+            Jamba 1.5 series via Amazon’s enterprise AI stack - September 2024 
+            Jamba 1.6 for private enterprise deployments and launched Maestro, an AI orchestration system enhancing reasoning and reducing hallucinations - March 2025
+            Maestro cited for 95%+ reasoning accuracy and 50% fewer hallucinations -May 2025
        OpenSource 
             July - 2023 Llama 2.0[4K]   32K voc         - 7B, 13B, 70B                 - English
             Apr - 2024 Llama 3.0[8K]  128K voc 8B 70B                                     - English 
