@@ -1718,6 +1718,36 @@ async def main():
 
 await main()
 
+---------------------------------------------
+import asyncio
+# Background task
+async def background_logger():
+    for i in range(5):
+        await asyncio.sleep(1)
+        print(f"[Logger] Logging iteration {i}")
+
+# Main task
+async def main_task():
+    print("Main task starting...")
+    await asyncio.sleep(2)
+    print("Main task doing something else...")
+    await asyncio.sleep(2)
+    print("Main task finished.")
+
+# Combined runner
+async def main():
+    # Start logger in background
+    logger_task = asyncio.create_task(background_logger())
+
+    # Run main task while logger runs in background
+    await main_task()
+
+    # Optionally wait for logger to finish (if it hasn't already)
+    await logger_task
+
+await main()
+---------------------------------------------------
+
 
 
 Summary
