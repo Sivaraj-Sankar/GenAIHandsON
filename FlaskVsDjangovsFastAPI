@@ -1,0 +1,81 @@
+Django Commands
+python -m venv venv1 
+django-admin startproject myproject
+python manage.py runserver
+python manage.py startapp myapp - start up app
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+
+myproject  
+    setting.py  ---> myapp registeration
+    urls.py --> adding urls --> with api/ path('api/', include('llmapp.urls'))
+
+myapp 
+    models.py 
+    views.py 
+    urls.py  -> path('call-llm/', call_llm)
+    app.py 
+  migrations
+
+Function-Based Views (FBVs)
+Class-Based Views (CBVs)
+Generic Class-Based Views (GCBVs)
+Generic View	Purpose
+ListView	Show a list of objects
+DetailView	Show a single object
+CreateView	Create an object
+UpdateView	Update an object
+DeleteView	Delete an object
+TemplateView
+RedirectView
+FormView
+Mixin-Based Views
+Basic APIView example - Django REST Framework (DRF) 
+
+Other DRF views:
+GenericAPIView
+ModelViewSet
+ListAPIView, RetrieveAPIView, etc.
+
+You can define asynchronous views using async def, useful for I/O-heavy tasks.
+
+---------
+from django.http import JsonResponse
+import asyncio
+async def async_view(request):
+    await asyncio.sleep(1)
+    return JsonResponse({"message": "Async view!"})
+
+----------
+urls.py (App level)
+For APIView:
+
+-------------
+from django.urls import path
+from .views import ProductList
+urlpatterns = [
+    path('products/', ProductList.as_view()),
+]
+For ViewSet + Router:
+
+----------------
+from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+urlpatterns = router.urls
+
+
+
+
+Flask Commands
+
+
+
+
+FastAPI Commands 
+
+
+
