@@ -434,5 +434,10 @@ Just tell me — ready for next? 🚀
     3) adding memory and saving history in database - User and AI message 
     4) how memory will restore to chat again - after logout ?
 
+2) Return Object or python data structure or string 
+Conversation Chain 
+LLM Chain 
+OpenAI 
+3) How to store in the database 
 
 
