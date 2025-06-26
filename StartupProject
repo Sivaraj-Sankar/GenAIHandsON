@@ -427,5 +427,12 @@ Next step?
 
 Just tell me — ready for next? 🚀
 
+------------------------------------------------------------------------
+1) How to save the Chat History in DB 
+    1) save the message one by one in database - User and AI message
+    2) save both messages simultan in database - User and AI message 
+    3) adding memory and saving history in database - User and AI message 
+    4) how memory will restore to chat again - after logout ?
+
 
 
