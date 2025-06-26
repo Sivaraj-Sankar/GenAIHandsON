@@ -68,6 +68,12 @@ router.register(r'products', ProductViewSet)
 urlpatterns = router.urls
 
 
+JWT authentication setup
+Swagger/OpenAPI docs
+DRF ViewSets vs APIView comparison
+API pagination or filtering setup
+
+
 
 
 Flask Commands
