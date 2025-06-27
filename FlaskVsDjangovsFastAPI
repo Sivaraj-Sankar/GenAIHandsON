@@ -82,6 +82,23 @@ Flask Commands
 
 
 FastAPI Commands 
+uvicorn app.main:app --reload 
+
+@app.get('/')
+@app.get('/home')
+async def say_hello():
+    return {"output":"Hi"}
+
+from fastapi import FastAPI
+from app.routes import hello
+
+
+main.py
+app = FastAPI()
+app.include_router(hello.router)
+@app.get('/')
+def root():
+    return {"output": "Hi"}
 
 
 
