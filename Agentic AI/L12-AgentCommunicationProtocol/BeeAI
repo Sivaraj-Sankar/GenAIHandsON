@@ -1,0 +1,30 @@
+BeeAI
+ACP  - This course is perfect for AI builders who want to easily reuse and connect multiple agents built with different frameworks in a single system
+
+1.Build ACP-compliant agents by wrapping them in an ACP server
+2.launch the server to activate the agents, and make them discoverable by ACP clients to enable easy integration within multi-agent systems.
+3.Chain ACP-compliant agents in linear and hierarchical workflows; use a router agent to delegate tasks to the specialized agents.
+4.Import ACP-compliant agents into a registry to make them easy to discover and share across teams.
+5.Building a multi-agent system with agents shared across teams and organizations can be challenging
+
+6.**You may need to write custom integrations each time a team updates their agent design or changes the agent’s framework
+
+IBM Research’s BeeAI
+
+1.The Agent Communication Protocol (ACP) is an open protocol that addresses this challenge by standardizing communication between agents.
+2.Provides a unified interface through which agents can collaborate regardless of their frameworks.
+3.Making it easy to replace an agent with a new version without needing to refactor the entire system.
+4.you’ll learn to connect agents through ACP
+5.The protocol is based on a client-server architecture
+6.you host an agent built with any framework inside an ACP server
+7.**You’ll build sequential and hierarchical workflows of agents hosted inside ACP servers
+8.learn how to manage this workflow on the client side through a **process or another agent. 
+
+1.Learn the underlying architecture of ACP and how it enables agents built with different frameworks to work together through a common interface.
+2.Understand the lifecycle of an ACP Agent (configuration, activation, discovery, execution), and how it compares to other protocols, such as MCP (Model Context Protocol) and A2A (Agent-to-Agent).
+3.Build a RAG agent with CrewAI and wrap it inside an ACP server.
+4.Define an ACP Client to make calls to the ACP server you created.
+5.Define another ACP server, built with Smolagents, and sequentially chain it to the RAG agent.
+6.Build a hierarchical workflow using a router agent that transforms a user’s query into tasks and delegates the tasks to agents available through ACP servers.
+7.Build an agent that uses MCP to access tools and ACP to communicate with other agents.
+8.Import your ACP agents to the BeeAI platform, an open-source registry to discover and share agents easily
