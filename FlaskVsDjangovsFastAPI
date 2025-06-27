@@ -100,5 +100,101 @@ app.include_router(hello.router)
 def root():
     return {"output": "Hi"}
 
+app.include_router(tasks.router, prefix="/api/tasks", tags=["Tasks"])
+app.include_router(auth.router, prefix="/api/auth", tags=["Auth"])
+
+Response model 
+@app.get("/tasks/{task_id}", response_model=Task)
+def get_task(task_id: int):
+Request 
+
+-------
+@app.post("/users/", response_model=UserOut)
+def create_user(user: UserIn):
+------
+
+Example 
+class UserDB(BaseModel):
+    id: int
+    name: str
+    email: str
+    hashed_password: str
+
+class UserPublic(BaseModel):
+    id: int
+    name: str
+    email: str
+
+@app.get("/users/me", response_model=UserPublic)
+def get_user():
+    return UserDB(
+        id=1, name="John", email="john@example.com", hashed_password="secret"
+    )
+Even though the return value has hashed_password, it won’t be included in the response because of response_model=UserPublic
+
+
+
+backend/
+├── main.py
+├── templates/              # Jinja2 HTML templates
+│   ├── home.html
+│   └── dashboard.html
+├── static/                 # CSS/JS/images
+│   └── style.css
+└── routes/
+    ├── __init__.py
+    └── pages.py
+
+# main.py
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from routes import pages
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+app.include_router(pages.router)
+
+
+# routes/pages.py
+from fastapi import APIRouter, Request
+from fastapi.templating import Jinja2Templates
+
+router = APIRouter()
+templates = Jinja2Templates(directory="templates")
+
+@router.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
+@router.get("/dashboard", response_class=HTMLResponse)
+def dashboard(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
+
+from fastapi import APIRouter, Depends
+class HelloView:
+    def __init__(self):
+        self.router = APIRouter()
+        self.router.add_api_route("/", self.get, methods=["GET"])
+
+    def get(self):
+        return {"message": "Hello from class view"}
+hello_view = HelloView()
+
+app.include_router(hello_view.router, prefix="/hello")
+
+Best Practices and Different Methods
+@app.websocket() — for real-time WebSocket views
+@app.middleware() — similar to Django middleware
+BackgroundTasks, Depends() — for dependency injection or async background jobs
+
+
+OAuth2, JWT, API Keys, sessions
+
+
+
+
+
 
 
