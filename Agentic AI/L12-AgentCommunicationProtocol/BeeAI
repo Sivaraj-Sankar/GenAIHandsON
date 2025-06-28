@@ -28,3 +28,15 @@ IBM Research’s BeeAI
 6.Build a hierarchical workflow using a router agent that transforms a user’s query into tasks and delegates the tasks to agents available through ACP servers.
 7.Build an agent that uses MCP to access tools and ACP to communicate with other agents.
 8.Import your ACP agents to the BeeAI platform, an open-source registry to discover and share agents easily
+
+1.Catalog provides Centralized Agent Listings and simplifies searching for agents, especially for large scale deployments or Enterprise Environments 
+2.ACP Agents Can access the MCP to use the tools, then use the ACP to interact with other agents.
+3.ACP Agents to BeeAI Platform - Open Source Registry 
+4.ACP provides interOperable - Agent can Exchange information to another Agent and make use of information
+5.ACP Uses InterCompany Agents
+6.ACP Uses Different Agents 
+7.ACP Dynamic Updating 
+8.ACP Work as a Team
+
+ACP Core Principles 
+--------------------
