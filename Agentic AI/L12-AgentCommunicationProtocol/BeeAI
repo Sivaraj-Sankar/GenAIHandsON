@@ -40,3 +40,25 @@ IBM Research’s BeeAI
 
 ACP Core Principles 
 --------------------
+1.Architecture 
+2.LifeCycle of ACP Agent
+3.ACP Fits below the application layer - Operational Layer 
+4.Uses the HTTP and REST Architecture Style - to facilitate communicate between independent systems 
+5.ACP is based on Client Server Architecture 
+
+Compare with Other Protocol - MCP & A2A
+1.When Comes to shared Memory - MCP Supports for Session Management, meaning servers can stateful and maintain information about the client sessions between requests 
+2.MCP Doesn't handle the state itself 
+3.ACP SDK supports the centralized storage for runs and sessions 
+     - meaning Multiple ACP Servers can persist information across these runs and sessions 
+4.MCP Doesn't follow any message structure - for the LLM 
+   - Agent needs to support natural language as well as other modalities 
+5.ACP messages follows multimodal structure for exchanging content 
+6.In A2A - Agent Output & Message History is separated 
+        This makes very difficulty in to determine the order of events in a multi-agent turn, without implementing additional ways of persisting this information
+        this is very important in transparency & observability 
+7.A2A - Also supports both stateful and stateless agent, but the interaction mode is determine dynamically by the agent 
+8. 
+
+spawned and swarm
+-----------------
