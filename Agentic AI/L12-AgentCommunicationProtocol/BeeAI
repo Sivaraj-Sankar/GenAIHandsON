@@ -60,5 +60,10 @@ Compare with Other Protocol - MCP & A2A
 7.A2A - Also supports both stateful and stateless agent, but the interaction mode is determine dynamically by the agent 
 8. 
 
+ACP Operability 
+Begin the process of sequentially chaining these agent
+
 spawned and swarm
 -----------------
+
+
