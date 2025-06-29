@@ -80,6 +80,11 @@ ACP Operability
 
 Qwen 2.5 14B 
 
+3.How to get the ACP and MCP to work Together 
+ - If ACP server calls MCP server via stdio 
+4. If Using MCP Server for ACP Agent, - Use the ToolCallingAgent, ToolCollection
+ - This will faciliate to work with MCP 
+
 
 spawned and swarm
 -----------------
