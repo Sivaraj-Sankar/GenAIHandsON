@@ -61,9 +61,31 @@ Compare with Other Protocol - MCP & A2A
 8. 
 
 ACP Operability 
-Begin the process of sequentially chaining these agent
+1.Begin the process of sequentially chaining these agent
+2.Router Agent to navigate different agent by themselves
+ - When we Run Herarichal workflow, - first we will discover the agents 
+ - Then Pass that list to the router agent 
+ - So it automatically navigate, which agents it should be calling on which ACP Server
+ - ACP Calling Agent - Which is Really a Router Agent 
+     - It will break up the prompt and it will choose which agent will be best for answer the question 
+ - ACP Calling Agent - similar to the tool calling agent from smolagent
+    - But Rather than calling tool, it's going to call different agent 
+             ACP agent, 
+             model 
+             Prompt template 
+             planning intervals 
+    - For Agent Collections - we can identify the different Agent ACP Servers 
+      - and all of the Agent's got available on those ACP Servers 
+
+
+Qwen 2.5 14B 
+
 
 spawned and swarm
 -----------------
+
+Agentic Doubt
+1) How Human in loop works, if agentic reason following certain pattern and reasoning and gives answer and human stops in the middle - How the Agent Will ReExecute 
+2) How the Complex Question Reasoning will works iteratively with CoT Prompt reasoning 
 
 
