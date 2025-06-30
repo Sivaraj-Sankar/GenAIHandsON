@@ -82,9 +82,16 @@ Qwen 2.5 14B
 
 3.How to get the ACP and MCP to work Together 
  - If ACP server calls MCP server via stdio 
-4. If Using MCP Server for ACP Agent, - Use the ToolCallingAgent, ToolCollection
+4. If Using MCP Server for ACP Agent, - Use the ToolCallingAgent, ToolCollection, from the respective Agentic Framework 
  - This will faciliate to work with MCP 
+5. ACP Have Registry to Register the Agents in Central Repository - 
+       Centrally Managed - Deployed - Search for Agents 
+       Offline Discovery and Online Discovery 
 
+
+ACP Protocol 
+BeeAI Platform 
+ACP Repo 
 
 spawned and swarm
 -----------------
