@@ -54,7 +54,46 @@ Precision@k - % of top-k docs that are relevant
 MMR - Mean Reciprocal Rank 
 nDCG - Ranking Quality of relevant documents
 
+def recall_at_k(retrieved_docs,relevant_docs,k=5):
+  hits = sum([1 for doc in retrieved_docs[:k] if doc in relevant_docs])
+  return hits / min(k,len(relevant_docs))
+
 Evaluate Generation Quality - Is the final answer accurate, complete or grounded 
+Exact Match - Text match with groun-truth answer 
+ROUGE/BLEU  - Token overlap (for summaries/QA) 
+Faithfulness/Groundedness - Is the answer supported by retrieved docs
+F1 Score - Partial Match (word overlap, e.g. for QA) 
+Human Eval - Best for complex answers (correct, useful) 
+
+def exact_match(pred, label):
+  return pred.strip().lower() == label.strip().lower()
+
+Evaluate Faithfulness / Hallunciation - Specific to RAG
+Is the Answer based only on retrieved documents, or is it hallucinating 
+Attribution/Grounding Tests : Does Every fact appear in the source 
+RAGAS (Hugging Face): End-to-End RAG Evaluation Tool 
+
+from ragas.evaluation import evaluate 
+from ragas.metrics import faithfulness, answer_relevancy
+results = evaluate(questions=questions,contexts=contexts,answers=answers,metrics=[faithfulness,answer_relevancy],)
+print(results)
+
+Pipeline for RAG - Evaluation 
+  {"query":
+  "retrieved_docs":
+  "generated_answer":
+  gold_answer":
+}
+you can evaluate 
+Retrieval: Does Retrieved_docs include the sentence about Paris ?
+Generation: Does generated_answer match gold_answer
+Grounding: Is "Paris" found in retrieved_docs ?
+
+
+
+
+
+
 
 
 
