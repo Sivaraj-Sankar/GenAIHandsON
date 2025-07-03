@@ -90,6 +90,17 @@ Generation: Does generated_answer match gold_answer
 Grounding: Is "Paris" found in retrieved_docs ?
 
 
+Retrieval - FAISS BM25 ColBERT
+Generation -  GPT, T5, LLaMA, etc 
+Evaluation - RAGS, Llamaindex Evals, Trulens, Langchain evals 
+
+Building a Test set for RAG evaluation 
+Implementing custom metrics 
+Comparing two RAG versions (e.g. BM25 vs embedding retriever) 
+
+
+
+
 
 
 
