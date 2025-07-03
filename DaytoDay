@@ -19,3 +19,45 @@ Jiahui Yu - co-creator of o3, o4-mini, GPT-4.1 and GPT-4o. Previously led the pe
 Shengjia Zhao - ChatGPT, GPT-4, all mini models, 4.1 and o3. Previously synthetic data at openAI
 Alexandr Wang: Chief AI Officer Meta - Scale AI Company
 
+Evals and Benchmarks - LLM
+--------------------
+Benchmarks - Standardized tests / Evaluation suites used to measure and compare the performance of different models
+             across a variety of tasks.
+ - These Benchmarks help researchers, developers, and users understand how well an LLM performs in specific areas 
+ - Reasoning - Comprehension - Coding - Translation - Safety 
+
+Common Benchmarks
+MMLU
+HELLASWAG
+ARC
+GSM8K 
+BIG-Bench (BBH) 
+
+
+Evaluation Metrics - NLP Evaluation
+-----------------------------------
+The model's prediction is compared to the labeled ground truth 
+Metrics like Accuracy, BLEU, F1, pass@k, ROUGE etc are used depending on the task 
+
+Classification        - Accuracy, F1      
+QA (Short answer)     - Exact Match (EM), F1
+Translation           - BLEU, METEOR 
+Code Generation       - pass@k, correctness 
+Summarization         - ROUGE, BLEU 
+Math (GSM8K)          - Exact answer matching 
+
+RAG Evaluation 
+--------------
+Evaluate Retrieval Quality - Are you retrieving the right context documents
+Recall@k    - % of times the correct doc is in top-k 
+Precision@k - % of top-k docs that are relevant 
+MMR - Mean Reciprocal Rank 
+nDCG - Ranking Quality of relevant documents
+
+Evaluate Generation Quality - Is the final answer accurate, complete or grounded 
+
+
+
+
+
+
