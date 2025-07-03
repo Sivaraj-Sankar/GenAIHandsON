@@ -104,6 +104,55 @@ Building a Test set for RAG evaluation
 Implementing custom metrics 
 Comparing two RAG versions (e.g. BM25 vs embedding retriever) 
 
+Evaluating LLM-Based Agents 
+---------------------------
+
+Evaluating AI Agents 
+Agent Capabilities Evaluation - Planing and Multi-Step Reasoning  - AQUA-RAT
+                                Function Calling - Tool Use 
+                                Self-Reflection 
+                                Memory 
+                          
+Application-Specific Agent Evaluation - 
+Generalist Agents Evaluation 
+Frameworks for Agent Evaluation 
+
+
+Agentic AI's Web Search and Reasoning capabilities involves a multi-dimensional approach. 
+- Compile a dataset of queries that cover
+  Typical Searches 
+  Edge Cases - vague, ambiguous or trick questions
+  Multi-Step Tasks - requiring search + synthesis 
+
+Quantitative Metrics 
+Apply both Information Retrieval (IR) and agenti-specific metrics
+IR Metrics 
+* Precision@k, Recall, nDCG - measure relevance and ranking quality 
+* Session success rate/ CTR - track how often user clicks or engages meaninfully 
+
+Agentic AI Metrics (from Galileo's taxonomy) 
+System Metrics: Latency, token usage, cost per task 
+Task Success: Percentage of tasks completed correctly
+Quality - instruction adherence, output format, factual accuracy
+Tool Interaction - correct tool selection and parameter usage 
+
+Tool-call accuracy - Did it choose and use the search tool appropriately 
+Plan-Exectuion - Where intermediate steps logical and necessary ? Logging Traces/ 
+
+Benchmark with known Evaluations
+Designed for web-browsing agents
+WebGames, BEARCUBS - simulate realistic browsing and retrieval scenarios 
+InfoDeepSeek - evaluates retrieval + generation quality 
+
+
+Drift in Tool Usage 
+Retrieval quality 
+
+Compare different versions v1 and v2 using statistical significance tests to validate improvements
+
+
+
+
 
 
 
