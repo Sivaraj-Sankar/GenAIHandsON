@@ -674,6 +674,291 @@ function greet(name){
 const result = greet("Welcome")
 console.log(result)
 
+Arrow Function
+const greet = (name) => {
+  return "Hello, " + name;
+};
+If the function has only one expression, you can omit the {} and return:
+const greet = (name) => "Hello, " + name;
+If there is only one parameter, you can omit the parentheses too:
+const greet = name => "Hello, " + name;
+Arrow Function with No Parameters
+const sayHi = () => "Hi there!";
+Arrow Function with Multiple Parameters
+const add = (a, b) => a + b;
+
+
+const person = {
+  name: "Alice",
+  greet: function () {
+    setTimeout(() => {
+      console.log("Hello, my name is " + this.name);
+    }, 1000);
+  }
+};
+
+Important: this Works Differently
+Arrow functions do not bind their own this — they use the this from the outer (enclosing) scope.
+person.greet(); // ✅ Works correctly because arrow function keeps `this`
+If we used a regular function inside setTimeout, this.name would be undefined.
+
+
+What Is this in JavaScript?
+this is a special keyword in JavaScript that refers to the context in which a function is executed.
+Global Context
+console.log(this); // In browser, this === window
+In the browser, this refers to the window object (the global object).
+In Node.js, this is an empty object {} at the top level.
+
+2. Inside a Regular Function
+function show() {
+  console.log(this);
+}
+show(); 
+
+3. Inside a Object Method
+const user = {
+  name: "Alice",
+  greet: function () {
+    console.log("Hi, I am " + this.name);
+  }
+};
+user.greet(); // this === user → Output: Hi, I am Alice
+
+Arrow Functions Do NOT Bind Their Own this
+const user = {
+  name: "Bob",
+  greet: () => {
+    console.log("Hi, I am " + this.name);
+
+  }
+};
+user.greet(); // Output: Hi, I am undefined 😢
+
+Where	this refers to
+Global scope	window (browser) or {} (Node.js)
+Inside object method	The object itself
+Inside regular function	Depends how it's called
+Inside arrow function	Inherits this from surrounding context
+Inside event handler	The element that triggered the event
+
+
+const person = {
+  name: "Alice",
+  age: 25,
+  isStudent: true
+};
+
+console.log(person.name); // "Alice"
+
+delete person.isStudent;
+
+
+console.log(person.name);     // Dot notation
+console.log(person["age"]);   // Bracket notation
+
+person.city = "New York";         // Add
+person.age = 26;                  // Update
+
+
+Object with Functions (Methods)
+const user = {
+  name: "Bob",
+  greet: function () {
+    console.log("Hello, I'm " + this.name);
+  }
+};
+
+user.greet(); // "Hello, I'm Bob"
+
+const user = {
+  name: "Bob",
+  greet() {
+    console.log(`Hello, I'm ${this.name}`);
+  }
+};
+
+
+const student = {
+  name: "Carol",
+  address: {
+    city: "Boston",
+    zip: "02115"
+  }
+};
+
+console.log(student.address.city); // "Boston"
+
+
+const users = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 }
+];
+
+console.log(users[0].name); // "Alice"
+
+
+Using new with a Constructor Function
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const user1 = new Person("Alice", 25);
+console.log(user1.name); // "Alice"
+
+
+Using new with a Class (ES6+)
+
+
+class Car {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+
+  drive() {
+    console.log(`Driving ${this.make} ${this.model}`);
+  }
+}
+
+const myCar = new Car("Toyota", "Corolla");
+myCar.drive(); // "Driving Toyota Corolla"
+
+JavaScript is:
+Prototype-based
+Dynamically typed
+Flexible with functional and OOP styles
+Java is:
+Class-based
+Statically typed
+Fully object-oriented
+
+
+
+
+
+TypeScript is a superset of JavaScript that adds types
+You can write regular JavaScript in TypeScript files (.ts) — but you can also add types to variables, functions, and objects
+
+npm install -g typescript
+tsc app.ts - compile it JavaScript
+
+let username: string = "Alice";
+let age: number = 25;
+let isOnline: boolean = true;
+
+
+
+function greet(name: string): string {
+  return "Hello, " + name;
+}
+
+greet("Alice"); // ✅
+greet(123);     // ❌ Error: Argument of type 'number' is not assignable to parameter of type 'string'
+
+let numbers: number[] = [1, 2, 3];
+let names: string[] = ["Alice", "Bob"];
+
+
+let user: { name: string; age: number } = {
+  name: "Alice",
+  age: 25
+};
+
+function greet(name: string = "Guest", age?: number): void {
+  console.log(`Hello, ${name}. Age: ${age}`);
+}
+
+
+type User = {
+  name: string;
+  age: number;
+};
+
+let user1: User = { name: "Alice", age: 25 };
+
+
+interface Product {
+  id: number;
+  name: string;
+}
+
+const item: Product = { id: 1, name: "Book" };
+
+
+let id: number | string;
+id = 101;
+id = "abc"; // both OK
+
+let direction: "left" | "right";
+direction = "left"; // ✅
+direction = "up";   // ❌ Error
+
+
+enum Status {
+  Online,
+  Offline,
+  Busy
+}
+
+let userStatus: Status = Status.Online;
+
+
+class Person {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  greet(): void {
+    console.log(`Hello, I'm ${this.name}`);
+  }
+}
+
+
+aliases, interfaces, or generics
+generics, type guards
+
+Enable strict mode in tsconfig.json
+
+{
+  "compilerOptions": {
+    "strict": true
+  }
+}
+
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true
+  }
+}
+
+
+Benefit	Description
+Static typing	Catches errors before running the code
+Better tooling	Autocomplete, refactoring, navigation
+Safer code	Helps prevent runtime bugs
+Scales well	Ideal for larger codebases
+
+
+--------------------
+Front UI Design 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
