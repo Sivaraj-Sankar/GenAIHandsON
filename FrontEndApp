@@ -546,6 +546,135 @@ pages/api/hello.js        → API route (backend logic)
 Your UI lives at: http://localhost:3000/
 Your API endpoint lives at: http://localhost:3000/api/hello
 
+JavaScript
+-------------------------------------
+console.log("Try programiz.pro");
+
+let name = "Alice";
+const age = 25;
+var isStudent = true;
+
+
+String → "Hello"
+Number → 42
+Boolean → true, false
+Null → null
+Undefined → undefined
+Object → { key: "value" }
+Array → [1, 2, 3]
+
+function greet(message){
+    console.log(message);
+}
+
+
+let age = 20;
+
+if (age >= 18) {
+  console.log("Adult");
+} else {
+  console.log("Minor");
+}
+
+
+for (let i = 0; i < 5; i++) {
+  console.log("i is", i);
+}
+
+let fruits = ["apple", "banana", "cherry"];
+console.log(fruits[0]);
+
+
+Events and the DOM (Document Object Model)
+
+Button Script 
+<button onclick="sayHello()">Click Me</button>
+
+<script>
+  function sayHello() {
+    alert("Hello!");
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World! </h1>
+      <p id="currentTime">cokay</p>
+      <script src="script.js"></script>
+  </body>
+</html>
+
+function showTime() {
+	document.getElementById('currentTime').innerHTML = new Date().toUTCString();
+}
+showTime();
+setInterval(function () {
+	showTime();
+}, 1000);
+
+
+
+DOM (Document Object Model)
+changing content, styles, adding/removing elements, handling user input,
+getElementById, querySelector, innerHTML, style
+Event listeners: addEventListener()
+DOM traversal: parentNode, children, nextSibling
+
+
+document.querySelector("#btn").addEventListener("click", function () {
+  document.body.style.backgroundColor = "lightblue";
+});
+
+async/await (Asynchronous JavaScript)
+Handling code that runs later (like API requests) without blocking other operations.
+Promise, async/await, fetch, try/catch
+Working with APIs
+Understanding non-blocking code
+
+async function getData() {
+  try {
+    let response = await fetch("https://api.example.com/data");
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data", error);
+  }
+}
+getData();
+
+ES6 Features (Modern JavaScript)
+New syntax and features introduced in ECMAScript 2015 (ES6) and beyond — more powerful, cleaner, and readable code.
+
+
+Key features:
+let, const instead of var
+Arrow functions: () => {}
+Template literals: `Hello, ${name}`
+Destructuring: const { name } = user;
+Spread/rest operators: ...
+Classes, modules, promises
+
+const greet = (name = "Guest") => {
+  console.log(`Hello, ${name}!`);
+};
+greet("Alice");
+
+
+Traditional Function
+function greet(name){
+    console.log("Hi Sivaraj " + name);
+    return "Hello " + name;
+    
+}
+const result = greet("Welcome")
+console.log(result)
+
+
 
 
 
