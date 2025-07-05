@@ -979,6 +979,67 @@ import type { RootState, AppDispatch } from './store';
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 
 
+Project Replicating 
+-------------------
+commands
+npx create-react-app . --template typescript
+npm run start 
+npm run-script
+npm run 
+npm start ---> * 
+npm react-scripts start 
+npm audit fix
+npm audit fix --force
+npx tsc --noEmit
+
+
+
+Library Installation 
+react 
+react-dom
+react-scripts with cra-template-typescript
+@emotion/react@^11.14.0 @emotion/styled@^11.14.0
+@mui/icons-material@^6.4.8 @mui/material@^6.4.8
+@reduxjs/toolkit@^2.6.1 react-redux@^9.2.0
+react-router-dom@^7.4.0 axios@^1.8.4
+@types/react-redux@^7.1.34 --save-dev
+
+
+Default App.tsx
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Doubt:
+1. Why Export is Using in all places 
+2. what is Hooks.ts
+
+
 
 
 
