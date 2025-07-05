@@ -1043,6 +1043,12 @@ Doubt:
 5. How Buttons working and getting dynamically 
 6. What is Redux 
 
+7. Best Practice for Adding Chat History 
+8. Best Practice How to define the Chat and memory Client for each request
+               Per User Different Chat window, multiple chat open  - Thread Id
+               Different User Multiple User - Per Uer Id
+
+
 
 
 
