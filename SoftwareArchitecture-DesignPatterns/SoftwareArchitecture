@@ -2,6 +2,38 @@ Agentic AI Design Pattern
 Generative AI Design Pattern
 
 
+LLD
+"The UserService class will call the UserRepository to fetch user data. We’ll use the Singleton pattern for the cache manager.
+Key Elements:
+Class diagrams, method definitions
+UML diagrams (e.g., sequence, class)
+Design patterns (e.g., Factory, Strategy)
+Interface design, data models
+
+HLD
+It’s the big picture of the system. You decide what components are needed and how they will interact.
+System architecture diagram
+Tech stack choice (e.g., Java + Spring Boot + MySQL)
+High-level modules (e.g., Auth, Posts, Notifications)
+Communication flows (e.g., how frontend talks to backend)
+
+
+Software Design 
+Low-Level Design (Class & Component Design) - https://oleg-dubetcky.medium.com/low-level-design-a-comprehensive-guide-225f9ac55aec
+https://www.geeksforgeeks.org/system-design/what-is-low-level-design-or-lld-learn-system-design/?utm_source=chatgpt.com
+https://github.com/ashishps1/awesome-low-level-design?utm_source=chatgpt.com
+https://medium.com/%40nikhil.cse16/getting-started-with-low-level-design-lld-essential-concepts-af39cf2475c5
+https://www.designgurus.io/blog/system-design-tutorial-for-beginners?utm_source=chatgpt.com
+https://learnerbits.com/system-design-roadmap-2025-from-beginner-to-expert/?utm_source=chatgpt.com
+https://medium.com/javarevisited/10-best-resources-to-learn-software-architecture-in-2025-2524ac91dc76
+https://medium.com/javarevisited/10-best-resources-to-learn-software-architecture-in-2025-2524ac91dc76 - Priority 
+https://dev.to/devcorner/hld-vs-lld-the-ultimate-system-design-interview-preparation-guide-2025-54do?utm_source=chatgpt.com
+
+Explore DesignGurus and LearnerBits to understand macro design
+macro design: scalability, reliability, databases, messaging, microservices.
+Take foundational books—Designing Data‑Intensive Applications and Software Architecture in Practice are top picks
+Reinforce by drafting both context/container (HLD) and class/component UML diagrams (LLD) for systems you know.
+
 Exploring the Foundations of AI-Augmented Architecture
 1.You’ll learn common patterns, antipatterns, strategies, use cases, and more that you can employ immediately to harness the power of generative AI.
 2.Design modern systems that work well with generative and agent-based AI
