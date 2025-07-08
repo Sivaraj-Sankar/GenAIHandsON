@@ -17,6 +17,21 @@ Tech stack choice (e.g., Java + Spring Boot + MySQL)
 High-level modules (e.g., Auth, Posts, Notifications)
 Communication flows (e.g., how frontend talks to backend)
 
+UI Desgin 
+UI Design – Create website or app layouts, wireframes, and user interface elements
+Add interactive links, transitions, and animations to simulate user flows
+Start with a Frame (artboard) for screen sizes like Desktop (1440px), Mobile (375px), etc.
+Add UI elements: buttons, forms, navbars, etc.
+Apply styling: colors, fonts, shadows, etc.
+Use components and auto-layout to build reusable & responsive layouts.
+
+Tools Front-End Developers Use with Figma
+Task	Tools	Notes
+Build UI	HTML, CSS, JavaScript, React, Vue, etc.	Use Figma for reference
+Use styles	Tailwind, SCSS, Material UI, etc.	Match colors, fonts from Figma
+Export images/icons	From Figma as SVG/PNG	For logos, icons, etc.
+Convert to code	Manual or use tools like Anima, Figma-to-Code plugins	Accuracy may vary
+
 
 Software Design 
 Low-Level Design (Class & Component Design) - https://oleg-dubetcky.medium.com/low-level-design-a-comprehensive-guide-225f9ac55aec
