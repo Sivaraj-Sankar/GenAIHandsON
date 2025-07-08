@@ -1,2 +1,39 @@
 Agentic AI Design Pattern 
 Generative AI Design Pattern
+
+
+Exploring the Foundations of AI-Augmented Architecture
+1.You’ll learn common patterns, antipatterns, strategies, use cases, and more that you can employ immediately to harness the power of generative AI.
+2.Design modern systems that work well with generative and agent-based AI
+3.Understand where AI tools can add real value in software architecture—and where they can’t
+4.Learn what to consider when using vector databases and other AI-era infrastructure
+5.particularly code generation—and the impact of tool integration
+6.He also covers memory architectures, from short-term recall to long-term persistence, as essential components of learning and context management
+7.AI Tools in Micro-Frontend Architectures
+8.practical guidance on designing and deploying intelligent systems using LLMs, based on real-world experience
+9.Topics include fine-tuning, zero-shot learning, prompt engineering, and managing common integration challenges such as latency, tokenization, and safety.
+10.Architecting for Vectors
+11.explore the trade-offs between specialized vector stores and integrated approaches, emerging patterns in distributed systems, and how CockroachDB is addressing these challenges.
+12.how to architect that system for production using event-driven microservices
+13.explores agentic architecture in multi-agent AI systems, emphasizing the roles of controller, planner, and judge for intelligent coordination
+14.She’ll also discuss building scalable, event-driven microservices with Kafka and Flink and highlight best practices for RAG pipelines, governance, and observability
+15.It's not just about enhancing desktop applications with agentic functionality—it's about exposing reusable tools and resources (including real-time data from sources like Apache Kafka) to build agentic microservices
+16.Tim describes how to go beyond basic LLM chatbots to dynamic, problem-solving systems that deliver real value in real professional settings.
+
+Pitfalls
+1.architects face mounting pressure to support vector search without compromising transactional guarantees
+2. These demands are pushing legacy database architectures to their limits and prompting a reassessment of how to build for both scale and consistency
+
+
+
+GenAI Arcitecture 
+Short-Term Recall 
+Long-Term Persistence 
+Learning and Context Management 
+
+Agentic AI Architecture 
+1.explores agentic architecture in multi-agent AI systems, emphasizing the roles of controller, planner, and judge for intelligent coordination
+
+Meeting Details 
+1. Aug 12
+8:30pm-12:30am
