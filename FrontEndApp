@@ -1036,7 +1036,7 @@ export default App;
 
 
 Doubt:
-1. Why Export is Using in all places 
+1. Why Export is Using in all places - Done
 2. what is Hooks.ts
 3. What is Slice
 4. what is Use.....
