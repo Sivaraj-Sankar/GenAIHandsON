@@ -1074,16 +1074,77 @@ const { name: userName } = user;
 Arrow Function - Paranthesis 
 (payload) => ({ type: 'auth/login', payload }) - Because arrow functions with object literal returns need parentheses to avoid ambiguity with a block of code.
 -------
-2. what is Hooks.ts
+2. what is hooks.ts and store.ts
+When I dispatch an auth-related action like login, handle it using authSliceReducer, and store its state under state.auth
+authSlice.ts
+  └─ defines login reducer + exports actions + reducer
+store.ts
+  └─ imports reducer as `authSliceReducer`
+  └─ adds to store as `auth: authSliceReducer`
+Login.tsx
+  └─ dispatch(login(...)) updates state.auth
+Other components
+  └─ useSelector(state => state.auth.email) reads login info
+hook.ts
+export const useAppDispatch = () => useDispatch<AppDispatch>(); - You're defining a custom hook called useAppDispatch which simply returns useDispatch(), but with types attached
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector; “I'm creating a typed version of useSelector so that whenever I access Redux state, TypeScript knows exactly what the shape of state is.”
+
+Instead of 
+const dispatch = useDispatch<AppDispatch>();
+onst email = useSelector((state: RootState) => state.auth.email);
+use 
+const dispatch = useAppDispatch();
+const email = useAppSelector((state) => state.auth.email);
+
+Ensures dispatch has correct typing for async thunks, actions
+
 3. What is Slice
-4. what is Use.....
+  └─ defines login reducer + exports actions + reducer
+4. what is Use.....  --> Using in AnyComponent to access the state , by old fashion 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+
+const email = useSelector((state: RootState) => state.auth.email);
 5. How Buttons working and getting dynamically 
 6. What is Redux 
-
+store.getState is a function that returns the entire Redux state object.
+typeof store.getState gives us the type of that function.
+ReturnType<typeof store.getState> gives us the type of the value that function returns — i.e., the shape of your global Redux state.
 7. Best Practice for Adding Chat History 
 8. Best Practice How to define the Chat and memory Client for each request
                Per User Different Chat window, multiple chat open  - Thread Id
                Different User Multiple User - Per Uer Id
+
+
+
+🧩 Basics
+ Component (function App())
+ JSX
+ State (useState)
+ Props
+ Event handling (onSubmit, onChange)
+ Conditional rendering
+🌐 Routing
+ React Router DOM (useNavigate, Routes, Route)
+ ProtectedRoute (block access unless logged in)
+🧠 Redux
+ Slice (authSlice)
+ Dispatching actions
+ Reading state using useSelector
+ Middleware (for async login with redux-thunk or redux-saga)
+ Authentication
+ Call backend login API (fetch or axios)
+ Store JWT token securely
+ Logout functionality
+ Auto-redirect if already logged in
+
+Login Related 
+Let me know if you'd like help creating:
+A thunk for async login (loginThunk)
+A protected route using auth state
+Auto-persisting login with localStorage or cookies
+
+
 
 
 
