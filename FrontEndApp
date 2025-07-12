@@ -1037,6 +1037,43 @@ export default App;
 
 Doubt:
 1. Why Export is Using in all places - Done
+export 
+export default 
+---------
+index.js file in a React project acts as the entry point
+--------
+Destructing 
+Function Parameter Destructuring
+function showUser(user: { name: string, age: number }) {
+  console.log(user.name, user.age);
+}
+function showUser({ name, age }: { name: string; age: number }) {
+  console.log(name, age);
+}
+
+Destructuring with Default Values
+const { role = 'guest' } = { name: 'Alice' };
+// role = 'guest' (default value)
+Nested Destructuring
+const user = {
+  name: 'Bob',
+  address: {
+    city: 'New York',
+    zip: 10001
+  }
+};
+
+const {
+  address: { city }
+} = user;
+// city = 'New York'
+Rename
+const { name: userName } = user;
+// userName = 'Alice'
+----------
+Arrow Function - Paranthesis 
+(payload) => ({ type: 'auth/login', payload }) - Because arrow functions with object literal returns need parentheses to avoid ambiguity with a block of code.
+-------
 2. what is Hooks.ts
 3. What is Slice
 4. what is Use.....
