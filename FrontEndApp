@@ -1110,6 +1110,12 @@ const email = useSelector((state: RootState) => state.auth.email);
 store.getState is a function that returns the entire Redux state object.
 typeof store.getState gives us the type of that function.
 ReturnType<typeof store.getState> gives us the type of the value that function returns — i.e., the shape of your global Redux state.
+
+JSX is just syntax sugar for calling React.createElement(...)
+<Login />
+...is actually:
+React.createElement(Login)
+
 7. Best Practice for Adding Chat History 
 8. Best Practice How to define the Chat and memory Client for each request
                Per User Different Chat window, multiple chat open  - Thread Id
@@ -1143,6 +1149,15 @@ Let me know if you'd like help creating:
 A thunk for async login (loginThunk)
 A protected route using auth state
 Auto-persisting login with localStorage or cookies
+
+If you're continuing to build this app, here are the next steps to consider:
+
+Feature	Description
+🔒 ProtectedRoute	A component that blocks access to certain pages unless logged in
+🧪 Persist auth state	Store isLoggedIn in localStorage and load it on refresh
+🔁 Logout support	Add a button and dispatch(logout())
+🔀 Routing logic	Replace conditional rendering with <Routes> and <Navigate /> for better navigation control
+🌐 Real login API	Replace mockToken123 with an actual API call
 
 
 
