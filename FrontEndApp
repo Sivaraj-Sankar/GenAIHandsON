@@ -1162,6 +1162,54 @@ Feature	Description
 
 
 
+July 13 Learning 
+----------------
+1. Since you want to navigate after login, we need to re-enable React Router in your app
+2. I’ll set up routing so / shows the login page and /dashboard shows the new dashboard
+3.Modern, clean, and professional layout using MUI
+
+
+UI/UX 
+Modern, Clean, Professional Layout using MUI
+Use MUI for all components and styling for consistency and ease of customization.
+Area	Tool/Technique
+UI Components	MUI (@mui/material)
+Custom Theme	ThemeProvider + createTheme()
+Layouts	MUI Box / Grid
+Branding	Custom logo, colors, fonts
+Aesthetics Boost	Rounded corners, shadows, hover
+Typography	Google Fonts + MUI overrides
+
+📐 Layout with Material UI (Box, Grid, Container)
+🎨 UI/UX styling (colors, cards, spacing)
+📊 Components for tables, charts, metrics
+🧠 Reusable components (like <SummaryCard />, <LatencyStats />)
+⚛️ State and props for dynamic data
+
+How to design the summary cards with Material UI?
+How to build the sidebar layout?
+How to make that table with filters?
+How to handle dynamic state in React?
+
+
+Based on your screenshot, the UI has:
+Sidebar navigation
+Summary cards (status, score, pass rate, etc.)
+Latency metrics
+Data table with filter/sort/search
+Header and breadcrumb
+
+
+How React Route and Routes working , 
+Some times i will skip and route and navigate 
+Some times I need to fill and submit , automatically navigate to respective 
+Some times I will fill , and then automatically 
+Some times I will have different sections, 
+Some times I will have different sections - each section is new section and have other sub - section 
+Some times I will have route to other page, then it will have route , but connected to main route 
+
+
+
 
 
 
