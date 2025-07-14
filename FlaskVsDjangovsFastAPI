@@ -192,6 +192,259 @@ BackgroundTasks, Depends() — for dependency injection or async background jobs
 
 OAuth2, JWT, API Keys, sessions
 
+--------------------------------------------
+Flat Structure 
+---------------
+Dependency.py 
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from app.database import SessionLocal
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    # Decode and validate token logic
+    ...
+
+Common query parameters or header extraction
+
+def common_params(skip: int = 0, limit: int = 10):
+    return {"skip": skip, "limit": limit}
+
+--------------
+services/users.py:
+
+from sqlalchemy.orm import Session
+from app.models import users as models
+from app.schemas import users as schemas
+
+def get_user_by_id(db: Session, user_id: int):
+    return db.query(models.User).filter(models.User.id == user_id).first()
+
+def create_user(db: Session, user: schemas.UserCreate):
+    db_user = models.User(**user.dict())
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+---------------------------------
+modules/users/router.py ----> This file is local to the users module. It contains the user-specific routes and keeps them encapsulated inside the users domain/module
+Uses local dependencies, services, models defined in the users module.
+Meant to be self-contained for feature modularity and reuse.
+-------------
+from fastapi import APIRouter, Depends
+from .services import get_user_by_id
+from .dependencies import get_db
+
+router = APIRouter(prefix="/users", tags=["users"])
+
+@router.get("/{user_id}")
+def read_user(user_id: int, db=Depends(get_db)):
+    return get_user_by_id(db, user_id)
+
+and
+-----------------------------
+routers/users.py
+This file is at a global routing level. It's responsible for:
+Importing the router from modules/users/router.py
+Including it into the main FastAPI app
+Possibly combining routers from other modules
+
+ Purpose:
+Central place to include all user-related routes into the app.
+Not meant for route logic – just organizing the router hierarchy.
+
+Example (routers/users.py):
+
+from fastapi import APIRouter
+from app.modules.users.router import router as users_router
+
+router = APIRouter()
+router.include_router(users_router)
+
+--------------
+Main.py
+
+from fastapi import FastAPI
+from app.routers import users as users_router
+
+app = FastAPI()
+app.include_router(users_router.router)
+
+-----------
+The Core Idea of Dependency Inversion (in FastAPI)
+High-level modules (like routers) shouldn’t depend on low-level modules (like database or service implementations). Instead, both should depend on abstractions.
+
+
+
+# We "declare" a dependency
+def get_user(user_id: int, user_service: IUserService = Depends(get_user_service)):
+    return user_service.get_user(user_id)
+
+
+Example 
+# modules/users/interfaces.py
+
+from abc import ABC, abstractmethod
+from typing import Dict
+
+class IUserService(ABC):
+    @abstractmethod
+    def get_user(self, user_id: int) -> Dict:
+        pass
+
+
+# modules/users/services.py
+
+from typing import Dict
+from .interfaces import IUserService
+
+class UserService(IUserService):
+    def get_user(self, user_id: int) -> Dict:
+        # fake DB call
+        return {"id": user_id, "name": "John Doe"}
+
+
+# modules/users/dependencies.py
+
+from .services import UserService
+from .interfaces import IUserService
+
+def get_user_service() -> IUserService:
+    # Could return mock or real service
+    return UserService()
+
+
+
+# modules/users/router.py
+
+from fastapi import APIRouter, Depends
+from .interfaces import IUserService
+from .dependencies import get_user_service
+
+router = APIRouter(prefix="/users", tags=["users"])
+
+@router.get("/{user_id}")
+def read_user(user_id: int, user_service: IUserService = Depends(get_user_service)):
+    return user_service.get_user(user_id)
+
+✅ Benefits of This Pattern
+✅ Testability – Easily inject a mock service in tests.
+✅ Flexibility – Swap UserService with a different implementation (e.g., async, external API).
+✅ Decoupling – router.py doesn’t know about the UserService implementation.
+
+
+Optionally - Injecting Mock in a Test 
+
+from fastapi.testclient import TestClient
+from app.main import app
+from app.modules.users.interfaces import IUserService
+from app.modules.users.router import router
+
+class MockUserService(IUserService):
+    def get_user(self, user_id: int):
+        return {"id": user_id, "name": "Mock User"}
+
+app.dependency_overrides[get_user_service] = lambda: MockUserService()
+
+client = TestClient(app)
+
+def test_read_user():
+    response = client.get("/users/123")
+    assert response.status_code == 200
+    assert response.json() == {"id": 123, "name": "Mock User"}
+
+-----------------------
+# modules/users/router.py
+@router.get("/{user_id}")
+def read_user(user_id: int, user_service: IUserService = Depends(get_user_service)):
+    return user_service.get_user(user_id)
+
+
+# tests/test_users.py
+
+from fastapi.testclient import TestClient
+from app.main import app
+from app.modules.users.interfaces import IUserService
+from app.modules.users.dependencies import get_user_service
+from app.modules.users.router import router  # Optional, if not already in main
+
+# ✅ Step 1: Create a mock implementation
+class MockUserService(IUserService):
+    def get_user(self, user_id: int):
+        return {"id": user_id, "name": "Mocked User"}
+
+# ✅ Step 2: Override the dependency
+app.dependency_overrides[get_user_service] = lambda: MockUserService()
+
+# ✅ Step 3: Create client and write test
+client = TestClient(app)
+
+def test_read_user():
+    response = client.get("/users/123")
+    assert response.status_code == 200
+    assert response.json() == {"id": 123, "name": "Mocked User"}
+
+
+------------------
+----------------
+Tools You Need
+Python's built-in unittest (okay, but limited)
+
+✅ Recommended: pytest + requests + httpx or TestClient (from FastAPI)
+
+
+If you're using FastAPI, the standard setup is:
+pytest for running tests
+fastapi.testclient.TestClient (sync tests)
+Or httpx.AsyncClient (async tests)
+
+modular-project/
+├── app/
+│   └── modules/
+│       └── users/
+│           ├── router.py
+│           ├── services.py
+│           └── dependencies.py
+├── tests/
+│   └── test_users.py
+├── app/
+│   └── main.py
+├── requirements.txt
+
+From the root of your project
+pytest
+Pytest will:
+
+Discover all files named test_*.py or *_test.py
+Look for functions that start with test_
+Run them and show results
+
+Add a pytest.ini for config:
+# pytest.ini
+[pytest]
+testpaths = tests
+python_files = test_*.py
+
+pytest -v
+pytest tests/test_users.py
+pytest tests/test_users.py::test_get_user
+
+--------------------------------
+Let me know if you'd like to:
+Test async routes with httpx.AsyncClient
+Use fixtures for setup/teardown
+Test with a real or fake database (like SQLite or TestingSessionLocal)
 
 
 
