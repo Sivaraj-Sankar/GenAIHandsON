@@ -5,6 +5,9 @@ How Agentic RAG Should work - for all questions Boolean Question, Summary Questi
 How Multi-Agent Chat History will be
     Chat history will be save for each agent or 
     Chat history will be save for Overall Agent 
+How to Save the Chat History in Database - like once completed or for each transaction 
+How to Load the Chat History in FrontEnd 
+How to Manage State in FrontEnd for Each Page
 Logging and Tool Error
 
 
