@@ -703,6 +703,241 @@ Programmatically in Code	conn.execute("CREATE INDEX ...")	One-time setup via scr
 
 
 
+FrontEnd Interview Preparation 
+------------------------------
+Must-Know Topics:
+Scopes (var, let, const)
+Closures, hoisting
+Promises, async/await, event loop
+this keyword, arrow functions
+Array methods: map, filter, reduce, find
+Object destructuring, spread/rest
+ES6+ features (e.g., optional chaining ?., nullish coalescing ??)
+Deep vs shallow copy
+Type coercion and comparisons
+Debounce vs throttle
+
+Must-Know Concepts:
+JSX and rendering logic
+Functional components
+useState, useEffect, useRef, useMemo, useCallback
+Props vs state
+Lifting state up
+React Router (navigation and route params)
+Controlled vs uncontrolled components
+Form handling
+Conditional rendering
+Error boundaries (basic)
+Keys in lists and their importance
+Why does React need keys in a list? What happens if you use index?
+
+
+TypeScript is expected in most mid-to-senior frontend roles now.
+
+Must-Know Topics:
+Type annotations: variables, functions, props
+Interfaces vs types
+Generics (basic)
+Union types, optional types
+Enums
+Type narrowing, type guards
+any, unknown, never, void
+
+
+Component Design and Architecture
+Reusable components (button, modal, form, etc.)
+Props drilling vs context
+Folder structure
+Separation of concerns (e.g., logic vs UI)
+
+State Management
+useState, useReducer
+Context API (lightweight global state)
+Redux / Zustand / Jotai (know at least one if asked)
+
+API Integration
+Fetch / Axios
+useEffect for calling APIs
+Handling loading/error/success states
+Optional: React Query or SWR
+
+Basic HTML & CSS Knowledge
+Semantic HTML
+Flexbox & Grid
+Responsiveness (media queries)
+CSS-in-JS (e.g., styled-components, Tailwind)
+Optional: CSS modules, SASS
+
+
+Testing (Basic)
+Unit tests with Jest
+Component testing with React Testing Library
+Even if you don’t write full tests, know:
+render, fireEvent, getByText, etc.
+Why testing is useful in React
+
+Tooling & Environment
+Vite / Webpack / Create React App
+ESLint, Prettier
+npm/yarn, scripts
+Git basics
+
+
+Soft Skills & System Design (Optional but Valuable)
+How do you handle component scaling?
+How do you organize your React project?
+How would you handle a shared state across deeply nested components?
+What’s the most challenging bug you’ve solved?
+
+
+Live Coding Practice
+Build a to-do list, form with validation, API data table
+Solve a few problems on LeetCode (Easy) or Frontend Mentor
+Review common DOM manipulation tasks
+
+
+Area	Must Know
+JavaScript	Closures, async, array methods, scope
+React	useState, useEffect, props, routing
+TypeScript	Interfaces, types, unions, generics (basic)
+APIs	Fetch, async calls, error handling
+Styling	Flexbox, responsive, basic CSS
+Testing	Jest + RTL (basic usage)
+Project Structure	Clean, modular, reusable components
+
+
+UML 
+UML stands for Unified Modeling Language.
+It’s a visual language used to model, design, and describe software systems.
+
+To visualize system structure and behavior
+To document architecture clearly
+To communicate design with developers, clients, and stakeholders
+To help in planning, analysis, and documentation
+
+1. Structural Diagrams – Show what the system is made of
+Diagram Type	Description
+Class Diagram	Shows classes, attributes, and relationships
+Component Diagram	Shows high-level system components/modules
+Object Diagram	Snapshot of objects at runtime
+Deployment Diagram	Shows hardware and network setup
+Package Diagram	Organizes classes into packages
+
+
+2. Behavioral Diagrams – Show how the system behaves
+Diagram Type	Description
+Use Case Diagram	Shows user interactions (user stories)
+Sequence Diagram	Shows message flow between components
+Activity Diagram	Shows workflow or business logic
+State Diagram	Shows states and transitions of a system or object
+
+
+Example: Class Diagram (Most Common)
+Let’s say you’re designing a chat application.
+
+Class Diagram:
+
++------------------+
+|     ChatLog      |
++------------------+
+| - id: int        |
+| - message: string|
+| - timestamp: Date|
+| - applicationId: int |
++------------------+
+
+        ▲
+        |
+        |
++------------------+
+|   Application    |
++------------------+
+| - id: int        |
+| - customerName: string |
++------------------+
+
+This shows:
+
+Two classes (ChatLog, Application)
+
+One-to-many relationship (Application has many ChatLogs)
+
+
+Tools to Draw UML
+Lucidchart
+Draw.io
+StarUML
+PlantUML (code-based UML)
+Microsoft Visio
+
+What is UML?	A standard visual language for designing systems
+Why use UML?	To visualize, communicate, and document design
+Types of UML?	Structural (class, component) + Behavioral (use case, sequence)
+Tools to draw?	Lucidchart, Draw.io, PlantUML, etc
+
+
+Figma
+-----
+Figma is a browser-based design tool used for UI/UX design, prototyping, and collaborating on frontend interfaces.
+Because frontend developers need to convert designs into real code — and Figma is where designers usually create those designs
+
+How Frontend Developers Use Figma
+What Designers Do in Figma	What You Do as a Developer
+Design UI (buttons, pages, layouts)	Look at the layout and implement it in code (HTML/CSS/React)
+Choose fonts, colors, spacing, icons	Copy those styles into CSS
+Create interactive prototypes	Understand behavior and flow
+Organize components (buttons, forms)	Build reusable components
+Share links to the design	Use "Inspect" to get details like font-size, padding, etc.
+
+
+What You Can Do with a Figma File (As a Dev)
+✅ Inspect spacing, padding, and layout
+✅ Copy CSS styles directly
+✅ Download assets (SVGs, images, icons)
+✅ Understand how screens are connected
+✅ Get font, color, border-radius, etc.
+✅ Check responsive behavior (frame sizes)
+
+Example Workflow
+1. Designer gives you a Figma link
+They say: "Here’s the UI design for the dashboard page."
+2. You open it in browser
+No need to install anything — just click the link.
+3. You click a button in Figma
+You see:
+Font: Roboto, 16px
+Padding: 12px 24px
+Color: #1D4ED8
+Border-radius: 6px
+4. You build it in code:
+<button className="px-6 py-3 text-base bg-blue-600 rounded-md text-white">
+  Submit
+</button>
+
+Bonus: Figma + Tailwind + React
+If your team uses Tailwind CSS, you can often map Figma styles directly to Tailwind classes based on Figma measurements.
+
+And if you're using component libraries (e.g., Material UI, Chakra), you can recreate Figma designs using prebuilt components.
+
+
+Figma Is Collaborative
+Multiple people can view/edit at once (like Google Docs)
+Developers + designers can leave comments
+Version history is built-in
+
+Question	Answer
+What is Figma?	A browser-based UI/UX design and prototyping tool
+Who uses it?	Designers, developers, product teams
+Do I design in it as a dev?	No — you read, inspect, and extract styles/assets
+Why is it important?	It helps you turn designs into accurate frontend code
+What can I get from Figma?	Fonts, colors, spacing, icons, layout, and even CSS suggestions
+
+
+
+
+
+
+
 
 
 
