@@ -1,0 +1,78 @@
+Agent Flow
+History
+How RAG should work 
+Logging and Tool Error
+
+
+
+Agent Flow 
+----------
+System Instruction
+Human Message - Input 
+FunctionMessage - agent_scratchpad - is a placeholder that expects a list of BaseMessage objects to be injected into the prompt at runtime under the name "agent_scratchpad"
+    Tool Call
+    Observation [Retrieval Context]
+AI Mesasge - Final Answer 
+
+---------------------------------------------------------------------------------------------
+How RAG should work 
+1st Question
+Human 
+FunctionMessage
+AI Message 
+
+2nd Question 
+Human 
+Chat_History
+
+
+
+AIMessage, FunctionMessage, ToolMessage, HumanMessage
+This allows the LLM to see prior reasoning and tool use before responding again
+
+prompt.messages
+prompt.input_variables
+prompt.input_types
+prompt.output_parser 
+prompt.partial_variables
+
+1. Parsing to Get the Tool Name and Tool Input
+chain = prompt | model | OpenAIFunctionsAgentOutputParser()
+2. After Getting Observation --> format to Message format 
+from langchain.agents.format_scratchpad import format_to_openai_functions
+format_to_openai_functions([(result1, observation), ])
+
+
+History
+-------
+Message History of Reasoning Step 
+Message History of Final AI Answer 
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are helpful but sassy assistant"),
+    MessagesPlaceholder(variable_name="chat_history"),
+    ("user", "{input}"),
+    MessagesPlaceholder(variable_name="agent_scratchpad")
+])
+
+memory = memory = ConversationBufferMemory(return_messages=True,memory_key="chat_history")
+
+'chat_memory': ChatMessageHistory(messages=[]),
+ 'output_key': None,
+ 'input_key': None,
+ 'return_messages': True,
+ 'human_prefix': 'Human',
+ 'ai_prefix': 'AI',
+ 'memory_key': 'chat_history'}
+
+memory.chat_memory.add_user_message("Hi, who won the World Cup in 2018?")
+memory.chat_memory.add_ai_message("France won the 2018 FIFA World Cup.")
+
+memory.load_memory_variables({})
+
+
+Logging and Tool Error
+----------------------
+Add logging to see intermediate outputs?
+Convert this into a fully async agent?
+Handle tool errors or retry logic?
