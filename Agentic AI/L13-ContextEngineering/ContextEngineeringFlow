@@ -1,6 +1,10 @@
 Agent Flow
 History
 How RAG should work 
+How Agentic RAG Should work - for all questions Boolean Question, Summary Question, Specific Question 
+How Multi-Agent Chat History will be
+    Chat history will be save for each agent or 
+    Chat history will be save for Overall Agent 
 Logging and Tool Error
 
 
