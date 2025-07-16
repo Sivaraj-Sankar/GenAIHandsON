@@ -701,6 +701,46 @@ SQLAlchemy ORM	__table_args__ = (Index(...),)	Auto-index with model
 Alembic Migration	op.create_index(...)	Production-safe upgrades
 Programmatically in Code	conn.execute("CREATE INDEX ...")	One-time setup via script
 
+State Management for Browser Refresh 
+------------------------------------
+To persist state across refreshes or browser restarts, you need persistent storage like:
+
+Storage Option	Description	Survives Refresh?
+Local Storage	localStorage.setItem()	✅ Yes
+Session Storage	sessionStorage.setItem()	✅ Yes (per tab)
+Cookies	document.cookie	✅ Yes
+IndexedDB	For structured, large data	✅ Yes
+Redux Persist	Saves Redux store to persistent storage	✅ Yes
+
+Not Survive 
+function Counter() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+
+Survive
+function Counter() {
+  const [count, setCount] = React.useState(() => {
+    const saved = localStorage.getItem('count');
+    return saved ? JSON.parse(saved) : 0;
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+  }, [count]);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+
 
 
 FrontEnd Interview Preparation 
