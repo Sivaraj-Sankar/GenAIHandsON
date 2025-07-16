@@ -8,6 +8,8 @@ Evaluating LLM-Based Agents
 State Management in Backend
 Authentication Methods
 Session-Based Authentication 
+Query Param 
+MongoDB - Key  
 
 
 
@@ -479,6 +481,227 @@ Concept	Session-Based	JWT-Based
 Needs shared session store?	✅ Yes	❌ No
 Scales easily across servers?	❌ Only with shared store	✅ Yes
 Stores state on server?	✅ Yes (session data)	❌ No (client stores JWT)
+
+
+Param in API 
+------------
+Value	How You Get It	Where It Comes From
+rm_id	From JWT token	After login (attached to auth header)
+application_id	From route or page context	URL param or selected application
+message	From form input	RM types in message box
+
+
+GET Chat History (with Path and Query Params)
+GET /api/applications/abc123/chat?limit=50&sort=desc
+
+
+Use Case	Parameter Type to Use	Why
+Identify a specific resource	Path Param	Cleaner, more RESTful: /applications/123
+Filter/sort/paginate a list	Query Param	Optional and flexible: ?sort=desc
+Send structured data	Body Param (POST/PUT)	Useful for complex inputs like forms or messages
+Auth, content negotiation	Header Param	Metadata like tokens or content type
+
+
+Query Param 
+-----------
+Query parameters are part of the URL, used to send optional data like filters, pagination, search terms, etc.
+They appear after the ? in the URL.
+Multiple query params are joined with &
+
+Let’s say you want to fetch chat history for an application:
+// JavaScript/React/Frontend
+const applicationId = 'abc123';
+const limit = 20;
+const sort = 'desc';
+
+fetch(`/api/applications/${applicationId}/chat?limit=${limit}&sort=${sort}`, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  }
+});
+
+
+GET /api/applications/abc123/chat?limit=20&sort=desc
+
+app.get('/api/applications/:applicationId/chat', (req, res) => {
+  const applicationId = req.params.applicationId; // from path
+  const limit = req.query.limit; // from query string
+  const sort = req.query.sort;
+
+  console.log(applicationId); // "abc123"
+  console.log(limit);         // "20"
+  console.log(sort);          // "desc"
+
+  // Use these values to fetch data from DB
+});
+
+
+
+def chat_view(request, application_id):
+    limit = request.GET.get('limit')  # "20"
+    sort = request.GET.get('sort')    # "desc"
+    # application_id is from the path
+
+    # You can use these to query the database
+
+
+from fastapi import FastAPI, Query
+
+@app.get("/api/applications/{application_id}/chat")
+def get_chat(application_id: str, limit: int = Query(20), sort: str = Query("desc")):
+    return {
+        "application_id": application_id,
+        "limit": limit,
+        "sort": sort
+    }
+
+
+Param	Example	Used For
+limit	?limit=50	Pagination
+offset	?offset=10	Skip records (pagination)
+sort	?sort=asc	Sort order
+filter	?status=InProgress	Filter by status or keyword
+search	?q=John	Search text
+
+
+Always validate query params on the backend.
+Provide default values in case params are missing.
+Be strict with types (especially int, bool, etc.).
+
+
+Frontend builds URL with ?key=value format.
+Backend reads them via req.query (Express), request.GET (Django), or as function args (FastAPI).
+Ideal for optional parameters like filters, sorts, and pagination.
+
+
+MongoDB - Key  
+------------
+Note: MongoDB won’t validate that application_id: "app123" actually exists in applications. You have to enforce this in your application logic
+
+Option	Description
+Manual Checks	Validate references in code before inserting/updating
+Data Embedding	Embed related data if it's read together and not huge
+Two-Phase Commits	Use transactions (MongoDB 4.0+) for atomicity across collections
+Mongoose (ODM)	Provides schema models and can define references
+
+
+const ChatLogSchema = new mongoose.Schema({
+  application_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Application' },
+  message: String
+});
+
+
+Excellent question — let's look at how PostgreSQL works with FastAPI, especially regarding primary keys, foreign keys, and validation. This is one of the biggest differences between a relational (SQL) database like PostgreSQL and a NoSQL DB like MongoDB
+
+Yes — PostgreSQL enforces key constraints!
+When you define a foreign key or primary key in PostgreSQL, it is enforced at the database level, not just in the application
+
+How PostgreSQL Works with FastAPI
+You typically use SQLAlchemy (ORM) or Tortoise ORM to connect PostgreSQL with FastAPI.
+
+Let’s walk through it
+
+Define Your Models with Relationships
+# models.py
+
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from database import Base
+
+class Application(Base):
+    __tablename__ = "applications"
+    id = Column(Integer, primary_key=True, index=True)
+    customer_name = Column(String)
+
+class ChatLog(Base):
+    __tablename__ = "chat_logs"
+    id = Column(Integer, primary_key=True, index=True)
+    application_id = Column(Integer, ForeignKey("applications.id"))  # FK enforced!
+    message = Column(String)
+
+    application = relationship("Application")
+
+
+Create the Tables (with Constraints)
+
+alembic upgrade head
+
+
+@app.post("/chat")
+def add_message(msg: ChatMessageSchema, db: Session = Depends(get_db)):
+    chat = ChatLog(**msg.dict())
+    db.add(chat)
+    db.commit()
+    return {"status": "message added"}
+
+psycopg2.errors.ForeignKeyViolation: insert or update on table "chat_logs" violates foreign key constraint
+
+
+
+Feature	PostgreSQL + FastAPI
+Primary key	✅ Auto-enforced via schema
+Foreign key	✅ Enforced; DB will reject invalid IDs
+Cascading deletes/updates	✅ Supported with ON DELETE CASCADE
+Transactions	✅ Built-in with db.commit()
+Schema migrations	✅ Use Alembic
+
+
+Concept	MongoDB	PostgreSQL + FastAPI
+Primary Key	Yes (_id)	Yes (id, auto-incremented or UUID)
+Foreign Key	❌ Not enforced	✅ Enforced (FK constraints)
+Validation	Manual in app	Automatic at DB level
+Best ORM	Mongoose	SQLAlchemy or Tortoise ORM
+
+
+from sqlalchemy import Column, Integer, String, ForeignKey, Index
+from database import Base
+
+class ChatLog(Base):
+    __tablename__ = 'chat_logs'
+
+    id = Column(Integer, primary_key=True)
+    application_id = Column(Integer, ForeignKey("applications.id"))
+    message = Column(String)
+
+    __table_args__ = (
+        Index("idx_chatlogs_application_id", "application_id"),  # 👈 index defined here
+    )
+
+
+
+def upgrade():
+    op.create_index('idx_chatlogs_application_id', 'chat_logs', ['application_id'])
+
+def downgrade():
+    op.drop_index('idx_chatlogs_application_id', table_name='chat_logs')
+
+
+
+from sqlalchemy import create_engine
+
+engine = create_engine(DB_URL)
+with engine.connect() as conn:
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_chatlogs_application_id ON chat_logs(application_id)")
+
+
+
+Index Naming Conventions (Best Practice)
+Index Name	Target Field(s)
+idx_<table>_<column>	Single column index
+idx_<table>_<col1>_<col2>	Composite index
+
+
+
+Summary: How to Create Index in Backend
+Method	How to Do It	When to Use
+Raw SQL	CREATE INDEX ...	Quick CLI or manual setup
+SQLAlchemy ORM	__table_args__ = (Index(...),)	Auto-index with model
+Alembic Migration	op.create_index(...)	Production-safe upgrades
+Programmatically in Code	conn.execute("CREATE INDEX ...")	One-time setup via script
+
+
 
 
 
