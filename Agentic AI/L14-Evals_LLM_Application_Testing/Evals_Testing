@@ -1,0 +1,26 @@
+https://cookbook.openai.com/examples/evaluation/getting_started_with_openai_evals
+An eval is a task used to measure the quality of the output of an LLM or LLM system.
+Given an input prompt, an output is generated. We evaluate this output with a set of ideal answers and find the quality of the LLM system.
+
+How different model versions and prompts might affect your use case.
+Developing a suite of evals customized to your objectives will help you quickly and effectively understand how new models may perform for your use cases.
+You can also make evals a part of your CI/CD pipeline to make sure you achieve the desired accuracy before deploying.
+
+Matching Eval 
+JSON Eval 
+Model Grading - LLM as a Judge 
+     Model grading works best with the latest, most powerful models like GPT-4 and if we give them the ability to reason before making a judgment.
+     Model grading will have an error rate, so it is important to validate the performance with human evaluation before running the evals at scale.
+
+Human evaluation before running the evals at scale  - ?
+
+OpenAI Evals
+we have discovered several "templates" that accommodate many different benchmarks.
+Basic Eval Templates: These contain deterministic functions to compare the output to the ideal_answers. In cases where the desired model response has very little variation, such as answering multiple choice questions or simple questions with a straightforward answer, we have found this following templates to be useful. 
+Model-Graded Templates: These contain functions where an LLM compares the output to the ideal_answers and attempts to judge the accuracy. In cases where the desired model response can contain significant variation, such as answering an open-ended question, we have found that using the model to grade itself is a viable strategy for automated evaluation.
+
+
+The test dataset in the jsonl format.
+
+
+
