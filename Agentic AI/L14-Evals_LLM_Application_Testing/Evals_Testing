@@ -300,6 +300,16 @@ NLI models	Checking entailment (faithfulness)
 Embedding models	Semantic similarity (context & answer relevance)
 Rule-based logic	Combining scores and thresholds
 
+What is HumanEval?
+HumanEval is:
+A set of 164 hand-written Python programming problems
+Each problem includes:
+A function signature
+A docstring describing the task
+A set of unit tests to check correctness
+The idea is to prompt the model to generate the body of the function, and then automatically test its output.
+
+
 NLP Metric Definition 
 -----------------------------
 F1 Score (in NLP, usually token-based)
@@ -314,6 +324,9 @@ Metric	Focus	Formula Type	Notes
 F1	Balance of P/R	Harmonic mean of Precision and Recall	Common in QA, NER
 ROUGE	Recall	n-gram overlap, LCS	Good for summarization, QA
 BLEU	Precision	Geometric mean of n-gram precisions × BP	Common in translation
+
+
+
 
 
 
