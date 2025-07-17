@@ -340,8 +340,170 @@ ROUGE	Recall	n-gram overlap, LCS	Good for summarization, QA
 BLEU	Precision	Geometric mean of n-gram precisions × BP	Common in translation
 
 
+AI Agents Metrics
+-----------------
+Agentic AI's Web Search and Reasoning capabilities involves a multi-dimensional approach. 
+- Compile a dataset of queries that cover
+  Typical Searches 
+  Edge Cases - vague, ambiguous or trick questions
+  Multi-Step Tasks - requiring search + synthesis 
+
+Agent Capabilities Evaluation - Planing and Multi-Step Reasoning  - AQUA-RAT
+                                Function Calling - Tool Use 
+                                Self-Reflection 
+                                Memory 
+                          
+Application-Specific Agent Evaluation - 
+Generalist Agents Evaluation 
+Frameworks for Agent Evaluation 
+
+--------------------------------------------------------------------------------------------------------
+** Evaluating Agentic AI is different from evaluating a static model. Why?
+Static LLMs	Agentic AI Systems
+One-off input/output	Multi-step behavior over time
+Measured via accuracy	Measured via task success, safety, coherence, etc.
+Often benchmarked with QA sets	Often benchmarked with simulations, environments, or real-world tasks
+
+Task Completion (Success Rate)
+Does the agent achieve the end goal?
+Used in benchmarks like:
+WebArena (agents navigating websites)
+ALFWorld (in virtual homes)
+Toolformer (tool usage)
+✅ Metric: Success Rate, Exact Match, Goal Achievement
 
 
+Planning & Reasoning Quality
+Can the agent plan logically and break down the task?
+Metrics:
+Coherence of plans
+Accuracy of intermediate reasoning steps
+Validity of tool calls
+
+Tools like ReAct, AutoGPT log intermediate thoughts and actions for analysis.
+
+
+Safety and Alignment
+Does the agent act safely and within constraints?
+
+✅ Metrics:
+Adherence to rules
+Avoiding unsafe actions
+Human-in-the-loop assessment
+E.g., red-teaming with adversarial prompts
+
+Tool Use Effectiveness
+Can the agent use APIs, calculators, or memory correctly?
+✅ Metrics:
+Accuracy of tool call arguments
+Efficiency: # of tool calls to goal
+Tool misuse rate
+
+Interactivity and Adaptability
+Can the agent adapt when goals or environments change?
+✅ Metrics:
+Response to user clarification
+Adaptation in unfamiliar situations
+Robustness to ambiguous input
+
+
+Evaluation Frameworks for Agents
+Some emerging tools and frameworks:
+
+Framework	Description
+LangChain Benchmarks	For LLM-based agents using tools
+OpenAI Evals	Can test multi-turn or tool-using agents
+WebArena	Browsing-based environment for evaluating agents
+AutoEval (AutoGPT)	Test workflows with custom goals
+LEGOEval	Structured, stepwise benchmarks for agent plans
+
+
+Summary: Key Evaluation Dimensions
+Category	Metrics / Methods
+Task success	Success rate, accuracy, completion
+Reasoning	Step correctness, plan coherence
+Tool use	Tool call accuracy, efficiency, success/fail
+Safety	Rule violations, harmful outputs
+Adaptability	Robustness to ambiguity or new goals
+Efficiency	Steps to completion, unnecessary actions
+
+
+How to Test 
+
+Define the Agent Domain and Capabilities 
+What kind of agent are you testing?
+E.g., Task automation? Web navigation? Code writing? Tool use?
+What tools can it use?
+E.g., calculator, database, web browser, APIs
+Example: Agent that answers questions by searching documents and using a calculator.
+
+Create Testset Schema
+{
+  "test_id": "task-001",
+  "description": "Answer a math question using calculator tool.",
+  "input": "What is 125.4 * (2.3 + 0.6)?",
+  "expected_behavior": [
+    "Use calculator tool",
+    "Compute correct expression",
+    "Return 125.4 * 2.9 = 363.66"
+  ],
+  "expected_output": "363.66",
+  "tools_available": ["calculator"],
+  "constraints": ["must use tool", "no hardcoded answer"]
+}
+
+
+Define Evaluation Criteria per Test
+Each test should define:
+
+Criterion	Description
+Task Success	Did the agent complete the goal?
+Correctness	Is the final output correct?
+Steps Taken	Were the reasoning/tool steps valid?
+Tool Use	Were tools used correctly and efficiently?
+Safety	Did the agent follow constraints/rules?
+Efficiency	Was the task done with minimal steps?
+
+
+Automate Evaluation (Optional)
+Use code or frameworks to auto-grade:
+Correctness via string match or custom logic
+Tool usage via agent logs
+Safety via rule checks
+Step-by-step trace comparison (if agent logs intermediate thoughts)
+You can implement in Python, or use frameworks like:
+🔧 LangChain Benchmarks
+🧪 OpenAI Evals
+🧠 AgentBench
+🕸️ WebArena (for web-based tasks)
+
+
+
+
+
+Example Test Case for Tool-Using Agent (Simple Calculator)
+{
+  "test_id": "calc-002",
+  "description": "Agent should use the calculator to compute a compound expression.",
+  "input": "What is (5 + 10) * (4 / 2)?",
+  "expected_output": "30.0",
+  "tools_available": ["calculator"],
+  "evaluation_criteria": {
+    "used_tool": true,
+    "correct_answer": true,
+    "steps_logged": ["call calculator with 5 + 10", "call calculator with 4 / 2", "multiply results"]
+  }
+}
+
+
+Checklist for Building a Good Agent Test Set
+Checklist Item	Description
+📌 Goal defined	Clear and specific outcome expected
+⚙️ Tools specified	What tools are available and expected to be used
+🧪 Evaluation plan	Criteria to mark pass/fail
+🗂️ Coverage	Tasks vary in complexity, domain, tool usage
+🔄 Repeatability	Test runs can be logged and re-evaluated consistently
+🧼 No data leakage	Tasks not copied from training data if testing generalization
 
 
 
