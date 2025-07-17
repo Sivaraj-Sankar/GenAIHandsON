@@ -286,6 +286,36 @@ Pipeline for RAG - Evaluation
 ROUGE/BLEU  - Token overlap (for summaries/QA) 
 
 
+Metric	What It Measures	Score Range	Type
+Faithfulness	How factually accurate the generated answer is w.r.t the retrieved context	0 to 1	NLI-based / QA - Uses an NLI model (e.g., DeBERTa or a fine-tuned LLM) to check entailment
+Answer Relevance	How relevant the generated answer is to the original question	0 to 1	Semantic Similarity - Uses sentence embeddings to measure semantic similarity (e.g., SBERT or OpenAI)
+Context Precision	How much of the retrieved context is actually useful or relevant to the answer	0 to 1	Information Precision - Uses embeddings + overlap analysis with generated answer
+Context Recall	How much of the answer is supported by the retrieved context	0 to 1	Information Recall Measures how much of the answer is grounded in the retrieved context
+Context Relevance	How relevant the retrieved documents are to the question	0 to 1	Semantic Similarity  Also embedding-based similarity between context and question
+Answer Correctness (optional)	How correct the answer is (if a reference or gold answer is provided)	0 to 1	QA metric (e.g., EM/F1) - If enabled, uses QA metrics like Exact Match (EM) or F1 — optionally via LLM
+
+Type of Model	Used For
+LLMs	Answer evaluation, faithfulness, correctness
+NLI models	Checking entailment (faithfulness)
+Embedding models	Semantic similarity (context & answer relevance)
+Rule-based logic	Combining scores and thresholds
+
+NLP Metric Definition 
+-----------------------------
+F1 Score (in NLP, usually token-based)
+Used in QA, NER, and classification.
+Precision = \frac{\text{# of overlapping tokens}}{\text{# of tokens in predicted answer}}
+Recall = \frac{\text{# of overlapping tokens}}{\text{# of tokens in reference answer}}
+ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
+Measures n-gram overlap between reference and generated text. Focuses more on recall.
+Used for machine translation, measures precision of n-grams up to n=4.
+
+Metric	Focus	Formula Type	Notes
+F1	Balance of P/R	Harmonic mean of Precision and Recall	Common in QA, NER
+ROUGE	Recall	n-gram overlap, LCS	Good for summarization, QA
+BLEU	Precision	Geometric mean of n-gram precisions × BP	Common in translation
+
+
 
 
 
