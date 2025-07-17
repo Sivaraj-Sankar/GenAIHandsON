@@ -505,6 +505,67 @@ Checklist Item	Description
 🔄 Repeatability	Test runs can be logged and re-evaluated consistently
 🧼 No data leakage	Tasks not copied from training data if testing generalization
 
+---------------------------------
+Standardized Leaderboards & Real‑World Frameworks
+HAL (Holistic Agent Leaderboard)
+An open platform from Princeton that offers standardized, cost‑aware, and third‑party evaluations across 13 benchmarks and 122 agents. It allows reproducible agent testing with failure analysis and detailed logging.
+https://hal.cs.princeton.edu/?utm_source=chatgpt.com
+Agent Leaderboard (Galileo / Hugging Face)
+Evaluates agents across multi-domain tasks (tool use, reasoning, web, game, embodied). Highlights top-performing models like Gemini‑2.0‑flash (0.938 overall) and GPT‑4o (0.900), with detailed breakdowns on tool calling, irrelevance detection, and parallel execution. 
+https://huggingface.co/blog/pratikbhavsar/agent-leaderboard?utm_source=chatgpt.com
+
+Specialized & Domain‑Driven Benchmarks
+MAPS (Multilingual Agent Performance & Security)
+A recent benchmark suite evaluating agents across translated tasks in 10 languages (8,855 total instances), based on GAIA, SWE‑bench, MATH, and Security benchmarks. Shows consistent performance and safety degradation in non‑English languages
+
+MLR‑Bench (Machine Learning Research Benchmark)
+Contains 201 ML research tasks from recent ICLR, NeurIPS, and ICML workshops. Tests agents on generating ideas, experimentation, and writing, assessed via an automated judge. Agents struggle especially with invalid or fabricated results.
+
+ML Research Benchmark (MLRB)
+Focuses on competition-level machine learning challenges, including training efficiency and model compressions. Tested on agents like Claude‑3.5 and GPT‑4o; results show wide performance variation and limitations.
+
+
+TimeSeriesGym
+Designed for evaluating ML engineering agents on time-series data challenges: data handling, code generation, model submission, and evaluation via numeric and LLM metrics
+
+ML‑Dev‑Bench
+Open‑source benchmark with 30 realistic end‑to‑end ML development tasks—including preprocessing, debugging, implementation tweaks, fine‑tuning. Framework named Calipers used across agent evaluations (ReAct, OpenHands, AIDE), revealing modest success rates, especially in open‑ended or optimization tasks.
+
+
+Emerging & Critical Domain Benchmarks
+AgentBoard
+Multi-domain benchmark covering embodied simulations, games, web navigation, and function/tool usage. Uses fine-grained progress-based evaluation rather than simple final scores
+https://www.generativemodels.ai/blog/llm-agent-benchmarks/?utm_source=chatgpt.com
+τ‑Bench (Sierra)
+Designed to simulate real-world retail/customer service tasks, measuring agent reliability across repeated runs (pass^k metrics). Highlights brittleness in even top agents like GPT‑4o failing at long-horizon consistency tasks
+https://sierra.ai/blog/benchmarking-ai-agents?utm_source=chatgpt.com
+CollaborativeAgentBench (ColBench)
+Developed by Meta/UC Berkeley using SWEET‑RL. Evaluates collaborative human‑agent interaction in tasks like frontend design and backend programming. Agents must iteratively refine outputs with limited turns (~10). 
+https://www.reddit.com/r/machinelearningnews/comments/1jhmui7/?utm_source=chatgpt.com
+https://www.reddit.com/r/machinelearningnews/comments/1jhmui7/meta_ai_researchers_introduced_sweetrl_and/?utm_source=chatgpt.com
+Benchmark Integrity & Reliability Concerns
+A recent analysis argues that many existing benchmarks are flawed, finding that 7 out of 10 popular agent benchmarks suffer major validity issues (e.g. broken simulators, no gold labels, overoptimistic scoring). A proposed 43-item Benchmark Checklist aims to ensure rigorous task validity, outcome validity, and reporting transparency
+
+Benchmark	Domain / Focus	Highlights
+HAL	Broad agent evaluation framework	Standardized, reproducible, cost-aware
+Agent Leaderboard	Multi‑domain tool & reasoning performance	High-ranking: Gemini‑2.0, GPT‑4o
+MAPS	Multilingual performance & security	Performance drops outside English
+https://arxiv.org/abs/2505.15935?utm_source=chatgpt.com
+MLR‑Bench	Open-ended ML research tasks	Strong reasoning; weak experiments
+https://arxiv.org/abs/2505.19955?utm_source=chatgpt.com
+MLRB (ML Research Benchmark)	ML engineering competition tasks	Mixed performance; model reliability issues
+https://arxiv.org/abs/2410.22553?utm_source=chatgpt.com
+TimeSeriesGym	Time-series engineering tasks	Scalable ML engineering evaluation
+https://arxiv.org/abs/2505.13291?utm_source=chatgpt.com
+ML‑Dev‑Bench	Real-world ML workflows	Low success rates in practical tasks
+https://www.reddit.com/r/AI_Agents/comments/1itv4qf/?utm_source=chatgpt.com
+AgentBoard	Embodied / web / game / tool use	Fine-grained progress tracking
+τ‑Bench	Customer service & retail simulation	Highlights consistency failure
+ColBench	Human‑agent collaborative tasks	Iterative refinement under limited turns
+
+
+
+
 
 
 
