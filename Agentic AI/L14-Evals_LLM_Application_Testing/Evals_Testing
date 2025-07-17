@@ -50,7 +50,198 @@ Add a YAML file under evals/registry/evals/.
 Use a built-in class (like Match, CompletionFnEval) or implement a custom one in evals/elsuite/.
 Run with oaieval.
 
+Accuracy - Percentage of correct outputs (model prediction exactly matches the target/expected output).
+Used in: Match, MCQA, BasicEval, MultipleChoice
 
+Exact Match (EM)
+Used in: QA-type tasks (e.g. SQuAD-style)
+Definition: The model's response must exactly match the expected answer (after normalization like removing punctuation, case, etc.).
+
+Pass@k (in coding tasks)
+Used in: HumanEval or other code generation evals
+Definition: Measures the probability that at least one of the top-k model generations passes all test cases.
+For instance, pass@1 means the first generation was fully correct.
+
+BLEU / ROUGE / F1 (less common in default suite)
+Used in: Free-text generation tasks
+Definition: These compare n-gram overlaps (ROUGE for recall, BLEU for precision, F1 for balance) between generated and reference texts.
+
+5. Custom Metrics
+You can define your own metrics inside custom evaluation classes.
+
+Eval Class	Metric(s) Used
+Match	Accuracy
+MCQA / MultipleChoice	Accuracy
+CodeEval / HumanEval	Pass@1, Pass@k
+QA	Exact Match, optionally F1
+Critique	Match, or custom judgment
+Custom Class	Anything you define
+
+Pass@K
+It's widely used in code generation benchmarks (like HumanEval) because:
+Pass@k ≈ (# of problems where any of the top k solutions passed all tests) / (total problems)
+If only one solution is correct, and you sample without replacement, OpenAI uses a statistical estimation for pass@k:
+
+Pass@k
+=
+1
+−
+(
+𝑛
+−
+𝑐
+𝑘
+)
+(
+𝑛
+𝑘
+)
+Pass@k=1− 
+( 
+k
+n
+​
+ )
+( 
+k
+n−c
+​
+ )
+​
+n = number of generations
+
+c = number of correct generations
+
+k = how many generations you allow (top-k)
+
+Use Case	Measures how well models can solve tasks with multiple tries
+
+
+To use the Pass@k metric, your dataset must be structured for code generation tasks — meaning each sample should include
+A code prompt (like a docstring or problem description).
+A set of unit tests or an expected function signature.
+(Optional) A reference solution for comparison.
+
+This format allows the model to generate code, which can then be executed and tested for correctness.
+
+
+{
+  "task_id": "reverse_string",
+  "prompt": "\"\"\"\nWrite a function to reverse a string.\n\"\"\"\ndef reverse_string(s):",
+  "tests": [
+    {"input": "\"hello\"", "output": "\"olleh\""},
+    {"input": "\"OpenAI\"", "output": "\"IAnepO\""}
+  ]
+}
+
+for more advanced evals (like HumanEval), the prompt itself includes the test code.
+
+Example from HumanEval (used by OpenAI)
+Each item contains a docstring prompt, and the evaluation framework runs hidden test cases against the generated code.
+{
+  "task_id": "HumanEval/0",
+  "prompt": "def add(a, b):\n    \"\"\"Return the sum of a and b.\"\"\"",
+  "entry_point": "add",
+  "test": "assert add(2, 3) == 5"
+}
+
+The evaluation script:
+Appends the model's code completion to the prompt.
+Runs the resulting function.
+Executes hidden or public test cases.
+Checks whether the generated code passes all tests.
+
+🧠 Key Fields for Pass@k Dataset
+Field	Description
+prompt	The code generation prompt (often includes docstring + function signature).
+entry_point	The function name to test (e.g., reverse_string).
+test	Code that tests the function (e.g., assert reverse_string("abc") == "cba").
+task_id	(Optional) Unique identifier for the task.
+
+What the Evals Framework Does
+For Pass@k metrics, the framework:
+Generates k completions from the model for each prompt.
+Appends each completion to the prompt to form a complete function.
+Executes the function in a sandboxed environment (e.g., Docker or subprocess).
+Runs test cases against the function.
+Checks if any of the completions pass all tests.
+Aggregates how many tasks had at least one successful generation.
+
+{"task_id": "sum_two", "prompt": "def sum_two(a, b):\n    \"\"\"Return sum of a and b\"\"\"", "entry_point": "sum_two", "test": "assert sum_two(3, 4) == 7"}
+{"task_id": "is_even", "prompt": "def is_even(n):\n    \"\"\"Return True if n is even.\"\"\"", "entry_point": "is_even", "test": "assert is_even(2) == True"}
+
+evals:
+  - id: my_code_eval
+    class: evals.elsuite.modelgraded.code_eval:CodeEval
+    args:
+      samples_jsonl: evals/registry/data/my_code_tasks.jsonl
+
+
+Create a small working code-gen dataset
+Write a YAML config
+Run it with oaieval
+See Pass@k results
+
+
+-------------
+You don’t manually add the model-generated code output. The evals system automatically generates code from the model based on your prompt and evaluates it.
+Full Flow of Code Evaluation (e.g., Pass@k)
+
+Step 1: You provide the dataset
+{
+  "task_id": "reverse_string",
+  "prompt": "def reverse_string(s):\n    \"\"\"Reverses the input string.\"\"\"",
+  "entry_point": "reverse_string",
+  "test": "assert reverse_string('hello') == 'olleh'"
+}
+
+Step 2: You run the command
+oaieval gpt-4 my_code_eval
+
+evals:
+  - id: my_code_eval
+    class: evals.elsuite.modelgraded.code_eval:CodeEval
+    args:
+      samples_jsonl: evals/registry/data/my_code_eval.jsonl
+
+Step 3: evals asks the model to complete the prompt
+The framework automatically:
+Sends the prompt (e.g., def reverse_string(s): """Reverses the input string.""") to the model.
+Gets back a code completion, such as:
+
+   return s[::-1]
+
+This is not saved manually by you — the framework handles this during the run.
+
+
+def reverse_string(s):
+    """Reverses the input string."""
+    return s[::-1]
+
+
+Step 4: The generated code is tested
+The system combines the model’s output with your test (from the dataset), like:
+def reverse_string(s):
+    """Reverses the input string."""
+    return s[::-1]
+
+assert reverse_string('hello') == 'olleh'
+
+
+This is executed in a safe environment.
+If the code passes all tests, it's a pass.
+For Pass@k, this is repeated k times — if any one generation passes, it counts.
+
+
+The model-generated code is created at runtime by oaieval.
+It's not added to the dataset file.
+The results (pass/fail for each task, and optionally the generated code) are saved in the evals/runs/ directory after you run the eval.
+
+
+Want to Save the Model Outputs?
+If you want to see or analyze the generated code completions:
+evals/runs/{your_run_id}/samples.jsonl
+Each entry will include the prompt, completion, and test results.
 
 
 
