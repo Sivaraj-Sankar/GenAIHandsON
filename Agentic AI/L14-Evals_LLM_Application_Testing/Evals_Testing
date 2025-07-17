@@ -1,3 +1,17 @@
+1) How to Evaluate with OpenAIEval 
+2) How to Evalute the Code by HumanEval 
+3) Pass@k
+4) Exact Match 
+5) BLEU - Summarization, Translation
+6) ROUGE - Recall - For QA, 
+7) F1 - Recall - overlap tokens/token in grounded answer 
+        Precision - overalap tokens/token in generated answer 
+8) EM/F1 - Answer Correctness - Groundedness 
+9) Top Benchmark - hellaswag - common sense reasoning , Grade School Math, BB, ARC - Science Question , MMLU - Multi Choice Answer 
+10) Common NLP Metrics 
+11) RAGAS Evaluation - metrics , models used 
+
+
 https://cookbook.openai.com/examples/evaluation/getting_started_with_openai_evals
 An eval is a task used to measure the quality of the output of an LLM or LLM system.
 Given an input prompt, an output is generated. We evaluate this output with a set of ideal answers and find the quality of the LLM system.
