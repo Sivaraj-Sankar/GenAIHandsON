@@ -10,6 +10,11 @@ Authentication Methods
 Session-Based Authentication 
 Query Param 
 MongoDB - Key  
+FrontEnd Interview Preparation 
+UML
+Figma
+LLM Orchestration 
+
 
 
 
@@ -847,6 +852,7 @@ Project Structure	Clean, modular, reusable components
 
 
 UML 
+---
 UML stands for Unified Modeling Language.
 It’s a visual language used to model, design, and describe software systems.
 
@@ -972,7 +978,70 @@ Do I design in it as a dev?	No — you read, inspect, and extract styles/assets
 Why is it important?	It helps you turn designs into accurate frontend code
 What can I get from Figma?	Fonts, colors, spacing, icons, layout, and even CSS suggestions
 
+LLM Orchestration
+-----------------
+Tool/Framework	Role in Orchestration
+LangChain	Prompt chaining, agent creation, tool use
+LlamaIndex	Indexing and retrieval for RAG
+Semantic Kernel	Microsoft’s orchestration for AI workflows
+CrewAI / AutoGen	Agent-based orchestration
+OpenAI Functions	Let LLMs call tools & APIs
 
+Prompt Management:
+Dynamically generating and structuring prompts.
+Using prompt templates and chaining them across tasks.
+
+Tool Use / Tool Integration:
+Letting the LLM use external tools or APIs (e.g. search engines, calculators, databases).
+Frameworks like LangChain, LlamaIndex, and Semantic Kernel handle this.
+
+Memory & Context Management:
+Storing and retrieving conversation history, long-term memory, or user data.
+Avoiding LLM context window limitations.
+
+Agent Management:
+Using LLMs to create autonomous agents that can plan, decide, and act.
+Orchestrating how these agents interact with one another or with humans.
+
+Workflow Control / Task Planning:
+Structuring tasks into sequences (e.g. first get data → then analyze → then report).
+Handling branching logic, retries, or human-in-the-loop steps.
+
+Data Augmented Generation (RAG):
+Combining the LLM with real-time or external knowledge sources.
+Retrieval-Augmented Generation is a common orchestration technique.
+
+
+Scalability: Enables building full applications (not just chatbots).
+Robustness: Manages edge cases, failures, and retries.
+Interactivity: Makes LLMs work with tools, APIs, and users dynamically.
+Customization: Allows tailoring responses to business or user-specific needs.
+
+
+Key Points Have to Address 
+1) Intially Worked as the Software Developer 
+   Facilitate the Settlement & Payment System 
+   Testing - Unit Testing, UAT Testing, 
+   Release Mangement 
+   Production Support Root Cause Analysis 
+   Interacting with Client 
+So I'm Proficient with Complete Software Development Lifecycle SDLC and BFSI Domain Knowledge 
+
+2) I have Crossed Skilled from scracth in AI/ML Technologies and then got opportunities to Work as a AI Engineer 
+  So I'm currently working in Developing the Agentic RAG System, The Usecase is to do the end-end to analysis & assessment for Loan Approval Process for institutional borrowers
+so here my contribution is 
+    in Data Engineering
+       LLM Orchestration 
+       LLM Application Testing 
+
+3) These are my skillsets I have in GenAI tech 
+
+i would like to do Research Every day to get up to date with AI Technologies 
+4) and my strength is I'm good at Mathematically understanding the Artifical Intellgience, So Could able to contribute more and optimize and provide the Good Strategies in use of AI Technologies 
+
+
+
+ 
 
 
 
