@@ -22,5 +22,37 @@ Model-Graded Templates: These contain functions where an LLM compares the output
 
 The test dataset in the jsonl format.
 
+Model Name: The model you want to evaluate (e.g., gpt-4, gpt-3.5-turbo, or a custom model via API).
+Eval Name: A benchmark/test name defined in a YAML file.
+YAML Files: Located in evals/registry/evals, they define input datasets, metrics, and settings.
+Eval Implementations: Python code in evals/elsuite/ contains the logic for how evaluations are run (like multiple-choice grading, QA grading, etc.).
+
+Two CLI Tools
+oaieval — runs a single evaluation.
+oaievalset — runs a batch of evaluations defined in a YAML file.
+
+export OPENAI_API_KEY=your-api-key
+evals set-api-key your-api-key
+
+oaieval gpt-4 mathqa
+The name of the eval (defined in evals/registry/evals/mathqa.yaml)
+
+evals:
+  - id: mathqa
+    class: evals.elsuite.basic.match:Match  # Implementation
+    args:
+      samples_jsonl: evals/registry/data/mathqa_samples.jsonl
+
+Creating Your Own Eval
+oaievalset evals/registry/eval_sets/my_eval_set.yaml
+Write your samples in .jsonl (e.g., question/answer format).
+Add a YAML file under evals/registry/evals/.
+Use a built-in class (like Match, CompletionFnEval) or implement a custom one in evals/elsuite/.
+Run with oaieval.
+
+
+
+
+
 
 
