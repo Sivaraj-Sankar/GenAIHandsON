@@ -243,6 +243,51 @@ If you want to see or analyze the generated code completions:
 evals/runs/{your_run_id}/samples.jsonl
 Each entry will include the prompt, completion, and test results.
 
+MMLU: https://github.com/hendrycks/test
+BBH (Big-Bench Hard): https://github.com/suzgunmirac/BIG-Bench-Hard
+ARC: https://github.com/allenai/ai2-arc
+GSM8K: https://github.com/openai/grade-school-math
+HellaSwag: https://github.com/rowanz/hellaswag
+
+Benchmark	Task Type	Primary Metric(s)
+MMLU	Multiple-choice QA	Accuracy
+HellaSwag	Commonsense reasoning	Accuracy
+ARC	MC science questions	Accuracy (Challenge set is more difficult)
+GSM8K	Grade-school math	Accuracy (exact match of final answer)
+BBH	Diverse hard tasks	Mostly Accuracy, sometimes F1 or BLEU (task-dependent)
+
+Some newer evaluations (e.g., for BBH) use chain-of-thought prompting, so you might also see "CoT@1" or "Majority@k" metrics.
+For GSM8K, programs might be evaluated for correct numerical answer, not just textual output.
+Evaluation Tools
+To evaluate models on these datasets:
+Use the Hugging Face evaluate library
+Or tools like lm-evaluation-harness by EleutherAI, which supports:
+
+python main.py --model hf --model_args pretrained=gpt2 --tasks arc,hellaswag,mmlu --device cuda
+
+
+
+RAG Evaluation 
+Evaluating Generation - Groundedness/Faithfulness
+Evaluating Hallucination - 
+Attribution/Grounding Tests - 
+
+Answer Relevance - Correctly answered for Query 
+Context Relevance  - Retreived Correct Context for the Query 
+Groundedness  - Context Retrieved and Answer Generated are faithful or not, or hallunicated 
+
+Pipeline for RAG - Evaluation 
+  {"query":
+  "retrieved_docs":
+  "generated_answer":
+  gold_answer":
+}
+
+ROUGE/BLEU  - Token overlap (for summaries/QA) 
+
+
+
+
 
 
 
