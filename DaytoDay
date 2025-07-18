@@ -1156,6 +1156,52 @@ class LRUCache:
 
 
 
+1. LeetCode - Two Sum  - 1
+     num_map = {}
+     for i, num in enumerate(nums):
+           complement = target - num 
+           if complement in num_map:
+              return [num_map[complement],i]  
+           num_map[num] = i 
+
+2. LeetCode - Contains Duplicate - 217
+a = [1, 2, 3]
+if len(a) == len(set(a)):
+    print("False")
+else:
+    print("True")
+
+3. LeetCode ---> Intersection of Two Arrays   --> 350  
+from collections import Counter
+
+def intersect(nums1, nums2):
+    counts = Counter(nums1)  # Step 1
+    result = []
+
+    for num in nums2:  # Step 2
+        if counts[num] > 0:  # Step 3
+            result.append(num)
+            counts[num] -= 1  # Step 4
+
+    return result
+
+
+
+
+
+
+
+1. Storing , and after that checking that if present or not
+
+
+
+
+
+set --> add()
+
+
+
+
 
 
 
