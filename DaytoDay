@@ -1185,6 +1185,24 @@ def intersect(nums1, nums2):
 
     return result
 
+4. LeetCode - Valid Anagram - 242 
+
+5. LeetCode - Group Anagram - 49 
+Hash_map and sorted - defaultdict
+defaultdict(int,str,set,dict) 
+
+
+6. Leetcode - Subset - distinct integer - powerset - 78
+   Backtracking / DFS
+   Use recursion to include or exclude each element.
+a = [1,2,3]
+
+results = [[]]
+for i in a:
+    print(results)
+    results = results + [curr + [i] for curr in results]
+    print(results)
+print(results)
 
 
 
@@ -1192,6 +1210,13 @@ def intersect(nums1, nums2):
 
 
 1. Storing , and after that checking that if present or not
+2. Removal of list in if condition, not in the for loop 
+3. Two Pointer Concept i and j alone 
+4. from collections import Counter 
+5. from collections import OrderedDict 
+6. from collections import defaultdict 
+7. sorted(,key=) will not work for list 
+
 
 
 
