@@ -1119,6 +1119,42 @@ class Person:
 p = Person.from_string(" Alice ")
 print(p.name)  # Alice
 
+16. from functools import lru_cache
+
+@lru_cache(maxsize=3)
+def fetch_data(x):
+    print(f"Fetching {x}...")
+    return x * x
+
+fetch_data(2)
+fetch_data(3)
+fetch_data(4)
+fetch_data(2)  # This won't trigger the print because 2 is cached
+fetch_data(5)  # Evicts 3 (Least Recently Used if maxsize=3)
+
+
+
+from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        self.cache.move_to_end(key)  # mark as recently used
+        return self.cache[key]
+
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)  # remove least recently used
+
+
 
 
 
