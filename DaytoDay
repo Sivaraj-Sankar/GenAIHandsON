@@ -1097,6 +1097,28 @@ print(Color.RED == Color.GREEN) # False
 for color in Color:
     print(color.name, color.value)
 14.nums = list(map(int, input("Enter numbers: ").strip().split()))
+15.class MyClass:
+    class_var = 0
+
+    def __init__(self):
+        MyClass.class_var += 1
+
+    @classmethod
+    def get_instance_count(cls):
+        return cls.class_var
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    @classmethod
+    def from_string(cls, data):
+        name = data.strip()
+        return cls(name)
+
+p = Person.from_string(" Alice ")
+print(p.name)  # Alice
+
 
 
 
