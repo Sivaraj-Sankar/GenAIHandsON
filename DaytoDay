@@ -1047,6 +1047,60 @@ GenAI Stack
 Programming Questions 
 
 
+Coding Question
+---------------
+1.sorted(x,key=) -> Done
+2. from collections import OrderedDict     -> Done
+dicts = OrderedDict({"siva":"ra","Siva":"daj"})
+dicts = OrderedDict([("siva","raj"),("dha","Siv"),("si","ra")])
+dicts.move_to_end("siva")
+print(dicts)
+3. zip   --> Done
+4. enumerate --> Done
+5. [expression for item in iterable if condition]  --> Done 
+6. Filter = list(filter(lambda,list)) - filter(None,list) -> Done
+7. Map = list(map(lambda,list) 
+8. Reduce = reduce(lambda x, y: x + y, numbers) 
+            reduce(lambda x, y: x if x > y else y, numbers)
+            reduce(lambda x, y: x + y, numbers, 10)
+9. a = defaultdict(int)
+       defaultdict(list) 
+       defaultdict(lambda: "Not Found")
+10. __slot__ -> avoid memory usage and speed up the attribute access, we can't add the attribut outside the class 
+11. class Person:
+    __slots__ = ['name', 'age']  # only these attributes are allowed
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p = Person("Alice", 30)
+print(p.name)  # Alice
+print(p.__slots__)  # ['name', 'age']
+12.enum 
+from enum import Enum
+
+class Color(Enum):
+    RED = 1
+    GREEN = 2
+    BLUE = 3
+13.# Access members
+print(Color.RED)          # Color.RED
+print(Color.RED.name)     # 'RED'
+print(Color.RED.value)    # 1
+
+# Comparison
+print(Color.RED == Color.RED)   # True
+print(Color.RED == Color.GREEN) # False
+
+# Iterating through members
+for color in Color:
+    print(color.name, color.value)
+14.nums = list(map(int, input("Enter numbers: ").strip().split()))
+
+
+
+
 
 
  
