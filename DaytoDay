@@ -1226,6 +1226,74 @@ set --> add()
 
 
 
+Major Difference B/w LangGraph/CrewAI/AutoGen
+LangGraph ---> Design Style -- Deterministic or semi-Deterministic graph flows ---> Orchestrating tasks with dependencies or branching logic 
+Stateful ---> Branching Logic B/w agent 
+Finite State Machines and conditional transitions 
+Eg: Document Review Pipeline, 
+
+CrewAI --> distinct roles, that collaborate on a task, 
+Desgin Style - Declarative , they figure out how to work together 
+
+AutoGen --> Conversational agent Orchestration, Agents interact via messages in a dialogue loop, like slack thread 
+Message-Passing Architecture 
+It emphasizes modularity, decoupling, and asynchronous or synchronous communication between agents.
+Central or Decentralized Coordination:
+A central orchestrator may route messages (centralized).
+Or agents may broadcast or subscribe to messages (decentralized/pub-sub).
+
+Communication via Messages:
+Agents don’t call each other directly.
+They send structured messages (e.g., JSON, protocol buffers) through a shared bus or coordinator.
+
+Interoperability:
+Makes it easier to integrate new tools, APIs, or models without tightly coupling them.
+
+Why Use Message Passing in Agentic Systems?
+Agentic systems often need:
+Flexible multi-agent collaboration.
+Dynamic task delegation and reasoning.
+Interpretable workflows.
+Message passing enables this, especially for complex tasks that require planning, tool use, and memory.
+Think of message passing as a team of specialists (agents) emailing each other tasks and results. Contrast that with a single boss micromanaging everyone by directly telling each person what to do and waiting for a response (function calls).
+
+
+Feature	Message Passing	Monolithic / Function Call-Based
+Modularity	High — components loosely coupled	Low — components tightly coupled
+Scalability	High — easy to add/replace agents	Low — harder to scale modularly
+Communication	Explicit via messages	Implicit via direct calls
+Debugging	Easier (message logs)	Harder (trace deep call stacks)
+Parallelism	Easier (agents work concurrently)	Harder (synchronous by default)
+Examples	LangGraph, OpenDevin	Early AutoGPT, traditional scripts
+
+
+
+🔁 Message Passing Architecture in Agentic Frameworks
+A message passing architecture is a communication model where agents or components exchange structured messages to perform tasks collaboratively. It emphasizes modularity, decoupling, and asynchronous or synchronous communication between agents.
+
+✅ Key Characteristics:
+Modular Agents:
+Each agent performs a specific function (e.g., planner, executor, memory).
+Agents can be independently developed and maintained.
+Communication via Messages:
+Agents don’t call each other directly.
+They send structured messages (e.g., JSON, protocol buffers) through a shared bus or coordinator.
+Central or Decentralized Coordination:
+A central orchestrator may route messages (centralized).
+Or agents may broadcast or subscribe to messages (decentralized/pub-sub).
+Interoperability:
+Makes it easier to integrate new tools, APIs, or models without tightly coupling them.
+Traceability & Debugging:
+Every action can be traced through logs of message exchanges.
+
+📌 Examples in Agentic Systems:
+AutoGPT (to some extent): Task decomposition and tool execution steps are serialized and passed.
+LangGraph: Nodes (agents/tools) communicate via messages passed along graph edges.
+OpenAI's Function Calling with Agents: Messages between the planner and executor (via function calls and outputs).
+
+
+
+
 
 
 
