@@ -14,6 +14,10 @@ FrontEnd Interview Preparation
 UML
 Figma
 LLM Orchestration 
+Contextlib 
+Resources 
+
+
 
 
 
@@ -1016,6 +1020,65 @@ Scalability: Enables building full applications (not just chatbots).
 Robustness: Manages edge cases, failures, and retries.
 Interactivity: Makes LLMs work with tools, APIs, and users dynamically.
 Customization: Allows tailoring responses to business or user-specific needs.
+
+
+Contextlib
+1.The contextlib module in Python provides utilities for working with context managers, especially in more flexible or advanced ways
+2.Context managers are most commonly seen using the with statement, which ensures that certain setup and teardown operations are handled automatically
+ with open("file.txt") as f:
+      data = f.read()
+   automatically opens and closes file, even if the error occurs that's the power of context managers 
+3.@asynccontextmanager is like a context manager but for asynchronous code using async with
+4.It lets you define async setup and teardown code around a block — perfect for managing resources in FastAPI's app lifecycle.
+
+5.Lifespan -> @asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+This function will be run when the FastAPI app starts and stops.
+The underscore _ means you’re not using the app instance passed in.
+It yields None because we don’t return any special context value.
+6.In a context manager (sync or async), the yield splits the function into two phases:
+Setup phase (before yield)
+This runs before the with or FastAPI app starts.
+Teardown phase (after yield)
+This runs after the with block exits, or when the app is shutting down.
+7.So, yield is not returning a value here. It’s acting as a separator between setup and cleanup logic.
+8.[ setup code ]  →  yield (run app)  →  [ cleanup code ]
+
+
+Resources 
+---------
+1.In the context of FastAPI (or any server application), resources are things your application uses to do its job — and they often need to be initialized and then cleaned up properly.
+✅ Examples of Resources:
+Resource Type	Description
+Machine Learning Models	Models loaded into memory for inference.
+Database Connections	Connections to PostgreSQL, MongoDB, Redis, etc.
+Files / File Handles	Temporary files, open logs, images, etc.
+Network Connections	APIs, WebSockets, message queues, etc.
+Thread Pools / Workers	Background task runners, queues, schedulers.
+GPU Memory / RAM	Especially for ML or graphics-heavy applications.
+2.Because:
+They can be expensive to initialize (like loading a model or opening a DB).
+They can leak memory or cause crashes if not cleaned up.
+You only want to do setup once, not per request.
+
+Phase	What Happens
+Setup	Initialize or allocate the resource.
+Use	Use the resource to serve incoming requests.
+Cleanup	Release memory, close files or DB connections when the app shuts down.
+
+3.When your app connects to a database (like PostgreSQL, MySQL, MongoDB, etc.), it consumes multiple system and network-level resources
+Resource	Explanation
+TCP socket	A network connection between your app and the DB server
+File descriptors	Operating system resources to manage open sockets
+Memory	For query buffers, connection pools, and active result sets
+Database server resources	Each connection consumes CPU and memory on the database server side too
+Authentication tokens	Many DBs track and authenticate each active session
+
+Let’s say your API gets 100 requests per second. If you open and close a DB connection on every request, you are:
+Wasting time — Creating a connection is slow.
+Burning resources — Each connection uses memory, sockets, CPU.
+Risking DB overload — DB servers have limits on how many connections they allow.
+Missing optimization — You can't reuse open connections
 
 
 Key Points Have to Address 
