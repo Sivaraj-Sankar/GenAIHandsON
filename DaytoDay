@@ -1105,6 +1105,7 @@ Multiple migration files were created in parallel (e.g., via alembic revision --
 
 Use Alembic to create a merge file:
 alembic merge -m "Merge heads" <rev1> <rev2>
+alembic merge -m "Merge multiple heads" 477127da8ed3 fda4008df833
 
 This will create the new version 
 alembic/versions/xxxx_merge_heads.py
@@ -1122,6 +1123,39 @@ If working in a team, make sure everyone rebases or pulls latest Alembic heads b
 
 To Check the migration history
 alembic history --verbose
+
+
+Two Migration Scenario
+Branch 1
+b325ffedf54b_created_tables.py
+Parent: <base>
+This was the first migration created — from scratch.
+Tables were defined here initially.
+fda4008df833_added_column_ra_rr_risk_analysis.py
+Parent: b325ffedf54b
+This is a follow-up migration that added new columns related to risk analysis.
+This file continues the lineage of Branch 1.
+✅ Valid migration chain: <base> → b325ffedf54b → fda4008df833
+
+🟨 Branch 2 (conflicting)
+477127da8ed3_create_tables.py
+Parent: <base>
+This was created independently (also from <base>)
+This did not continue from the previous migrations; instead, it's like a new branch.
+
+Option 2: (Destructive) — Clean Reset (if migrations are broken)
+# Delete app/database.db
+rm app/database.db
+
+# Delete alembic/versions/*
+rm alembic/versions/*.py
+
+# Recreate single migration
+alembic revision --autogenerate -m "Initial unified schema"
+alembic upgrade head
+
+
+
 
 
 Resources 
