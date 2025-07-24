@@ -16,6 +16,7 @@ Figma
 LLM Orchestration 
 Contextlib 
 Resources 
+Alembic 
 
 Preparation 
 1.Async 
@@ -1053,6 +1054,74 @@ Teardown phase (after yield)
 This runs after the with block exits, or when the app is shutting down.
 7.So, yield is not returning a value here. It’s acting as a separator between setup and cleanup logic.
 8.[ setup code ]  →  yield (run app)  →  [ cleanup code ]
+
+
+Alembic 
+-------
+Check the Database
+sqlite3 app/database.db
+.tables
+.exit
+
+First-Time Setup (if database and Alembic config not set up yet)
+alembic init alembic
+
+Edit alembic.ini
+sqlalchemy.url = sqlite:///app/database.db
+
+alembic/env.py
+from app.models import application, document, borrower
+from sqlmodel import SQLModel
+
+target_metadata = SQLModel.metadata
+
+If you haven't already created the migration file:
+alembic revision --autogenerate -m "Create tables"
+
+Apply the migration to the database:
+alembic upgrade head
+
+Now your app/database.db file should be created with all the necessary tables.
+
+Check if the alembic_version is there 
+sqlite3 app/database.db ".tables"
+If you see a table called alembic_version, like this:
+alembic_version  application  borrower  document
+
+
+# Optional: check what version the DB is at
+alembic current
+
+# Ensure DB is up-to-date (safe to re-run)
+alembic upgrade head
+
+# Run your app
+fastapi dev app/main.py
+
+
+Multiple Migration files 
+------------------------
+Multiple migration files were created in parallel (e.g., via alembic revision --autogenerate) without merging.
+
+Use Alembic to create a merge file:
+alembic merge -m "Merge heads" <rev1> <rev2>
+
+This will create the new version 
+alembic/versions/xxxx_merge_heads.py
+
+alembic upgrade head
+
+After the Fix
+Only one head will remain.
+Future alembic revision will extend from the merged head.
+
+Caution
+Do not delete migration files manually.
+If working in a team, make sure everyone rebases or pulls latest Alembic heads before creating new revisions.
+
+
+To Check the migration history
+alembic history --verbose
 
 
 Resources 
