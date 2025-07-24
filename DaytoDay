@@ -1154,7 +1154,35 @@ rm alembic/versions/*.py
 alembic revision --autogenerate -m "Initial unified schema"
 alembic upgrade head
 
+Adding New Columns 
+alembic revision --autogenerate -m "Add CreditScore model / Add rating to Borrower"
+alembic/versions/abcd1234_add_creditscore_model.py
+Inside, Alembic will detect schema changes based on the difference between:
+Your current model definition (SQLModel.metadata)
+The latest DB schema (tracked in alembic_version)
 
+Review the migration file
+def upgrade():
+    op.add_column('borrower', sa.Column('rating', sa.String(), nullable=True))
+
+def downgrade():
+    op.drop_column('borrower', 'rating')
+
+Apply the migration
+alembic upgrade head
+
+
+See current DB version	alembic current
+See all migrations history	alembic history
+Undo last migration	alembic downgrade -1
+Recreate a fresh migration	alembic revision --autogenerate -m "..."
+Reset DB (dangerous)	Delete DB + re-apply all migrations
+
+Pitfall	Solution
+Forgetting to run --autogenerate	Always generate a revision after model change
+Editing DB manually	Avoid manual changes, use migrations
+Skipping alembic upgrade head	Always apply migration before running app
+Having multiple heads again	Don't create revisions in parallel branches
 
 
 
