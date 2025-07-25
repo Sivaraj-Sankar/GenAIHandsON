@@ -1190,7 +1190,7 @@ Enterprise Agent Settings
 Value if Right 
 Probability of Success 
 Cost if it is wrong 
-[P*V - (1-P)*C > Cost] of Running the Agent Put it in the Production 
+[P*V - (1-P)*C > Cost]*N of Running the Agent Put it in the Production 
 
 High Problem - High Value 
 Legal Space   - Lawyers & Research 
