@@ -8,3 +8,402 @@ Cloning the face
 
 Scanning the websites and Generating the Report 
 Database 
+
+
+- LLMs in Detection Engineering
+  -----------------------------
+A curated collection of Large Language Model (LLM) resources focused on automating the creation, validation, and optimization of security detection rules.
+Awesome GenAI CyberHub! 
+
+
+Problem Statement
+-----------------
+Exploring how LLMs are being utilized to translate threat intelligence or attack patterns into effective detection logic (e.g., Sigma, YARA, Snort rules), refine existing detections, and reduce false positives. Here, you'll find links to relevant articles, research papers, tools, datasets, and proof-of-concepts.
+
+
+
+Hackathon Links 
+---------------
+https://arxiv.org/pdf/2408.08902v1 -  Audit-LLM: Multi-Agent Collaboration for Log-based Insider Threat Detection
+https://arxiv.org/pdf/2407.05194 - LLMCloudHunter: Harnessing LLMs for Automated Extraction of Detection Rules from Cloud-Based CTI
+                                 - Presents an architecture merging SOC technologies (SIEM/XDR, SOAR, BAS, ChatGPT) into a detection engineering CI/CD pipeline for automatic creation, testing, and deployment of detection analytics.
+https://static.rainfocus.com/rsac/us24/sess/1696325909809001qy71/finalwebsite/2024_USA24_HTA-M03_01_The-Always-On-Purple-Team-An-Automated-CICD-for-Detection-Engineering_1713983129840001qmBZ.pdf
+https://arxiv.org/abs/2502.09385 - APT-LLM: Embedding-Based Anomaly Detection of Cyber Advanced Persistent Threats Using Large Language Models
+https://socradar.io/writing-yara-rules-with-custom-gpts-and-socradar-platform/ - YARA Rules 
+
+
+LLMs in Detection Engineering.
+This field explores how Large Language Models (LLMs) can be used to automate and enhance threat detection by translating natural language threat intelligence into machine-readable detection rules like Sigma, YARA, and Snort.
+
+1.LLMs in Cybersecurity
+Use: LLMs (like GPT-4, Claude, etc.) can read, understand, and generate human-like text.
+In Detection Engineering:
+Understand threat reports (written in English).
+Generate detection logic based on known behaviors (in YAML, JSON, Regex, etc.).
+Refine detections by reducing false positives.
+Map textual intelligence to structured rules for SIEMs, IDS/IPS, EDR, XDR, etc
+
+2. Detection Engineering
+This is the practice of creating and fine-tuning logic or rules to detect malicious activities across logs, network traffic, or system behaviors.
+
+3. Detection Rule Formats
+Here are 3 important rule formats LLMs can help generate:
+Format	Description	Target Tool
+Sigma	Generic signature format for logs	SIEMs (e.g., Splunk, ELK)
+YARA	Pattern-matching rules to identify malware	File scanning (e.g., VirusTotal)
+Snort	Rules for network intrusion detection	IDS/IPS (e.g., Snort, Suricata)
+
+malware - software that is specifically designed to disrupt, damage, or gain unauthorized access to a computer system.
+A brute force attack is a hacking method that uses trial and error to crack passwords, login credentials, and encryption keys
+Ransomware - a type of malicious software designed to block access to a computer system until a sum of money is paid:
+
+
+
+Rules Going to Generate 
+Format	Description	Target Tool
+Sigma	Generic signature format for logs	SIEMs (e.g., Splunk, ELK)
+YARA	Pattern-matching rules to identify malware	File scanning (e.g., VirusTotal)
+Snort	Rules for network intrusion detection	IDS/IPS (e.g., Snort, Suricata)
+
+
+Monitoring the IT Infrastructure 
+SIEMs, IDS/IPS, EDR, XDR
+SIEM (Security Information and Event Management)
+Purpose: Centralized logging, correlation, and alerting
+
+
+Collects logs from multiple systems: firewalls, servers, applications, etc.
+Correlates events to identify suspicious patterns (e.g., brute-force attempts).
+Alerts analysts via dashboards or notifications.
+Often used for compliance, auditing, and incident response.
+
+Examples:
+Splunk
+IBM QRadar
+Elastic SIEM
+Microsoft Sentinel
+LogRhythm
+
+IDS/IPS (Intrusion Detection/Prevention System)
+Purpose: Monitor network traffic for malicious activity
+IDS (Detection): Observes and alerts if suspicious activity is detected
+IPS (Prevention): Does what IDS does but also blocks or prevents that activity
+🛡️ Works at the network level (between firewall and internal network)
+
+Examples:
+Snort (IDS)
+Suricata
+Cisco Firepower (IPS)
+Palo Alto Threat Prevention
+
+
+EDR (Endpoint Detection and Response)
+Purpose: Detect threats on endpoints (laptops, servers)
+Monitors processes, file activity, memory, and network connections on endpoints
+Detects malware, ransomware, and lateral movement
+Provides capabilities for forensic analysis and remote response (e.g., kill process, isolate device)
+Think of it as antivirus on steroids, with real-time response and visibility.
+
+Examples:
+CrowdStrike Falcon
+SentinelOne
+Microsoft Defender for Endpoint
+Sophos Intercept X
+
+XDR (Extended Detection and Response)
+Purpose: Unified threat detection across multiple security layers (endpoint, network, email, cloud)
+Builds on EDR by integrating other data sources (SIEM, network sensors, cloud logs)
+Correlates detections across different vectors: endpoint + email + identity + cloud
+Reduces alert fatigue and increases detection accuracy
+
+
+SIEM - IDS - IPS - EDR - XDR 
+Think of it as EDR + SIEM + NDR + Email Security, but integrated into one system
+
+Examples:
+Palo Alto Cortex XDR
+Microsoft Defender XDR
+Trend Micro Vision One
+CrowdStrike Falcon XDR
+
+
+Summary Table:
+Tool	Focus Area	Primary Role	Scope
+SIEM	Logs & Events	Aggregation, Correlation, Alerting	Organization-wide
+IDS	Network	Detect malicious traffic	Network perimeter
+IPS	Network	Detect & block malicious traffic	Network perimeter
+EDR	Endpoints	Detect and respond to endpoint threats	Devices (PCs, servers)
+XDR	Multi-layer	Integrated, correlated detection	Endpoint + Network + Email + Cloud
+
+Let me know if you want diagrams or how these integrate in a Security Operations Center (SOC) or an AI-powered threat detection pipeline.
+
+
+---------
+Examples of Detection Rule Types:
+1. Sigma Rules (for SIEMs)
+Purpose: Detect suspicious events in log files (Windows logs, application logs, etc.
+Format: YAML (human-readable, tool-agnostic)
+Think of it as: The "Snort for logs"
+Can be converted to Splunk, QRadar, Elastic, etc.
+
+
+detection:
+  selection:
+    EventID: 4624
+    LogonType: 3
+    TargetUserName: "admin"
+Detects remote logins with an admin username.
+
+2.YARA Rules (for file/memory inspection)
+Purpose: Identify malware in files, memory, or binaries using pattern matching
+Format: Rule-based with string or byte patterns
+Think of it as: Antivirus signature language on steroids
+
+rule SuspiciousExecutable
+{
+  strings:
+    $a = "malicious_code"
+  condition:
+    $a
+}
+
+
+Detects files containing the string "malicious_code"
+
+
+3.Snort Rules (for network traffic)
+Purpose: Detect (and block) network-based attacks
+Format: Custom rule syntax (used by Snort/Suricata)
+Think of it as: Firewall rules with deeper packet inspection
+
+alert tcp any any -> any 80 (msg:"Possible SQL Injection"; content:"SELECT"; nocase;)
+
+Alerts if a TCP packet on port 80 contains the word “SELECT” (a common SQL command).
+
+
+Rule Type	Used By	Targets	Example Tool	Language Format
+Sigma	SIEMs	Logs	Splunk, Sentinel, etc.	YAML
+YARA	EDR, XDR, AV	Files, Memory	CrowdStrike, VirusTotal	YARA syntax
+Snort	IDS/IPS	Network Traffic	Snort, Suricata	Snort syntax
+
+-----------------------
+Rules are created and updated regularly, but:
+1.Initial rules are created:
+By security analysts based on threat intelligence.
+Or provided by vendors (like Microsoft, CrowdStrike, Palo Alto, etc.).
+
+2.Rules are refined over time:
+To reduce false positives (e.g., a rule that triggers too often on legit activity).
+To adapt to evolving threats (e.g., attackers changing tactics).
+
+3.Rules are updated in 3 ways:
+Manually — by security teams, often during threat hunting or incident response.
+Automatically — through vendor updates (like antivirus definitions).
+Programmatically — using AI/ML or automation systems that generate or tune rules based on behavior (example: LLMs writing Sigma rules).
+
+A detection rule to flag "PowerShell execution with base64-encoded payload" may start simple:
+CommandLine: '*powershell* -EncodedCommand*'
+But it might be refined later to avoid false positives:
+CommandLine: '*powershell* -EncodedCommand*'
+AND NOT ProcessName: 'legit_script.ps1'
+
+
+Activity	Frequency	Who Does It
+Rule creation	Initially + new threat	Analysts / Vendors
+Rule tuning (refinement)	Ongoing	Analysts / ML models
+Rule updates	Weekly to monthly	Vendors / Security Teams
+Auto-rule generation (AI)	Growing trend	AI agents / Copilots
+
+-------------------
+Types of Threat Intelligence:
+Type	Description	Example
+Indicators of Compromise (IOCs)	Data like IPs, file hashes, URLs used in attacks	Malicious IP: 45.76.123.4
+File hash: d41d8cd9...
+Tactics, Techniques & Procedures (TTPs)	How attackers operate (MITRE ATT&CK)	T1059 (Command & Scripting Interpreter)
+Campaign Intelligence	Info about ongoing or past attack campaigns	"Lazarus Group targets banks with spear phishing"
+Threat actor profiles	Info about who is attacking, their motives, capabilities	“APT29 is a state-sponsored group targeting govt orgs”
+
+
+Example: How Threat Intel Drives Rule Creation
+Threat Intel Received:
+"A new ransomware uses PowerShell to download payload from evil.com, stores it in %AppData%, and runs it silently."
+
+Sigma Rule Based on That Intel:
+detection:
+  selection:
+    CommandLine|contains: 'powershell'
+    CommandLine|contains: 'evil.com'
+    CommandLine|contains: 'AppData'
+    CommandLine|contains: '-WindowStyle Hidden'
+ This rule is crafted based on known behavior and artifacts of the malware.
+
+"Based on threat intel" = Writing or updating rules using real, actionable information about cyber threats — to detect what attackers are doing in the wild.
+
+
+
+Natural Language Threat Intelligence 
+
+"A recent phishing campaign delivers a ZIP file containing a malicious Excel macro that downloads a remote access trojan."
+
+
+"CVE-2024-1234 is being exploited in the wild by APT28 using spear-phishing emails with .doc attachments."
+
+"New IcedID sample drops via OneDrive links, hashes: ab12..., domain: hxxp://malicious[.]site"
+
+Most real-world threat intel starts as natural language
+Security teams must convert this into:
+Structured formats (like Sigma, YARA, STIX)
+Detection rules
+Indicators of compromise (IOCs)
+
+Eg: Of Conversion 
+"Drops a DLL in temp folder and executes with rundll32."
+
+A security analyst reads a threat report saying:
+“The attacker uses mshta.exe to execute a malicious script hosted on Pastebin.”
+
+Then creates a Sigma rule like:
+CommandLine|contains: "mshta.exe"
+CommandLine|contains: "pastebin"
+
+
+Term	Meaning
+Natural Language Threat Intel	Human-written threat information (blogs, reports, tweets)
+Use	Source for creating detection rules, hunting queries
+Challenge	Needs to be parsed/extracted into structured formats
+Solution	NLP, LLMs, AI-based threat parsing tools
+
+--------------------
+A. Translate Threat Intelligence to Detection Logic
+Input: A threat report says: "The malware creates a registry key HKCU\Software\EvilApp and spawns PowerShell."
+
+LLM Output: Automatically generate a Sigma rule to detect that in Windows Event Logs.
+
+
+B. Rule Refinement & Tuning
+Remove overly broad matches.
+Add better context to reduce false positives.
+For example, filtering out admin tools in expected locations.
+
+C. Rule Explanation
+Explaining a complex YARA or Sigma rule in plain English, aiding collaboration between analysts and engineers.
+
+D. Rule Translation Between Formats
+Convert a Sigma rule into Splunk SPL, or from YARA to Snort (or vice versa).
+
+SigmAI	LLM-based tool to convert threat intel into Sigma rules.
+HexaHunter	Uses GPT to auto-generate detection rules from MITRE ATT&CK descriptions.
+GPT-4 + Jupyter Notebook	Many PoCs exist where LLMs are prompted with threat reports and asked to output YAML detection rules.
+CybersecPromptHub	Community-shared prompts for threat detection, malware analysis, etc.
+YARA-GPT	Converts malware behavior descriptions into YARA rules using GPT.
+
+
+APT reports (Mandiant, CrowdStrike, etc.)	Input data for LLMs to learn threat behavior
+Sigma Rule GitHub Repos	Fine-tune or evaluate LLMs on known detection logic
+MITRE ATT&CK	A knowledge base of adversary tactics and techniques
+Open Threat Exchange (OTX)	Community-curated threat intelligence
+PapersWithCode: LLMs in Cybersecurity	Track latest LLM-based security papers
+
+
+Term	Meaning
+False Positive	Benign activity flagged as malicious
+Detection Logic	Rules/scripts to detect attacks
+Threat Intelligence	Info about threats, tactics, tools used by attackers
+MITRE ATT&CK	Matrix of adversary behaviors categorized into tactics & techniques
+TTPs	Tactics, Techniques, Procedures – behavioral patterns of attackers
+Indicators of Compromise (IoCs)	Artifacts like IPs, hashes, URLs, etc.
+SIEM	Security Information and Event Management – collects and analyzes logs
+EDR/XDR	Endpoint/Extended Detection and Response tools
+
+
+Input Threat Intel (e.g., “Malware drops file in AppData and opens a reverse shell”)
+LLM Reads + Analyzes → Extract relevant TTPs: File creation, reverse shell, etc.
+LLM Outputs:
+Sigma Rule to detect Windows logs (Event ID 11 + PowerShell usage)
+YARA Rule to scan for malware binary
+English summary or SPL/KQL queries
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Monitoring the IT Infrastructure 
+LLM's in Detection Engineering | AI Powered threat Detection Pipeline 
+SIEM - IDS - IPS - EDR - XDR
+
+Detection rules are pre-defined logic patterns or conditions used by cybersecurity tools to identify malicious behavior, threats, or anomalies in systems, networks, or files
+They help tools like SIEM, IDS/IPS, EDR, and XDR to decide what is suspicious or malicious — kind of like “if-this-then-that” logic for threats.
+
+To create or test your own rule examples using real logs, files, or packet data.
+
+Creating or updating detection rules using information about real-world cyber threats — collected from internal or external sources.
+Threat Intelligence (Threat Intel) is data about attackers, their tools, techniques, and behaviors — that helps defenders anticipate and detect attacks.
+
+To generate detection rules from raw threat reports, or map intel to the MITRE ATT&CK framework.
+
+The Adversarial Tactics, Techniques, and Common Knowledge or MITRE ATT&CK is a guideline for classifying and describing cyberattacks and intrusions. It was created by the Mitre Corporation and released in 2013
+Knowledge base of cyber threats and tactics maintained by the Mitre Corporation
+
+
+Splunk
+IBM QRadar
+Elastic SIEM
+Microsoft Sentinel
+LogRhythm
+Snort (IDS)
+Suricata
+Cisco Firepower (IPS)
+Palo Alto Threat Prevention
+CrowdStrike Falcon
+SentinelOne
+Microsoft Defender for Endpoint
+Sophos Intercept X
+Palo Alto Cortex XDR
+Microsoft Defender XDR
+Trend Micro Vision One
+CrowdStrike Falcon XDR
+
+
+🔍 SIEM Tools
+Splunk: A powerful log analysis and SIEM tool that helps visualize and investigate security events.
+
+IBM QRadar: An enterprise-grade SIEM that detects threats by analyzing logs, flows, and user behavior.
+
+Elastic SIEM: An open-source SIEM built on the Elastic Stack for real-time threat detection and analytics.
+
+Microsoft Sentinel: A cloud-native SIEM from Azure for threat detection, investigation, and automated response.
+
+LogRhythm: A SIEM platform offering threat detection, compliance, and incident response with analytics.
+
+🛡️ IDS/IPS Tools
+Snort (IDS): An open-source Intrusion Detection System that monitors network traffic for suspicious activity.
+Suricata: A high-performance IDS/IPS engine with built-in multi-threading and protocol detection.
+Cisco Firepower (IPS): A Cisco network security appliance with real-time threat prevention capabilities.
+Palo Alto Threat Prevention: An IPS solution integrated into Palo Alto firewalls for blocking exploits and malware.
+
+💻 EDR Tools
+CrowdStrike Falcon: A cloud-based EDR that provides AI-driven threat detection and endpoint protection.
+SentinelOne: An autonomous EDR solution that uses AI to detect, prevent, and respond to threats on endpoints.
+Microsoft Defender for Endpoint: A Microsoft EDR solution offering advanced threat detection and investigation on Windows devices.
+Sophos Intercept X: An endpoint protection platform with deep learning and anti-ransomware capabilities.
+
+🌐 XDR Tools
+Palo Alto Cortex XDR: A unified XDR platform that correlates endpoint, network, and cloud data to detect complex threats.
+Microsoft Defender XDR: Microsoft’s integrated XDR solution combining endpoint, email, identity, and cloud threat protection.
+Trend Micro Vision One: A centralized XDR platform offering visibility and correlation across security layers.
+CrowdStrike Falcon XDR: An extended version of Falcon EDR that integrates multiple sources for unified threat detection and response.
+
+
+Value If Right 
+Probability of Success
+Cost If it is wrong
+
+Saves time for detection engineers.
+Automates tedious rule-writing.
+Helps scale to new threats quickly.
+Reduces detection gaps and alert fatigue.
+
+
+
+
+
+
+
