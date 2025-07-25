@@ -17,6 +17,7 @@ LLM Orchestration
 Contextlib 
 Resources 
 Alembic 
+Enterprise Agent Settings
 
 Preparation 
 1.Async 
@@ -1183,6 +1184,49 @@ Forgetting to run --autogenerate	Always generate a revision after model change
 Editing DB manually	Avoid manual changes, use migrations
 Skipping alembic upgrade head	Always apply migration before running app
 Having multiple heads again	Don't create revisions in parallel branches
+
+Enterprise Agent Settings
+-------------------------
+Value if Right 
+Probability of Success 
+Cost if it is wrong 
+[P*V - (1-P)*C > Cost] of Running the Agent Put it in the Production 
+
+High Problem - High Value 
+Legal Space   - Lawyers & Research 
+Finance Space - Research & Summarization 
+
+RAG 5 Seconds- Older Schoool Question Answering Solution 
+Deep Research - 10 Minutes - 
+Cursor - 30 Seconds, inline autocomplete may some chat question answering there 
+Claude Code 2 Hours - 7 Different Ambient Agents that run in the background 
+
+Focusing on areas or verticals that provide value, 
+Reshift the UI/UX interaction pattern - 
+
+Probability of Success 
+ - Uncontrollable agents 
+ - Make Parts of your agents more deterministic 
+ - Predictablity, Controllablity over what steps actually happen inside the agents 
+     Prompting the Agent to do that great 
+ - Workflow Like things in enterprise like things where you need more controllability, more predictability 
+ - High Perceived error bars 
+ - Observability and Evals - LangSmith 
+Cost if Wrong 
+ - Outsized effect in people's mind right row 
+ - Make it easy to reverse - Easy to reverse changes that agent makes 
+
+UI/UX tricks that people are doing and that successful agents have to kind of like just make this a non-issue 
+
+Workflow and Agents 
+* Agentic System - Parts of an agentic system are sometimes looping calling a tool 
+* Multi Agent Architecture - After Agent finishes it will call the agent B, is that the workflow ? is that an agent ? 
+                                                                                             middle ground 
+* 
+
+
+
+
 
 
 
