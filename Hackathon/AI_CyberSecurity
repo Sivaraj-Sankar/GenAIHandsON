@@ -324,6 +324,19 @@ YARA Rule to scan for malware binary
 English summary or SPL/KQL queries
 
 
+Companies, 
+tools,
+security systems,
+LLMs are being used in Security Operations Centers (SOCs) and Threat Detection Platforms in the following places:
+Stage	Where LLM Is Used	Examples
+A. Threat Report Ingestion	Automatically read PDF/HTML threat intel reports and extract relevant behavior patterns.	Mandiant, MITRE, CrowdStrike reports processed via LLMs
+B. Rule Generation	Translate extracted behaviors into detection rules (Sigma, YARA, Snort).	Used in SIEM platforms like Splunk, Microsoft Sentinel
+C. Rule Optimization	Refine existing rules to reduce noise or false positives.	Chronicle Security (Google), Elastic SIEM
+D. Alert Enrichment	Explain why an alert fired using LLMs for faster triage.	SentinelOne, Palo Alto XSIAM
+E. Rule Review or Translation	Translate from English ↔ Sigma ↔ YARA ↔ Snort	Github PoCs, security tools (like SigmAI, Elastic ML)
+
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------
 Monitoring the IT Infrastructure 
 LLM's in Detection Engineering | AI Powered threat Detection Pipeline 
@@ -400,6 +413,148 @@ Saves time for detection engineers.
 Automates tedious rule-writing.
 Helps scale to new threats quickly.
 Reduces detection gaps and alert fatigue.
+
+
+Use Case 1: SOC Analyst Augmentation
+Company: Elastic SIEM + OpenAI
+Problem: Analysts spend time reading long threat reports and writing Sigma rules manually.
+LLM Use:
+
+The system ingests an APT report (e.g., Lazarus Group behavior).
+GPT-4 processes the text and outputs a Sigma rule matching Windows Event ID and command-line arguments.
+Analyst reviews and deploys it to Elastic Stack.
+⏱️ Impact: Rule generation time cut from 3 hours to 15 minutes.
+
+
+Use Case 2: Alert Explanation in Plain English
+Company: Microsoft Sentinel + Copilot for Security
+Problem: Junior analysts struggle to understand why an alert was triggered.
+LLM Use:
+When a detection fires (e.g., suspicious PowerShell download), GPT-4 explains:
+"This alert was triggered because a PowerShell process downloaded a file from a known malicious domain. This behavior is associated with malware staging."
+🧠 Impact: Easier triage, faster response.
+
+Use Case 3: Sigma/YARA Rule Generation from Threat Intel
+Tool: SigmAI (Open Source)
+Problem: SOCs need to convert intelligence from blog posts and reports into usable detection logic.
+LLM Use:
+Analyst inputs:
+"The malware modifies registry HKCU\Software\BadApp and runs cmd.exe /c whoami."
+LLM generates:
+A Sigma rule matching event logs for registry change + command execution.
+A YARA rule for file with matching strings.
+
+Use Case 4: Email Phishing Detection
+Company: Abnormal Security
+Problem: Phishing emails look legitimate and evade traditional filters.
+LLM Use:
+LLMs analyze the tone, intent, and urgency in email content.
+Detect if it tries to impersonate the CEO or asks for wire transfers.
+Alerts the security team or quarantines the email.
+📈 Impact: Lower false negatives in business email compromise (BEC) attacks
+
+Use Case 5: Auto-Generation of Firewall/IDS Rules
+PoC: Research teams use GPT-4 to generate Snort or Suricata rules from observed network behavior:
+Input: “The malware uses port 4444 to establish reverse TCP shell.”
+Output:
+alert tcp any any -> any 4444 (msg:"Reverse shell activity"; sid:1000001;)
+
+Common Systems Where Detection Happens
+------------------------------------------
+System Type	Examples	What LLMs Assist With
+SIEM (Security Information and Event Management)	Splunk, Sentinel, ELK, IBM QRadar	Write/optimize detection logic (Sigma)
+EDR/XDR (Endpoint / Extended Detection & Response)	CrowdStrike Falcon, SentinelOne, Cortex XDR	Enrich alerts, generate detection patterns
+IDS/IPS (Intrusion Detection/Prevention Systems)	Snort, Suricata, Zeek	Generate Snort rules, explain traffic anomalies
+Threat Intel Platform	MISP, Recorded Future, Anomali	Extract behavior, auto-convert to rules
+Email Security	Abnormal, Proofpoint, Mimecast	Phishing detection using NLP/LLMs
+
+
+Summary of Benefits from LLMs in Real World
+Benefit	Impact
+🛠️ Automate Detection Rule Creation	Saves hours of manual work
+🔁 Translate Intel to Logic	Bridges gap between human-readable reports and system-readable rules
+🎯 Reduce False Positives	Tuned logic improves SOC performance
+📖 Explain Alerts	Faster triage and training
+🤝 Democratize Threat Detection	Enables junior analysts to contribute
+
+
+
+
+Cyber with AITools 
+Value if Right 
+What is the ROI 
+Design Pattern - Like Workflow or in the Middle 
+   Agentic Design Pattern, Using Different Agent Pattern
+ Enterprise like settings we need more controllability, more predictability 
+ then you get just by prompting 
+Using the LangGraph Framework 
+
+
+
+
+What I need to put in the ppt 
+=============================
+LLM in Detection Engineering 
+Cyber Security Concepts
+already we have open source tool built on top of the tools 
+Tool itself have in-built AI Capabilities 
+What we are trying to achieve in this 
+    Threat Report Ingestion
+    Rule Generation
+    Rule Optimization
+    Alert Enrichment
+    Rule Review or Translation
+    Upcoming Future Detection Mock Up Drill, hackers may evolve - before they evolve we need to think like hacker
+    How I'm going to handle the PII data, 
+    Exactly how PII data is handling in the production 
+
+
+      Automation 
+      Reducing time
+      Enhancing the work ease with AI - Explainability 
+      Understandability 
+      Enhancing the Security 
+      Improved SOC Performance - Tuned Logic will improve the performance 
+      Protecting the Software system from AI is very important, 
+Enterprise Level Settings -
+   Mid Level Enterprise - 40 - 50 Tools 
+   Large Level Enterpise  - 400+ Tools 
+  for enterprise level settings - how my application is going to act 
+Modern UI/UX for the AI Agents - like workflow, Agentic behaviour 
+
+
+
+
+
+
+
+
+
+
+
+
+SOC Jaravis
+-----------
+jarvis - Just A Rather Very Intelligent System
+Fictional AI assistant created by Tony Stark (Iron Man) in the Marvel Cinematic Universe (MCU).
+Functions like a super-advanced AI butler—managing Stark's suits, home systems, and tactical operations.
+Eventually evolves into the character Vision in the MCU.
+
+Jarvis.ai (now Jasper): An AI-powered writing assistant for marketing content, blog posts, etc.
+Jarvis for Home Automation: Various open-source or commercial smart home projects named “Jarvis.”
+
+
+
+Tool Name
+SigmAI
+Elastic ML
+HexaHunter
+YARA-GPT 
+CybersecPromptHub
+Sigma Rule GitHub Repos - Fine-tune or evaluate LLMs on known detection logic
+MITRE ATT&CK - A knowledge base of adversary tactics and techniques
+Open Threat Exchange (OTX) - Community-curated threat intelligence
+APT reports (Mandiant, CrowdStrike, etc.)
 
 
 
