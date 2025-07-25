@@ -1187,6 +1187,24 @@ Having multiple heads again	Don't create revisions in parallel branches
 
 Enterprise Agent Settings
 -------------------------
+                                one chat box or two chat box Vs background - Ambient Agents 
+                                            Chat Agents                         Ambient Agents 
+                                    Trigger                   Human Message                       Event 
+                                  concurrency                       1                            unlimited 
+                                  Latency Requirements          Needs to be fast               can take longer 
+                                  Primary UX                       Chat UI                        Dashboard (?) 
+                                  Ambient does not mean fully Autonomous 
+
+
+Ambient does not man fully Autonomous
+Human in the Loop interaction patterns 
+Approve Reject  - a tool call/action 
+Edit - Edit a tool call/action, either the parameters or the actions to take 
+Answer Question    - Answer a clarifying question that the agent may ask halfway through execution 
+Time Travel - Go Back to a previous point, modify state, resume 
+
+
+                                    
 Value if Right 
 Probability of Success 
 Cost if it is wrong 
