@@ -18,6 +18,8 @@ Contextlib
 Resources 
 Alembic 
 Enterprise Agent Settings
+UX Desgin for AI Agents
+
 
 Preparation 
 1.Async 
@@ -1241,6 +1243,29 @@ Workflow and Agents
 * Multi Agent Architecture - After Agent finishes it will call the agent B, is that the workflow ? is that an agent ? 
                                                                                              middle ground 
 * 
+
+
+UX Desgin for AI Agents
+------------------------
+https://microsoft.design/articles/ux-design-for-agents/
+https://codewave.com/insights/designing-agentic-ai-ui/
+https://github.com/agno-agi/agent-ui
+https://medium.com/design-bootcamp/ux-ui-design-and-ai-agents-a9122a370a38
+https://uxdesign.cc/ai-agents-a-designers-guide-to-the-next-big-thing-99172273bb88
+https://www.toolify.ai/ai-news/uiux-design-for-ai-agents-key-principles-patterns-3346920
+https://www.galichat.com/blog/website-chatbot-design-examples-tips
+https://www.galichat.com/blog/website-chatbot-design-examples-tips#ai-agent-ui-design-examples
+https://www.figma.com/design/zLwEen8lRZHv8MWSD8C1YV/A-Multi-Agent-Chatbot-UI--Community-?node-id=0-1&p=f&t=OqUdR2wSxz0YoHYH-0
+https://uizard.io/ui-design/
+https://medium.com/@andrew_best/agentive-ai-review-build-custom-ai-agents-8552a043da02
+
+Ambient Agent
+Workflow Agent - Llamaindex
+UI/UX - 
+What are the components need to add for the AI Agents - Human in the Loop, - youtube video, old handson - How I'm going to use with my usecase 
+Define the usecase What are the things I'm going to do 
+LLM Should also think about the negative aspect as well 
+
 
 
 
