@@ -1,4 +1,16 @@
 July 2025
+https://aiconference.com/speakers/jerry-liu-2024/
+https://www.llamaindex.ai/blog/beyond-chatbots-adopting-agentic-document-workflows-for-enterprises
+https://www.llamaindex.ai/blog/rag-is-dead-long-live-agentic-retrieval
+https://docs.llamaindex.ai/en/stable/module_guides/workflow/
+https://in.images.search.yahoo.com/search/images;_ylt=AwrKFYI5p4No_gEAOfK7HAx.;_ylu=Y29sbwNzZzMEcG9zAzEEdnRpZAMEc2VjA3BpdnM-?p=Modern+UI%2FUX+for+AI+Agents&fr2=piv-web&type=E210IN1000G0&fr=mcafee#id=144&iurl=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afit%3A1358%2F1*xfMpmYK1b2_Czg7cT4F5Og.png&action=click
+https://medium.com/ai-simplified-in-plain-english/opemnbuilding-enterprise-grade-ai-agents-with-langchain-langgraph-microsoft-autogen-and-4697c5235d96
+https://github.com/PacktPublishing/LangChain-MasterClass---Build-15-OpenAI-and-LLAMA-2-LLM-Apps-using-Python/tree/main/S10%20-%20LangChain%20-%20Memory%20Module%20Concept
+AI is mapping the tree of life - https://www.youtube.com/watch?v=IbN3ClySZsg
+https://github.com/vitalii-honchar
+https://github.com/vitalii-honchar/reddit-analyzer
+https://github.com/Ashfaaq98/awesome-genai-cyberhub?tab=readme-ov-file - CyberSecurity 
+
 
 Index
 Top Reasearcher 
@@ -1249,6 +1261,21 @@ Deep Research & Claude code not ambient agent, they are still triggered by human
 
 sync to aysnc 
 
+
+I want to build the usecase Deeply at Enterprise Production Level Settings in GenAI[LLM] Capabilities in Agentic AI Settings 
+1) It should be in Ambient in Nature 
+2) UI/UX elements to handle the AI Agents, Modern UX, not just chat bot interface  - it should be like Controlling the Agents work, and when the Agents needed help 
+     Human in the Loop Action 
+     Approve/Reject 
+     Edit    - Edit the Tool call/action, enter the parameters or the actions to take 
+     Answer the Question - Answer a clarifying question that the agent may ask halfway through execution 
+     Time Travel - Go back to a previous point, modify state, resume 
+  These kind of UI/UX element should be there for controlling the agentic workflow 
+  So this is kind of Ambient Agent Workflow in Nature 
+
+So Define the Objective - What we are trying to achieve
+and Design the Solution wrt to the Enterprise level Agentic AI Settings 
+Step by Step provide the details to start work on it 
 
 
 UX Desgin for AI Agents
