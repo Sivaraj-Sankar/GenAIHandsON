@@ -522,6 +522,15 @@ Enterprise Level Settings -
   for enterprise level settings - how my application is going to act 
 Modern UI/UX for the AI Agents - like workflow, Agentic behaviour 
 
+Agents will run in the background  - as a workflow as well as the agentic manner 
+Need UX for interacting with this agents 
+Future is forward to the async agent --> will ping when they need any help 
+
+
+
+Architecture Styles: Microservices, Monolith, Event-Driven, Domain-Driven Design.  - What Software Design Pattern will be achieveable 
+                     Modular Monolith Software 
+
 
 
 
