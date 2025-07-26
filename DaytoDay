@@ -1244,6 +1244,12 @@ Workflow and Agents
                                                                                              middle ground 
 * 
 
+Ambient Agents are triggered by events, 
+Deep Research & Claude code not ambient agent, they are still triggered by human 
+
+sync to aysnc 
+
+
 
 UX Desgin for AI Agents
 ------------------------
@@ -1265,6 +1271,12 @@ UI/UX -
 What are the components need to add for the AI Agents - Human in the Loop, - youtube video, old handson - How I'm going to use with my usecase 
 Define the usecase What are the things I'm going to do 
 LLM Should also think about the negative aspect as well 
+Trigger by Events 
+
+
+
+
+
 
 
 
