@@ -138,3 +138,83 @@ Added z-index - Makes sure badge appears above the icon
 Added border - Creates a nice visual separation from the background
 Added flexbox to badge - Ensures the number is perfectly centered
 The notification badge should now appear properly positioned in the top-right corner of the notification bell icon, not overlapping the icon itself. The red badge with the white number should be clearly visible and well-positioned! 🎯
+
+
+
+Step 5: 
+
+
+2. Component/Module Responsibilities
+AgentTaskPanel.tsx
+The main dashboard panel. Renders a grid/list of all agent cards, handles loading, error, and orchestrates modals.
+AgentCard.tsx
+Displays a single agent’s status, role, activity, progress, and observability. Handles special UX for Orchestration, Human Feedback, and State Snapshot agents.
+EditRuleModal.tsx
+Modal for editing YAML/Regex rules, invoked from relevant agent cards (e.g., Rule Generation Agent).
+agentTaskSlice.ts
+State management (Redux Toolkit slice or Zustand store) for agent tasks, statuses, and UI state (modals, etc).
+api.ts
+API functions for fetching/updating agent task data.
+
+
+3. AgentCard UX/Logic
+All Agents:
+Name, Role, Status (Active/Idle/Error), Progress bar, Completed/Total tasks, Human input required, Success %, Observability link.
+Human Feedback Handler Agent:
+Special card: List of tasks needing approval, Approve/Reject/Edit buttons, inline chat/clarification if needed.
+Orchestration Agent:
+Shows flow diagram or stepper of agent coordination.
+State Snapshot/Time Travel Agent:
+Shows timeline, “Save/Restore” buttons, backtracking controls.
+
+
+4. Next Steps
+I will:
+Scaffold all files with clear, production-level TypeScript React code.
+Add placeholder/mock data and types for agents.
+Add comments for where to connect real APIs/state.
+Make the UX for special agents (Orchestration, Human Feedback, State Snapshot) distinct.
+
+
+Let’s start by scaffolding all files and implementing the main structure and types.
+After that, you can run and see the UI, and we can iterate on the details and connect to real APIs/state.
+
+Proceeding to create:
+features/agentTasks/AgentTaskPanel.tsx
+features/agentTasks/AgentCard.tsx
+features/agentTasks/EditRuleModal.tsx
+features/agentTasks/agentTaskSlice.ts
+features/agentTasks/api.ts
+
+Folder: features/agentTasks/
+AgentTaskPanel.tsx – Main dashboard panel, fetches and displays all agent cards, manages modal state.
+AgentCard.tsx – Displays each agent’s status, role, progress, and special UX for Orchestration, Human Feedback, and State Snapshot agents.
+EditRuleModal.tsx – Modal for editing YAML/Regex rules, invoked from relevant agent cards.
+api.ts – Mock API returning all 9 agent types with realistic data and special fields.
+agentTaskSlice.ts – Placeholder for Redux Toolkit slice or Zustand store (ready for future state management).
+
+
+
+Set up routing in App.tsx so that:
+The dashboard is at /
+The Agent Task Panel is at /agent-tasks
+Clicking the Agent Task Panel card on the dashboard navigates to /agent-tasks
+Style the AgentTaskPanel and AgentCard components to match your design system (using your App.css as a guide).
+Would you like me to proceed with installing react-router-dom and making these changes? (If yes, please confirm or run npm install react-router-dom in my_react_app.)
+
+You now have:
+Routing: Dashboard at /, Agent Task Panel at /agent-tasks
+Clickable Agent Task Panel card: Navigates to /agent-tasks
+AgentTaskPanel and AgentCard: Styled to match your design system (cards, grid, colors, buttons, modal, etc.)
+How to test:
+Start your app.
+On the dashboard, click the “Agent Task Panel” card.
+You’ll be routed to /agent-tasks and see the styled AgentTaskPanel with all agent cards.
+If you want to add more routes or further customize the look, let me know!
+
+
+
+Things to Include
+-----------------
+Overall Observability/Trajectory 
+Agent Inbox
