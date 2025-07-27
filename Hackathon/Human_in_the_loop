@@ -87,3 +87,38 @@ Implement event logging and snapshot capture for all agent contexts.
 Build UI timeline controls tied to snapshot versions to allow analysts to rewind and adjust.
 Implement the feedback handler logic to correctly route responses and propagate state changes downstream.
 Let me know if you’d like help with the data schema, snapshot serialization strategy, or UI components for timeline/time-travel.
+
+
+
+Agent 1: Ingestion Agent
+Role: Periodically fetch and normalize threat intelligence from sources (APIs, RSS, PDFs, STIX feeds, emails, blogs).
+Agent 2: Behavior Extraction Agent
+Role: Extract TTPs, IoCs, malware techniques from unstructured intel.
+Agent 3: Rule Generation Agent
+Role: Generate detection logic from extracted TTPs.
+Agent 4: Rule Tuning & Validation Agent
+Role: Simulate detection rule on historical data or sandbox logs.
+Agent 5: Rule Deployment Agent
+Role: Push approved detection logic to appropriate systems.
+Agent 6: Alert Enrichment Agent
+Role: When alerts trigger, explain them in plain English, attach context.
+Agent 7: Workflow Orchestration Agent
+Role: Coordinates task flow between all other agents.
+Agent 8: Human Feedback Handler Agent
+Role: Collect and process human interventions (approve, reject, edit, clarify).
+Agent 9: State Snapshot / Time Travel Agent
+Role: Save/restore agent chain execution state; support backtracking.
+
+All Agents Card will show the display what it is doing, is it active or not, real time in progress status, 
+task that completed count, how task it required human input, % task that agents completed successfully and agent observability link or showing there itself,  as per the Agent Function add the UX element to show properly this is Enterprise Production Project
+So If Where ever the Human Approval Required it will comes under the Human Feedback Handler Agent that agent card will be little bit different, need to add proper UX to handle it 
+and one Important thing 
+Orchestration Agent 
+Human Feedback Handler Agent 
+State Snapshot/ Time Travel Agents UX will be little different as per the Role of the Agents
+
+
+
+
+
+
