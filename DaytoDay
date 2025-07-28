@@ -1210,8 +1210,10 @@ async
 3.await main() only works inside another async def function or in interactive async-capable shells.
 4.Python REPLs with asyncio support (e.g., IPython)
 5.Multithreading and Multiprocessing are two approaches to achieve parallelism and concurrency in computing, but they work in fundamentally different ways
-Multiple threads run within a single process, sharing the same memory space [needs synchronization (e.g., locks) to avoid race conditions]
+Multiple threads[Time Slicing] run within a single process, sharing the same memory space [needs synchronization (e.g., locks) to avoid race conditions]
    - due to the Global Interpreter Lock (GIL), true parallel execution of threads is limited
+   - The single process can only multitask by switching active threads to minimize waiting times of I/O blocking operations
+   - The big difference between them is that concurrency can help you manage multiple tasks by interleaving their execution
 
         Process 
           |   Share same resource, memory [Context switching is fast between threads.]
@@ -1222,6 +1224,44 @@ Eg: A web browser rendering a page while downloading resources in the background
 Multiple independent processes, each with its own memory space and Python interpreter
    - Do not share memory → need inter-process communication (IPC) like pipes, queues
    - True parallelism (multiple cores)
+
+--------
+1.multithreading, multiprocessing, and asynchronous programming in enhancing AI application performance and scalability
+2.The role of the **thread pool and **event loop in a FastAPI server
+3.*How to avoid blocking the server when processing requests
+4.*model-serving strategies and LLM memory-optimization strategies to reduce memory-bound blocking operations
+5.*Strategies for handling long-running AI inference tasks
+6.*asynchronous programming in boosting the performance and scalability of your GenAI services
+7.*FastAPI event loop for background tasks execution.
+
+UseCases 
+--------
+1.your services will be expected to serve requests concurrently such that multiple overlapping tasks can be executed.
+2.Compute-bound programs push the CPU or GPU cores to their limit by performing intensive computations
+
+System optimization - I/O
+Model optimization  - CPU/GPU 
+Queuing system      - Long Running Delay 
+
+1.Concurrency refers to the ability of a service in handling multiple requests or tasks at the same time,without completing one after another
+      During concurrent operations, the timeline of multiple tasks can overlap and may start and end at different times.
+      In Python, you can implement concurrency with a single CPU core by switching between tasks on a single thread (via asynchronous programming) or across different threads (via multithreading).
+                                                       Multitasking managed by an event loop within the Python process
+                                                       Requires libraries and dependencies that use Async IO features
+                                                       Easy to make mistakes that block the main process (and event loop)
+
+A good example of multiprocessing is when you serve requests with a load balancer managing traffic to multiple containers,each running an instance of your application.
+Distributed workloads often use a managing process that coordinates the execution and collaboration of these processes to avoid issues such as data corruption and duplicating work
+--------------
+-------Redis is In-Memory Data Store Reading from RAM is much faster compare to the hardisk - Compatible with Hash Tables, linked lists , sets - take less memory to store data
+All request in single Thread 
+I/O Multiplexing - Redis Effectively uses the event loop to handle multiple requests making it lighting fast 
+---------------
+
+Model Serving 
+--------------
+multiprocessing or use algorithmic model optimizations (via specialized model inference servers like vLLM).
+You can externalize the serving and inference of larger GenAI models such as an LLM, with specialized servers like vLLM, Ray Serve, or NVIDIA Triton.
     
 
 
