@@ -33,6 +33,7 @@ Enterprise Agent Settings
 UX Desgin for AI Agents
 
 
+
 Preparation 
 1.Async 
 2.Generator 
@@ -42,11 +43,12 @@ Preparation
 6.Azure AI Foundry 
 7.Azure Agent Service 
 
-
-
-
-
-
+LLM Evaluation and Evaluation Metrics 
+Azure AI Foundry 
+Azure Function 
+Agentic Course Recap 
+GenAI Stack 
+Programming Questions 
 
 
 Top Reasearcher 
@@ -1292,6 +1294,8 @@ https://www.figma.com/design/zLwEen8lRZHv8MWSD8C1YV/A-Multi-Agent-Chatbot-UI--Co
 https://uizard.io/ui-design/
 https://medium.com/@andrew_best/agentive-ai-review-build-custom-ai-agents-8552a043da02
 
+short plan
+----------
 Ambient Agent
 Workflow Agent - Llamaindex
 UI/UX - 
@@ -1299,15 +1303,6 @@ What are the components need to add for the AI Agents - Human in the Loop, - you
 Define the usecase What are the things I'm going to do 
 LLM Should also think about the negative aspect as well 
 Trigger by Events 
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1347,7 +1342,7 @@ Burning resources — Each connection uses memory, sockets, CPU.
 Risking DB overload — DB servers have limits on how many connections they allow.
 Missing optimization — You can't reuse open connections
 
-
+-----------------------------------------------------------------------------------------------------------
 Key Points Have to Address 
 1) Intially Worked as the Software Developer 
    Facilitate the Settlement & Payment System 
@@ -1369,14 +1364,9 @@ so here my contribution is
 i would like to do Research Every day to get up to date with AI Technologies 
 4) and my strength is I'm good at Mathematically understanding the Artifical Intellgience, So Could able to contribute more and optimize and provide the Good Strategies in use of AI Technologies 
 
-LLM Evaluation and Evaluation Metrics 
-Azure AI Foundry 
-Azure Function 
-Agentic Course Recap 
-GenAI Stack 
-Programming Questions 
 
 
+--------------------------------------------------------------------------------------------------------
 Coding Question
 ---------------
 1.sorted(x,key=) -> Done
