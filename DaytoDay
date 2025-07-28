@@ -1203,7 +1203,7 @@ Skipping alembic upgrade head	Always apply migration before running app
 Having multiple heads again	Don't create revisions in parallel branches
 
 
-async
+async [async]FastAPI relies on AnyIO (an asynchronous networking and concurrency library) to handle concurrency. AnyIO creates up to 40 threads by default on a dynamic internal thread pool and removes those that aren’t used for a while.
 -----
 1.Run two coroutines concurrently
 2.asyncio.run(main()) is the correct way to run async code in a script or standard execution environment.
