@@ -29,6 +29,7 @@ LLM Orchestration
 Contextlib 
 Resources 
 Alembic 
+async
 Enterprise Agent Settings
 UX Desgin for AI Agents
 
@@ -1200,6 +1201,29 @@ Forgetting to run --autogenerate	Always generate a revision after model change
 Editing DB manually	Avoid manual changes, use migrations
 Skipping alembic upgrade head	Always apply migration before running app
 Having multiple heads again	Don't create revisions in parallel branches
+
+
+async
+-----
+1.Run two coroutines concurrently
+2.asyncio.run(main()) is the correct way to run async code in a script or standard execution environment.
+3.await main() only works inside another async def function or in interactive async-capable shells.
+4.Python REPLs with asyncio support (e.g., IPython)
+5.Multithreading and Multiprocessing are two approaches to achieve parallelism and concurrency in computing, but they work in fundamentally different ways
+Multiple threads run within a single process, sharing the same memory space [needs synchronization (e.g., locks) to avoid race conditions]
+   - due to the Global Interpreter Lock (GIL), true parallel execution of threads is limited
+
+        Process 
+          |   Share same resource, memory [Context switching is fast between threads.]
+        Thread 
+Use multithreading or asynchronous programming (like asyncio).
+This allows your program to do other things while waiting, like sending more requests
+Eg: A web browser rendering a page while downloading resources in the background.
+Multiple independent processes, each with its own memory space and Python interpreter
+   - Do not share memory → need inter-process communication (IPC) like pipes, queues
+   - True parallelism (multiple cores)
+    
+
 
 Enterprise Agent Settings
 -------------------------
