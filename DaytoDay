@@ -1,3 +1,25 @@
+df.groupby('department')['salary'].mean()
+pd.merge(df,df1,on=id)
+df['A'].fillna(df['A'].median())
+np.corrcoef(x,y)
+np.mean(data)
+np.var(data)
+
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from sklearn.ensemble import Random
+from sklearn.metrics import accuracy_score 
+
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
+clf = 
+clf.fit(X_train,y_tarin)
+y_pred = clf.predict(X_test)
+accuracy_score(y_test,y_pred)
+
+select column from table join table1 on table.column = table1.column 
+select column from table where where column > 6000 order by salary desc
+select column, Rank() over (Partition by some_column order by sort_column desc) as rank 
+
 Algorithm Details 
 -----------------
 Bubble_sort   for j in range(n-i-1):
