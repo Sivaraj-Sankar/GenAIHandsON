@@ -1234,6 +1234,11 @@ Having multiple heads again	Don't create revisions in parallel branches
 
 async [async]FastAPI relies on AnyIO (an asynchronous networking and concurrency library) to handle concurrency. AnyIO creates up to 40 threads by default on a dynamic internal thread pool and removes those that aren’t used for a while.
 -----
+Create an event loop to schedule async tasks with via the asyncio.run method.
+At the heart of asyncio lies a first-class object called an event loop, responsible for efficient handling of I/O events, system events, and application context changes.
+The event loop can be compared to a while True loop that watches for events or messages emitted by coroutine functions
+Coroutine functions are specialized functions that yield control back to the caller without losing their state (i.e., they can be paused and resumed at a later time).
+
 1.Run two coroutines concurrently
 2.asyncio.run(main()) is the correct way to run async code in a script or standard execution environment.
 3.await main() only works inside another async def function or in interactive async-capable shells.
