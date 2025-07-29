@@ -1,0 +1,291 @@
+
+Azure Devops
+https://GenAISolution@dev.azure.com/GenAISolution/GenAISolution/_git/Personalized_Wealth_Management_Advisor
+
+Si#$jh*7^(8hg
+Si#$jh*7^(8hg
+
+Remote Desktop Connection
+20.84.108.132
+Docker@#765#4
+
+
+
+
+79a76643-0600-4ec5-86ef-81c754657b58
+
+1) Change the Folder Structure 
+2) Understanding the Current Code Base 
+
+
+Running Commands
+python manage.py migrate
+python manage.py runserver
+
+Git 
+---
+git init
+git status
+git add .
+# Replace with your actual repository URL
+git remote add origin https://github.com/yourusername/my-new-repository.git
+# Push your local repository to the remote "origin"
+git push -u origin master  # or 'main' if you're using the 'main' branch
+# Rename local branch to 'main'
+git branch -M main
+# Push the 'main' branch
+git push -u origin main
+
+
+
+1) Data Preprocessing
+      LlamaIndex 
+
+      PDF --> Markdown Format (197) --> Nodes[Dividing the Documents into smaller and Manageable Chunk] 846 --> Extracted base nodes and Embedded object within that --> Base_Node + Object_Node[Table,Text,Image] - Summarized Version
+
+PDF --> Markdown Format (197) --> Nodes[Dividing the Documents into smaller and Manageable Chunk] 846 --> Extracted base nodes and Embedded object within that --> Base_Node + Object_Node[Table,Text,Image] - Creating Vector Index for Base Node + Object Node Both 
+
+
+
+    SimpleNodeParser
+    MarkdownNodeParser
+    HTMLNodeParser
+    JSONNodeParser
+
+2) Dealing with Mix of Textual and non-textual elements - node_parser.get_nodes_and_objects
+
+3) 
+             
+Auto Mode
+Fast Mode
+Standard Mode
+Continuous Mode
+Premium Mode
+
+Creating the Page Nodes from our parsed documents
+
+
+--------------------------------
+Understanding the Django Project 
+
+1) Creating Path for CRM POC document - With some Details
+2) Validating the PDF, Keywords Check , Threshold Check, 
+3) Django Built-in Views without Framework 
+4) models.py - Django's ORM(Object-Relational Mapping) to interact with the database without writing raw SQL queries
+5) Manage the Pool of Threads in Which you can execute tasks concurrently, but using the thread rather than separate process
+        multiple tasks execute in parallel, is useful when you have I/O-bound tasks eg(making API requests calls, reading/writing
+6) A Thread Pool is a collection of worker threads that can be used to execute tasks. When you create a ThreadPoolExecutor 
+      executor.submit()
+      executor.map() convenient way to apply a function to an iterable (like a list)
+7) Creates the Context Manager using the get_openai_callback()
+      Useful to track the usage, log responses or handle API Errors. 
+      API Call time and any issues encountered during the API calls 
+      Handle retries, manage, rate limits and track the number of tokens used 
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+After April 
+-----------
+Django Project 
+Snowflake Started 
+DSA Algorithm Learning Started 
+Complete Classic Mechanics and Quantum Algorithm
+Personal Project Creation
+Advanced Agentic AI 
+
+
+1) Understood the Function Calling - Function Description is Important 
+2) Model Agnostic - Finally Giving the Model to the Input 
+3) Pydantic - Easier to Construct the OpenAI Functions descriptions, Verifying the Output, Creating the Structured Output 
+      Easy to create the Different Schema and export to JSON
+      They offer a concise way to define data structures while ensuring that the data adheres to specified types and constraints.
+
+from typing import List
+from pydantic import BaseModel, Field
+
+
+
+1) Preprocessing Methodologies
+2) RAG
+3) MultiModal RAG 
+4) Agentic RAG Approach 
+
+
+Risk_Report
+You are a financial analyst tasked with writing a professional commentary based on a condensed and enriched risk report. 
+The report includes financial metrics, credit scores, charts, and graphs that cover key areas such as risk exposure, creditworthiness, and financial stability.
+Carefully analyze the data and visual elements provided. Your output should include:
+
+1.Overall Risk Assessment – summarize the key risk indicators, trends, and any significant changes.
+2.Credit Score Commentary – interpret the credit score range and provide a short explanation of its implications.
+3.Financial Stability Overview – discuss liquidity, solvency, and leverage based on the figures and charts.
+4.Data-Driven Insights – use exact financial figures where applicable and refer to chart trends clearly (e.g., “As shown in Chart 2, the debt-to-equity ratio increased to 1.8 in Q1 2025”).
+5.Professional Tone – ensure the tone is analytical, concise, and suitable for executive or stakeholder reporting.
+
+Do not add assumptions or fabricate data. Base your commentary solely on the content provided in the report.
+
+Consolidated Income Statement
+Consolidated Statement of
+Comprehensive Income
+Consolidated Statement of Financial Position
+Consolidated Statement of Changes in Equity
+Consolidated Statement of Cash Flows
+
+"Working Capital (Current) Ratio"
+
+For Funded Debt/EBITDA - This is the formula right 
+    Net Debt/EBITDA	(Borrowings(Current year)-Cash and cash equivalents(Current year))/Profit (loss) from operating activities(Current year)
+
+For Debt Service Coverage Ratio (DSCR) - What is the formula 
+
+
+You are a financial analyst reviewing the Corporate Governance section of a company's annual report. Your task is to produce a professional Management Analysis focused on the Board of Directors, following these detailed guidelines:
+
+Part 1: Board Member Profiles (Tabular Format)
+1.Extract factual details of each Board member from the provided report.
+2.Do not fabricate or assume any information not explicitly stated.
+3.Present the profiles in tabular format with the following columns:
+| Name | Position/Title | Tenure (Start Year or Duration) | Committee Memberships | Key Contributions/Responsibilities |
+4.If any field is missing in the input, leave it blank rather than guessing.
+
+Part 2: Governance Commentary
+Based strictly on the source content, write a concise and formal Governance Commentary highlight with the Points
+1.Board composition (e.g., number of members, mix of executive/non-executive/independent)
+2.Diversity (if mentioned)
+3.Committee structure and oversight responsibilities
+4.Observations about board effectiveness, succession planning, or compliance with governance codes
+5.How the board supports long-term strategic objectives and risk management
+
+Avoid speculation or interpretation not grounded in the input document.
+
+
+As of December 31, 2024, the company reported a revenue of AED 35.5 billion, which represents a 33% year-over-year increase from AED 26.75 billion in 2023. The gross profit for 2024 was AED 20.38 billion, up from AED 16.87 billion in 2023, marking a 21% increase. The EBITDA for 2024 was AED 19.3 billion, a 12% increase from AED 17.29 billion in 2023. The net profit for 2024 was AED 17.45 billion, which is an 18% increase from AED 14.83 billion in 2023. The earnings per share for 2024 were AED 1.53, compared to AED 1.32 in 2023, reflecting a 16% increase.\n\nThe company also reported a revenue backlog of over AED 110 billion, indicating strong future revenue potential. The recurring revenue accounted for 26% of the total revenue in 2024, highlighting the stability and resilience of the company's diversified business model. Additionally, the company has a land bank of 580 million square feet in key countries, and it delivered over 4,240 units in 2024. The property sales for the year amounted to AED 65.4 billion."
+
+
+As of December 31, 2024, the company's revenue was AED 35.5 billion, representing
+a 33% year-over-year increase from AED 26.75 billion in 2023. The gross profit for 2024 was AED 20.38 billion, up from AED 16.87 bi
+llion in 2023, marking a 21% increase. The EBITDA for 2024 was AED 19.3 billion, a 12% increase from AED 17.29 billion in 2023. The
+ net profit for 2024 was AED 17.45 billion, an 18% increase from AED 14.83 billion in 2023. The earnings per share for 2024 were AE
+D 1.53, compared to AED 1.32 in 2023, reflecting a 16% increase. The company's revenue backlog was over AED 110 billion, and the ne
+t profit margin for 2024 was 49%, down from 55% in 2023.
+
+
+
+I apologize for the confusion. The last point regarding the net profit margin is incorrect. The context provided does not include specific figures for revenue, gross profit, EBITDA, net profit, earnings per share, revenue backlog, or net profit margin for 2024. Therefore, I cannot provide those details. If you have any other questions or need further information, please let me know!
+
+
+
+
+----------------------------------------------------------------------------------
+# # Emaar Annual Repor...
+
+# Emaar Annual Report 2024
+
+## Business Overview
+
+### About the Report
+Emaar places a high priority on responsible business practices and transparently communicating our sustainability performance with stakeholders on a regular basis. Our reports demonstrate our deepening commitment to sustainable development, our participation in the region’s journey towards sustainable growth, and our dedication to upholding the highest standards of environmental, social, and governance (ESG) performance.
+
+The Integrated Annual Report 2024 provides a comprehensive view of our strategic, financial, and operational performance, alongside an overview of our ESG initiatives. In this report, we share our progress on the key sustainability issues most material to our business and stakeholders, reinforcing our commitment to creating long-term value through responsible growth.
+
+### Report Period
+The reporting period is from **1 January 2024 to 31 December 2024**.
+
+### Financial Information
+All reported financial and operational numbers in the strategic report section are on a consolidated basis, unless specified otherwise.
+
+### Non-Financial Information
+All reported non-financial numbers in the strategic report section are for operations in the UAE, unless specified otherwise. Key business units covered include UAE Development, Emaar Malls, Emaar Hospitality, Leisure, Commercial Leasing, and Entertainment, with supplementary information provided for select international business units.
+
+### Reporting Framework and Standards
+This Report has been prepared in accordance with the <IR> framework published by the International Financial Reporting Standards (IFRS) Foundation. This Report has also been made with reference to the following standards and frameworks:
+- Global Reporting Initiative (GRI) 2021 Standards
+- Dubai Financial Market’s (DFM) Guide to ESG Reporting
+- United Nations Sustainable Development Goals (UN SDGs)
+
+### Restatements of Information
+This Report contains restatements of some non-financial information that was disclosed in the previous year’s report. Please refer to the GRI content index for more information on the same.
+
+### Materiality
+In 2023, we conducted a comprehensive materiality assessment, refreshing our selection of key material topics in alignment with current stakeholder expectations and the evolving business and sustainability landscape. This process allowed us to identify and prioritize key issues that significantly impact our business and are of utmost importance to our stakeholders.
+
+### Forward-looking Statement
+This report may include forward-looking statements that go beyond historical facts and pertain to future projections. These statements may include forecasts, predictions, objectives, events, trends, or plans based upon current assumptions and expectations. It is important to acknowledge that unexpected events and uncertainties can arise which may not be accounted for in these statements. While based on reasonable assumptions, actual results may differ. Emaar undertakes no obligation to update forward-looking statements unless required by securities laws. Readers are cautioned not to place undue reliance on such statements.
+
+----
+
+## Financial Statement
+
+### Consolidated Financial Statements
+*Details of the consolidated financial statements will be included here, preserving tables and financial figures as per the original document.*
+
+----
+
+## Corporate Governance Report
+
+### Corporate Governance Report
+*Details of the corporate governance report will be included here, preserving structured formatting and relevant information as per the original document.*
+
+----
+
+*Note: The specific financial figures, tables, and detailed content from the financial statements and corporate governance report sections will be extracted and formatted accordingly in the final document.*
+
+
+-------------------------------------------
+# # Annual Report High...
+
+# Annual Report Highlights
+
+## Business Overview
+### We Are Emaar
+Our purpose is to redefine excellence globally by creating transformative experiences that inspire, connect, and enrich communities, while driving innovation and sustainability for a thriving future.
+
+#### Key Metrics
+- **UAE Development**: 405+ Mn sq. ft. Landbank
+- **Emaar Malls**: 10.5+ Mn sq. ft. GLA¹
+- **Emaar Hospitality and Entertainment**: 38 Hotels | 12+ leisure destinations
+- **Commercial Leasing**: ~2.5 Mn sq. ft. GLA²
+- **International Development**: ~175 Mn sq. ft. Landbank³
+
+### Strategic Priorities
+- **Vision**: To be the world’s most trusted and valuable company, enriching lives, powered by the best people.
+- **Mission**: To create enormous value for our residents, investors, visitors, shareholders, and the economy, by crafting innovative lifestyle offerings that are future-proof.
+- **Goal**: To pioneer sustainable progress and lasting value through innovation, collaboration, and impactful solutions.
+
+## Financial Statement
+### Consolidated Financial Statements
+- **Revenue**: [Insert financial figures]
+- **Net Profit**: [Insert financial figures]
+- **Total Assets**: [Insert financial figures]
+- **Equity**: [Insert financial figures]
+- **Earnings Per Share**: [Insert financial figures]
+
+### Key Financial Metrics
+- **Total GLA including JV**: 10.5+ Mn sq. ft.
+- **Commercial leasing GLA**: ~2.5 Mn sq. ft.
+- **Excludes 1.1 Bn sq. ft. in Emaar, The Economic City in Saudi Arabia**.
+
+## Corporate Governance Report
+### Managing Risk and Maximising Opportunity
+- **Governance Framework**: [Insert details]
+- **Risk Management Strategies**: [Insert details]
+- **Compliance and Ethics**: [Insert details]
+
+### Responsible Value Creation Through Our ESG Strategy
+- **Stakeholder Engagement**:
+- **Shareholders**
+- **Suppliers, Contractors, and Business Partners**
+- **Customers**
+- **Financial Institutions**
+- **Government and Regulators**
+- **NGO, Advocacy Groups, and Communities**
+
+----
+
+*Note: Financial figures and detailed governance frameworks should be filled in with actual data from the report for completeness.*
+
+
+
+
