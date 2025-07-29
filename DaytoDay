@@ -1,3 +1,10 @@
+Algorithm Details 
+-----------------
+Bubble_sort   for j in range(n-i-1):
+Selection Sort[Picking the smallest index] - min_index = i   
+                 for j in range(i+1,n)
+                 fixing iteratively the predecssor element 
+Insertion Sort[Picking the key index] from the 1 position
 Meetings & Scheduling 
 ---------------------
 Meeting Details 
