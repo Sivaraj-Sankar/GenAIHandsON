@@ -564,8 +564,85 @@ AgentBoard	Embodied / web / game / tool use	Fine-grained progress tracking
 ColBench	Human‑agent collaborative tasks	Iterative refinement under limited turns
 
 
+Here’s a practical example of using OpenAI’s Evals, the open‑source framework for testing LLM applications:
+OpenAI Evals lets you write structured evaluations (called evals) using datasets in JSONL and spec files in YAML, to automatically test and score model output
+Two main template types:
+Basic evals compare model output to exact ("ground truth") answers (good for deterministic tasks)
+Model‑graded evals, where a secondary LLM evaluates the output against criteria (better for open‑ended responses)
+
+a. samples.jsonl – define your test cases:
+{"input":[{"role":"system","content":"Complete the phrase concisely."},{"role":"user","content":"Once upon a "}] ,"ideal":"time"}
+{"input":[{"role":"system","content":"..."} ,{"role":"user","content":"The first US president was "}] ,"ideal":"George Washington"}
 
 
+b. eval_spec.yaml:
+
+test-completion:
+  id: test-completion.simple-v0
+  description: Simple match eval
+  metrics: [accuracy]
+
+test-completion.simple-v0:
+  class: evals.elsuite.basic.match:Match
+  args:
+    samples_jsonl: path/to/samples.jsonl
+
+Run it via CLI:
+oaieval gpt‑3.5‑turbo test-completion
+
+
+3. Structured Output Eval (OpenAI Cookbook example)
+If you’re evaluating structured outputs like APIs, JSON or SQL:
+Use Python notebook, define a dataset factory (e.g. code snippets in memory)
+Use a grading rubric, often leveraging a stronger LLM to score completeness and correctness on a numeric scale
+Use the client.evals.create(...) API to register and run the eval via Python client
+
+from openai import OpenAI
+client = OpenAI(api_key=...)
+# define get_dataset() and structured_output_grader
+client.evals.create(
+  eval_set=get_dataset(),
+  eval_name="symbol_extraction",
+  grader=structured_output_grader
+)
+
+This automatically evaluates structured outputs like symbol extraction from source code
+
+
+https://datanorth.ai/blog/evals-openais-framework-for-evaluating-llms?utm_source=chatgpt.com
+https://cookbook.openai.com/examples/evaluation/getting_started_with_openai_evals?utm_source=chatgpt.com
+https://arize.com/blog-course/evals-openai-simplifying-llm-evaluation/?utm_source=chatgpt.com
+https://cookbook.openai.com/examples/evaluation/use-cases/structured-outputs-evaluation?utm_source=chatgpt.com - Structured Ouput Evaluation
+https://cookbook.openai.com/examples/evaluation/use-cases/tools-evaluation?utm_source=chatgpt.com - Evaluating the API Usecase - Very Important 
+This automatically evaluates structured outputs like symbol extraction from source code 
+
+4. Evaluation Types & CI/CD Integration
+
+Choose evaluation type based on task:
+
+Ground‑truth metrics for deterministic tasks (e.g. SQL generation accuracy)
+
+LLM‑as‑judge for open‑ended tasks (e.g. summarization quality, factuality)
+Define key metrics such as accuracy, fluency, groundedness, relevance, hallucination rate
+Automate via CI/CD, as seen in examples using GitHub Actions, thresholds like BLEU > 0.7 or latency < 500 ms to gate releases
+
+
+Example: End‑to‑End Eval of SQL Generation
+Dataset: JSONL test cases with natural language intent and expected SQL.
+YAML eval spec using evals.elsuite.basic.match.
+Run command-line CLI using oaieval or Python API.
+Inspect results, accuracy per test, failure cases.
+Evolve prompt or model based on failures.
+Automate via CI/CD: rerun eval on each code change, requiring pass threshold.
+
+
+Summary Table
+Stage	What to Do
+Data	Build samples.jsonl with input + ideal outputs
+Eval Spec	Write YAML (basic.match or model‑graded template)
+Running	Use CLI (oaieval model eval-name) or Python client
+Metrics	Accuracy, coherence, groundedness, etc.
+Integration	Include in CI/CD to prevent regressions
 
 
 
