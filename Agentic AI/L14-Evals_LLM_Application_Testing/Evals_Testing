@@ -51,6 +51,13 @@ Purpose: Modularize complex tasks using decomposition, execution, planning, and 
 Use Case: Long-term planning, autonomous task solving.
 
 
+Agentic AI Metrics (from Galileo's taxonomy) 
+System Metrics: Latency, token usage, cost per task 
+Task Success: Percentage of tasks completed correctly
+Quality - instruction adherence, output format, factual accuracy
+Tool Interaction - correct tool selection and parameter usage 
+
+
 
 1) How to Evaluate with OpenAIEval 
 2) How to Evalute the Code by HumanEval 
