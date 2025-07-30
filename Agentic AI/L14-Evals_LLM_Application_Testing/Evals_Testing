@@ -428,6 +428,17 @@ Adaptability	Robustness to ambiguity or new goals
 Efficiency	Steps to completion, unnecessary actions
 
 
+Task Success - Completion of Task 
+Planning & Reasoning Task 
+Safety & Alignment 
+Tool Use - Tool Misuse Rate
+Interactivity and Adaptability 
+Trajectory & Observability 
+Efficiency 
+
+
+
+
 How to Test 
 
 Define the Agent Domain and Capabilities 
