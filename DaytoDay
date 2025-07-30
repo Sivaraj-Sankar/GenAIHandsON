@@ -105,6 +105,8 @@ Alembic
 async
 Enterprise Agent Settings
 UX Desgin for AI Agents
+LangGraph State Persistence
+
 
 
 
@@ -1420,6 +1422,14 @@ I want to build the usecase Deeply at Enterprise Production Level Settings in Ge
 So Define the Objective - What we are trying to achieve
 and Design the Solution wrt to the Enterprise level Agentic AI Settings 
 Step by Step provide the details to start work on it 
+
+LangGraph State Persistence
+---------------------------
+Implement persistence in agents, enabling state management across multiple threads
+conversation switching, and the ability to reload previous states
+
+Parallel Tool Call
+Sequential Tool Call
 
 
 UX Desgin for AI Agents
