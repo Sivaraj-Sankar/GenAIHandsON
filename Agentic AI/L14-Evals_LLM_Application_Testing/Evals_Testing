@@ -1,3 +1,57 @@
+Fixed Automation: The
+Digital Assembly Line
+----
+LLM-Enhanced:
+Smarter, but Not
+Einstein
+----
+ReAct: Reasoning
+Meets Action
+----
+ReAct + RAG:
+Grounded Intelligence
+-----
+Tool-Enhanced: The
+Multi-Taskers
+-----
+Tool-Enhanced: The
+Multi-Taskers
+-----
+Memory-Enhanced:
+The Personalized
+Powerhouses
+-----
+Environment
+Controllers: The World
+Shapers
+-----
+Self-Learning: The
+Evolutionaries
+
+
+Need step-by-step clarity? → CoT.
+Need tool integration + reasoning loop? → ReAct.
+Need code generation and execution? → CodeAct.
+Need long planning or structured workflows? → Plan‑and‑Solve.
+Need self-correction? → Reflection.
+Need team-like roles? → Multi‑Agent.
+Need adaptive, real-time orchestration? → OODA Loop.
+-------
+OODA Loop (Observe–Orient–Decide–Act)
+Pattern: Agent loops through:
+Observe (input/environment)
+Orient (analyze context/goals)
+Decide (choose next action)
+Act (perform the action/tool call)
+------
+Purpose: Continuous adaptive decision-making, inspired by military strategy.
+
+DEPS (Decompose–Execute–Plan–Self-reflect)
+Purpose: Modularize complex tasks using decomposition, execution, planning, and reflection.
+Use Case: Long-term planning, autonomous task solving.
+
+
+
 1) How to Evaluate with OpenAIEval 
 2) How to Evalute the Code by HumanEval 
 3) Pass@k
