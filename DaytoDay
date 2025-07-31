@@ -1426,7 +1426,22 @@ Step by Step provide the details to start work on it
 LangGraph State Persistence
 ---------------------------
 Implement persistence in agents, enabling state management across multiple threads
-conversation switching, and the ability to reload previous states
+Conversation switching, and the ability to reload previous states
+Agents are working on Long Running Task - So Persistence & Streaming is important 
+   - Persistence lets keep around you the state of an agent at particular point in time 
+   - This can let you go back to that state and resume in that state for the future interactions for long running applications
+Human in the Loop Interaction - we may want to replace the exisiting messages
+ -> Additional state information is stored to memory and displayed when using get_state() or get_state_history()
+Interrupt Only Certain types of tool call
+
+Snap Shot - Thread , Thread_ts[unique identifier] to access the sanpshot
+g.get_state(thread) - current state 
+g.get_state_history(thread) - iterator 
+g.get_state(thread_ts) --> specific state to time travel  with that state as the starting point 
+g.get_state(thread_ts) --> get specific state and g.update_state()modify it  and use it as current state 
+
+Time Travel - Running  - Will create Branch, how it append the state 
+Time Travel - Updating and Running - #Branch 
 
 Parallel Tool Call
 Sequential Tool Call
