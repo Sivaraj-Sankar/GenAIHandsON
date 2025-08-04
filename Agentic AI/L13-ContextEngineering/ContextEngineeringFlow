@@ -83,3 +83,66 @@ Logging and Tool Error
 Add logging to see intermediate outputs?
 Convert this into a fully async agent?
 Handle tool errors or retry logic?
+
+
+Context Engineering
+-------------------
+1.The important process of tuning the instructions and relevant context that an LLM needs to perform its tasks effectively.
+2.In blind prompting, you are just asking the system a question [short task description you use in an LLM like ChatGPT]
+3.In prompt engineering, you have to think more carefully about the context and structure of your prompt
+4.Context engineering is the next phase, where you architect the full context 
+ more rigorous methods to obtain, enhance, and optimize knowledge for the system
+5.Context engineering involves an iterative process to optimize instructions and the context you provide an LLM to achieve a desired result
+6.This includes having formal processes (e.g., eval pipelines) to measure whether your tactics are working.
+
+"the process of designing and optimizing instructions and relevant context for the LLMs and advanced AI models to perform their tasks effectively"
+7.encompasses not only text-based LLMs but also optimizing context for multimodal models
+8.Designing and managing prompt chains (when applicable)
+  Tuning instructions/system prompts
+  Managing dynamic elements of the prompt (e.g., user inputs, date/time, etc.)
+  Searching and preparing relevant knowledge (i.e., RAG)
+  Query augmentation
+  Tool definitions and instructions (in the case of agentic systems)
+  Preparing and optimizing few-shot demonstrations
+  Structuring inputs and outputs (e.g., delimiters, JSON schema)
+  Short-term memory (i.e., managing state/historical context) and long-term memory 
+       (e.g., retrieving relevant knowledge from a vector store)
+  And the many other tricks that are useful to optimize the LLM system prompt to achieve the desired tasks.
+9.In other words, what you are trying to achieve in context engineering is optimizing the information you are providing in the context window of the LLM
+10.This also means filtering out noisy information, which is a science on its own, as it requires systematically measuring the performance of the LLM.
+
+Example: Context Engineering 
+1.Search Plan Agent  - charge of generating a search plan based on the user query.
+    Prompt for this Search Plan Agent is Big, have different division in the complete prompt 
+
+
+Let’s break down the problem into core components that are key to effective context engineering.
+Instructions - The instruction is the high-level instructions provided to the system to instruct it exactly what to do.
+You are an expert research planner. Your task is to break down a complex research query (delimited by <user_query></user_query>) into specific search subtasks, each focusing on a different aspect or source type.
+User Input - The user input wasn’t shown in the system prompt, but below is an example of how it would look.
+<user_query> What's the latest dev news from OpenAI? </user_query>
+Notice the use of the delimiters, which is about structuring the prompt better
+   - This is important to avoid confusion and adds clarity about what the user input is and what things we want the system to generate. Sometimes, the type of information we are inputting is related to what we want the model to output (e.g., the query is the input, and subqueries are the outputs).
+
+
+Structured Inputs and Outputs - In addition to the high-level instruction and the user input, you might have noticed that I spent a considerable amount of effort on the details related to the subtasks the planning agent needs to produce
+
+                              - This is a really powerful approach, especially when your agent is getting inconsistent outputs that need to be passed in a special format to the next component in the workflow.
+
+-------------
+Why not search tool 
+The only other tool that would make sense to add is a retrieval tool that retrieves relevant subtasks given a query. Let’s discuss this idea below
+---------
+This first version of the deep research application I have built doesn’t require the use of short-term memory, but we have built a version of it that caches subqueries for different user queries
+This is useful to achieve some speed-ups/optimizations in the workflow
+If a similar query was already used by a user before, it is possible to store those results in a vector store and search over them to avoid the need to create a new set of subqueries for a plan that we already generated and exists in the vector store
+Remember, every time you call the LLM APIs, you are increasing latency and costs.
+You can also get more creative about how you are maintaining that vector store and how you pull those existing subtasks into context. Creative and novel context engineering is the moat!
+
+
+
+
+
+
+
+
