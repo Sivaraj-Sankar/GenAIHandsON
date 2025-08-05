@@ -133,12 +133,49 @@ Structured Inputs and Outputs - In addition to the high-level instruction and th
 Why not search tool 
 The only other tool that would make sense to add is a retrieval tool that retrieves relevant subtasks given a query. Let’s discuss this idea below
 ---------
+RAG & Memory
 This first version of the deep research application I have built doesn’t require the use of short-term memory, but we have built a version of it that caches subqueries for different user queries
 This is useful to achieve some speed-ups/optimizations in the workflow
 If a similar query was already used by a user before, it is possible to store those results in a vector store and search over them to avoid the need to create a new set of subqueries for a plan that we already generated and exists in the vector store
 Remember, every time you call the LLM APIs, you are increasing latency and costs.
 You can also get more creative about how you are maintaining that vector store and how you pull those existing subtasks into context. Creative and novel context engineering is the moat!
+|
+Moat
 
+------
+State & Historical Context 
+
+In many cases, the agentic system might need to revise all or a subset of the queries, subtasks, and potentially the data it’s pulling from the web search APIs
+This means that the system will take multiple shots at the problem and needs access to the previous states and potentially all the historical context of the system.
+
+What does this mean in the context of our use case? In our example, it could be giving the agent access to the state of the subtasks
+The revisions (if any), the past results from each agent in the workflow, and whatever other context is necessary to help in the revision phase. 
+For this type of context, what we are passing would depend on what you are optimizing for. Lots of decision-making will happen here
+Context engineering isn’t always straightforward, and I think you can start to imagine how many iterations this component will require
+
+------------------------
+WIP
+such as context compression, context management techniques, context safety, and evaluating context effectiveness (i.e., measuring how effective that context is over time). We will be sharing more ideas about these topics in future articles.
+Context can dilute or become inefficient (i.e., be filled with stale and irrelevant information), which requires special evaluation workflows to capture these issues.
+I expect that context engineering continues to evolve as an important set of skills for AI developers/engineers
+Beyond manual context engineering, there are also opportunities to build methods that automate the processing of effective context engineering. I’ve seen a few tools that have attempted this, but there needs to be more progress in this area.
+
+--------------------------
+Long Context won't be always good  [derailing the agentic reasoning]
+
+While models like Gemini 2.5 and GPT-4.1 support million-token contexts, Breunig argues that longer isn’t always better; large contexts introduce new and severe failure modes that derail agentic reasoning.
+
+He identifies four core failure types:
+
+Context Poisoning - Once a hallucination enters the context, it can persist and mislead the model. Cited examples from Gemini 2.5 show agents repeating irrelevant strategies due to poisoned goals.
+Context Distraction - As the context grows, especially past 100k tokens, agents increasingly rely on past actions instead of generating novel strategies, effectively overfitting to the prompt history. This issue appears earlier in smaller models, such as LLaMA 3.1, where failures emerge as early as 32k tokens.
+Context Confusion - Feeding too many tool definitions or irrelevant instructions leads to degraded performance, even if the full context fits within the model's window. The Berkeley Function-Calling Leaderboard shows that adding more tools reduces success rates across models, with smaller models suffering more.
+Context Clash - When multi-turn interactions or external inputs provide conflicting information, models tend to latch onto earlier, often incorrect, inferences. A study from Microsoft and Salesforce demonstrated a 39% accuracy drop when benchmark prompts were sharded across turns instead of given all at once.
+
+
+Context Engineering Link 
+https://docs.google.com/document/d/1JU8w-E4LlseFZm-ag22GSBU5A2rp2nb7iFGBNAbFL7k/edit?tab=t.0
+https://www.promptingguide.ai/guides/context-engineering-guide
 
 
 
