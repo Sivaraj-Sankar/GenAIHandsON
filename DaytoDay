@@ -1778,6 +1778,8 @@ AutoGPT (to some extent): Task decomposition and tool execution steps are serial
 LangGraph: Nodes (agents/tools) communicate via messages passed along graph edges.
 OpenAI's Function Calling with Agents: Messages between the planner and executor (via function calls and outputs).
 
+-----------------------------------------
+Structured Output of the each page content, basically its a table 
 
 
 
