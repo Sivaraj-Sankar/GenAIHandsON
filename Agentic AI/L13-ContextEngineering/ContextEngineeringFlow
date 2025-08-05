@@ -1,3 +1,17 @@
+Langgraph 
+MultiAgent - is like graph , not standalone - AgentState fields are shared to agent, but specific field
+AgentState is different 
+Message History is different 
+----------
+For Other Multi Agent - Each will own memory right, it won't have state of different fields right , only Human Message, AI message, Function Message , Tool Message right 
+For Other Multi Agent - If I want to use the context history of other agents, at that time how i need to execute and how to store the history 
+--
+Important thing 
+for each agent I have the particular input type right, for first turn all the multi agent will work properly , but for second turn , or pausing the execution for one of the agent, editing the and resuming 
+from there, to call the next agent[by flow connected or edge] or decides by reasoning, how it should have to work 
+
+
+
 Agent Flow
 History
 How RAG should work 
