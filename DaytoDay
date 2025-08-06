@@ -1778,6 +1778,14 @@ AutoGPT (to some extent): Task decomposition and tool execution steps are serial
 LangGraph: Nodes (agents/tools) communicate via messages passed along graph edges.
 OpenAI's Function Calling with Agents: Messages between the planner and executor (via function calls and outputs).
 
+
+August 2025
+-----------
+LlamaIndex Workflow 
+A Workflow in LlamaIndex is an event-driven abstraction used to chain together several events.
+Workflows are made up of steps, with each step responsible for handling certain event types and emitting new events
+Build an agent, a RAG flow, an extraction flow, or anything else you want.
+Workflows are also automatically instrumented, so you get observability into each step using tools like Arize Pheonix
 -----------------------------------------
 Structured Output of the each page content, basically its a table 
 
