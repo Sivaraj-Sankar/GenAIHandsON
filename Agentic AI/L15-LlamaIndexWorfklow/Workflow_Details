@@ -756,3 +756,77 @@ If you want, I can show you exactly how to send those two steps in parallel from
 
 Do you want me to put that together?
 
+
+
+workflows.errors.WorkflowValidationError: Return types of workflows step functions must be annotated with their type.
+
+
+ChatGPT said:
+Ah — that error happens because in LlamaIndex workflows every @step function must have an explicit return type annotation that matches what it actually returns.
+
+Even if your step doesn’t return anything (None) or you’re just sending events, you still have to annotate it.
+
+Why You’re Getting It
+In your snippet:
+
+python
+Copy
+Edit
+@step(name="credit_classify")
+async def credit_classify(self, ctx: Context, ev: Event) -> CreditResultEvent:
+    data = await ctx.store.get("input_data")
+    result = f"Credit classified for {data}"
+    return CreditResultEvent(result)
+
+@step(name="debit_classify")
+async def debit_classify(self, ctx: Context, ev: Event) -> DebitResultEvent:
+    data = await ctx.store.get("input_data")
+    result = f"Debit classified for {data}"
+    return DebitResultEvent(result)
+These are fine, because you’re returning CreditResultEvent and DebitResultEvent and have the type hints.
+
+The problem is probably in another step (like start) where you didn’t annotate the return type:
+
+python
+Copy
+Edit
+@step
+async def start(self, ctx: Context, ev: StartEvent):
+    await ctx.store.set("input_data", ev.query)
+    ctx.send_event("credit_classify")
+    ctx.send_event("debit_classify")
+That has no return type annotation, so the workflow validator complains.
+
+Fix
+If a step returns nothing, you must annotate -> None:
+
+python
+Copy
+Edit
+@step
+async def start(self, ctx: Context, ev: StartEvent) -> None:
+    await ctx.store.set("input_data", ev.query)
+    ctx.send_event("credit_classify")
+    ctx.send_event("debit_classify")
+If a step stops the workflow:
+
+python
+Copy
+Edit
+@step
+async def surplus_assessment(self, ctx: Context, ev: SurplusAssessmentEvent) -> StopEvent:
+    ...
+    return StopEvent(result="Surplus done")
+✅ Rule of thumb:
+Every step in a LlamaIndex workflow must have a return type hint that’s either:
+
+-> None (no return, only sends events)
+
+-> StopEvent (ends workflow)
+
+-> EventSubclass (emits that event)
+
+-> Union[EventSubclass, None] (conditionally emits)
+
+If you want, I can rewrite your whole workflow with all the correct type hints so it passes validation and still runs credit and debit classification in parallel. Would you like me to do that?
+
