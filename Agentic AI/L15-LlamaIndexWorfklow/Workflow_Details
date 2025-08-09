@@ -1,0 +1,147 @@
+1.Each step responsible for handling certain event types and emitting new events.
+2.T@step - his is used to infer the input and output types of each workflow for validation, and ensures each step only runs when an accepted event is ready.
+3.Workflows are also automatically instrumented, so you get observability into each step using tools like Arize Pheonix
+Build an agent, a RAG flow, an extraction flow, or anything else you want.
+
+Events
+Events are user-defined pydantic objects
+You control the attributes and any other auxiliary methods
+StartEvent signifies where to send the initial workflow input
+StartEvent is a bit of a special object since it can hold arbitrary attributes
+ev.topic, which would raise an error if it wasn't there. You could also do ev.get("topic")
+
+
+Custom Start and Stop Event 
+To use a custom start event, the first step is creating a custom class that inherits from StartEvent.
+MyCustomStartEvent as event type in the steps that act as entry points
+We could still pass the fields of MyCustomStartEvent as keyword arguments to the run method of our workflow, but that would be, again, cumbersome.
+A better approach is to use pass the event instance through the start_event keyword argument like this
+
+when we use StopEvent, the result of a workflow must be set to the result field of the event instance
+Since a result can be any Python object, the result field of StopEvent is typed as Any
+Additionally, returning more than one object is cumbersome: we usually stuff a bunch of unrelated objects into a dictionary that we then assign to StopEvent.result
+when using a custom stop events, is that the result of a workflow run will be the instance of the event
+
+Allows introspection from outer applications that now know exactly what a workflow run will return
+
+
+Drawing Workflow 
+Workflows can be visualized, using the power of type annotations in your step definitions
+You can either draw all possible paths through the workflow, or the most recent execution, to help with debugging.
+
+
+pip install llama-index-utils-workflow
+from llama_index.utils.workflow import (
+    draw_all_possible_flows,
+    draw_most_recent_execution,
+)
+
+# Draw all
+draw_all_possible_flows(JokeFlow, filename="joke_flow_all.html")
+# Draw an execution
+w = JokeFlow()
+await w.run(topic="Pirates")
+draw_most_recent_execution(w, filename="joke_flow_recent.html")
+
+
+
+
+Working with Global Context/State
+---------------------------------
+you can choose to use global context between steps
+For example, maybe multiple steps access the original query input from the user. You can store this in global context so that every step has access.
+
+# retrieve from context
+    query = await ctx.store.get("query")
+
+
+Often, you'll have some preset shape that you want to use as the state for your workflow
+The best way to do this is to use a Pydantic model to define the state. This way, you:
+Get type hints for your state
+Get automatic validation of your state
+(Optionally) Have full control over the serialization and deserialization of your state using validators and serializers
+You should use a pydantic model that has defaults for all fields. This enables the Context object to automatically initialize the state with the defaults
+
+
+Example 
+val = await ctx.store.get("key", default=<some_default_value>)
+
+Alternatively, for atomic updates or multi-field state manipulation, you can use:
+async with ctx.store.edit_state() as state:
+    state["some_field"] = new_value
+
+ctx.collect_events maintains a buffer of incoming events by type, orderly retrieving them when all prerequisites are met
+
+
+Up next we'll learn about maintaining state with Context.
+--------------------------------------------------------
+
+
+Branching Based on the Runtime Conditional Logic
+------------------------------------------------
+
+Parallel Execution 
+------------------
+@step
+async def start(self, ctx: Context, ev: StartEvent):
+    ctx.send_event(StepTwoEvent(query="Query 1"))
+    ctx.send_event(StepTwoEvent(query="Query 2"))
+    ctx.send_event(StepTwoEvent(query="Query 3"))
+
+And then handle them in a concurrent step:
+@step(num_workers=4)
+async def step_two(self, ctx: Context, ev: StepTwoEvent) -> StopEvent:
+    # handle each event possibly in parallel (up to 4 at a time)
+    return StopEvent(result=ev.query)
+
+
+Synchronizing with collect_events
+If you need to wait for all parallel tasks to complete before continuing, you can use ctx.collect_events:
+@step
+async def step_three(self, ctx: Context, ev: StepThreeEvent) -> StopEvent | None:
+    # wait for 3 StepThreeEvent events
+    result = ctx.collect_events(ev, [StepThreeEvent] * 3)
+    if result is None:
+        return None
+    # all 3 have arrived
+    return StopEvent(result="Done")
+
+
+Parallel What I need for my Project - Bank Statement Analyzer 
+-------------------------------------------------------------
+class ParallelBranchWorkflow(Workflow):
+    @step
+    async def start(self, ctx: Context, ev: StartEvent):
+        ctx.send_event(EventA())
+        ctx.send_event(EventB())
+        ctx.send_event(EventC())
+
+    @step(num_workers=3)
+    async def handle_parallel(self, ctx: Context, ev: EventA | EventB | EventC):
+        # process based on event type
+        return CompleteEvent(type=type(ev), result=...)
+
+    @step
+    async def join(self, ctx: Context, ev: CompleteEvent) -> StopEvent | None:
+        res = ctx.collect_events(ev, [CompleteEvent, CompleteEvent, CompleteEvent])
+        if res is None:
+            return None
+        # All parallel branches have completed
+        return StopEvent(result="All done")
+
+
+
+
+
+
+Branches and loops
+------------------
+Loops in workflows
+You can create a loop from any step to any other step by defining the appropriate event types and return types.
+Branches in workflows
+Closely related to looping is branching. As you've already seen, you can conditionally return different events. Let's see a workflow that branches into two different paths:
+
+Running Multiple Branches
+---------------------------
+how to run multiple branches in parallel using send_event and synchronize them using collect_events
+
