@@ -71,6 +71,7 @@ async with ctx.store.edit_state() as state:
     state["some_field"] = new_value
 
 ctx.collect_events maintains a buffer of incoming events by type, orderly retrieving them when all prerequisites are met
+Using ctx.collect_events() we can buffer and wait for ALL expected events to arrive. This function will only return data (in the requested order) once all events have arrived.
 
 
 Up next we'll learn about maintaining state with Context.
@@ -128,6 +129,11 @@ class ParallelBranchWorkflow(Workflow):
             return None
         # All parallel branches have completed
         return StopEvent(result="All done")
+
+
+Branching: Use unions in return types to direct flow to different paths.
+Parallelism: Emit multiple events and leverage num_workers to run them concurrently.
+Synchronization: Use collect_events to join branches once all required events are done.
 
 
 
