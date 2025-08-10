@@ -1,0 +1,186 @@
+LangGraph & FastAPI [https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template?tab=readme-ov-file]
+Langfuse for LLM observability and monitoring
+
+1. Agentic AI Application with LangGraph and FastAPI
+2. Structured logging with environment-specific formatting
+3. Rate limiting with configurable rules
+4. PostgreSQL for data persistence
+5. Docker and Docker Compose support
+6. Prometheus metrics and Grafana dashboards for monitoring
+
+
+Security
+JWT-based authentication
+Session management
+Input sanitization
+CORS configuration
+Rate limiting protection
+
+Developer Experience
+Environment-specific configuration
+Comprehensive logging system
+Clear project structure
+Type hints throughout
+Easy local development setup
+
+
+Model Evaluation Framework
+Automated metric-based evaluation of model outputs
+Integration with Langfuse for trace analysis
+Detailed JSON reports with success/failure metrics
+Interactive command-line interface
+Customizable evaluation metrics
+
+
+Commands 
+uv sync installs (or removes) the exact set of packages specified in your project's lockfile (uv.lock) into your environment
+uv lock --upgrade updates your uv.lock file
+cp .env.example .env.[development|staging|production] # e.g. .env.development
+Create the Local Database or Supabase 
+POSTGRES_URL="postgresql://:your-db-password@POSTGRES_HOST:POSTGRES_PORT/POSTGRES_DB"
+Create a PostgreSQL database (e.g Supabase or local PostgreSQL)
+
+ORM
+You don't have to create the tables manually, the ORM will handle that for you.But if you faced any issues,please run the schemas.sql file to create the tables manually
+
+GNU Make
+make [dev|staging|production] # e.g. make dev
+make looks in the Makefile in your project’s root directory.
+If that Makefile has a target like:
+dev:
+    uv sync --inexact --env-file .env.development
+    uv run python main.py
+
+make docker-build-env ENV=development
+docker-build-env:
+    docker build --build-arg ENV=$(ENV) -t my-app:$(ENV) .
+make docker-run-env ENV=[development|staging|production] # e.g. make docker-run-env ENV=development
+
+
+Complete Docker Setup with Production Application
+-------------------------------------------------
+The Docker setup includes:
+FastAPI application
+
+PostgreSQL database
+Prometheus for metrics collection
+Grafana for metrics visualization
+Pre-configured dashboards for:
+API performance metrics
+Rate limiting statistics
+Database performance
+System resource usage
+
+Access Monitoring Tool 
+# Prometheus metrics
+http://localhost:9090
+
+# Grafana dashboards
+http://localhost:3000
+Default credentials:
+- Username: admin
+- Password: admin
+
+Model Evaluation 
+----------------
+The project includes a robust evaluation framework for measuring and tracking model performance over time. The evaluator automatically fetches traces from Langfuse, applies evaluation metrics, and generates detailed reports.
+
+Running Evaluations
+You can run evaluations with different options using the provided Makefile commands:
+
+# Interactive mode with step-by-step prompts
+make eval [ENV=development|staging|production]
+# Quick mode with default settings (no prompts)
+make eval-quick [ENV=development|staging|production]
+# Evaluation without report generation
+make eval-no-report [ENV=development|staging|production]
+
+Evaluation Features
+Interactive CLI: User-friendly interface with colored output and progress bars
+Flexible Configuration: Set default values or customize at runtime
+Detailed Reports: JSON reports with comprehensive metrics including:
+Overall success rate
+Metric-specific performance
+Duration and timing information
+Trace-level success/failure details
+
+Customizing Metrics
+Evaluation metrics are defined in evals/metrics/prompts/ as markdown files:
+Create a new markdown file (e.g., my_metric.md) in the prompts directory
+Define the evaluation criteria and scoring logic
+The evaluator will automatically discover and apply your new metric
+
+evals/reports/evaluation_report_YYYYMMDD_HHMMSS.json
+Each report includes:
+
+High-level statistics (total trace count, success rate, etc.)
+Per-metric performance metrics
+Detailed trace-level information for debugging
+
+
+----------------------
+.github
+Issue Templates
+Files in .github/ISSUE_TEMPLATE/ define pre-filled templates for bug reports, feature requests, etc.
+This makes it easier for contributors to provide consistent and complete info when creating issues.
+Pull Request Templates
+A .github/pull_request_template.md file gives contributors a checklist or structure for PR descriptions.
+Helps maintainers quickly understand the changes.
+Workflows (GitHub Actions)
+.github/workflows/ holds YAML files that define CI/CD pipelines.
+For example, you can run tests automatically when someone pushes code or creates a PR.
+Funding Information
+.github/FUNDING.yml can list ways for people to sponsor the project (GitHub Sponsors, Patreon, etc.).
+CODEOWNERS
+.github/CODEOWNERS specifies which users or teams must review certain parts of the code.
+GitHub will automatically request their review when relevant files change.
+Community Health Files
+Files like CONTRIBUTING.md, CODE_OF_CONDUCT.md, or SECURITY.md inside .github/ set contribution rules, behavior guidelines, and vulnerability reporting methods.
+GitHub shows these in issue/PR creation screens.
+
+GitHub provides cloud-hosted runners (virtual machines) where the workflow executes.
+Step 1 — Workflow Trigger
+Trigger: Runs on every push to main or any pull request.
+Steps: Checkout your code → set up the environment → install dependencies → run your tests.
+name: Run Tests
+Step 2 — GitHub Spins Up a Runner
+When you push code or open a PR:
+Step 3 — Your Tests Run
+If your workflow says run: npm test, GitHub executes that command in the VM.
+The test framework you use (Jest, Pytest, JUnit, etc.) will run exactly like on a local machine — but inside the GitHub-hosted environment
+
+Step 4 — Results in the GitHub UI
+You see logs for each step directly in the Actions tab of your repo.
+If a test fails, the workflow is marked ❌ failed, and you can click in to see the exact error.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+Running Locally & Debugging 
+https://docs.github.com/en/actions/concepts/runners/github-hosted-runners
+https://github.com/nektos/act - a CLI tool that simulates GitHub Actions locally.
+
+The logic for the tests lives in your repository (or in a dependency you install).
+The workflow file in .github/workflows/ is just telling GitHub Actions when and how to run those tests.
+If you don’t have tests, the workflow can still run other things (like linting, building, or deployments).
+
