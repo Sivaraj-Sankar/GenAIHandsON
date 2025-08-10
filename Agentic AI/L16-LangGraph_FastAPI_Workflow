@@ -184,3 +184,29 @@ The logic for the tests lives in your repository (or in a dependency you install
 The workflow file in .github/workflows/ is just telling GitHub Actions when and how to run those tests.
 If you don’t have tests, the workflow can still run other things (like linting, building, or deployments).
 
+
+Job: build-and-push
+Runs on an Ubuntu virtual machine provided by GitHub Actions.
+Steps inside it:
+Checkout code
+Uses actions/checkout@v3 to clone your repository into the workflow runner.
+Install utilities
+Updates apt packages.
+Installs make (needed for the build command).
+Sanitize repository name
+Converts your repo name to lowercase.
+Replaces non-alphanumeric characters with hyphens.
+Stores it in the REPO_NAME environment variable (so Docker tags are valid).
+Build Docker image
+Runs make docker-build-env ENV=production (this likely builds your app’s production Docker image).
+Tags the image with:
+<docker_username>/<sanitized_repo_name>:production
+Log in to Docker Hub
+
+Uses secrets DOCKER_USERNAME and DOCKER_PASSWORD stored in your repo’s GitHub settings to authenticate.
+Push image to Docker Hub
+Pushes the built and tagged Docker image to your Docker Hub repository.
+
+
+
+
