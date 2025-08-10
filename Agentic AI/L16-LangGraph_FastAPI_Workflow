@@ -207,6 +207,26 @@ Uses secrets DOCKER_USERNAME and DOCKER_PASSWORD stored in your repo’s GitHub 
 Push image to Docker Hub
 Pushes the built and tagged Docker image to your Docker Hub repository.
 
+Finding dotenv
+--------------
+1️⃣ A framework-specific override
+Some frameworks and tools wrap python-dotenv and add their own rules.
+For example:
+Django with django-environ
+Flask with flask run in debug mode
+FastAPI/Uvicorn if configured with python-dotenv hooks
+Poetry / Invoke / custom CLI that calls load_dotenv(".env.development") internally
+They often check environment variables like ENV, APP_ENV, DJANGO_SETTINGS_MODULE, etc., and automatically pick .env.development if ENV=development.
+
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+find_dotenv() is told to look for .env.development (via usecwd=True or a custom search), it will pick that up.
+
+import os
+from dotenv import load_dotenv
+
+env = os.getenv("APP_ENV", "development").lower()
+load_dotenv(f".env.{env}")
 
 
 
