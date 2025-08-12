@@ -843,3 +843,247 @@ https://www.dayssincelastai.com/
 
 Biggest problem with embedding models in RAG is that replacing/upgrading them requires all embeddings to be recreated.
 https://learning.oreilly.com/live-events/software-architecture-superstream-architecture-patterns-and-antipatterns-for-ai/0642572184209/
+
+
+
+
+
+------------------------------------------------------------------------
+ES
+E S 
+9:09PM
+can you post a link?
+
+SN
+
+1
+S N 
+9:09PM
+https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+
+DH
+Derek H 
+Presenter
+9:11PM
+You are listening to Luca Mezzalira presenting on: Beyond the Hype: AI Tools in Micro-Frontend Architectures.
+
+ST
+S T 
+9:11PM
+A little echo coming out of your microphone
+
+ES
+E S 
+9:12PM
+I hear echo too
+
+ST
+S T 
+9:12PM
+AI will not replace us, we will be replaced by people that embrace and learn how to use AI to optimize and increase the quality of their work and lives.
+
+DG
+D G 
+9:15PM
+I am not sure but the normal microphone with any basic laptop is more than enough, this echo is distracting
+
+PB
+P B 
+9:16PM
+Antipattern: People use the words because they're buzzy without knowing what they mean
+
+ST
+
+1
+S T 
+9:16PM
+very interesting minimalistic slides!
+
+AA
+A A 
+9:19PM
+appreciate if we can at a high-level include is Data Architecture (DataOps)
+
+without quality data AI can't produce what we want 😉
+
+AH
+
+1
+A H 
+9:20PM
+decisions*
+
+SS
+S S 
+9:23PM
+i'm a developer... so i guess i'll just think :-)
+
+what what do you think of specification based AI like Kiro? it does it step by step... req documents -> tasks -> implementation...
+
+ES
+E S 
+9:25PM
+This is almost like a level below acceptance criteria one writes for use cases.
+
+GK
+G K 
+9:27PM
+S S
+9:24PM
+what what do you think...
+Kiro was in one of the slides, next to cursor and claude :)
+
+AA
+A A 
+9:31PM
+I believe I learnt that, "feature store" is the new term that is being talked about in Data Eng, how to deploy AI workload using micorservices architecture
+
+DK
+D K 
+9:31PM
+missed note the url in previous slide
+
+IC
+I C 
+9:32PM
+https://github.com/ts-arch/ts-arch
+
+VE
+
+1
+V E 
+9:33PM
+Hello from Frankfurt, Germany
+
+SC
+Shannon C 
+Presenter
+9:34PM
+Hello, VE! Thanks for joining!
+
+ST
+
+1
+S T 
+9:34PM
+And the most important thing is this: Understand that just because you are developing Agents, that does not really make you an AI/ML engineer/developer. You are an Agentic Engineer or Agentic Developer.
+
+I see way to many people claiming expertise in AI when all they have is Agentic experience. This tends to confuse hiring managers and waste time in some circumstances.
+
+S T
+9:34PM
+And the most important thing...
+Off course you could also be an AI expert, but that is a different story.
+
+IC
+
+1
+I C 
+9:38PM
+How do I turn off reactions...very distracting
+
+ZP
+Z P 
+9:39PM
+UI generation seems to be quite useful for "business", since they can just visualize ideas using our own design system.
+
+AG
+A G 
+9:39PM
+So true, Neal
+
+LC
+L C 
+9:41PM
+Yeap, I've been using AI to support me developing personal applications, and it helps, but agentic works make it hard to keep its work under a small enough scope to be able to make sure it is making code that actually works. I have multiple events where it just made alot of "good looking code" which just turned out to be a really big amount of "actually wrong" code. It gets to a point where my use of agents is really small.
+
+MT
+M T 
+9:41PM
+when will the next version of your book be out?
+
+GK
+
+
+4
+G K 
+9:41PM
+I C
+9:38PM
+How do I turn off...
+Launch developer console in the browser, search for the div with "id="reactions-display-container" and delete it ;)
+
+IC
+
+
+
+4
+I C 
+9:44PM
+G K
+9:41PM
+Launch developer console in the...
+Thank you!❤️ document.getElementById("reactions-display-container" ).remove()
+
+DH
+Derek H 
+Presenter
+9:45PM
+We are going on a 5-minute break. Up next will be Nischal HP presenting on: Mind Your Language Models: An Approach to Architecting Intelligent Systems.
+
+LM
+
+3
+Luca M 
+Presenter
+9:50PM
+M T
+9:41PM
+when will the next version...
+November 2025 but you can read the first few chapters in the early release on O'really portal
+
+DH
+Derek H 
+Presenter
+9:53PM
+You are listening to Nischal HP presenting on: Mind Your Language Models: An Approach to Architecting Intelligent Systems.
+
+MB
+M B 
+9:53PM
+I'm experiencing audio echo on my end.
+
+DH
+Derek H 
+Presenter
+9:53PM
+MB try refreshing your browser.
+
+PB
+
+2
+P B 
+9:54PM
+https://www.dayssincelastai.com/
+
+RS
+
+2
+R S 
+10:03PM
+Biggest problem with embedding models in RAG is that replacing/upgrading them requires all embeddings to be recreated.
+
+HH
+H H 
+10:04PM
+Chunking seems like a wild factor in the RAG pipeline.
+
+RS
+
+
+R S 
+10:06PM
+H H
+10:04PM
+Chunking seems like a wild...
+have to evaluate the chunking which is best.
