@@ -830,3 +830,16 @@ Every step in a LlamaIndex workflow must have a return type hint that’s either
 
 If you want, I can rewrite your whole workflow with all the correct type hints so it passes validation and still runs credit and debit classification in parallel. Would you like me to do that?
 
+----------------------------------------------------------------------
+
+Atlas 
+METBERT
+https://learning.oreilly.com/playlists/feb8ed22-9279-4908-90d6-f52dc8526193/
+https://learning.oreilly.com/library/view/building-micro-frontends-2nd/9781098170776/
+
+https://learning.oreilly.com/live-events/software-architecture-superstream-architecture-patterns-and-antipatterns-for-ai/0642572184209/#liveEventSchedule
+
+https://www.dayssincelastai.com/
+
+Biggest problem with embedding models in RAG is that replacing/upgrading them requires all embeddings to be recreated.
+https://learning.oreilly.com/live-events/software-architecture-superstream-architecture-patterns-and-antipatterns-for-ai/0642572184209/
