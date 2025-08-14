@@ -1784,6 +1784,8 @@ August 2025
 AI Engineering Model 
 Dominic - Agent SDK - Swarm Concept 
 Agentic Standard Model 
+Agentic AI - CyberSecurity 
+
 
 
 
@@ -1862,6 +1864,98 @@ Specific Examples - Code Interpreter
 
 
 IMPACT
+
+Voice Agents 
+Computer Use Agents
+Workflow Agents 
+
+The Value of the AI Product is in the value of the AI leverage on your effort 
+Doesn't matter how agentic - just increase ratio of human input: (valuable) ai output 
+1:0.5 Copilot 
+1:1 ChatGPT
+1:10 (O-series, Reasoners, Simple Agents/Workflows)
+1:10000 (Deep Research, NotebookLM)
+0:1 Ambient Agent 
+
+AI News - Bunch of Script in a Trench Code 
+Scrape Data From Source 
+Plan - Parallel Process 
+Recursively Summarize 
+Format and Deliver 
+Evaluate (manually)
+
+Generic 
+Sync PreProcessFrom Sources  - Knowledge Graph 
+PlanParallelProcess          - Planning, Structured Data Extraction READ Tool Calls 
+AnalyzeAuthorizeAct          - Summarization, Human-in-the-Loop WRITE Tool Calls
+DeliverInteractively         - Code Generation, Gen, UI 
+EvaluateRememberImprove      - Evals, LLM Judge 
+
+AI Intensive Applications - AI Calls 1000 
+SPADE 
+
+
+ChatGPT - Canvas 
+CLAUDE - Artifacts 
+Is a Way of just delivering the output as a Code Artifacts 
+
+
+SPADE Stage vs ML Analogies 
+Sync      Crawl&tokenize        Tokenization      GraphRAG, SourceRank, Chunking 
+Plan      Tool Selection        Matmul            Parallelizable, stateless 
+Analyze   Latent Reasoning      Softmax/Reducer   Auth, Resolve, Reduce 
+Deliver   UI+ Outputs           Decode            CoT, Sandbox, Live UI 
+Evaluate  Feedback+Evals        Backprop          RLHF, Trace Feedback, tuning 
+
+
+Agentic AI - CyberSecurity 
+-------------------------
+Cyber Security threat Increases and finding real threats hidden among the noise of all the data is a challenge 
+Traditional Security Tools - for years that follow static rules or use Narrow Machine Learning Model 
+CyberSecurity AI Agent - Generative AI's ability to understand NL context 
+    dynamic and Autonomous security operations 
+
+Traditional Cyber Security Workflow 
+Applications of AI Agents in Cyber Security Operations 
+
+Traditional Cyber Security Workflows heavily rely on predefined rules 
+Signature Based detection and playbooks crafted by humans 
+
+Alert - Analyst [Do analyze and references known threat indicators] follows the document procedure ] Machine Learning Algorithms are applied in specific areas like anomaly detection or malware 
+                                                                                                     file classification 
+Narrow - Trained for singular tasks under fixed patterns 
+
+AI Agents Ingest - Structured Log Files 
+                   UnStructured Log Files 
+            Written Reports - Security advisories and common vulnerabilities and exposure descriptions 
+            They can interpret intent and context and choose which tools to query to execute next 
+                Call out external tool - Threat Intelligence API 
+                                         Query a Database 
+                                         Running federated Search across security information sources, or running a script 
+
+Cybersecurity where attackers constantly change tactics, this level of adaptability is especially valuable AI Agents can handle unexpected scenarios 
+or cleverly disguised attacks better than a brittle script 
+
+AI agent might co-rrelate disparate clues or interpret nuance patterns that single purpose ML model or a signature might miss 
+
+
+AI Agents Applications in CyberSecurity 
+---------------------------------------
+Threat Detection 
+   LLM Agent can analyze raw event data or alerts in plan language and determine if they narratively suggest malicious activity 
+Gives a series of logs agent might pick up on a unusual sequence that wasn't really explicitly coded as a rule, and research indicates 
+     the LLM can detect malicious intent in text-based data, sometimes actually better than humans 
+
+AI Agents in Security Operations centers are being used to Triage alerts rather than completely replace detection engines
+
+When Alerts Triggers 
+Agent Pulls - Cloud Logs, Identity Logs, EDR Telementry - to decide when an alert represents a real threat 
+
+And these AGents can reduce noise by summarizing and grouping alerts, generating insights like those 50 alerts together 
+They Actually indicate a single port scan attempt - not 50 separate incidents 
+
+
+                       
 
 
 
