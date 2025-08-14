@@ -1781,6 +1781,12 @@ OpenAI's Function Calling with Agents: Messages between the planner and executor
 
 August 2025
 -----------
+AI Engineering Model 
+Dominic - Agent SDK - Swarm Concept 
+Agentic Standard Model 
+
+
+
 LlamaIndex Workflow 
 A Workflow in LlamaIndex is an event-driven abstraction used to chain together several events.
 Workflows are made up of steps, with each step responsible for handling certain event types and emitting new events
@@ -1788,6 +1794,83 @@ Build an agent, a RAG flow, an extraction flow, or anything else you want.
 Workflows are also automatically instrumented, so you get observability into each step using tools like Arize Pheonix
 -----------------------------------------
 Structured Output of the each page content, basically its a table 
+
+
+
+AI Engineering Model 
+
+Standard Model 
+Data Engineering ETL 
+Distributed MapReduce 
+Backend CRUD 
+FrontEnd MVC
+MLE Train-Validate-Test
+AIE 
+   RAG 
+
+PWAMVCCRUDOrchestrationETLDS/MLPrompts 
+Local-First
+Async-easy 
+Data-Driven 
+AI-assisted
+
+LLM OS
+LLM SDLC
+Building Effective Agents
+SGLang/DSPy?
+DocETL/Petals
+Agent Engineering (IMPACT)
+
+Spec - 
+LLM OS
+    LLM - OpenAI GPT-4 Turbo 256 Core (Batch Size) processor @20Hz (tok/s)
+RAM - 128Ktok
+FileSystem - Ada002
+
+
+LLM SDLC
+   No Code/Canvas UI
+
+   Metrics
+   Logs
+   Traces 
+   Cost Tracking 
+   Alerting 
+             LLM API      RAG/Framework      LLM Ops         AI UX Interface 
+              Platform     Platform            Platform 
+Prototype - LLM API - RAG/Tools -      Logging -           AI UI 
+Production - Security   Orchestrator      Evals     
+
+Hamel's Product-Oriented virtuous cycle 
+
+Dominic - Agent SDK - Swarm Concept 
+
+
+Agentic Standard Model
+Encoded Intent 
+Long-Running Memory - AI Agent System that capable of carrying out and completing long running, open ended tasks in the real world 
+Multi-Step Planning  - AI System component that performs non-trivial, multi-step operations that previously would have required a human 
+Delegated Authority - 
+LLM Control Flow  - The More Agentic an Application is the more an LLM decides the control flow of the application
+Tool Using Agents - agent = LLM + Memory + planning + Tools + While Loop* 
+
+Metaphors - Control System 
+Reductiveness - LLM Call in a for loop 
+Specific Examples - Code Interpreter 
+          Deep Research 
+          Operator 
+
+
+IMPACT
+
+
+
+
+
+
+
+
+
 
 
 
