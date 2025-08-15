@@ -1,0 +1,185 @@
+Scaling Synthetic Data
+
+Proposes 1 billion diverse personas to facilitate the creation of diverse synthetic data for different scenarios
+It's Easy to generate synthetic data but hard to scale up its diversity which is essential for its application 
+
+Novel Persona-driven data synthesis methodology to generate diverse and distinct data covering a wide range of perspectives
+
+Survey
+Instance-Driven Approaches 
+Key-Point-Driven Methods 
+Previous works synthesize data using either instance-driven approaches (eg: using seed corpus) or key-point-driven methods(eg: using topic/subject) 
+Both of these approaches lack the desired coverage quality and perspectives needed to robustly scale the data synthesis process 
+
+
+
+Theme 
+Personas Based Synthetic Data - Scalable - Diverse - Desired Coverage Quality 
+Quality of the Synthetic Datasets, they performed an out-of-distribution evaluation on MATH
+
+Highlight What is already Achieved 
+A Fine-Tuned Model on their Synthesized 1.07M math Problems achieves 64.9% on MATH
+Matching the performance of gpt-4-Turbo-preview at only a 7B Scale 
+
+Logical Reasoning Problems 
+Instructions 
+Game NPCs, 
+Tool Development 
+Knowledge-rich Text
+
+
+
+Studying About the Flower
+Botany
+Plant morphology
+Plant reproductive biology
+
+floriculture [horticulture (the science of cultivating plants).]
+
+"flower" is not a species" - it’s a reproductive structure found in plants of the group Angiosperms (scientific name: Magnoliophyta).
+Field of study → Floriculture (applied), Botany (scientific), Plant morphology (specific branch)
+Scientific group name for flowering plants → Magnoliophyta (Angiosperms)
+
+
+
+NeuroScience
+Got it—you’re looking for the neuroscience areas that are explicitly computational. Here’s a crisp, structured list you can use as a map of the field.
+
+Core fields
+Computational Neuroscience — builds mathematical/simulation models of neurons, synapses, circuits, and behavior.
+Theoretical Neuroscience — analytic approaches (dynamical systems, information theory, statistical physics) to explain neural computation.
+Neuroinformatics — data standards, databases, pipelines, and tooling for large-scale neural data.
+Network Neuroscience — graph-theoretic study of brain networks (structural/functional connectomes).
+Connectomics — computational reconstruction/analysis of wiring (EM reconstructions, tractography).
+Cognitive & Systems Modeling — models of perception, memory, attention, decision-making, and motor control.
+Computational Psychiatry/Neurology — fitting mechanistic or RL/Bayesian models to patient behavior/brain data to explain symptoms and guide treatment.
+Neuroeconomics & RL in the Brain — computational decision models (value, policy, credit assignment).
+Neuromorphic & Brain-Inspired Computing — algorithms and hardware inspired by neural principles.
+Neurorobotics — closed-loop brain-inspired control in robots and embodied agents.
+Computational Genomics/Neurogenetics — linking genetic variation and gene expression to neural circuits and disorders.
+Computational Neuropharmacology — in-silico modeling of neural targets, synapses, and network drug effects.
+Brain–Computer Interfaces (BCI) — decoding/encoding algorithms for real-time neural control and feedback.
+Data-centric study areas
+fMRI/rs-fMRI Analysis — GLMs, MVPA/decoding, connectivity, representational similarity, whole-brain modeling.
+EEG/MEG/ECoG — time–frequency analysis, source localization, decoding, HMMs/state-space models.
+Calcium Imaging — motion correction, demixing/denoising, spike inference, population dynamics.
+Spike Sorting & Electrophysiology — sorting, tuning/encoding models, point-process GLMs, population codes.
+Behavior Modeling — drift-diffusion, evidence accumulation, hierarchical Bayesian fits to tasks.
+Multimodal Integration — aligning behavior, neural signals, imaging, and text/clinical data.
+Modeling themes & methods
+Biophysical & Compartmental Models — Hodgkin–Huxley, multi-compartment dendrites, synaptic plasticity rules.
+Spiking Network Models — LIF/Izhikevich networks, balanced E/I, reservoir computing.
+Rate & Population Models — Wilson–Cowan, mean-field, low-rank RNNs, neural manifolds.
+Bayesian Brain / Predictive Coding / Active Inference — probabilistic inference accounts of perception/action.
+Information Theory — entropy, mutual information, efficient coding, synergy/redundancy.
+State-Space & Dynamical Systems — Kalman/particle filters, LDS/PLDS, switching/latent dynamical models.
+Neural Encoding/Decoding — receptive fields, GLMs, CNN/RNN encoders, stimulus reconstructions.
+Reinforcement Learning Models — model-free/-based RL, actor–critic, distributional RL mapped to circuits.
+Deep Learning for Neuro — self-supervised vision/audio models as proxies, feature-similarity to cortex.
+Causal Inference — intervention modeling (optogenetics), instrumental variables, SCMs.
+Whole-Brain Simulations — large-scale network/biophysical simulations (e.g., “virtual brain” models).
+Typical computational tasks
+Preprocessing at scale (imaging/ephys), artifact removal, and quality control
+Automated segmentation & 3D reconstruction (EM, light-sheet)
+Feature extraction, dimensionality reduction (PCA/FA/GPFA/CCA), neural manifold learning
+Decoding behavior/intent; closed-loop control (BCI/optogenetic feedback)
+Parameter estimation & model comparison (Bayes, VB, MCMC)
+Hypothesis testing with synthetic data and in-silico experiments
+Common toolchain (quick cheat sheet)
+Languages: Python, MATLAB, Julia, C/C++
+Py libs: NumPy, SciPy, PyTorch/JAX/TensorFlow, scikit-learn, MNE, Nilearn, Nibabel, BIDS apps, CaImAn, Suite2p, SpikeInterface, Elephant, Brian2, NEST, The Virtual Brain
+Pipelines/infra: BIDS, DataLad, NWB, DANDI, containerization (Docker/Singularity), HPC/GPUs
+Example application slices
+Vision: encoding models with CNNs vs V1–IT responses; RSA with fMRI/MEG
+Motor control: latent dynamics from macaque arrays; BCI decoders for reaching/speech
+Memory: hippocampal replay models; complementary learning systems
+Psychiatry: hierarchical DDM/RL fits to symptom dimensions; computational assays
+Connectomics: graph metrics predicting cognition/aging; mesoscale to whole-brain models
+If you want, tell me your goal (e.g., “BCI research roadmap” or “learn comp neuro from scratch”), and I’ll turn this into a tailored reading list + starter projects.
+
+
+If you combine GenAI LLMs + agent frameworks with computational neuroscience, you can do some uniquely powerful things that weren’t practical before.
+Here’s the landscape of unique possibilities—stuff that’s not just automation, but genuinely new workflows:
+
+1. Autonomous neuroscience literature miner
+
+Agent reads tens of thousands of neuroscience papers (PubMed, bioRxiv, arXiv) and:
+Extracts models, equations, datasets, and brain regions
+Links them to code repos, simulation parameters, and prior results
+Produces living review papers that update automatically
+Could be specialized per topic — e.g., “latest hippocampal place cell computational models.”
+
+2. Multi-modal brain data analyst
+
+LLM+agent chain that:
+Ingests EEG, fMRI, spike trains, and behavioral logs
+Calls specialized analysis tools (MNE, Nilearn, CaImAn, Brian2) automatically
+Explains results in plain English + formal equations
+Suggests next experiments based on observed dynamics
+
+3. Model ↔ Brain matching
+
+Agent takes a neural network (PyTorch/JAX) and:
+Compares internal activations to neuroscience datasets (e.g., Allen Brain Atlas, BOLD5000)
+Generates a report on which brain areas the model mimics
+Could be used for testing brain-inspired architectures or comparing species.
+
+4. In-silico hypothesis generator
+
+You ask: “What computational mechanisms could explain X phenomenon?”
+
+Agent:
+
+Searches the literature
+Extracts relevant dynamical models
+Runs simulations in-silico
+Returns ranked hypotheses with code to reproduce them
+
+5. Natural language → experiment pipeline
+
+You type:
+“Simulate a network of 500 leaky integrate-and-fire neurons with 20% inhibitory connectivity and show the effect of increasing synaptic delay on oscillation frequency.”
+
+Agent:
+Writes Brian2/NEST code
+Runs it on HPC or GPU
+Returns plots + written analysis
+
+6. Self-improving lab notebook
+
+Agent monitors:
+Your ongoing experiments
+GitHub code commits
+Lab Slack discussions
+
+Auto-generates:
+Structured lab notes
+Data provenance records
+Paper draft sections with inline citations
+
+7. Adaptive brain–computer interface design
+
+LLM agent:
+Monitors subject’s performance in real-time BCI task
+Adjusts decoding algorithms & task difficulty adaptively
+Logs reasoning for changes for regulatory compliance
+
+8. “Cognitive twin” simulation
+Build personalized brain models from an individual’s MRI + behavioral data
+Agent runs “digital twin” simulations to predict:
+Recovery from injury
+Effect of drugs
+Cognitive decline trajectories
+9. Cross-dataset discovery
+LLM agent searches across many datasets (e.g., fMRI open repositories + electrophysiology studies)
+Finds hidden correlations — like how a network property in rodents mirrors human resting-state changes in a disorder
+10. AI tutor for neuroscience methods
+Interactive, code-executing tutor:
+Explains spike sorting, GLM fitting, manifold learning
+Generates custom practice datasets
+Runs + visualizes code as you learn
+If you want, I can map these to actual agent toolchains — for example:
+LangChain + Hugging Face + Brian2 + MNE + NEST for full neuro-simulation agents
+AutoGen or CrewAI for multi-agent research assistants that divide the literature search, simulation, and report generation
+Do you want me to focus next on designing one full example — like an autonomous computational neuroscience research agent — so you can see how all the parts connect?
+
