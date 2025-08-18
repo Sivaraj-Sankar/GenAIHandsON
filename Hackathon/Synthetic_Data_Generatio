@@ -1,3 +1,44 @@
+Hackathon Theme 
+AI for Data 
+1. Synthetic Data Generation - Diversity and Avoiding the PII data, and other things
+2. Training LLM Model - Proper Model, Infrastructure, GPU I needed
+3. Testing the LLM with Downstream Tasks - 
+4. Evaluating and Creating the Benchmark.
+5. Using it for the Production Level Applications. 
+
+
+Problem Statement 
+-----------------
+Synthetic Data Generation in Banking, Financial Services, and Insurance (BFSI)
+
+1.Financial services rely on vast structured data (transactions, loans, claims) to train models for credit scoring, fraud detection, etc. However, real BFSI data is sensitive and often scarce due to privacy laws (GDPR, CCPA) and compliance restrictions
+2.Synthetic data – artificially generated records that mimic real data patterns – addresses this gap by enabling model training and analysis without exposing PII
+3.For example, synthetic transaction logs or loan applications can be created that preserve statistical properties (e.g. distributions of amounts, customer segments) without containing actual customer identities. By capturing correlations in authentic credit or insurance data, synthetic datasets enable AI/ML development (training, validation, testing) while reducing privacy risk
+
+State-of-the-Art Generation Techniques
+Modern synthetic data methods combine deep generative models and probabilistic approaches. Generative Adversarial Networks (GANs) are widely used: a generator network produces fake samples and a discriminator network judges their authenticity
+Through this adversarial training, GANs learn to generate new records indistinguishable from real data. Variants of GANs tailored to tabular data include CTGAN (which uses mode-specific normalization and conditional sampling for non-Gaussian or categorical features) and CopulaGAN (which leverages copula transforms)
+Time-dependent data can be synthesized with specialized architectures like TimeGAN, which combines unsupervised adversarial training with supervised learning to preserve temporal correlations.
+
+Other approaches include Variational Autoencoders (VAEs) and diffusion-based models. In finance, GAN/VAE hybrids (e.g. TVAE) and statistical models (e.g. Gaussian copula, Bayesian networks) are also applied to capture joint distributions
+The goal is to ensure that synthetic data replicate key summary statistics, feature relationships and outlier behavior of real BFSI datasets.
+
+Recently, Large Language Models (LLMs) have been explored for synthetic finance data, especially for text or semi-structured records. For instance, researchers use GPT-style models to generate synthetic question-answer datasets for financial reasoning
+In practice, an LLM can be prompted with data schemas or examples to emit synthetic entries (e.g. loan descriptions, insurance claim narratives, customer support dialogues) that follow domain-specific patterns
+While GANs dominate structured tabular synthesis, LLMs offer a flexible way to produce narrative or conversational data (e.g. simulated support queries, investment notes). This is an emerging area – current studies (FinNLP 2025) show promising results in generating multi-step financial Q&A with reasoning
+In summary, state-of-art synthetic data generation in BFSI leverages GANs/VAEs for structured numerical data and LLMs for textual components, often with additional privacy controls (e.g. differential privacy) to meet regulatory constraints.
+
+
+
+
+Reference 
+https://blogs.sas.com/content/sascom/2025/06/23/synthetic-data-for-next-generation-fraud-detection-in-banking/#:~:text=Fraud%20detection%20systems%20rely%20on,a%20significant%20challenge%20for%20banks
+https://www.fca.org.uk/publication/corporate/report-using-synthetic-data-in-financial-services.pdf#:~:text=share%20data%20that%20could%20drive,be%20used%20to%20create%20advanced
+https://blog.mlq.ai/synthetic-data-finance-gans/#:~:text=Originally%20proposed%20in%202014%20by,generate%20realistic%20samples%20from%20data
+https://aclanthology.org/2025.finnlp-1.7/#:~:text=abstract%20%3D%20,We%20consider
+
+
+
 Scaling Synthetic Data
 
 Proposes 1 billion diverse personas to facilitate the creation of diverse synthetic data for different scenarios
