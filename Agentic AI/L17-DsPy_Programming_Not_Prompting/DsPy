@@ -1,0 +1,56 @@
+Programming—not prompting—LMs
+
+Declarative Framework 
+1.DSPy is a declarative framework for building modular AI software.
+2.It allows you to iterate fast on structured code, rather than
+3.Rather than brittle strings, and offers algorithms that compile AI programs into effective prompts and weights for your language models.
+4.offers algorithms that compile AI programs into effective prompts and weights for your language models.
+
+5.whether you're building simple classifiers, sophisticated RAG pipelines, or Agent loops
+
+DSPy (Declarative Self-improving Python)
+----------------------------------------
+1.Instead of wrangling prompts or training jobs
+1.enables you to build AI software from natural-language modules and to generically compose them with different models, inference strategies, or learning algorithms.
+2.This makes AI software more reliable, maintainable, and portable across models and strategies.
+3.Think of DSPy as a higher-level language for AI programming (lecture), like the shift from assembly to C or pointer arithmetic to SQL
+
+
+1.Idiomatic DSPy involves using modules, which we define in the rest of this page
+2.This gives you a unified API and lets you benefit from utilities like **automatic caching.
+
+Coding AI Behavior not Stringing 
+------------------
+1)Modules help you describe AI behavior as code, not strings.
+2)To build reliable AI systems, you must iterate fast
+3)But maintaining prompts makes that hard: it forces you to tinker with strings or data every time you change your LM, metrics, or pipeline
+4)Having built over a dozen best-in-class compound LM systems since 2020,
+5)we learned this the hard way—and so built DSPy to decouple AI system design from messy incidental choices about specific LMs or prompting strategies.
+
+Decouple AI System Design from messy incidental choices about specific LMs or prompting strategies
+--------------------------------------------------------------------------------------------------
+1.DSPy shifts your focus from tinkering with prompt strings to programming with structured and declarative natural-language modules.
+2.For every AI component in your system, you specify input/output behavior as a signature and select a module to assign a strategy for invoking your LM
+3.DSPy expands your signatures into prompts and parses your typed outputs, so you can compose different modules together into ergonomic, portable, and optimizable AI systems.
+
+Every AI Component in your system. 
+I/O Signature   - Expanding to Prompts and parses your typed outputs 
+Input 
+Output
+Module          - Compose different modules together into ergonomic[the study of people's efficiency in their working environment.]
+                                                                  [Study of designing equipment and devices that fit the human body and its cognitive abilities], portable, optimizable AI systems 
+Assign a strategy for invoking your LM 
+
+-> Adjust the fields to explore what tasks your LM can do well out of the box
+-> With a task-specific signature. For example, question -> answer: float tells the module to take a question and to produce a float answer.
+
+DSPy module
+-----------
+dspy.Predict
+dspy.ChainOfThought
+dspy.ReAct
+
+
+
+
+
