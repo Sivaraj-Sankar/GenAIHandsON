@@ -1,8 +1,279 @@
-langgraph-runtime-inmem
-langgraph-api
-langgraph-checkpoint
-langgraph.prebuilt.interrupt
+Stateful, Event-driven, Agent workflows
+graph-based execution engine
+nodes (steps), edges (transitions), and state
 
+Define agent workflows
+Maintain state between steps
+Handle interruptions
+Store checkpoints
+Debug with a CLI or API
+
+CLI - my_graph.py contains graph = StateGraph(...)
+langgraph dev my_graph:graph
+The CLI will launch an interactive terminal UI where you can:
+Trigger runs
+See node execution
+Interrupt/resume
+Inspect memory/state
+
+langgraph-runtime-inmem
+langgraph-api [Expose /runs, /resume, /stream]    - This is a FastAPI-based web API server for running your LangGraph applications as a service
+You can expose your LangGraph workflow as REST API endpoints
+It helps you deploy your LangGraph graph as a backend service, similar to an agent server
+It provides endpoints for:
+Starting runs
+Streaming events
+Resuming checkpoints
+Interrupt/resume control
+
+langgraph-checkpoint
+langgraph-checkpoint
+
+This is the state persistence system used by LangGraph.
+✨ Why is it useful?
+LangGraph graphs are stateful: they store:
+Input state
+Intermediate node results
+Tool calls
+Errors
+Interruptions
+To support:
+Resumability (e.g., after human input or crash)
+Replay/debugging
+Persistence across processes
+You need checkpointing.
+
+langgraph-checkpoint provides:
+BaseCheckpointSaver interface
+MemorySaver (in-memory)
+SqliteSaver (persistent)
+PostgresSaver, etc
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.graph import StateGraph
+
+saver = MemorySaver()
+graph = StateGraph(state_schema=MyStateSchema, checkpoint_saver=saver)
+**This lets your graph pause, resume, rollback, or even fork from past checkpoints
+If a node raises an interrupt (e.g., waiting for user input), the checkpoint is saved. Later you can:
+graph.resume(checkpoint_id="xyz", new_state={"user_input": "yes"})
+
+
+
+langgraph.prebuilt.interrupt
+This is a prebuilt LangGraph node to intentionally pause/interrupt execution.
+
+✨ Why is it useful?
+Often, LLM workflows need human-in-the-loop steps:
+“Ask the user to confirm.”
+“Need approval to continue.”
+“Wait for external input.”
+LangGraph supports this with interrupt nodes. These are special nodes that:
+Save a checkpoint
+Stop execution
+Return control to the caller
+Can later be resumed with additional input
+
+from langgraph.prebuilt import interrupt
+from langgraph.graph import StateGraph
+
+graph = StateGraph(state_schema=MyStateSchema)
+
+@graph.node()
+def collect_user_input(state):
+    return interrupt({"message": "Please provide input."})
+This node will return control to the caller and expect them to resume later.
+graph.resume(run_id="123", input={"user_input": "ok, continue"})
+
+
+building stateful, event-driven, and interruptible agent systems
+
+langgraph-api provides server-side APIs for running LangGraph workflows or agents. It lets you:
+Deploy graphs as REST APIs
+Manage the lifecycle of agents and workflows (start, resume, stop).
+Integrate LangGraph with other systems or UIs (e.g., dashboards, chat UIs, orchestration tools).
+
+
+from langgraph_api.server import create_app
+from my_graph import graph  # your LangGraph object
+
+app = create_app(graph)
+POST /runs
+POST /resume
+GET /stream/{run_id}
+
+You can integrate this into your frontend or orchestrator
+
+
+from langgraph.graph import Graph
+from langgraph_api import FastAPIServer
+
+graph = Graph()  # Define your graph
+# ... add nodes and edges
+
+app = FastAPIServer(graph)  # Turn it into a FastAPI app
+
+# Run it like a FastAPI app:
+# uvicorn.run(app, host="0.0.0.0", port=8000)
+
+This turns your LangGraph into a live API. You can now:
+
+POST /sessions to start a session
+POST /events to send user messages or inputs
+GET /state to query the graph's internal state
+
+This is a command-line interface (CLI) to run and test LangGraph workflows locally, using in-memory storage for state and checkpoints. It’s extremely useful for:
+Local prototyping
+Debugging
+Running agents step-by-step interactively
+
+
+# my_graph.py
+from langgraph.graph import Graph
+
+graph = Graph()
+# define your graph nodes, edges
+langgraph dev my_graph:graph
+
+langgraph-checkpoint
+This package provides checkpointing mechanisms to store the internal state of the graph across turns or events. It's critical for persistent memory and resumable agents.
+This package provides checkpointing mechanisms to store the internal state of the graph across turns or events. It's critical for persistent memory and resumable agents.
+
+LangGraph is event-driven. Checkpoints let the system remember:
+where in the workflow the agent is,
+what it was doing,
+and what memory it has.
+Usually, this is used under the hood, or via plugins like inmem, postgres, or redis.
+from langgraph.checkpoint.memory import MemorySaver
+
+checkpointer = MemorySaver()  # In-memory checkpoint store
+
+graph = Graph(checkpointer=checkpointer)
+# Define your graph here
+
+Now when the user interacts with the graph, the state is saved in memory. You can:
+Retrieve previous state
+Resume workflows mid-way
+Rollback if needed
+
+You can also use other checkpoint backends like:
+langgraph-checkpoint-postgres
+langgraph-checkpoint-redis
+
+prebuilt.interrupt
+This is part of the langgraph.prebuilt module and provides an interrupt mechanism inside workflows. It lets you pause a graph mid-execution and wait for external input before continuing.
+Think of it like:
+“Pause the agent here, wait for user confirmation, then resume.”
+
+You want an agent to ask the user for approval before taking an action, or gather more input before proceeding
+
+from langgraph.graph import Graph, Node
+from langgraph.prebuilt import interrupt
+
+def confirm_action(state):
+    return interrupt("Do you want to proceed?", key="user_confirmation")
+
+graph = Graph()
+graph.add_node("ask_confirmation", Node(func=confirm_action))
+
+When this node runs:
+The graph execution will pause.
+It will return a prompt: "Do you want to proceed?".
+The graph waits until an event with the key user_confirmation is sent.
+Once the user responds, the graph resumes.
+
+**You can send the event via:
+CLI (langgraph-cli)   
+API (langgraph-api)
+Code (manually calling graph.send_event(...))
+
+Package	Purpose	Typical Use
+langgraph-api	Run your LangGraph as an HTTP API	Deploy agent workflows
+langgraph-cli[inmem]	CLI runner with in-memory state	Local dev, testing, debugging
+langgraph-checkpoint	Save and resume graph state	Persistent memory, multi-turn agents
+prebuilt.interrupt	Pause/resume nodes on demand	Human-in-the-loop, user approval
+
+
+Sample Example 
+# file: approval_graph.py
+from langgraph.graph import Graph, Node
+from langgraph.prebuilt import interrupt
+from langgraph.checkpoint.memory import MemorySaver
+
+def ask_user(state):
+    return "I want to send $100. Should I proceed?"
+
+def wait_for_approval(state):
+    return interrupt("Please approve the transaction", key="approval")
+
+graph = Graph(checkpointer=MemorySaver())
+graph.add_node("ask", Node(func=ask_user))
+graph.add_node("approval", Node(func=wait_for_approval))
+graph.add_edge("ask", "approval")
+
+command --> langgraph dev approval_graph:graph
+from langgraph_api import FastAPIServer
+from approval_graph import graph
+
+app = FastAPIServer(graph)
+These tools are designed to:
+Build stateful, multi-turn, human-in-the-loop agents.
+Make development easy (CLI), and deployment easy (API).
+Keep agents resumable via checkpoints.
+Allow pausing at critical points with interrupt.
+
+
+Production Level Example:
+Putting it all together — Example Scenario
+Imagine you're building a loan-approval assistant with this flow:
+Accept application
+Extract info with LLM
+Ask human to verify sensitive data
+Continue processing
+
+from langgraph.graph import StateGraph
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.prebuilt import interrupt
+from pydantic import BaseModel
+
+class LoanState(BaseModel):
+    application: dict
+    user_verified: bool = False
+
+graph = StateGraph(state_schema=LoanState)
+saver = MemorySaver()
+
+@graph.node()
+def extract_data(state: LoanState):
+    # Use LLM to extract structured info
+    print("LLM extracted data...")
+    return {"application": {"name": "Alice", "income": 5000}}
+
+@graph.node()
+def ask_human(state: LoanState):
+    return interrupt({"message": f"Verify data: {state.application}"})
+
+@graph.node()
+def approve(state: LoanState):
+    print("Loan approved.")
+    return {"user_verified": True}
+
+graph.add_edge("extract_data", "ask_human")
+graph.add_edge("ask_human", "approve")
+
+
+langgraph dev mygraph:graph
+
+You’ll see the flow run until ask_human, where it will pause. You can then resume with:
+graph.resume(run_id="abc123", input={"user_verified": True})
+
+from langgraph_api.server import create_app
+app = create_app(graph)
+Now your frontend can:
+POST /runs → starts run
+Receives interrupt
+Shows prompt to human
+POST /resume → continues execution
 
 
 You need to add graphs/endpoints in your project code (graph.py or similar).
+
