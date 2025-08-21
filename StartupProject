@@ -24,6 +24,19 @@ poetry install
 poetry add "langgraph-cli[inmem]"
 poetry run which python
 poetry add --dev "langgraph-cli[inmem]"
+poetry run pip install some-package
+poetry run python script.py
+poetry run python --version
+poetry env remove python
+
+poetry env use python
+poetry install
+
+poetry env use C:\Path\To\python.exe
+poetry env info --path
+poetry config virtualenvs.in-project true
+Remove-Item -Recurse -Force .venv
+poetry env remove python
 
 Using pyproject.toml or setup.py (setuptools) - Installs your project itself as a package (in "editable" or development mode), along with its declared dependencies from pyproject.toml or setup.py.
 python -m pip install -e .
