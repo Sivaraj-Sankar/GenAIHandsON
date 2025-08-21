@@ -1955,6 +1955,34 @@ And these AGents can reduce noise by summarizing and grouping alerts, generating
 They Actually indicate a single port scan attempt - not 50 separate incidents 
 
 
+Links Refered in August
+https://dspy.ai/
+https://www.youtube.com/watch?v=JEMYuzrKLUw - Berkeley
+https://docs.llamaindex.ai/en/stable/examples/workflow/parallel_execution/ - Parallel Workflow Execution
+https://docs.llamaindex.ai/en/stable/understanding/workflows/state/ - Maintaining State 
+https://medium.com/elite-data-science-center-edsc/implementing-structured-output-in-llamaindex-easy-way-and-hard-way-e9d1bb4e4733 - Structured Output 
+https://docs.llamaindex.ai/en/logan-material_docs/examples/structured_outputs/structured_outputs/?utm_source=chatgpt.com - Simple Structured Output 
+https://docs.llamaindex.ai/en/stable/getting_started/concepts/ - High Level Overview 
+
+FastLangGraph - Production Ready Template 
+https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template?tab=readme-ov-file
+https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template?tab=readme-ov-file
+
+Imbalanced Classification 
+https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/
+nDGC
+
+
+OpenAI Evals 
+https://cookbook.openai.com/examples/evaluation/getting_started_with_openai_evals
+
+Software Architecture Patterns and Anti Patterns 
+https://learning.oreilly.com/live-events/software-architecture-superstream-architecture-patterns-and-antipatterns-for-ai/0642572184209/
+
+
+
+
+
                        
 
 
