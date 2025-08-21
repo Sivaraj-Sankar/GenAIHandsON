@@ -1979,6 +1979,16 @@ https://cookbook.openai.com/examples/evaluation/getting_started_with_openai_eval
 Software Architecture Patterns and Anti Patterns 
 https://learning.oreilly.com/live-events/software-architecture-superstream-architecture-patterns-and-antipatterns-for-ai/0642572184209/
 
+Workflow Pattern 
+https://docs.llamaindex.ai/en/stable/module_guides/workflow/#retry-steps-execution-in-case-of-failures
+https://docs.llamaindex.ai/en/stable/understanding/agent/multi_agent/
+https://docs.llamaindex.ai/en/stable/examples/agent/agent_workflow_basic/
+https://docs.llamaindex.ai/en/stable/examples/workflow/parallel_execution/
+https://docs.llamaindex.ai/en/stable/examples/workflow/reflection/
+https://docs.llamaindex.ai/en/stable/examples/workflow/reflection/
+https://docs.llamaindex.ai/en/stable/examples/workflow/react_agent/
+https://docs.llamaindex.ai/en/stable/examples/agent/from_scratch_code_act_agent/
+
 
 
 
