@@ -2,3 +2,7 @@ langgraph-runtime-inmem
 langgraph-api
 langgraph-checkpoint
 langgraph.prebuilt.interrupt
+
+
+
+You need to add graphs/endpoints in your project code (graph.py or similar).
