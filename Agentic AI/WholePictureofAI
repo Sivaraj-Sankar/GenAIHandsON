@@ -5,6 +5,8 @@ Canvas Pattern
 Agent Inbox Pattern 
 Multi Agent Pattern 
 Deep Agent Pattern 
+Computer Use Agent 
+
 
 
 
@@ -27,3 +29,7 @@ https://ai.plainenglish.io/langgraph-explained-building-smarter-loop-aware-ai-ag
 
 Multi Agent Pattern 
 https://codelabs.developers.google.com/aidemy-multi-agent/instructions
+
+Agent Inbox
+https://github.com/langchain-ai/agent-inbox
+
