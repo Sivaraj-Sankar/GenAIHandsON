@@ -11,6 +11,30 @@ command
   uvicorn main:app --reload 
   uvicorn app.main:app --reload
 
+Using pyproject.toml or setup.py (setuptools) - Installs your project itself as a package (in "editable" or development mode), along with its declared dependencies from pyproject.toml or setup.py.
+python -m pip install -e .
+
+Registers your project in the environment (so import your_package works).
+Tracks your source directory instead of copying files → changes you make to your code are immediately reflected without reinstalling.
+Used during development of a Python package or application you’re building.
+
+myapp/
+│── pyproject.toml
+│── requirements.txt
+│── src/
+│    └── myapp/
+│         └── __init__.py
+│         └── main.py
+
+Example pyproject.toml:
+[project]
+name = "myapp"
+version = "0.1.0"
+dependencies = [
+    "flask>=2.3",
+    "requests"
+]
+
 pip install mcp
 pip install "mcp[cli]"
 pip install uv
