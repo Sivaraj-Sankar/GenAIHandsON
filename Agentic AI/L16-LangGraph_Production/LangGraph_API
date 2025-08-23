@@ -429,3 +429,78 @@ Defines a schema for settings of a research assistant.
 Lets you configure it via defaults, environment variables, or a LangChain RunnableConfig.
 Merges these sources in a priority order (env vars > config dict > defaults).
 Ensures values are validated and safe thanks to Pydantic.
+
+
+Configuration Value Resolution
+
+When you call:
+
+Configuration.from_runnable_config(config)
+
+
+For each field (e.g., search_api), the code checks in this order:
+
+Environment Variable (highest priority)
+
+Looks for an environment variable with the field name in uppercase.
+
+Example:
+
+Field → max_web_research_loops
+
+Env Var → MAX_WEB_RESEARCH_LOOPS
+
+RunnableConfig["configurable"] dictionary
+
+If the field is not found in the environment, it looks inside config["configurable"].
+
+Example:
+
+config = {
+    "configurable": {
+        "search_api": "perplexity"
+    }
+}
+
+
+Default Value (lowest priority)
+
+If neither env var nor configurable provides a value, the field falls back to the default set in the class definition.
+            ┌───────────────────────────┐
+            │   Environment Variable     │   (e.g. MAX_WEB_RESEARCH_LOOPS=5)
+            └─────────────┬─────────────┘
+                          │
+                          ▼
+            ┌───────────────────────────┐
+            │  RunnableConfig["config"] │   (e.g. {"search_api": "perplexity"})
+            └─────────────┬─────────────┘
+                          │
+                          ▼
+            ┌───────────────────────────┐
+            │     Default Value          │   (e.g. max_web_research_loops=3)
+            └───────────────────────────┘
+
+Rule of thumb:
+
+Environment variables override everything.
+If not set, fall back to RunnableConfig.
+If not set there, fall back to defaults.
+
+
+Example:
+
+export MAX_WEB_RESEARCH_LOOPS=10
+
+config = Configuration.from_runnable_config(
+    {"configurable": {"max_web_research_loops": 5, "search_api": "tavily"}}
+)
+
+
+Result:
+
+Configuration(
+    max_web_research_loops=10,  # from env, overrides config
+    search_api="tavily",        # from config dict
+    local_llm="llama3.2",       # default
+    ...
+)
