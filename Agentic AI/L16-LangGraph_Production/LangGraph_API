@@ -274,6 +274,11 @@ Receives interrupt
 Shows prompt to human
 POST /resume → continues execution
 
+Specifies the local packages or modules your LangGraph project depends on.
+"." means the current directory is included in the Python path, so imports inside graph.py will work.
+"dependencies": ["./src", "external_package"]
+Helps the CLI resolve imports when running langgraph dev or langgraph build
+
 
 You need to add graphs/endpoints in your project code (graph.py or similar).
 
@@ -281,4 +286,34 @@ You need to add graphs/endpoints in your project code (graph.py or similar).
 https://docs.bentoml.com/en/latest/examples/langgraph.html
 https://www.bing.com/images/search?view=detailV2&ccid=40YCswJJ&id=7E91B5A497F5989185CFDB5BF45ACAE72B903B28&thid=OIP.40YCswJJhydiiwst1Sp7UwHaDq&mediaurl=https%3A%2F%2Fdocs.bentoml.com%2Fen%2Flatest%2F_static%2Fimg%2Fexamples%2Flanggraph%2Flanggraph-bentoml-architecture.png&exph=1154&expw=2328&q=langgraph+cli+terminal&form=IRPRST&ck=89047BCE3BF16948B7CA7D969269BF0B&selectedindex=2&itb=0&vt=0&sim=11
 https://www.bing.com/images/search?q=langgraph+cli+terminal&form=HDRSC3&first=1
+
+
+
+langgraph dev / API
+        │
+        ▼
+  langgraph.json
+        │
+        ├─ dependencies loaded (Python path set)
+        │
+        ├─ graphs mapping parsed
+        │
+        ▼
+  ./src/agent:graph
+        │
+        ├─ __init__.py exposes `graph`
+        │
+        ▼
+  graph.py
+        │
+        ├─ defines StateGraph & nodes (@graph.node())
+        │
+        ▼
+  StateGraph object ready
+        │
+        ▼
+LangGraph CLI / API exposes endpoints:
+ - /assistants → "agent"
+ - /threads → start/manage sessions
+ - /runs → execute graph nodes
 
