@@ -12,6 +12,11 @@ command
   uvicorn app.main:app --reload
 
 Poetry 
+poetry add --dev pytest black isort
+poetry env list      # shows available environments
+poetry env use <python-path>   # select Python version
+poetry env info      # shows environment location
+poetry env activate <env-name>
 poetry install
 Creating virtualenv agent-inbox-example-6gc36yUx-py3.13 in C:\Users\Sivaraj\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\Local\pypoetry\Cache\virtualenvs
 Installing dependencies from lock file
