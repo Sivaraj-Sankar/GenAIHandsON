@@ -322,3 +322,110 @@ LangGraph CLI / API exposes endpoints:
  - /threads → start/manage sessions
  - /runs → execute graph nodes
 
+
+# Configurations 
+This is essentially a configuration manager for a research assistant app that uses LLMs (via Ollama or LMStudio) and web search APIs (Perplexity, Tavily, DuckDuckGo, Searxng).
+
+The Components
+
+SearchAPI Enum
+
+Defines which search API can be used.
+
+Values: "perplexity", "tavily", "duckduckgo", "searxng".
+
+Configuration Model (Pydantic BaseModel)
+
+Holds all the configurable settings for the research assistant.
+
+Each field has a default, title, and description (useful for docs, UI, or config schemas).
+
+Examples of config fields:
+
+max_web_research_loops → how many times to loop through research.
+
+local_llm & llm_provider → which LLM and provider to use.
+
+search_api → which search API to call.
+
+fetch_full_page → whether to fetch the entire webpage text.
+
+URLs for Ollama / LMStudio backends.
+
+strip_thinking_tokens → whether to remove <think> tags from model outputs.
+
+use_tool_calling → whether to use tool calling or JSON mode for structured responses.
+
+✅ Thanks to Pydantic, the model:
+
+validates values (e.g., llm_provider must be "ollama" or "lmstudio"),
+
+enforces types (e.g., max_web_research_loops must be an int),
+
+gives you a clean .dict() representation.
+
+from_runnable_config classmethod
+
+This is where the "magic" happens: it builds a Configuration object dynamically from two sources:
+
+Environment variables (os.environ)
+
+It looks up each config field by name in uppercase.
+
+Example: if you set MAX_WEB_RESEARCH_LOOPS=5 in your environment, it will override the default.
+
+RunnableConfig (from LangChain)
+
+This is an optional config dictionary that might be passed into a LangChain runnable.
+
+If "configurable" exists inside config, it will use values from there.
+
+Then it filters out None values so you don’t pass None into Pydantic.
+
+Finally, it instantiates the Configuration with whatever values it found.
+
+
+Example Flow
+
+Let’s say you run the assistant with:
+
+export MAX_WEB_RESEARCH_LOOPS=5
+export LLM_PROVIDER=lmstudio
+
+
+And in your Python code you do:
+
+config = Configuration.from_runnable_config(
+    {"configurable": {"search_api": "perplexity"}}
+)
+
+
+What happens?
+
+MAX_WEB_RESEARCH_LOOPS=5 is pulled from the environment.
+
+LLM_PROVIDER=lmstudio is pulled from the environment.
+
+search_api="perplexity" comes from config["configurable"].
+
+Everything else falls back to defaults.
+
+So your config object ends up like:
+
+Configuration(
+    max_web_research_loops=5,
+    local_llm="llama3.2",
+    llm_provider="lmstudio",
+    search_api="perplexity",
+    fetch_full_page=True,
+    ollama_base_url="http://localhost:11434/",
+    lmstudio_base_url="http://localhost:1234/v1",
+    strip_thinking_tokens=True,
+    use_tool_calling=False,
+)
+
+This code:
+Defines a schema for settings of a research assistant.
+Lets you configure it via defaults, environment variables, or a LangChain RunnableConfig.
+Merges these sources in a priority order (env vars > config dict > defaults).
+Ensures values are validated and safe thanks to Pydantic.
