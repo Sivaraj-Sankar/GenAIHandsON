@@ -11,7 +11,35 @@ command
   uvicorn main:app --reload 
   uvicorn app.main:app --reload
 
-Poetry 
+Poetry
+Package 
+poetry add ./src
+
+[tool.poetry]
+packages = [
+    { include = "agent", from = "src" }
+]
+
+poetry add path=src
+That will add your src/ as a dependency in the lockfile.
+
+Option 2: Use poetry init or poetry install with packages
+Poetry doesn’t have a one-liner like poetry add-package yet, but the standard way is:
+poetry install --no-root
+This installs dependencies only without trying to install your package.
+If you want your own package installed, you need the packages entry in pyproject.toml.
+
+Option 1: Use poetry add with --src
+If your code lives under src/agent/, you can tell Poetry to treat src as the source root:
+poetry add ./src
+This will install everything under src/ as a package into your environment.
+But it won’t automatically update the [tool.poetry] packages section
+
+3. Disable package mode (if you only want dependency management)
+
+In pyproject.toml, under [tool.poetry], add:
+package-mode = false
+
 poetry add --dev pytest black isort
 poetry env list      # shows available environments
 poetry env use <python-path>   # select Python version
