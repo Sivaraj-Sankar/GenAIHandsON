@@ -1,0 +1,44 @@
+LangGraph - Agent Inbox
+
+https://deepwiki.com/langchain-ai/agent-inbox-langgraph-example
+https://deepwiki.com/langchain-ai/agent-inbox-langgraphjs-example
+https://deepwiki.com/langchain-ai/agent-inbox
+
+
+Front End Hooks [Each hook gives your component a “superpower” to do something beyond just showing static content]
+---------------
+See whether the lamp is ON/OFF
+Toggle the lamp on or off
+Auto-dim at night
+Share lamp state with other devices in the house
+
+useState → Remembering the Lamp’s State
+Without state, every time you refresh the app, it forgets.
+So useState is like the lamp’s memory inside the app.
+
+useEffect → Side Effects, like Auto-Dimming
+The app checks the time: if it’s night, the lamp dims automatically.
+That’s not about the UI itself—it’s a side effect that runs after the app has updated.
+Example: At 7PM → app triggers auto-dim.
+
+
+Custom Hook → Reusable Logic
+Imagine you also have a smart fan app. It needs the same “auto-dim at night” logic
+Instead of rewriting the same time-checking code, you make a custom hook called useNightMode
+Now both the lamp and the fan can reuse that logic
+Example: Both devices know it’s nighttime without duplicating logic
+
+useContext → Sharing Lamp State Across Devices
+Your phone, tablet, and smart speaker should all stay in sync about whether the lamp is ON/OFF.
+useContext lets them share this “global” state without each one having to re-check separately.
+Example: If you say “Hey Alexa, turn off lamp”, your phone app also shows “Lamp is OFF.”
+
+
+useReducer → Complex Controls
+Imagine the lamp has multiple modes: ON, OFF, DIM, COLOR CHANGE
+Managing these with plain useState could get messy
+useReducer acts like a remote control system, where each button press is an action that updates the lamp’s mode.
+Example: Press “DIM” button → state changes from ON → DIM.
+
+Hooks are like smart home gadgets that give your app the ability to remember things, react to changes, share state, and handle complex logic—all inside simple functional components.
+
