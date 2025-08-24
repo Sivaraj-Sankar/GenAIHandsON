@@ -42,3 +42,26 @@ Example: Press “DIM” button → state changes from ON → DIM.
 
 Hooks are like smart home gadgets that give your app the ability to remember things, react to changes, share state, and handle complex logic—all inside simple functional components.
 
+Next.js 
+-------
+File-based Routing
+No need to install react-router. Just create files in /pages and Next.js handles routing automatically.
+
+Server-Side Rendering (SSR) & Static Site Generation (SSG)
+Improves performance and SEO compared to client-side only React.
+
+API Routes
+You can create backend endpoints directly inside your Next.js app under /pages/api.
+
+Built-in TypeScript Support
+Just add a tsconfig.json and Next.js configures TypeScript for you.
+
+Image Optimization
+The <Image /> component optimizes images automatically.
+
+Full-stack capabilities
+Since you can have frontend + backend (API routes) in one project.
+🔹 Example: Instead of just a client-only React app, with Next.js + TypeScript you can build:
+A blog (static pages + markdown)
+An e-commerce app (server-rendered product pages + APIs)
+A dashboard (SSG for speed + SSR for user-specific data)
