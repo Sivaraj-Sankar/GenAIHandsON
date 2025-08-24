@@ -42,6 +42,11 @@ Example: Press “DIM” button → state changes from ON → DIM.
 
 Hooks are like smart home gadgets that give your app the ability to remember things, react to changes, share state, and handle complex logic—all inside simple functional components.
 
+
+How Next.js is useful in React + TypeScript projects
+
+Next.js is a React framework that provides features you don’t get in plain React. With TypeScript, it becomes even more powerful for building production-ready apps.
+
 Next.js 
 -------
 File-based Routing
