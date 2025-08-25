@@ -1,0 +1,125 @@
+1.Modern React Hooks: Components use React hooks like useState, useEffect, and custom hooks **ThreadContext.tsx:19
+2.Radix UI components for accessible UI primitives - keyboard navigation, ARIA attributes, screen reader support, focus management
+
+
+3.State
+4.Props = what you get (from outside).
+5.State = what you manage (inside yourself).
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0); // count = state
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+import React from "react";
+import { createRoot } from "react-dom/client";
+import Counter from "./Counter"; // 👈 assuming your file is Counter.js
+
+function App() {
+  return (
+    <div>
+      <h1>My First React App</h1>
+      <Counter /> {/* 👈 This is how you "call" Counter */}
+    </div>
+  );
+}
+
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
+
+
+Prop
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+// Using Greeting with different props
+<Greeting name="Alice" />
+<Greeting name="Bob" />
+name is a prop.
+Greeting component cannot change props.name — it only uses it.
+
+
+6.Routing
+npm install react-router-dom
+npm install -D @types/react-router-dom
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+
+In your App.tsx, wrap your app with BrowserRouter and define routes:
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+/ → Home page
+/about → About page
+/contact → Contact page
+export default App;
+
+Navigation Links
+To move between pages, use <Link> or <NavLink> instead of <a> tags (so React doesn’t reload the page):
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <nav>
+      <Link to="/">Home</Link> |{" "}
+      <Link to="/about">About</Link> |{" "}
+      <Link to="/contact">Contact</Link>
+    </nav>
+  );
+}
+
+export default Navbar;
+
+4. Programmatic Navigation
+Sometimes you need to navigate after an action (e.g., form submit).
+For that, use the useNavigate hook:
+import { useNavigate } from "react-router-dom";
+
+function Contact() {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    // after submitting, go to Home
+    navigate("/");
+  };
+
+  return (
+    <div>
+      <h2>Contact Page</h2>
+      <button onClick={handleSubmit}>Go Home</button>
+    </div>
+  );
+}
+
+export default Contact;
+
+5. Dynamic Routes (with Params)
+You can define routes with parameters:
+<Route path="/users/:id" element={<UserProfile />} />
+Inside UserProfile.tsx:
+import { useParams } from "react-router-dom";
+
+function UserProfile() {
+  const { id } = useParams<{ id: string }>();
+  return <h2>User Profile for ID: {id}</h2>;
+}
