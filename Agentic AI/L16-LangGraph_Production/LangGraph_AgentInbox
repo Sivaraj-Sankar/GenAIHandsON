@@ -18,6 +18,32 @@ https://deepwiki.com/langchain-ai/agent-inbox
 https://github.com/langchain-ai/agent-inbox-langgraphjs-example/tree/090e3c4f61d942e6959df93083e63b46b436d486
 https://deepwiki.com/search/is-this-project-developed-in-w_cc398cb4-5112-4b26-802f-c9b1d846053e
 https://deepwiki.com/langchain-ai/agent-inbox
+https://docs.langchain.com/langgraph-platform/cli?utm_source=chatgpt.com
+
+langgraph new path/to/app --template new-langgraph-project-python
+State is temporary
+The in-memory server runs as a single Python process.
+It stores checkpoints, assistants, threads, etc., in a .langgraph_api directory while the server runs, but it’s not durable across restarts
+With langgraph dev (in-memory), the state (threads, checkpoints, assistants, etc.) is only ephemeral. It lives in RAM and a lightweight .langgraph_api cache while the server is running, but vanishes once you restart
+
+To persist state across restarts, you need to switch from in-memory storage to a real backend (Postgres + Redis).
+1. Run LangGraph Server with Postgres/Redis (via Docker)
+The official setup uses Docker Compose with Postgres + Redis.
+This gives you durable checkpoints and thread state across restarts.
+Example: langgraph up
+(spins up the server with Docker, Postgres, Redis, and the LangGraph API).
+Your state now lives in a database, not just memory.
+2.Self-Host Without Docker (direct Postgres/Redis)
+If you don’t want Docker, you can run the services yourself:
+Install Postgres and Redis locally (via Homebrew, apt, or binaries).
+Create a database (e.g., langgraph).
+Set environment variables in your .env:
+LANGGRAPH_DATABASE_URL=postgresql://user:password@localhost:5432/langgraph
+LANGGRAPH_REDIS_URL=redis://localhost:6379
+Start the server pointing to those services:
+langgraph dev
+Production style
+langgraph start
 
 
 Front End Hooks [Each hook gives your component a “superpower” to do something beyond just showing static content]
