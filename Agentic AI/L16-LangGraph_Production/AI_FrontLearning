@@ -123,3 +123,86 @@ function UserProfile() {
   const { id } = useParams<{ id: string }>();
   return <h2>User Profile for ID: {id}</h2>;
 }
+
+7. SideBar 
++--------------------------------+
+| SidebarHeader                  |
+| +----------------------------+ |
+| | SidebarMenu                | |
+| | +------------------------+ | |
+| | | SidebarMenuItem        | | |
+| | | +--------------------+ | | |
+| | | | SidebarMenuButton   | | | |
+| | | | +----------------+ | | | |
+| | | | | Link           | | | | |
+| | | | | +------------+ | | | | |
+| | | | | | Icon       | | | | | |
+| | | | | | MessagesSquare   | | |
+| | | | | +------------+ | | | | |
+| | | | | | Text       | | | | | |
+| | | | | | "assistant-ui" | | | |
+| | | | +----------------+ | | | |
+| | | +--------------------+ | | |
+| | +------------------------+ | |
+| +----------------------------+ |
++--------------------------------+
+| SidebarContent                 |
+| +----------------------------+ |
+| | ThreadList                 | |
+| +----------------------------+ |
++--------------------------------+
+| SidebarRail                    |
+| (Optional slim navigation)     |
++--------------------------------+
+| SidebarFooter                  |
+| +----------------------------+ |
+| | SidebarMenu                | |
+| | +------------------------+ | |
+| | | SidebarMenuItem        | | |
+| | | +--------------------+ | | |
+| | | | SidebarMenuButton   | | | |
+| | | | +----------------+ | | | |
+| | | | | Link           | | | | |
+| | | | | +------------+ | | | | |
+| | | | | | Icon       | | | | | |
+| | | | | | Github     | | | | | |
+| | | | | +------------+ | | | | |
+| | | | | | Text       | | | | | |
+| | | | | | "GitHub"   | | | | | |
+| | | | | | "View Source" | | | |
+| | | | +----------------+ | | | |
+| | | +--------------------+ | | |
+| | +------------------------+ | |
++--------------------------------+
+Header is at the top, Footer at the bottom.
+Content is scrollable in the middle.
+SidebarRail is optional, could be a thin vertical bar on the side.
+Each menu item consists of an icon and text stacked vertically.
+
+
+Sidebar
+│
+├─ SidebarHeader
+│  └─ SidebarMenu
+│     └─ SidebarMenuItem
+│        └─ SidebarMenuButton
+│           └─ Link (https://assistant-ui.com)
+│              ├─ Icon container (MessagesSquare)
+│              └─ Text container
+│                 └─ "assistant-ui"
+│
+├─ SidebarContent
+│  └─ ThreadList
+│
+├─ SidebarRail
+│  (empty in this code, acts as a rail/navigation)
+│
+└─ SidebarFooter
+   └─ SidebarMenu
+      └─ SidebarMenuItem
+         └─ SidebarMenuButton
+            └─ Link (https://github.com/assistant-ui/assistant-ui)
+               ├─ Icon container (Github)
+               └─ Text container
+                  ├─ "GitHub"
+                  └─ "View Source"
