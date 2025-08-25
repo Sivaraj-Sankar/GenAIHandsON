@@ -304,6 +304,39 @@ https://github.com/langchain-ai/executive-ai-assistant
 https://github.com/langchain-ai/social-media-agent
 https://langchain-ai.github.io/langgraph/concepts/template_applications/   - Template Project
 
+https://www.npmjs.com/package/%40langchain/langgraph-cli?utm_source=chatgpt.com
+https://github.com/langchain-ai/langgraphjs/issues/1331?utm_source=chatgpt.com
+For JavaScript (LangGraph.js) Users
+If you're using the JS flavor, note that project creation differs:
+Instead of langgraph new, use npm create langgraph to scaffold a project. 
+GitHub
+
+The CLI command names are prefixed with langgraphjs (e.g., langgraphjs dev, langgraphjs up) or via npx @langchain/langgraph-cli dev
+npx @langchain/langgraph-cli dev
+
+https://www.reddit.com/r/LangChain/comments/1juejy2/ive_made_a_productionready_fastapi_langgraph/?utm_source=chatgpt.com
+Commands
+langgraph new LanggraphTemplateProject --template new-langgraph-project-python --force
+langgraph new MyTempProject --template new-langgraph-project-python
+mv MyTempProject/* LanggraphTemplateProject/
+langgraph new LanggraphTemplateProject --template new-langgraph-project-python
+
+Extra Insights from the Community
+On Reddit, a community member shared a FastAPI-based production-ready template with features like:
+Langfuse observability, structured logging, rate limiting
+PostgreSQL persistence, Docker (Compose) setup
+JWT-based auth, Prometheus + Grafana monitoring
+
+Type hints, clean project structure, and more
+Another built a a TypeScript CLI wrapper around the LangGraph SDK to simplify testing, including real-time streaming and better DX:
+npx langgraph-client-cli@latest runs stream <thread> <agent> --input '{"messages": [...] }'
+``` :contentReference[oaicite:11]{index=11}
+
+---
+
+Need help configuring a specific template or hooking up a UI? Just let me know—happy to assist!
+::contentReference[oaicite:12]{index=12}
+
 langgraph dev / API
         │
         ▼
