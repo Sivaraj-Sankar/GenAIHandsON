@@ -1,4 +1,16 @@
 LangGraph - Agent Inbox
+-----------------------
+-just needs to have an interrupt event 
+-which passes in a specific schema which we have outlined in the github readme 
+-once that interrupt is triggered the agent inbox can use the langgraph SDK to fetch those interrupt items and since it's using that specific schema 
+-we know exactly what fields to render and say the description 
+-Any langraph app as long as it uses the specific human interrupt schema
+-Human Interrupt Schema - To Implement this in your langgraph graph 
+ human interrupt for the agent inbox
+- Example in python and how you we can implement this and the same goes for JS it'll simply define your human interrupt object pass it to the 
+interrupt function and then once the graph is resumed it will return the human response value 
+
+
 
 https://deepwiki.com/langchain-ai/agent-inbox-langgraph-example
 https://deepwiki.com/langchain-ai/agent-inbox-langgraphjs-example
