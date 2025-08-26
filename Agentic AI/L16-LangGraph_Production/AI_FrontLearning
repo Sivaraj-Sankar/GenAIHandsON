@@ -443,3 +443,107 @@ If you use Tailwind, you can also create a font class:
 
 <p className="font-sans">Hello World</p>
 <code className="font-mono">const x = 10;</code>
+
+6.Next.Js [Layout & Page]
+layout.tsx and page.tsx
+Is central to how the routing and UI structure works. Let me break it down carefully and clearly.
+app/
+├── layout.tsx
+├── page.tsx
+├── dashboard/
+│   ├── layout.tsx
+│   └── page.tsx
+layout.tsx – Defines the layout for a segment of your app (can include headers, footers, navbars, etc.).
+page.tsx – Defines the actual content of a route (the page content).
+Each folder in app/ can have a layout.tsx.
+A layout wraps all pages and nested layouts inside that folder.
+Layouts are persistent: navigating between pages in the same layout doesn’t unmount the layout, which is great for things like keeping a sidebar state.
+
+// app/layout.tsx
+import './globals.css';
+import { ReactNode } from 'react';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <header>My Site Header</header>
+        <main>{children}</main>
+        <footer>My Site Footer</footer>
+      </body>
+    </html>
+  );
+}
+
+How page.tsx works
+page.tsx is rendered inside the nearest layout.
+children from the layout is replaced by the page content.
+app/page.tsx
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to My Home Page</h1>
+      <p>This is the main content.</p>
+    </div>
+  );
+}
+
+When you visit /:
+RootLayout wraps around HomePage.
+The rendered HTML is essentially:
+<html>
+  <body>
+    <header>My Site Header</header>
+    <main>
+      <div>
+        <h1>Welcome to My Home Page</h1>
+        <p>This is the main content.</p>
+      </div>
+    </main>
+    <footer>My Site Footer</footer>
+  </body>
+</html>
+
+4. Nested Layouts
+If you add a folder with its own layout, it overrides the parent layout only inside that folder.
+Example: app/dashboard/layout.tsx
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ display: 'flex' }}>
+      <aside>Sidebar</aside>
+      <main>{children}</main>
+    </div>
+  );
+}
+
+Example: app/dashboard/page.tsx
+export default function DashboardPage() {
+  return <h1>Dashboard Content</h1>;
+}
+When you visit /dashboard:
+RootLayout wraps the page with <html> and <body> etc.
+DashboardLayout wraps the page content specifically for /dashboard.
+Final rendering:
+<html>
+  <body>
+    <header>My Site Header</header>
+    <div style="display:flex;">
+      <aside>Sidebar</aside>
+      <main>
+        <h1>Dashboard Content</h1>
+      </main>
+    </div>
+    <footer>My Site Footer</footer>
+  </body>
+</html>
+
+5. Key Points
+Every page.tsx must be inside a folder with a layout, directly or inherited.
+children in layout.tsx is where the page content appears.
+Layouts are persistent across nested routes, which improves performance and UX.
+You can nest multiple layouts for complex apps.
+
+
+
+
+
