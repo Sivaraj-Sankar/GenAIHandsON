@@ -709,5 +709,71 @@ You can format the labels (e.g., replace - with spaces, capitalize words).
 For SEO, you might want to add schema.org structured data for breadcrumbs.
 
 
+11. Client vs Server 
+Yes — you can absolutely use an external API in a Next.js + React + TypeScript project. There are two common ways to do it, depending on whether you want the API call to happen on the server (Node.js environment) or on the client (browser).
+1. Call the external API on the server
+This is often the better approach when:
+You want to keep API keys secret (not exposed to the browser).
+You want to preprocess or cache data before sending it to the client.
+You’re using Next.js API routes or Server Components.
+
+Example with API Route (pages/api/... or app/api/...):
+// app/api/data/route.ts (Next.js 13+ App Router with TypeScript)
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  const res = await fetch("https://external-api.com/data", {
+    headers: {
+      Authorization: `Bearer ${process.env.EXTERNAL_API_KEY}`, // safe on server
+    },
+  });
+
+  const data = await res.json();
+  return NextResponse.json(data);
+}
+Then from your client-side React component:
+
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function MyComponent() {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/api/data")
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+
+2. Call the external API on the client
+--------------------------------------
+This is fine if:
+The API doesn’t need authentication or uses public tokens
+You don’t mind exposing the request directly from the browser.
+
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function MyComponent() {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("https://external-api.com/public-endpoint")
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+
+Best practice: If the external API requires API keys or secrets, always call it from the server side (API route, server component, or getServerSideProps).
+Would you like me to show you the App Router way (Next.js 13+ with app/ directory) or the Pages Router way (pages/ directory) for your project?
+
+
 
 
