@@ -2077,6 +2077,34 @@ Intentional Context Management turns AI coding from Protoypes into Productions
 Advanced Context Engineering for Coding Agents
 ----------------------------------------------
 The Most Naive Way to use a coding agent 
+System Instructions
+CLAUDE.md
+CLAUDE Builtin Tools 
+MCP Tools
+User Message
+Read()
+Search()
+Write()
+Assistant Message
+User Message 
+Read()
+Search()
+Write()
+User Message 
+
+Resteering the Context:
+"No use XYZ Approach"
+
+Slightly smarter - start over vs resteer 
+When you should consider starting over with fresh context - If you see this probably start over and try it again, "you're absolutey right"
+Refresh the Context
+Fresh Context
+Make sure you use XYZ Approach  - 
+
+Slightly smarter: Intentional Compaction
+not putting the same prompt in with a little bit of steering 
+
+
 
 
 
