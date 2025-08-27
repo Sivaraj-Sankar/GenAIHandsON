@@ -1785,6 +1785,8 @@ AI Engineering Model
 Dominic - Agent SDK - Swarm Concept 
 Agentic Standard Model 
 Agentic AI - CyberSecurity 
+Context Engineering - YC 
+
 
 
 
@@ -1953,6 +1955,136 @@ Agent Pulls - Cloud Logs, Identity Logs, EDR Telementry - to decide when an aler
 
 And these AGents can reduce noise by summarizing and grouping alerts, generating insights like those 50 alerts together 
 They Actually indicate a single port scan attempt - not 50 separate incidents 
+
+Context Engineering - YC - Dex - Human Layer 
+------------------------
+https://github.com/humanlayer/12-factor-agents - 12 Factor Agents - Principles for building reliable LLM applications
+12 Factors for Modern Software - https://12factor.net/
+https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-03-own-your-context-window.md - Factor 3
+https://github.com/humanlayer/12-factor-agents/discussions/61 - Discussion Thread 
+https://www.youtube.com/watch?v=8bIHcttkOTE&feature=youtu.be - Hacking AI Agents
+Outer Loop  - Human in the Loop - AGI 
+https://www.humanlayer.dev/   - Human Layer 
+https://www.anthropic.com/engineering/building-effective-agents#agents - Building Effective Agents - Claude 
+https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-03-own-your-context-window.md- Factor 3
+
+12 Factor Agents - Real world Effective Agents 
+https://www.youtube.com/watch?v=8kMaTybvDUw 
+
+https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-10-small-focused-agents.md#what-if-llms-get-smarter - What if LLM get Smatter 
+
+Agents are Software 
+-------------------
+1.Directed Graphs (DGs) and their Acyclic friends, DAGs
+2.60 years ago Software is a directed graph. There's a reason we used to represent programs as flow charts.
+3.Around 20 years ago, we started to see DAG orchestrators become popular -  Airflow, Prefect, some predecessors, and some newer ones like (dagster, inggest, windmill)
+    Apache Airflow is an open-source workflow orchestration platform. In plain words, it’s a tool that helps you schedule, organize, and monitor workflows (pipelines) in a reliable and automated way.
+    Think of it like a smart task manager for data engineering, machine learning, DevOps, and other IT processes.
+4.These followed the same graph pattern, with the added benefit of observability, modularity, retries, administration, etc.
+5.10-15 years ago - When ML models started to get good enough to be useful, we started to see DAGs with ML models sprinkled in. You might imagine steps like "summarize the text in this column into a new column" or "classify the support issues by severity or sentiment".
+6.The promise of agents
+
+Reference 
+https://www.youtube.com/watch?si=bcT0hIwWij2mR-40&t=73&v=Dc99-zTMyMg&feature=youtu.be - Using Agents to Build an Agent Company 
+
+Problems 
+1. seen this long-context problem in working with agentic coding tools [They just get lost after a while and you need to start a new chat.]
+2. Most builders I've talked to pushed the "tool calling loop" idea to the side when they realized that anything more than 10-20 turns becomes a big mess that the LLM can't recover from.
+3. Even if the agent gets it right 90% of the time, that's miles away from "good enough to put in customer hands". Can you imagine a web app that crashed on 10% of page loads?
+
+What Actually Work 
+1.**One thing that I have seen in the wild quite a bit is taking the agent pattern and sprinkling it into a broader more deterministic DAG.
+2. Real Life Deployment Agent - https://github.com/got-agents/agents/tree/main/deploybot-ts 
+3.**We haven't given this agent a huge pile of tools or tasks. The primary value in the LLM is parsing the human's plaintext feedback and proposing an updated course of action. We isolate tasks and contexts as much as possible to keep the LLM focused on a small, 5-10 step workflow.
+4.Chatbot demo on the less task & tool - https://x.com/chainlit_io/status/1858613325921480922
+https://x.com/chainlit_io/status/1858613325921480922 - Support Agent - OpenAI Cookbook 
+5. prompt - tell an LLM how to behave, and what "tools" it has available. The output of the prompt is a JSON object that describe the next step in the workflow (the "tool call" or "function call"). (factor 2)
+switch statement - based on the JSON that the LLM returns, decide what to do with it. (part of factor 8)
+accumulated context - store the list of steps that have happened and their results (factor 3)
+for loop - until the LLM emits some sort of "Terminal" tool call (or plaintext response), add the result of the switch statement to the context window and ask the LLM to choose the next step. (factor 8)
+6.In the "deploybot" example, we gain a couple benefits from owning the control flow and context accumulation:
+In our switch statement and for loop, we can hijack control flow to pause for human input or to wait for completion of long-running tasks
+We can trivially serialize the context window for pause+resume
+In our prompt, we can optimize the heck out of how we pass instructions and "what happened so far" to the LLM
+Part II will formalize these patterns so they can be applied to add impressive AI features to any software project, without needing to go all in on conventional implementations/definitions of "AI agent".
+
+
+
+
+
+
+
+
+
+
+Leaders 
+Tobi Andrej Walden 
+Dex
+Swix - June 4 - Context Engineering
+Sean Grove - New Code - Vibe Coding Wrong 
+Yegor's Talk - Standford University - Does AI Actually Boost Developer Productivity  
+         Ingested Data from - 100K Dev Across all company sizes 
+         Most AI in Software Engineering Leads to Rework 
+         Sucks for BrownField or Complex Tasks 
+Amjad - Replit 
+
+Old Code Base 
+Legacy Code Base 
+
+GreenField 
+Complex Task - with human insight 
+Repetitive & Well Defined - 
+
+Brownfield - Counter Productive 
+Outdated Code  - intricate dependencies 
+Legacy projects still benefit on simpler tasks 
+
+Too Much Slopy 
+Tech Debt Factory 
+Doesn't work in big repos
+Doesn't work for complex systems
+
+CRUD App, Next.Js API,  this was complext systems code with race conditions, shutdown order
+
+Context Engineering means getting the most out of today's models 
+
+The Goals 
+---------
+AI Works Well in Brownfield Codebases.
+Solves Complex Problems. 
+No Slop.
+Mental Alignment.
+
+
+
+
+
+Code 
+Brownfield Code 
+
+Advance Context Engineering for Coding Agents 
+
+What are the principles we can use to build LLM-powered software that is actually good enough to put in the hands of production customers?
+
+Favourite Talks of AI Engineer 2025
+
+Description of Softwares 
+Spec - First Development Keeps Teams aligned - Why Everything is Context Engineering 
+From Compaction Strategies to Subagents and Planning Workflows.
+Intentional Context Management turns AI coding from Protoypes into Productions
+
+
+Advanced Context Engineering for Coding Agents
+----------------------------------------------
+The Most Naive Way to use a coding agent 
+
+
+
+Reference 
+12 Factor Agents 
+
+
+
 
 
 Links Refered in August
