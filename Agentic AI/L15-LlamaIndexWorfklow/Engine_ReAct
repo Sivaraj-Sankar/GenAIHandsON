@@ -1,0 +1,98 @@
+If you want fine-grained reasoning with full ReAct control → Option 1 (custom system prompt).
+If you want auto-decomposition & routing → Option 2 (SubQuestionQueryEngine).
+Tool Calling Issue - Hallunication [No Tool Routing Logic: Without explicit routing (like in SubQuestionQueryEngine), the agent doesn't know when to call Apple vs. Nvidia.]
+https://teetracker.medium.com/langchain-llama-index-rag-with-multi-query-retrieval-4e7df1a62f83
+Use structured decomposers: Tools like SubQuestionQueryEngine break questions into subquestions and intelligently route each to the relevant tool
+1. Agent Prompting Might Be Causing Repeated Tool Invocations
+The agent may not realize the tool has actually returned useful output, so it continues trying to call it instead of moving to a final answer. This can happen if the response isn’t formatted or parsed in a way the agent expects.
+Solution: Set return_direct=True when creating your QueryEngineTool. This tells the agent to stop the thought → action → observation loop once the tool returns data. The tool output is returned directly as the agent's response.
+tool = QueryEngineTool.from_defaults(
+    query_engine=qe,
+    name="Nvidia_quarter_reports",
+    description="Quarter Report Financial Analysis for Nvidia",
+    return_direct=True
+)
+2.Some LLMs (especially smaller versions) may choose to answer directly from memory instead of using provided tools—something documented in LlamaIndex’s ReAct agent behavior.
+Solution: Make sure your prompt or agent settings explicitly encourage tool use. For an OpenAIAgent, you can use prompts like:
+"You must try to use one of the tools provided when answering the user's question..."
+You might also check out LlamaIndex’s ToolSelection features to ensure the model picks the correct tool reliably.
+3.Potential Issues with ReActAgent Prompt Updates
+A GitHub issue highlighted that calling .update_prompts() on a ReActAgent may cause tool calling to break—or the agent may stop invoking tools altogether after that.
+Solution: If you're modifying prompts after agent creation, try avoiding update_prompts() or ensure it's done carefully. Reinitializing the agent (rather than updating prompts on the fly) may help.
+
+Reference Links 
+https://github.com/run-llama/llama_index/issues/16757?utm_source=chatgpt.com
+Different Tools Creation in Llamaindex - https://docs.llamaindex.ai/en/stable/module_guides/deploying/agents/tools/?utm_source=chatgpt.com
+                                         https://docs.llamaindex.ai/en/stable/module_guides/deploying/agents/tools/?utm_source=chatgpt.com
+ReactAgent Prompt Update - https://github.com/run-llama/llama_index/issues/16276?utm_source=chatgpt.com
+Controlling Agent Reasoning Loop Return Diret - https://docs.llamaindex.ai/en/stable/examples/agent/return_direct_agent/?utm_source=chatgpt.com
+MultiDocument QueryEngine - https://github.com/run-llama/llama_index/discussions/14320?utm_source=chatgpt.com
+
+
+from llama_index.core.tools import QueryEngineTool
+
+tool_apple = QueryEngineTool.from_defaults(
+    query_engine=apple_engine,
+    metadata=ToolMetadata(name="apple_q2", description="Apple Q2 reports"),
+    return_direct=True
+)
+
+tool_nvidia = QueryEngineTool.from_defaults(
+    query_engine=nvidia_engine,
+    metadata=ToolMetadata(name="nvidia_q2", description="Nvidia Q2 reports"),
+    return_direct=False
+)
+
+
+Problem 
+--------
+Multi-Action Constraints
+Some agent frameworks prohibit return_direct=True when multiple tools might be invoked in one query. For instance, in LangChain, you may get errors like "Tools that have return_direct=True are not allowed in multi-action agents" 
+Reddit
+. While this is LangChain-specific, similar constraints may apply depending on your LlamaIndex agent type.
+https://www.reddit.com/r/LangChain/comments/1cibpk9/correct_way_to_return_tool_output_of_an_agent/?utm_source=chatgpt.com
+
+https://stackoverflow.com/questions/77141910/langchain-agent-always-tries-to-use-the-tool-even-when-not-needed?utm_source=chatgpt.com
+
+
+
+You have two tools available:
+- apple_q2: For Apple Q2 financial performance.
+- nvidia_q2: For Nvidia Q2 financial performance.
+
+When user asks about both, you must use both tools. Example format:
+Thought: I need Apple data first.
+Action: apple_q2
+Action Input: {...}
+Observation: ...
+Thought: Now I need Nvidia data.
+Action: nvidia_q2
+Action Input: {...}
+Observation: ...
+Final Answer: ...
+
+
+
+Code Snippet
+from llama_index.core.agent import ReActAgent
+
+# Example custom prompt for ReAct
+system_prompt = """
+You are a financial analysis assistant. You have access to multiple tools.
+
+TOOLS:
+- apple_q2: Provides Apple's Q2 financial performance analysis.
+- nvidia_q2: Provides Nvidia's Q2 financial performance analysis.
+
+RULES:
+1. When a query involves multiple companies, use ALL relevant tools.
+2. Call them one at a time, in sequence.
+3. After gathering observations, synthesize a final comparison.
+4. Do not stop after the first tool if more are relevant.
+"""
+
+agent = ReActAgent.from_tools(
+    tools=[apple_tool, nvidia_tool],
+    llm=llm,
+    system_prompt=system_prompt
+)
