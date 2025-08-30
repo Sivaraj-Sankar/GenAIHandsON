@@ -2107,6 +2107,36 @@ Durable: Combined with factor 6 - launch/pause/resume with simple APIs, this mak
 Reference - More on Outer Loop Agents over here
 The Outer Loop
 https://theouterloop.substack.com/p/openais-realtime-api-is-a-step-towards
+-----------
+factor 8 - Own your control flow
+
+
+
+----------
+factor 9  - Compact Errors into Context Window
+I'm sure you will find that if you do this TOO much, your agent will start to spin out and might repeat the same error over and over again.
+That's where factor 8 - own your control flow and factor 3 - own your context building come in - you don't need to just put the raw error back on, you can completely restructure how it's represented, remove previous events from the context window, or whatever deterministic thing you find works to get an agent back on track.
+But the number one way to prevent error spin-outs is to embrace factor 10 - small, focused agents.
+----------
+factor 10 - Small, Focused Agents
+By keeping agents focused on specific domains with 3-10, maybe 20 steps max, we keep context windows manageable and LLM performance high.
+As context grows, LLMs are more likely to get lost or lose focus
+By keeping agents focused on specific domains with 3-10, maybe 20 steps max, we keep context windows manageable and LLM performance high
+
+Reference - https://www.latent.space/p/notebooklm?selection=08e1187c-cfee-4c63-93c9-71216640a5f8&utm_campaign=post-share-selection&utm_medium=web&triedRedirect=true
+--------------
+factor 11 - Trigger from anywhere, meet users where they are
+
+Outer Loop Agents: Enable agents to be triggered by non-humans, e.g. events, crons, outages, whatever else. They may work for 5, 20, 90 minutes, but when they get to a critical point, they can contact a human for help, feedback, or approval
+High Stakes Tools: If you're able to quickly loop in a variety of humans, you can give agents access to higher stakes operations like sending external emails, updating production data and more. Maintaining clear standards gets you auditability and confidence in agents that perform bigger better things
+---------------
+factor 12 - 12. Make your agent a stateless **reducer
+to utter falteringly or with a lisp : a computer programming language that is designed for easy manipulation of symbols that represent data and instructions and is used extensively for work in artificial intelligence Noun (1) He spoke with a lisp. Examples are automatically compiled from online sources to show current usage.
+---------------
+factor 13 - Factor 13 - pre-fetch all the context you might need
+
+
+
 
 
 
