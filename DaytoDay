@@ -2034,16 +2034,85 @@ Instead, We're actually going to skip that step here, and save it for another fa
 Reference Links - Human Layer - Stripe - CrewAI -  https://www.youtube.com/watch?v=f_cKnoPC_Oo   - Stripe - Online Payment 
 -------
 Factor 2 - Own your Prompts 
+Remember: Your prompts are the primary interface between your application logic and the LLM.
+Role Hacking: take advantage of APIs that support nonstandard usage of user/assistant roles - for example, the now-deprecated non-chat flavor of OpenAI "completions" API. This includes some so-called "model gaslighting" techniques
+Having full control over your prompts gives you the flexibility and prompt control you need for production-grade agents.
+I don't know what's the best prompt, but I know you want the flexibility to be able to try EVERYTHING.
 Don't outsource your prompt engineering to a framework.
 This is great for pulling in some TOP NOTCH prompt engineering to get you started, but it is often difficult to tune and/or reverse engineer to get exactly the right tokens into your model.
 Instead, own your prompts and treat them as first-class code:
 Reference - Show me the prompt - https://hamel.dev/blog/posts/prompt/
            BAML Basically a Simple Made up Langugage - https://github.com/boundaryml/baml
-
-
-
+          (the above example uses BAML to generate the prompt, but you can do this with any prompt engineering tool you want, or even just template it manually)
+----------
+Factor 3 - You don't necessarily need to use standard message-based formats for conveying context to an LLM.
+At any given point, your input to an LLM in an agent is "here's what's happened so far, what's the next step"
+Everything is context engineering. LLMs are stateless functions that turn inputs into outputs. To get the best outputs, you need to give them the best inputs.
+The prompt and instructions you give to the model
+Any documents or external data you retrieve (e.g. RAG)
+Any past state, tool calls, results, or other history
+Any past messages or events from related but separate histories/conversations (Memory)
+Instructions about what sorts of structured data to output
+-
+Standard vs Custom Context Formats
+Most LLM clients use a standard message-based format like this:
+you need to get your context into the LLM in the most token- and attention-efficient way you can.
+As an alternative to the standard message-based format, you can build your own context format that's optimized for your use case
+You'll get better quality if you have the flexibility to experiment with different context structures and what you store vs. what you pass to the LLM.
+Key benefits of owning your context window:
+Information Density: Structure information in ways that maximize the LLM's understanding
+Error Handling: Include error information in a format that helps the LLM recover. Consider hiding errors and failed calls from context window once they are resolved.
+Safety: Control what information gets passed to the LLM, filtering out sensitive data
+Flexibility: Adapt the format as you learn what works best for your use case
+Token Efficiency: Optimize context format for token efficiency and LLM understanding
+Context includes: prompts, instructions, RAG documents, history, tool calls, memory
+Remember: The context window is your primary interface with the LLM. Taking control of how you structure and present information can dramatically improve your agent's performance.
+Reference - https://thedataexchange.media/baml-revolution-in-ai-engineering/
+            Structure is All you Need 
+            Context Engineering Cheat Sheet - https://x.com/lenadroid/status/1943685060785524824
 ---------
 factor 4 - tools are just structured outputs
+
+Reference - 
+https://boundaryml.com/blog/schema-aligned-parsing
+https://www.vellum.ai/blog/when-should-i-use-function-calling-structured-outputs-or-json-mode?utm_source=github&utm_medium=referral
+https://docs.llamaindex.ai/en/stable/examples/llm/openai_json_vs_function_calling/
+
+----------
+factor 5 - Unify execution state and business state
+Even outside the AI world, many infrastructure systems try to separate "execution state" from "business state"
+For AI apps, this might involve complex abstractions to track things like current step, next step, waiting status, retry counts, etc.
+This separation creates complexity that may be worthwhile, but may be overkill for your use case.
+As always, it's up to you to decide what's right for your application. But don't think you have to manage them separately.
+
+Execution state: current step, next step, waiting status, retry counts, etc.
+Business state: What's happened in the agent workflow so far (e.g. list of OpenAI messages, list of tool calls and results, etc.)
+----------------
+factor 6 - Launch/Pause/Resume with simple APIs
+Agents are just programs, and we have things we expect from how to launch, query, resume, and stop them.
+
+It should be easy for users, apps, pipelines, and other agents to launch an agent with a simple API.
+Agents and their orchestrating deterministic code should be able to pause an agent when a long-running operation is needed.
+External triggers like **webhooks should enable agents to resume from where they left off without deep integration with the agent orchestrator.
+Note - often AI orchestrators will allow for pause and resume, but not between the moment of tool selection and tool execution. See also
+---------------
+factor 7 - Contact humans with tool calls
+Inner vs Outer Loop: Enables agents workflows outside of the traditional chatGPT-style interface, where the control flow and context initialization may be Agent->Human rather than Human->Agent (think, agents kicked off by a cron or an event)
+Clear Instructions: Tools for different types of human contact allow for more specificity from the LLM
+Inner vs Outer Loop: Enables agents workflows outside of the traditional chatGPT-style interface, where the control flow and context initialization may be Agent->Human rather than Human->Agent (think, agents kicked off by a cron or an event)
+Multiple Human Access: Can easily track and coordinate input from different humans through structured events
+Multi-Agent: Simple abstraction can be easily extended to support Agent->Agent requests and responses
+Durable: Combined with factor 6 - launch/pause/resume with simple APIs, this makes for durable, reliable, and introspectable multiplayer workflows
+
+Reference - More on Outer Loop Agents over here
+The Outer Loop
+https://theouterloop.substack.com/p/openais-realtime-api-is-a-step-towards
+
+
+
+
+
+
 
 
 
