@@ -1,0 +1,72 @@
+BackEnd-FrontEnd 
+Firebase Cloud Messaging - FCM 
+Human Layer - Human-in-the-Loop Framework for AI Agents
+https://www.humanlayer.dev/?utm_source=chatgpt.com
+https://github.com/humanlayer/humanlayer?utm_source=chatgpt.com
+https://news.ycombinator.com/item?id=42247368&utm_source=chatgpt.com
+https://github.com/humanlayer/humanlayer?utm_source=chatgpt.com
+https://hiretop.com/blog2/humanlayer-ai-agents-human-in-the-loop/?utm_source=chatgpt.com
+https://www.humanlayer.dev/docs/introduction?utm_source=chatgpt.com
+https://www.hlyr.dev/?utm_source=chatgpt.com
+https://www.graphapp.ai/blog/inner-loop-vs-outer-loop-understanding-their-differences-and-applications
+DataStax and H2O.ai
+
+
+
+
+
+
+
+1.Firebase Cloud Messaging – FCM - cross-platform messaging and notification service provided by Google
+Eg:
+App registers with FCM → gets a device token (unique ID).
+The bank’s backend (or any server) stores this token securely.
+When there’s an event (e.g., new transaction), the backend calls FCM API with:
+Token(s)
+Message payload (title, body, or data)
+FCM delivers the message to the correct device(s).
+The app receives the message and either:
+Displays it to the user (notification message).
+Uses it silently to fetch fresh data from backend (data message).
+-
+Types of Messages
+Notification Message
+Automatically displayed by the system tray.
+Example: "New transaction of $100 at Starbucks."
+Data Message
+Not shown to the user directly.
+Used to trigger the app to fetch data from APIs.
+Example: app receives { "refresh": true } and then calls the bank’s server securely.
+-
+Push Notifications: Send alerts or updates to users’ devices (e.g., "Your order has shipped", "New transaction detected").
+Data Messages: Send silent messages that don’t show a notification but tell the app to refresh data in the background.
+Topic Messaging: Send messages to groups of users subscribed to a "topic" (e.g., everyone who wants "Promotions").
+Device-to-Device Messaging (through FCM servers).
+
+2.Human Layer - handles routing, escalations, timeouts, and maintains audit trails of human decisions.
+Because the integration happens at the tool-calling layer, HumanLayer works seamlessly with agent frameworks such as LangChain, CrewAI, or custom-built pipelines using any LLM that supports tool calling
+HumanLayer is positioned to enable the safe progression to Gen 3 or Autonomous Agents—systems that initiate tasks without direct human prompts. In these advanced workflows, human consultation becomes essential for sensitive or high-impact actions. HumanLayer provides the infrastructure to ensure those consultations happen reliably and efficiently
+
+From its Hacker News launch thread, HumanLayer has already been put into production for:
+An AI SDR that drafts personalized emails but waits for human approval—via Slack—before sending to prospects.
+An AI-powered newsletter that manages inbound emails, hands them to agents, and optionally seeks human guidance for responses.
+A customer-facing DevOps assistant that reviews PRs and plans database migrations—but requires human sign-off at critical junctures.
+In Summary
+Capability	What It Enables
+Human-in-the-loop tooling	Ensures human oversight for risky function calls or decisions
+Channel routing & escalation	Safely handles where approval requests go and escalates when needed
+Flexible integration	Works with multiple LLMs and orchestration frameworks
+Support for autonomous agents	Facilitates safe deployment of agents that operate with minimal direct human input
+
+Summary at a Glance
+Area	Details
+Founded	2023
+Founder	Dexter Horthy (NASA JPL, Replicated)
+HQ	San Francisco
+Team Size	~3 employees
+Funding	Pre-seed round, Dec 1, 2024 (Massive Tech Ventures)
+YC Program	Y Combinator F24
+Core Offering	API/SDK for human-in-the-loop on AI agent workflows
+Key Features	Approvals, human-as-tool, omni-channel, routing, feedback loops
+Integrations	LangChain, CrewAI, ControlFlow, major LLMs
+Role in GenAI	Provides safe, overseen autonomy for generative agents
