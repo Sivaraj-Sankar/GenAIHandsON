@@ -2008,7 +2008,42 @@ We can trivially serialize the context window for pause+resume
 In our prompt, we can optimize the heck out of how we pass instructions and "what happened so far" to the LLM
 Part II will formalize these patterns so they can be applied to add impressive AI features to any software project, without needing to go all in on conventional implementations/definitions of "AI agent".
 
+Short Form 
+----------
+Factor 1 - 60 - 20 - 10 - MicroAgent [One thing that I have seen in the wild quite a bit is taking the agent pattern and sprinkling it into a broader more deterministic DAG.]
+having language models managing well-scoped sets of tasks makes it easy to incorporate live human feedback...without spinning out into context error loops
+------------------------------------
+Prompt  - fac 2
+Switch Statement - fac 8  
+Accumulated Context fac 3 
+For Loop fac 8 
+In our switch statement and for loop, we can hijack control flow to pause for human input or to wait for completion of long-running tasks
+We can trivially serialize the context window for pause+resume
+In our prompt, we can optimize the heck out of how we pass instructions and "what happened so far" to the LLM
+**Part II will formalize these patterns so they can be applied to add impressive AI features to any software project, without needing to go all in on conventional implementations/definitions of "AI agent".
+Reference Links - Slack Deploy Bot - https://github.com/got-agents/agents/tree/main/deploybot-ts
+Building Agent Company - https://www.youtube.com/watch?v=Dc99-zTMyMg&t=73s
+Classic ChatBot - https://x.com/chainlit_io/status/1858613325921480922
+------------
+Factor 1 - Natural Language to Tool calls 
+-----------------------------------------
+convert natural language to structured tool calls - would list customers, list products, list prices, etc to build this payload with the proper ids
+While a full agent would then receive the API call result and loop with it, eventually returning something like
+Instead, We're actually going to skip that step here, and save it for another factor, which you may or may not want to also incorporate (up to you!)
 
+Reference Links - Human Layer - Stripe - CrewAI -  https://www.youtube.com/watch?v=f_cKnoPC_Oo   - Stripe - Online Payment 
+-------
+Factor 2 - Own your Prompts 
+Don't outsource your prompt engineering to a framework.
+This is great for pulling in some TOP NOTCH prompt engineering to get you started, but it is often difficult to tune and/or reverse engineer to get exactly the right tokens into your model.
+Instead, own your prompts and treat them as first-class code:
+Reference - Show me the prompt - https://hamel.dev/blog/posts/prompt/
+           BAML Basically a Simple Made up Langugage - https://github.com/boundaryml/baml
+
+
+
+---------
+factor 4 - tools are just structured outputs
 
 
 
