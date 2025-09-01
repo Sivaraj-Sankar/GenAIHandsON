@@ -1,3 +1,7 @@
+Refered Links
+OuterLoop Agent  - https://www.humanlayer.dev/docs/core/outer-loop-agents
+AutoGPT - Automate MultiStep Projects and Complex Workflows in AI Agents based on OpenAI's GPT-4 
+
 This will include 
 architectural improvements, 
 autonomy, 
@@ -5,3 +9,56 @@ planning capabilities,
 real-world deployment, 
 interoperability, 
 learning behavior.
+
+Agentic AI builds on LLM to create autonomous systems that reason, act and collaborate with minimal human intervention.
+
+Experts distinguish generations of LLM-driven agents by how autonomously they operate. 
+Gen2 "Agentic Assistants" are human-driven agents - Frameworks that integrate LLMs with tools and chain-of-thought to carry out complex tasks.
+                                                  - Always initiated by the user command 
+Gen3 "Autonomous Agents" inhabit an outer loop environment: they no longer wait for a human to start each task. 
+                                                            Proactively pursue goals using planning, tools and even interaction with humans as needed 
+
+
+Gen3 Agents thus extend Gen2 capabilities with unsupervised autonomy, long-term Orchestration, ongoing learning. 
+Gen3 Agents as no longer human-initiated entities that schedule and mange their own tasks using multiple tools 
+
+Gen2 vs Gen3 
+Architecture 
+Autonomy 
+Memory
+Planning
+Tool Use
+Learning
+Decision-making 
+Coordination
+
+Gen2 - 
+AutoGPT - Multi Agent Framework 
+AgentGPT = Autonomous assistants [LangGraph, AutoGen, CrewAI]
+Gen3 
+Emerging Frontier, exemplified by systems that run continuously (AWS Bedrock Agents)
+and can act outside direct human prompting 
+
+**Outer Loop Agents
+The future of autonomous AI agents
+OpenAI's RealTime API is a step towards outer-loop agents 
+1.Between require_approval and human_as_tool
+2.HumanLayer is built to empower the next generation of AI agents - Autonomous Agents, but it’s just a piece of the puzzle
+3.
+
+
+Gen 1: Chat - human-initiated question / response interface
+Gen 2: Agentic Assistants - frameworks drive prompt routing, tool calling, chain of thought, and context window management to get much more reliability and functionality. Most workflows are initiated by humans in single-shot “here’s a task, go do it” or rolling chat interfaces.
+Gen 3: Autonomous Agents - no longer human initiated, agents will live in the “outer loop” driving toward their goals using various tools and functions. Human/Agent communication is Agent-initiated rather than human-initiated.
+       In order for these agents to perform actual useful work, they’ll need human oversight for sensitive operations.
+
+4.These agents will require ways to contact one or more humans across various channels including chat, email, sms, and more.
+
+--------
+While early versions of these agents may technically be “human initiated” in that they get kicked off on a regular schedule by e.g. a cron or similar
+1. the best ones will be managing their own scheduling and costs.
+2.This will require toolkits for inspecting costs and something akin to sleep_until
+3.They’ll need to run in orchestration frameworks that can durably serialize and resume agent workflows across tool calls that might not return for hours or days
+4. These frameworks will need to support context window management by a “manager LLM” and enable agents to fork sub-chains to handle specialized tasks and roles.
+
+But that’s really just scratching the surface of what’s possible with autonomous agents.
