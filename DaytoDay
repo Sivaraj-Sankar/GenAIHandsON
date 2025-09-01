@@ -2297,6 +2297,9 @@ https://activewizards.com/blog/architecting-event-driven-conversational-agents-w
 
 September 2025  
 --------------
+Advanced Context Engineering for Coding Agents 
+AutoGPT
+Choosing Between framework 
 
 
 
@@ -2391,6 +2394,17 @@ YC Founder
 Vibbov = He Built BAML 
 
 Amajad - Replet 
+
+
+AutoGPT [https://www.ibm.com/think/topics/autogpt#:~:text=AutoGPT%20is%20an%20example%20of,include%20crewAI%2C%20LangGraph%20and%20AutoGen]
+------
+AutoGPT is an example of a multiagent framework: an AI platform that creates and coordinates a diverse team of autonomous AI agents that collaborate to achieve a specified objective
+Virtual agents are AI agents that interact with human users through a conversational interface. While some multiagent frameworks offer virtual agent functionality, not all do.
+
+
+Choosing Between framework
+--------------------------
+https://medium.com/projectpro/autogen-vs-langgraph-vs-crewai-who-wins-02e6cc7c5cb8
 
 
 
