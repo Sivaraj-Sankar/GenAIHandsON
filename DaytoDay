@@ -2249,6 +2249,8 @@ Reference
 
 
 
+
+
 Links Refered in August
 https://dspy.ai/
 https://www.youtube.com/watch?v=JEMYuzrKLUw - Berkeley
@@ -2290,6 +2292,106 @@ https://arxiv.org/pdf/2508.00239 - Behind the GenAI
 
 Event Conversational Agent with LangGraph 
 https://activewizards.com/blog/architecting-event-driven-conversational-agents-with-langgraph
+
+
+
+September 2025  
+--------------
+
+
+
+Advanced Context Engineering for Coding Agents 
+-Refresh the Context 
+-Intentional compaction - Even if we are in right track, if we ran out of the context, be very intentioanl with what you commit to the file system and the agents memory. 
+slash compact is trash, I never use it, we have it write out a progress file very specifically. 
+
+What takes up a space in context window 
+Looking for files 
+Understanding code flow 
+Edits to files 
+Test/Build Output 
+JSON Tool responses (e.g: Linear) 
+  - If you have MCP Tools that return big blobs of JSON, that's going to flodd your context window with a bunch of nonsense
+
+Optimize the Context Window for: Correctness, Completeness, Size, Trajectory 
+
+Context Problems Ranked 
+Incorrect Information
+Missing Information
+Too Much Noise 
+
+Performance = Correctness ^2 * Completeness 
+              -----------------------------   
+                    Size 
+
+Inline Compaction - Sub-Agents
+Sub-Agents are about context control 
+Really common task that people use sub agents for when they're doing this kind of like high level coding agents is they will find you want to find where something happens, 
+You want to understand how information flows across multiple components in a codebase - may be you'll steer it to use a sub agent 
+
+stochastic system 
+Deterministic system  and it gets chaotic, 
+Imagine with nondeterministic system 
+
+What is doing better than sub-agents - Frequent Intentional Compaction 
+Building your entire workflow around context management 
+Keep the context utilization under 40% 
+
+Three Phases 
+Research 
+Plan 
+Implement 
+
+Research 
+Understand how the system works 
+Find all Relevant Files 
+Explore Causes of XYZ Bug 
+
+Plan 
+Outline the Exact Implementation steps
+Include Filenames, Lines and snippets 
+Explicit about testing steps 
+
+Implement 
+Go write the code 
+If properly planned, the implementation is easy and expected 
+
+You still have to read the plan 
+Intentional Human Review Steps 
+
+This our linear workflow for how we move this stuff through the process. 
+
+On Mental Alignment
+What is code Review For 
+   Hierarchy of Needs 
+      Style 
+      Find Bugs
+      Design Discussion 
+      Correct Solution 
+      Mental Alignment 
+
+One-Shotting a fix to a 300K line rust codebase 
+WASM support to a programming language 
+
+Insight - On Human Leverage 
+Making sure that when you launch the coding agent it knows how the system works, and of course, claude.md /Command are like we basically like test those for weeks before anyone's 
+allowed to change them.
+
+Insight - Agents as Spec Compilers 
+
+
+What's Next 
+Coding Agents will be Commoditized, but the team and the workflow transformation will be the hard part 
+
+https://hlyr.dev/code 
+https://hlyr.dev/he-gh
+
+
+YC Founder 
+Vibbov = He Built BAML 
+
+Amajad - Replet 
+
 
 
 
