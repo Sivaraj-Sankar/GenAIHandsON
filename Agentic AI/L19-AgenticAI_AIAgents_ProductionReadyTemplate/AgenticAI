@@ -5,6 +5,98 @@ user message
 cron fired
 webhook
 
+Prompting Pattern 
+Self-Regulation/Meta-Cognition Pattern
+Agentic Behavior Control Pattern 
+
+
+Different Agentic Design Pattern [Prompting Strategies, Reasoning Frameworks that structure the model's 
+Thought process, decision-making, action-execution behavior.]
+-------------------------------------------------------------
+CoT Pattern  - Let's think step-by-step [break down complex reasoning into logical steps]
+               Math Problems, Reasoning questions, planning tasks
+ReAct Pattern - Reason + Act - Combines CoT with tool usage 
+                Thought 
+                Action 
+                Observation
+         Interleaves reasoning with calling external tools or APIs
+         Web Q&A agents, search-based assistants, RAG Agents.
+Plan-and-Solve (PaS) - First create a high-level plan and execute 
+      Complex Tasks that benefit from high-level planning (coding, multi-part answers)
+Self-Ask-With-Search - 
+      Pattern: LLM asks itself follow-up questions and uses tools to answer them. 
+      Purpose: Encourages decomposing hard questions into smaller searchable ones. 
+      UseCase: Open-domain Q&A with access to web search or tools. 
+OODA Pattern: Observe-Orient-Decide-Act 
+      Pattern: Agent Loops through 
+             Observe (input/environment) 
+             Orient  (analyze context/goals) 
+             Decide  (Choose next action) 
+             Act     (perform the action/tool call)
+       Purpose: Continuous adaptive decision-making, inspired by military strategy. 
+       Use Case: Autonomous Agents, Real-Time systems, cyber defense. 
+Self-Regulation/Meta-Cognition Patterns
+6.Reflexion 
+         Pattern - Agent Generates Output - evaluates its own mistakes - retries 
+         Purpose - Self-Critique and iterative refinement 
+         Use Case - Coding Agents, Multi-Step Planning, Error-Prone Reasoning 
+7. Tree of Thought 
+        Pattern: Agent Explores multiple reasoning paths (like a search tree). 
+        Purpose: Decision-making under uncertainty by branching possible solutions. 
+        Use Case: Puzzle solving, reasoning over conflicting information.
+8. DEPS (Decompose-Execute-Plan-Self-Reflect) 
+        Purpose: Modularize Complex tasks using decomposition, execution, planning, and reflection.
+        Use Case: Long-Term Planning, autonomous task solving. 
+9. Auto-CoT (Automatic Chain-of-Thought)
+        Pattern: Automatically generate multiple reasoning paths from examples or few-shots. 
+        Use Case: Scaling CoT to new domains without handcrafted examples. 
+
+10. Verify and Revise 
+        Pattern: Generative initial output - very correctness - revise if needed 
+        Use Case: Document Drafting, coding, compliance checks.
+
+Agentic Behaivor Control Patterns 
+11. Task Decomposition + Sub-Agent Delegation
+    Pattern: Main Agent Decomposes task -> assigns subtasks to specialized agents.
+    Use Case: Agent Swarms, Complex Workflows, multi-agent simulations. 
+
+12. Goal Reflection + Planning
+    Pattern: Reflect on current goal status + revise plan or subgoals. 
+    Use Case: Iterative Planning agents like AutoGPT/BabyAGI. 
+13. Toolformer Pattern  
+    Pattern: Self-Supervised Learning of When to use tools via LLM-generated annotations. 
+    Use Case: Agents that learn tool-use policies over time. 
+14. MRKL (Modular Reasoning, knowledge & Language) 
+    Pattern: LLM routes queries to appropriate expert modules ( calculator, database. etc) 
+    UseCase: Knowledge routing, structured tool use, modular agent design. 
+Special Purpose Prompting Patterns. 
+15. Consitutional AI 
+      Pattern: Uses a "constitution" (ruleset or values) to guide or critique agent behavior. 
+      Use Case: Safety alignment, ethical reasoning, moderation. 
+16. Multi-Perspective Prompting 
+      Pattern: Generate answers from multiple personas/roles - aggregate or compare
+      UseCase: Decision Support, Brainstorming, ethical dilemmas. 
+17. Inner Monologue
+      Pattern: Agent narrates its reasoning before taking action. 
+      Use Case: Debugging, transparency, trustworthiness in agent output. 
+
+Agent Adaptive Loop 
+TC2 (Tool Use + CoT + Critique) - integrates CoT, ReAct Style tool use, and Reflection loops for multiple iterations of improvement. 
+Modern Tool Use/Context-Aware Orchestration
+AutoPDL - Auto-Prompt Design Language - Meta-ML approach to automatically discover optimal agentic prompt configurations. 
+                                        exploring combinations of CoT, ReAct, Reflection etc. across LLMs and tasks via structured search. 
+
+
+
+
+
+
+
+Production Grade Agents 
+https://llamahub.ai/?tab=agent
+
+
+
 12 Factor Principle Agents 
 https://github.com/got-agents/agents
 https://github.com/humanlayer/agentcontrolplane
