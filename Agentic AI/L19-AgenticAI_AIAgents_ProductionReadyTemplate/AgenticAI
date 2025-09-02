@@ -5,6 +5,67 @@ user message
 cron fired
 webhook
 
+Spec First Development of Software using the Coding Agent 
+
+Production Level Coding Agent [This isn't vibe-coding], this completely different well-tested, bug-free code.
+-----------------------------
+New kind of Context Engineering 
+Managing Research 
+Specs
+Planning to get the most of coding agents and coding CLI's 
+
+Hyper Engineering 
+Context Engineering for coding agents 
+
+Commands using at Human Layer
+https://github.com/humanlayer/humanlayer/tree/main/.claude/commands
+
+Agents as Spec Compilers 
+https://x.com/dexhorthy/status/1946586571865800724
+
+How not to use SubAgents
+https://x.com/dexhorthy/status/1950288431122436597
+
+Code Layer Early Access 
+https://hlyr.dev/code
+
+New Code - Sean's Talk from AI Engineer 
+https://www.youtube.com/watch?v=8rABwKRsec4
+
+Wielding Agents 
+https://www.youtube.com/watch?v=F_RyElT_gJk&t=480s
+
+Coding Agents 
+-------------
+1.Use sub-agents for complex tasks: Instead of one monolithic prompt, decompose the problem. Use specialized prompts for sub-tasks like planning, identifying relevant files, and then generating the code.
+2.Use intentional compaction: Actively manage and shrink your context to keep the agent focused on what's most important.
+3.Align language and naming: Use consistent naming conventions across your codebase to make it easier for the AI to understand the relationships between different parts.
+4.Review markdown docs to catch problems BEFORE implementation: Review the research and plan the agent creates to foster mental alignment and ensure it's on the right track.
+5.Practice exploratory coding: Work alongside your agent to build your own intuition and spot where the AI excels and where it needs guidance.
+6.CLAUDE.md > prompts > research > plans > implementation: Focus human effort on the highest-leverage parts of the pipeline.
+
+
+Phase 1 - Research:
+Phase 2 - Planning:
+Phase 3 - Implementation:
+
+Prompting and Contexting
+Context engineering isn't just about cramming more stuff into the prompt; it's a deliberate practice of structuring, compacting, and aligning information to make your AI agent a more effective partner.
+https://www.youtube.com/watch?v=42AzKZRNhsk
+
+
+
+
+Claude Code
+
+
+Manus 
+-----
+https://luma.com/qvp6ap99
+
+
+
+
 Prompting Pattern 
 Self-Regulation/Meta-Cognition Pattern
 Agentic Behavior Control Pattern 
@@ -96,6 +157,8 @@ Production Grade Agents
 https://llamahub.ai/?tab=agent
 
 https://hlyr.dev/code
+https://github.com/ai-that-works/ai-that-works/tree/main/2025-08-05-advanced-context-engineering-for-coding-agents
+https://www.hlyr.dev/code
 
 
 
@@ -127,5 +190,10 @@ https://github.com/humanlayer/agentcontrolplane
 
 BAML
 https://github.com/BoundaryML/baml
+
+
+Leaders Name
+Dex and Vaibhav 
+
 
 
