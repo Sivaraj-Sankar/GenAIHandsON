@@ -2300,6 +2300,8 @@ September 2025
 Advanced Context Engineering for Coding Agents 
 AutoGPT
 Choosing Between framework 
+Agentic Framework Choosing 
+
 
 
 
@@ -2405,6 +2407,30 @@ Virtual agents are AI agents that interact with human users through a conversati
 Choosing Between framework
 --------------------------
 https://medium.com/projectpro/autogen-vs-langgraph-vs-crewai-who-wins-02e6cc7c5cb8
+
+
+Agentic Framework Choosing
+Decide you want to build an agent
+Product design, UX mapping, what problems to solve
+Want to move fast, so grab $FRAMEWORK and get to building
+Get to 70-80% quality bar
+Realize that 80% isn't good enough for most customer-facing features
+Realize that getting past 80% requires reverse-engineering the framework, prompts, flow, etc.
+Start over from scratch
+
+
+Random Disclaimers
+I'm not sure the exact right place to say this, but here seems as good as any: this in BY NO MEANS meant to be a dig on either the many frameworks out there, or the pretty dang smart people who work on them. They enable incredible things and have accelerated the AI ecosystem.
+I hope that one outcome of this post is that agent framework builders can learn from the journeys of myself and others, and make frameworks even better.
+
+Especially for builders who want to move fast but need deep control.
+
+Design Patterns for great LLM applications
+After digging through hundreds of AI libriaries and working with dozens of founders, my instinct is this:
+Going all in on a framework and building what is essentially a greenfield rewrite may be counter-productive
+There are some core principles that make agents great, and you will get most/all of them if you pull in a framework
+BUT, the fastest way I've seen for builders to get high-quality AI software in the hands of customers is to take small, modular concepts from agent building, and incorporate them into their existing product
+These modular concepts from agents can be defined and applied by most skilled software engineers, even if they don't have an AI background
 
 
 
