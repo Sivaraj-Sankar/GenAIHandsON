@@ -1,4 +1,16 @@
 Deep Agent
+https://huggingface.co/blog/open-deep-research
+https://github.com/google-gemini/gemini-fullstack-langgraph-quickstart
+https://www.anthropic.com/news/research
+https://openai.com/index/introducing-deep-research/
+https://www.anthropic.com/engineering/multi-agent-research-system
+https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research
+https://gemini.google/overview/deep-research/?hl=en
+
+Open Deep Reserach 
+https://github.com/langchain-ai/open_deep_research
+
+
 
 Ambient Agent 
 https://www.youtube.com/watch?v=egSh4TxS5go
@@ -20,4 +32,37 @@ https://interrupt.langchain.com/?utm_source=blog&utm_medium=organic&utm_campaign
 Very Important Recordings
 https://interrupt.langchain.com/video
 
+Deep Agent
+----------
+Build your own deep research agent to handle research tasks.
+Learn how to use LangGraph to build a multi-agent system.
+Use LangSmith to evaluate its performance.
+
+Agenda
+Research Agent
+Research Agent with MCP 
+Research Supervisor 
+Multi-Agent Research System 
+
+User -- Reuqest -->
+                           Scope --- Brief --> Research -- Findings --> Write --> Report
+     <-- Clarification --
+
+1.Multi Agent Architecture 
+2.Prompting Techniques [like adding thinking steps that improve performance]
+3.Built in persistence layer is great for tracking the progress of multiple agents that are recording results from the research over a 
+  long time period. 
+4.LangSmith for observability and evaluation, giving you detailed visibility into our long-running agent.
+5.LangSmith also lets you test and monitor components of the agents as you develop and deploy them 
+6.Supervisor agent to manage multiple research agents. 
+
+
+
+
+Produce comprehensive reports using various sources of context
+
+Research itself is a great use case for agents. 
+Since Topic & Source aren't known ahead of time. the application requires a high level of agency and decision making 
+
+ 
 
