@@ -1,5 +1,11 @@
 Async Orchestration
 Stateless Reducer 
+Conditional Routing 
+Switch Statement 
+For Loop 
+Structured Output models to prevent Hallunication 
+Iterative Loop with Conditional Routing 
+
 
 
 Production Template  
@@ -159,6 +165,10 @@ AutoPDL - Auto-Prompt Design Language - Meta-ML approach to automatically discov
 
 Production Grade Agents 
 https://llamahub.ai/?tab=agent
+https://langchain-ai.github.io/langgraph/tutorials/workflows/?_gl=1*bfqa28*_gcl_au*MjA1NDc4NDAxMC4xNzU1NjY0NzE3*_ga*MTAzNTE5MTAwOS4xNzU2ODEwNjE2*_ga_47WX3HKKY2*czE3NTY5Njg4NjAkbzQkZzEkdDE3NTY5Njk0ODMkajYwJGwwJGgw#agent
+https://langchain-ai.github.io/langgraph/tutorials/workflows/?_gl=1*hwcqb7*_gcl_au*MjA1NDc4NDAxMC4xNzU1NjY0NzE3*_ga*MTAzNTE5MTAwOS4xNzU2ODEwNjE2*_ga_47WX3HKKY2*czE3NTY5NzEyODYkbzUkZzEkdDE3NTY5NzEzMjYkajIwJGwwJGgw
+https://www.youtube.com/watch?v=aHCDrAbH_go
+https://www.youtube.com/watch?v=nyKvyRrpbyY
 
 https://hlyr.dev/code
 https://github.com/ai-that-works/ai-that-works/tree/main/2025-08-05-advanced-context-engineering-for-coding-agents
