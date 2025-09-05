@@ -122,6 +122,10 @@ Claude 3.7 Sonnet (Feb 24, 2025)
          Claude Opus 4: Anthropic’s most powerful model yet, engineered for complex, long-running tasks (e.g. code projects lasting hours), with 200k context and up to 32k output tokens
          Claude Sonnet 4: Efficient successor to 3.7 Sonnet; balances top-tier reasoning with performance, also featuring 200k context and 64k output token support 
 
+  Alibaba Qwen 
+      Qwen3 Coder 
+
+
          📋 Summary Table
 Model	Release	Notes
 Claude 1	Mar 2023	Original, basic capabilities
