@@ -2777,6 +2777,69 @@ Callback Style	More agent-first, action in background	Develops idea interactivel
 Automation / Hooks	CLI only	Hooks, slash commands, subagents, CI workflows
 
 
+Codex
+https://github.com/openai/codex
+Reverse Engineering of Claude Code 
+https://www.reidbarber.com/blog/reverse-engineering-claude-code?utm_source=chatgpt.com
+1.1. Terminal Interface (UI Layer)
+2.Claude Code provides a seamless terminal-based command-line interface (CLI) built using Ink, a React renderer for terminal UIs. This layer handles:
+REPL (Read–Eval–Print Loop) behavior
+Rendering conversation messages and slash command menus
+Onboarding dialogs and permission prompts
+2.2. Core Logic & Workflow Controller
+This is the brain of Claude Code:
+Parses user input to distinguish prompts from commands
+Maintains conversation state and session management
+Decides when to call the language model (such as Claude Opus or Sonnet)
+Coordinates tools and external integrations the model may request
+https://medium.com/%40e3x3e/unlocking-developer-productivity-with-claude-cli-claude-code-anthropics-powerful-ai-coding-04a10cb27865
+3.3. Model Interaction (API Layer)
+Claude Code uses Anthropic’s Claude models (e.g., Sonnet 3.7, Opus 4.1) via an API service:
+Sends prompt requests and awaits completions
+Supports multi-file reasoning and project-level awareness
+Enables planning, editing, and context-rich actions
+4. Tooling & System Access
+Claude Code comes with a suite of built-in tools that the AI can invoke:
+File tools:
+Read, edit, write files (requires permission)
+Shell/Bash tool:
+Executes commands in your terminal (usually requires approval)
+Search tools:
+Glob and grep for file navigation
+Sub-agents for complex operations and workflow orchestration
+Follows a strict permission model for dangerous actions
+5.Memory & Project Knowledge
+Claude Code gains context via:
+Agentic search: Automatically scans and understands your codebase without manual context selection
+CLAUDE.md: A markdown file that describes your project’s architecture, dependencies, and conventions. It serves as "project memory" for repeated workflows
+Slash commands (/init, /clear, /review, etc.) streamline frequent operations
+
+7.Configuration & Integration Layer
+Supports Model Context Protocol (MCP), enabling integrations with external systems:
+Google Drive, Figma, Slack, etc., for richer context and expanded tool access
+Offers project-specific or global configuration via .mcp.json
+https://www.anthropic.com/engineering/claude-code-best-practices?utm_source=chatgpt.com
+
+8.Security & Permissions
+Claude Code enforces a tiered permission model for safe operations:
+Read-only actions generally allowed
+File modifications or shell commands require explicit user approval
+Tools like BashTool, FileEditTool, FileWriteTool are gated by permissions
+
+When you run claude in your terminal within a project:
+UI layer displays a REPL prompt.
+Your natural language prompt is passed to the core logic:
+If file read or write is needed, it invokes permissions.
+If model reasoning is needed, it sends a request via the model API layer.
+The model may decide to run a tool like file editor or shell command.
+After obtaining results or edits, the core logic applies responses and updates UI.
+Multiple sessions can build on previous memory, guided by CLAUDE.md, slash commands, or MCP integrations.
+
+Why It Matters
+Contextually aware: Claude Code can navigate and understand entire codebases.
+Agentic: It doesn't just answer — it acts (edit code, run commands, create PRs).
+Terminal-native: Integrates with what developers actually use instead of adding another layer like an IDE plugin.
+Secure by design: Permissions and prompt-driven actions ensure safety for developer environments.
 
 
 
