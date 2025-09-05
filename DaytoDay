@@ -2441,6 +2441,78 @@ https://www.anthropic.com/claude-code
 2.Search million-line codebases instantly. Turn hours-long workflows into a single command
 
 
+Claude Code SubAgents 
+https://docs.anthropic.com/en/docs/claude-code/sub-agents
+https://github.com/chusri/claude-code-agents
+https://github.com/wshobson/agents
+https://github.com/starktoony/BMAD-METHOD  - BMAD-METHOD™: Universal AI Agent Framework
+Without Slash commands, BMAD method cannot function 
+None of the AI Agent workflow have been implemented for the claude code subagents yet 
+Why We need claude code sub agents in these workflows, Sub agents are personalized agents with specific commands but they offer much more.
+They enable powerful workflows with one significant advantage over slash commands 
+https://buildmode.dev/blog/mastering-bmad-method-2025/ - BMAD Method 
+https://www.youtube.com/watch?v=vUsH-F5liSA&t=1s - BMAD Method is Revolution the Coding Agent 
+
+https://deepwiki.com/bmadcode/BMAD-METHOD - Overview DeepWiki 
+https://solodev.app/a-look-into-the-bmad-method - SoloDev 
+
+
+https://superclaude.org/ - Advanced Development Framework with Claude Code 
+
+Now I don't just give a prompt and move forward. This is a context workflow and I need to develop the proper context before continuing 
+Build a doc structure
+
+With using UX agents output. This agent designed the project's UI with the UX already complete. You can see the task list 
+It took the components from the UX agent and planned each one 
+Remember this agent only designs without implementing 
+Everything remains in documentation which is critical. Thorough planning makes implementation straight forward 
+
+Whimsy-injector - creates small wireframe while working 
+Rapid Protoype Tool - 
+
+Checkpointing System 
+Perss Esc twice to bring the menu, where you can switch any branch, these branch represent the points where you've given prompts. 
+
+
+-----
+Context must be stored & recorded somewhere ideally in MD file. 
+After Generating the workflow I suggested changes and ask about saving those files 
+It provided complete project file structure  and built entire agent context system 
+I organized my workflow into 4 steps 
+
+Give me prompts for all the phases and then tell me how to use them with the file structure 
+
+
+
+
+Coding Workflow 
+   Requirements for proper agent to agent workflow with connections between agents.
+   I provided example from the Claude Code website about chaining agent workflow 
+    Specify the connections between agents provide an example from the Claude Code site 
+   **Include the text from the github repository. The System generates a workflow with different agents. 
+     context each agent generates or requires is often too large and cannot be passed on 
+     Context must be recorded somewhere ideally in MD files. 
+     After Generating the workflow I suggested changes 
+     It Provide a Complete Project file structure and built the entire agent agent context system. 
+
+     UX-Planning
+     UI Desgin 
+     Front End 
+     Back End Development 
+
+
+Context Engineering - with Cursor - Build Apps with Cursor's Context Engineering 
+
+Claude Engineer 
+
+
+
+
+Honking 
+Schlepping 
+
+
+
 
 
 
