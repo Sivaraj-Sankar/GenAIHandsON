@@ -2666,6 +2666,12 @@ ChatGPT Agent — a broader agent capability integrated into ChatGPT (July 17, 2
 On July 17, 2025, OpenAI announced ChatGPT Agent — an evolution that enables ChatGPT to “think and act” using a toolbox of agentic skills 6.and to perform tasks using "its own computer" (i.e., the same kind of capabilities as Operator but integrated into ChatGPT, with additional tool-selection and orchestration). It’s intended to make ChatGPT able to complete end-to-end tasks inside the app
 https://openai.com/index/introducing-chatgpt-agent/?utm_source=chatgpt.com
 3.The Agent concept generalizes Operator: instead of only a browser-controlling agent, the ChatGPT Agent can choose among multiple skills/tools (browser control, file manipulation, external APIs, etc.) to finish tasks.
+4.For developers: building agentic apps
+5.OpenAI has also released APIs and tooling for building agents (new agent-focused APIs) so third parties can create agentic apps that use tools, plan multi-step flows, and call external services in a safer, structured way. This is the direction OpenAI sees for productizing agent tech beyond the experiment phase
+6.https://openai.com/index/new-tools-for-building-agents/?utm_source=chatgpt.com
+7.**Triage Agent and CRM Agent 
+8.Show example prompts that work well with Operator/ChatGPT Agent (safe demo flows), or
+9.Summarize official docs / changelog entries (I can pull specific OpenAI doc sections for the bits you care about).
 
 
 Codex Understanding
@@ -2742,11 +2748,33 @@ Full Auto: Operates autonomously within a sandboxed, network‐disabled director
 9.Configuration & Flexibility: Advanced configs via ~/.codex/config.toml, supports Model Context Protocol (MCP), allows non-interactive use (CI), logging, and more
 10.deep dive into using Codex in your workflow—like IDE setups, CLI guides, or prompt best practices!
 
+Developer Integration and Updates
+Codex now integrates across environments: terminals, IDEs (VS Code, Cursor), web, GitHub, and mobile, all synced via your ChatGPT account
+Features include real-time/asynchronous task handling, an IDE extension, new commands, and GitHub PR review via @codex tagging
+The cloud-based version of Codex (accessible via ChatGPT Pro) can autonomously write code, fix bugs, run tests, and explain codebases—executing tasks in a virtual sandbox
+
+https://www.itpro.com/business/business-strategy/openais-codex-developer-agent-just-got-a-big-update?utm_source=chatgpt.com
 
 
 
 Claude Code
 1.So while Claude Code may lean more toward analyzing or suggesting code
+2.https://docs.anthropic.com/en/docs/claude-code/overview?utm_source=chatgpt.com
+3.Works with MCP (Model Context Protocol) to integrate with external tools like Google Drive, Figma, and Slack
+4.Designed for composability and scripting (e.g., using Unix-style chaining or automation workflows).
+Key Features
+Rich CLI options: slash commands, session control, hooks, and flags for access control.
+Best practices include CLAUDE.md for context, custom prompts, session clearing to manage context tokens, and bypassing permission prompts when suitable.
+https://www.anthropic.com/engineering/claude-code-best-practices?utm_source=chatgpt.com
+
+Feature / Tool	Codex CLI (OpenAI)	Claude Code (Anthropic)
+Platform	Local CLI (macOS, Linux, WSL)	Local CLI, with IDE integration
+Approval Modes	Suggest / Auto Edit / Full Auto	Permissions via flags, customizable
+Multimodal Input	Yes (screenshots, diagrams)	Not specifically noted
+External Integration	Works in local context, cloud sync	Deep integration via MCP (Drive, Slack, CI, etc.)
+Enterprise Support	Through ChatGPT plans	Configurable for enterprise, cloud deployments
+Callback Style	More agent-first, action in background	Develops idea interactively with careful control
+Automation / Hooks	CLI only	Hooks, slash commands, subagents, CI workflows
 
 
 
