@@ -2301,6 +2301,8 @@ Advanced Context Engineering for Coding Agents
 AutoGPT
 Choosing Between framework 
 Agentic Framework Choosing 
+Claude Code 
+
 
 
 
@@ -2431,6 +2433,12 @@ Going all in on a framework and building what is essentially a greenfield rewrit
 There are some core principles that make agents great, and you will get most/all of them if you pull in a framework
 BUT, the fastest way I've seen for builders to get high-quality AI software in the hands of customers is to take small, modular concepts from agent building, and incorporate them into their existing product
 These modular concepts from agents can be defined and applied by most skilled software engineers, even if they don't have an AI background
+
+
+Claude Code
+https://www.anthropic.com/claude-code
+1.Creating commits, running commands, or submitting pull requests—all from the terminal
+2.Search million-line codebases instantly. Turn hours-long workflows into a single command
 
 
 
