@@ -2841,6 +2841,35 @@ Agentic: It doesn't just answer — it acts (edit code, run commands, create PRs
 Terminal-native: Integrates with what developers actually use instead of adding another layer like an IDE plugin.
 Secure by design: Permissions and prompt-driven actions ensure safety for developer environments.
 
++-------------------+        +----------------------+
+|  Terminal (UI)    | <----> | Core Logic Controller|
+| - Ink-based REPL  |        | - Parses prompts     |
+| - Slash commands  |        | - Session mgmt       |
++-------------------+        +----------------------+
+                                      |
+                                      v
+                            +----------------------+
+                            | Claude Model (API)   |
+                            | - Sonnet / Opus       |
+                            | - Agentic reasoning   |
+                            +----------------------+
+                                      |
+        ------------------------------------------------
+        |                 |                |           |
+        v                 v                v           v
+ +---------------+  +---------------+  +----------+  +------------+
+ | File Tools    |  | Bash Tool     |  | Search   |  | MCP Agents |
+ | - Read/Edit   |  | - Run cmds    |  | - Grep   |  | - Ext. APIs|
+ | - Write files |  | - npm test    |  | - Glob   |  | - Slack    |
+ +---------------+  +---------------+  +----------+  +------------+
+
+Key Pieces That Make It Work
+UI Layer → Displays everything in your terminal.
+Core Logic → Orchestrates between you, the model, and the tools.
+Claude Model → Does the reasoning and decides what actions to take.
+Tools → Give the model actual agency (edit files, run commands).
+Permissions → Keep you in control before anything dangerous runs.
+
 
 
 UseCases 
