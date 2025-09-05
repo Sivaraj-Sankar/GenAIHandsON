@@ -2435,8 +2435,45 @@ BUT, the fastest way I've seen for builders to get high-quality AI software in t
 These modular concepts from agents can be defined and applied by most skilled software engineers, even if they don't have an AI background
 
 
+
+
+
 Claude Code
+
+1.Create a CLAUDE.md file in your project root (or subdirectories). Claude will automatically use it as context when you start sessions—great for guiding conventions or setup instructions
+2.Use CLI shortcuts & modes:
+Plan mode: helps Claude outline tasks before executing
+Verbose mode: shows full prompt context for transparency
+Bash mode (! prefix): run shell commands and feed back the output to Claude
+3.Run multiple Claude instances in parallel, e.g., one for frontend and another for backend, to work independently within the same codebase
+4.For trusted setups, experienced users disable prompts with --dangerously-skip-permissions—but be cautious
+
+Creating Slash Commands
+-----------------------
+Let me know if you'd like help with specific workflows—setting up in VS Code, integrating with GitHub Actions, creating slash commands, or anything else!
+
+
+Claude Using Best Practices & Agentic Coding Best Practice 
+https://bagerbach.com/blog/how-i-use-claude-code/
+https://www.anthropic.com/engineering/claude-code-best-practices
+https://www.builder.io/blog/claude-code
+https://www.businessinsider.com/tech-memo-claude-code-assistant-anthropic-aws-review-2025-8
+https://waleedk.medium.com/claude-code-top-tips-lessons-from-the-first-20-hours-246032b943b4
+https://www.reddit.com/r/ClaudeAI/comments/1enle9c/can_someone_explain_how_to_actually_use_claude/ - Change Log 
+https://www.businessinsider.com/tech-memo-claude-code-assistant-anthropic-aws-review-2025-8 
+https://docs.anthropic.com/en/docs/claude-code/setup
+https://www.siddharthbharath.com/claude-code-the-complete-guide/
+
+https://www.anthropic.com/solutions/coding
+https://docs.anthropic.com/en/docs/claude-code/common-workflows
+https://docs.anthropic.com/en/docs/claude-code/overview - Workflow 
+https://docs.anthropic.com/en/home
+https://console.anthropic.com/dashboard
+https://claude.ai/new
+https://docs.anthropic.com/en/docs/claude-code/quickstart
+https://console.anthropic.com/workbench/d76ddd55-51bf-4787-b632-ec3485b235c4
 https://www.anthropic.com/claude-code
+
 1.Creating commits, running commands, or submitting pull requests—all from the terminal
 2.Search million-line codebases instantly. Turn hours-long workflows into a single command
 
