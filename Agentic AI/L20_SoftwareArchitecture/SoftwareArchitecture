@@ -469,6 +469,10 @@ Clean Architecture	Layered design	Controlled	Backend, scalable systems
 3. Template (V in MVC) – The UI Layer - This is what the user sees. The HTML with some dynamic data.
 
 
+AI Service Architecture 
+-----------------------
+
+
 
                        
 
