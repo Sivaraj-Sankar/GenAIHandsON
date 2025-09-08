@@ -58,6 +58,7 @@ Instead of storing the current state of an object, you store a log of all the ev
 The current state is then reconstructed by replaying those events.
 
 
+
 Core Components
 
 Event
@@ -166,5 +167,94 @@ Now we notify other parts of the system: "Hey, something happened."
 Maybe we update a read model (e.g., list of user orders).
 Maybe we send an email confirmation.
 Maybe we update analytics.
+
+1. Full History (Auditability) - You can rebuild any past state [Invaluable for financial, legal, or regulated systems.]
+2. Debugging & Replay [You can replay the whole system and see where it broke.]
+Reproduce bugs exactly as they happened.
+Recalculate state from scratch.
+3. Scalable Read Models (CQRS)
+Separate read models from write logic:
+Reads are fast, denormalized, and can be optimized per use case.
+Writes are clean, consistent, and business-driven.
+
+4.Flexible Side Effects
+When an event happens, you can:
+Send emails
+Update search indexes
+Notify other systems
+All decoupled, without changing core logic.
+
+5.Business Logic Mirrors the Real World
+Users don't think in terms of "records"; they think in actions:
+"I placed an order"
+"I changed my address"
+"I canceled the subscription"
+
+Event sourcing mirrors this mental model.
+Because it’s more complex to implement and maintain:
+Requires event versioning when your data model evolves.
+Harder to query without read models.
+Requires thinking in events, which is not natural for many developers.
+
+Use Event Sourcing if:
+You need an audit trail or history
+You want to replay or analyze past events
+You have complex business workflows
+You're building a distributed or microservices system
+You want CQRS or event-driven architectures
+Avoid it if your app is just simple CRUD (like a to-do list or blog).
+
+
+------
+Command‑Query Responsibility Segregation (CQRS) [Axon, NServiceBus, Spring Data] - Separate read and write models; often combined with event sourcing.
+                                                - Systems with heavy read‑load or complex queries (e.g., analytics).
+                                                - Optimised queries, scaling reads independently.
+                                                - Duplication of data, consistency challenges.
+
+Reactive / Event‑Loop[Project Reactor, RxJava, Akka Streams, Vert.x] --> Non‑blocking, back‑pressure aware streams;
+                      --> often built on the Reactive Streams spec.
+                      --> High‑throughput real‑time services, IoT, streaming pipelines.
+                      --> Handles many concurrent connections, better resource utilisation.
+                      --> Steep learning curve, debugging async flows can be hard.
+
+Serverless / FaaS [AWS Lambda, Azure Functions, Google Cloud Functions]---> Stateless functions run in response to events.
+                       billing per invocation.
+                       Event‑driven micro‑tasks, short‑lived compute.
+                       variable load.
+                       No server management, auto‑scaling, cost‑efficient for sporadic load.
+                       Cold‑start latency, vendor lock‑in, statefulness requires external stores.
+
+Event‑Driven (within a microservice) [Kafka, NATS, Pulsar] --> Services publish domain events;
+                                         other services react (pub/sub) to them
+                                         Highly decoupled integrations, real‑time dashboards, analytics
+                                         Loose coupling, easy to add new consumers
+                                         Event flooding, versioning of event schemas, debugging
+
+Multi‑tenant / SaaS [Salesforce, Stripe, multi‑tenant DB schemas]  --> Shared infrastructure but tenant‑isolated data, SaaS platforms, shared APIs.
+                      --> Cost sharing, quick onboarding of new tenants.
+                      --> Security boundaries, resource contention, tenant‑specific customisation.
+
+
+Component‑Based - Self‑contained components that can be reused or swapped (often used for UI).
+                - Front‑end libraries, UI frameworks. | Reusability, independent release cycles.
+                - Inconsistent API contracts, integration friction.
+                - React Components, Vue, Web Components
+
+• *Need fast time‑to‑market and a single team? Monolith or layered.  
+>  • *Have a rapidly evolving, large code‑base? Microservices or SOA.  
+>  • *Want event‑driven real‑time flow? EDA + reactive patterns.  
+>  • *Need on‑prem, strongly governed services? SOA or micro‑kernel.*
+
+
+
+
+                       
+
+                       
+
+
+
+
+
 
 
