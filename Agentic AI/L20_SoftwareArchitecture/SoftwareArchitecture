@@ -1,0 +1,170 @@
+MVC Architecture - Model View Controller 
+
+Modern Software Design [process, data, itegration, deployment]
+Choosing Tech Stack 
+Choosing Tools that support by Tech Stack
+
+Monolithic[Spring Boot, .NET Core, Rails] = All Functionality in a single deployable unit. --> Legacy Systems, simplicity, fast iteration, no inter-process communication
+                                                            --> Hard to Scale, single point of failure, long deployment cycles. 
+
+Layered (N-tier)[JEE, ASP.NET MVC, Spring MVC]  = Functional Layers (UI -> Service -> DAO -> DB). --> | classic Enterprise apps, clear separation of concerns, easy to understand, modular-testing
+                                                                                                      | Over-Engineering, tight coupling between layers if not disciplined. 
+
+
+Client-Server/Thin-Client[REST, gRPC, GraphQL]    Dedicated Server serve data --> clients consume via API or UI, --> webapps, desktop clients, mobile backends, | centralised control, straightforward security model
+                                                                                             --> Network Latency, single server bottleneck
+
+Microkernel (Plug-in) [OSGi, Eclipse RCP, Netty Extensions]    --> Core Engine + Pluggable modules, |IDEs, OS Kernels, modular business apps, 
+                                                               --> Extendable without recompilation, isolation. | Versioning of plugins, risk of core-module mismatch. 
+                                                               --> 
+
+Microservices[Docker + Kubernetes, Istio, Spring Cloud]      --> Each service owns a bounded context, services communicate over network usually(HTTP/REST or message bus)
+                   --> Large Evolving systems, CI/CD Pipelines, polyglot teams, Independent deployment, fault isolation. language flexibility, Distributed transaction complexity, network overhead, ops burden
+
+Service‑Oriented Architecture (SOA)[Apache CXF, WSO2, MuleSoft] - Reusable services exposed via contracts (WSDL, REST).Enterprise integration, on‑prem legacy systems, Reusability, governance.
+                                    -> Heavyweight protocols, slow service contracts, coupling through a shared service bus.
+
+**Event‑Driven Architecture (EDA)[Kafka, RabbitMQ, Azure Event Grid] --> Decoupled components react to events on a publish/subscribe channel.
+                                      Real‑time dashboards, IoT backends, loosely coupled workflows.
+                                      High scalability, natural async patterns, easy to add new consumers
+                                      Event ordering guarantees,
+                                      event storming” overhead, debugging difficulty.
+
+**Message‑Driven / Message‑Queue**[ActiveMQ, Amazon SQS, Kafka] --> Tasks are serialized into messages that are queued and processed asynchronously.
+                                   --> Background jobs, batch pipelines, order processing. | Asynchronous flow, decoupling of producer/consumer.
+                                   --> Potential message loss if not idempotent, latency.
+
+
+Saga / Orchestration[Temporal, Zeebe, Netflix Conductor]                 ----> Long‑running distributed transactions broken into compensating actions.
+                                           Order‑fulfillment, booking systems, micro‑service workflows.
+                                           Consistency without distributed ACID.
+                                           Complex orchestration logic, need for persistence.
+
+
+Hexagonal (Ports & Adapters) / Clean / Onion[Spring Hexagonal, Micronaut, ASP.NET Clean Architecture]  --> Outer adapters plug into inner domain; business logic is isolated from frameworks.
+                                              --> Domain‑heavy apps, test‑first development, maintainability.
+                                              --> Clear separation, testable domain, easier migration.
+                                              --> Requires discipline to keep inner layers pure
+
+Event‑Sourced [Axon, EventStore, Kafka]    ----> State is derived from an immutable stream of events
+                  ----> current state is the result of replaying the stream.
+                  ----> Auditable systems, finance, analytics pipelines
+                  ----> Full audit trail, easy replay, time‑travel debugging.
+                  ----> Event schema evolution, large storage footprint, complexity of read‑models.
+
+Event Sourcing Architecture 
+used in software systems where state is not stored directly, but instead derived from a sequence of immutable events.
+Instead of storing the current state of an object, you store a log of all the events that have happened to that object.
+The current state is then reconstructed by replaying those events.
+
+
+Core Components
+
+Event
+
+A fact that something happened in the system (e.g., UserRegistered, ProductAddedToCart, OrderShipped).
+
+Events are immutable and timestamped.
+Event Store
+----------
+A specialized database or log where events are saved in order.
+Unlike a typical database, this is append-only.
+Aggregate (or Entity)
+--------------------
+A business object whose state is reconstructed by replaying the sequence of events related to it.
+Does not store its state persistently—state is rebuilt on demand.
+Command
+-------
+A request to perform an action (e.g., RegisterUser, AddItemToCart).
+Commands lead to state changes which are captured as new events.
+Event Handler / Projector / Read Model
+--------------------------------------
+Components that listen to events and update read-optimized views or external systems.
+Helps in CQRS (Command Query Responsibility Segregation), where read and write models are separate.
+
+Banking systems: Every transaction is an event
+E-commerce: Order lifecycle tracked via events
+Git: Commits are events; state is built from history
+
+Financial systems
+Auditable systems
+Collaborative apps
+Domain-driven systems
+
+Poor Use case for Event Sourcing 
+System Requires Strong ACID 
+
+
+Advantages:
+Auditing / Traceability: Full history of all changes
+Debugging & Replay: You can "replay" events to recreate bugs or recover state
+Scalability: Works well with CQRS and microservices
+Flexibility: You can build different views of the data from the same event log
+
+❌ Challenges:
+Complexity: Harder to reason about than CRUD
+Event versioning: Updating old events when your data model changes
+Eventual consistency: Read models may not be up-to-date instantly
+Storage: Event logs can grow large
+
+
+Flow Example
+
+Command is sent: CreateOrder
+Command handler validates and creates a new event: OrderCreated
+Event is saved to the event store
+Aggregate replays events to reconstruct current state
+Event is dispatched to event handlers, which update read models or trigger side effects (like sending an email)
+
+intuitive at the beginning because it's very different from traditional database-driven design.
+---------------
+Start With a Real-World Analogy: Banking Ledger
+---------------------
+Imagine you're a bank.
+You never just store the current balance of a bank account in real life.
+Instead, you store a list of all transactions (deposits and withdrawals), and the current balance is calculated by adding them up.
+
+That’s event sourcing.
+Each transaction is an event.
+
+You're not saving the balance directly (the state). You're saving every event that led to it, so you can always:
+
+Go back in time and check what happened
+Recalculate balances if needed
+Audit for fraud or errors
+
+Now, Intuitively Understand the Flow
+Let's walk through this again, but now with WHY behind each step:
+
+
+Event 
+Event Store 
+Aggregate (or Entity) 
+Command 
+Event Handler/Projector/Read Model 
+
+1. Command is sent: CreateOrder
+In traditional systems, this might directly write to the database.
+But in event sourcing, we don't change state immediately.
+2.Command handler validates and creates a new event: OrderCreated
+If valid, we record the fact: "An order WAS created."
+This is now an event – a historical fact.
+3.Event is saved to the event store
+📦 We store this immutable fact — forever.
+Now we have a permanent record.
+We’re building a timeline of what happened — just like a transaction log.
+4.Aggregate replays events to reconstruct current state
+To know the current state of an order, we replay its event history.
+
+E.g., if an order has these events:
+OrderCreated
+ItemAdded
+OrderConfirmed
+We replay them to know its state: items in cart, status = confirmed.
+5.Event is dispatched to event handlers, which update read models or trigger side effects
+Now we notify other parts of the system: "Hey, something happened."
+Maybe we update a read model (e.g., list of user orders).
+Maybe we send an email confirmation.
+Maybe we update analytics.
+
+
