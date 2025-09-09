@@ -2,6 +2,18 @@ Different Architecture
 Event Sourcing Detailed Comment
 Push/Pull 
 DDD Domain Driven Architecture - DDD 
+MVC = MTV
+AI Architecture 
+SOLID 
+KISS
+DRY 
+HLD
+LLD
+ACID
+BASE
+Distributed System
+
+
 
 MVC Architecture - Model View Controller 
 
@@ -471,6 +483,366 @@ Clean Architecture	Layered design	Controlled	Backend, scalable systems
 
 AI Service Architecture 
 -----------------------
+
+
+SOLID - Object Oriented Design OOD
+----------------------------------
+Scalable
+Maintainable
+Flexible System 
+S - Single Responsibility Principle (SRP) 
+1. A class/Module should have only one reason to change.
+2. Each Component Should focus on one thing only. 
+3. Avoid God Objects or services that do too much. 
+Eg: UserService - Handling Authentication, profile management, payments, split them into AuthService, ProfileService and Payment Service
+O - Open/Closed Principle (OCP) 
+1. Software Entities should be open for extension but closed for modification. 
+2. You should be able to add new functionality without changing existing code. 
+Eg: In a Logging System, Instead of modifying Logger every time you add a new log destination (file,DB,Cloud) use an interface and implement 
+    new FileLogger, DBLogger, CloudLogger.
+L - Liskov Substitution Principle (LSP) 
+Subtypes must be substitutable for their base types without breaking behavior. 
+Derived class should honor the contracts of their base classes. 
+Eg: If Bird has a fly() method, then Penguin extends Bird should not exist if penguins can't fly. it breaks expectations, 
+    Instead, restructure hierarchy. 
+I - Interface Segregation Principle (ISP) 
+1. No Client Shoule be forced to depend on methods it does not use. 
+2. Perfer smaller, more specific interfaces over a large, bloated interface. 
+Example: Instead of having one Machine Interface with print(), scan(), fax(), create separate interfaces Printer, Scanner, Fax 
+D - Dependency Inversion Principle (DIP) 
+Depend on abstractions, not concrete implementations. 
+High-level modules shouldn't depend on low-level modules, they both should depend on interfaces/abstractions. 
+Eg: Instead of OrderService directly creating a MySQLDatabase, inject a Database interface so it can work with MySQL, PostgreSQL, MongoDB interchangeably. 
+
+SOLID In System Design Context
+------------------------------
+Even though SOLID is more about code-level design, the mindset carries over into system design:
+SRP → Microservices: each service handles one bounded context.
+OCP → Plug-in architectures, extendable APIs.
+LSP → Consistent contracts in service interfaces.
+ISP → Lightweight APIs tailored for different clients (e.g., mobile vs web).
+DIP → Using abstractions (e.g., message queues, database interfaces) so systems can swap implementations.
+
+
+SOLID is a set of object-oriented design principles that promote maintainability, scalability, and flexibility
+While it’s mainly for software/code design, applying the same ideas in system design helps build clean, modular, and extensible architectures.
+
+
+Software and Code Design - OOD - SOLID 
+Eg: E-Commerce App
+1. Single Responsibility Principle (SRP)
+Each component/service should handle one responsibility only.
+Instead of one giant ECommerceService, split into services:
+AuthService → Login, signup, JWT tokens
+ProductService → Catalog, product details
+OrderService → Cart, checkout, orders
+PaymentService → Payments, refunds
+NotificationService → Emails, SMS, push notifications
+👉 This makes scaling easier (e.g., scale ProductService independently during sales).
+2. Open/Closed Principle (OCP)
+System should be extensible without modifying existing code.
+Payment flow:
+Instead of hardcoding PayPal/Stripe inside PaymentService, define a PaymentGateway interface.
+Add new providers (PayPal, Stripe, Razorpay, ApplePay) by implementing the interface.
+PaymentService remains unchanged.
+👉 This allows new integrations without breaking old ones.
+3. Liskov Substitution Principle (LSP)
+Subtypes must behave consistently with base contracts.
+Example: Shipping providers
+ShippingProvider defines calculateShippingCost(order)
+Subclasses like FedExProvider, DHLProvider, InHouseDeliveryProvider must all respect the contract.
+If one provider throws “NotImplemented” for certain orders, it breaks LSP.
+👉 Ensures you can swap providers without unexpected behavior.
+4. Interface Segregation Principle (ISP)
+Clients should not depend on unused methods.
+Example: Admin vs Customer APIs
+Customers only need APIs like browseProducts(), placeOrder().
+Admins need addProduct(), manageInventory().
+Instead of one giant ECommerceAPI, create separate CustomerAPI and AdminAPI.
+👉 Prevents bloated interfaces and keeps clients lightweight.
+5. Dependency Inversion Principle (DIP)
+Depend on abstractions, not concrete implementations.
+Example: Order service storing data
+OrderService shouldn’t depend on MySQL directly.
+It should depend on an abstract OrderRepository.
+Implementations: MySQLOrderRepository, MongoOrderRepository, or DynamoDBOrderRepository.
+👉 This makes it easy to switch databases or introduce caching without rewriting OrderService.
+
+
+
+Architecture Overview (SOLID Applied) 
+[ Client Apps ]
+      |
+   [ API Gateway ]
+      |
+  -----------------------------
+  |      |       |       |    
+Auth  Product  Order  Payment  (SRP - each service has 1 job)
+      |       |       |
+   [DBs/Repos via Abstractions]  (DIP - no service tied to a DB)
+      |
+  PaymentGateway Interface (OCP - new payment methods extend, not modify)
+      |
+ FedEx/DHL Providers (LSP - interchangeable shipping providers)
+
+
+import matplotlib.pyplot as plt
+
+# Create figure
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Hide axes
+ax.axis("off")
+
+# Components (nodes)
+components = {
+    "Client Apps": (0.5, 0.95),
+    "API Gateway": (0.5, 0.8),
+    "Auth Service": (0.2, 0.65),
+    "Product Service": (0.4, 0.65),
+    "Order Service": (0.6, 0.65),
+    "Payment Service": (0.8, 0.65),
+    "Databases / Repositories": (0.5, 0.45),
+    "Payment Gateway Interface": (0.5, 0.3),
+    "Providers\n(FedEx, DHL, Razorpay, etc.)": (0.5, 0.15),
+}
+
+# Draw nodes
+for name, (x, y) in components.items():
+    ax.text(x, y, name, ha="center", va="center",
+            bbox=dict(boxstyle="round,pad=0.4", fc="lightblue", ec="black", lw=1),
+            fontsize=9)
+
+# Connections (edges)
+edges = [
+    ("Client Apps", "API Gateway"),
+    ("API Gateway", "Auth Service"),
+    ("API Gateway", "Product Service"),
+    ("API Gateway", "Order Service"),
+    ("API Gateway", "Payment Service"),
+    ("Order Service", "Databases / Repositories"),
+    ("Product Service", "Databases / Repositories"),
+    ("Payment Service", "Databases / Repositories"),
+    ("Payment Service", "Payment Gateway Interface"),
+    ("Payment Gateway Interface", "Providers\n(FedEx, DHL, Razorpay, etc.)"),
+]
+
+# Draw arrows
+for start, end in edges:
+    x1, y1 = components[start]
+    x2, y2 = components[end]
+    ax.annotate("",
+                xy=(x2, y2+0.03 if y2 < y1 else y2-0.03),
+                xytext=(x1, y1-0.03 if y1 > y2 else y1+0.03),
+                arrowprops=dict(arrowstyle="->", lw=1.2))
+
+plt.show()
+
+
+KISS - Keep it Simple Stupid. - Keep it Simple and StraightForward 
+------------------------------------------------------------------
+It’s a software design principle that emphasizes simplicity over unnecessary complexity.
+1.Systems should be designed in the simplest way possible.
+2.Don’t add extra features, abstractions, or optimizations unless they are absolutely needed.
+3.Complexity increases the chance of bugs, reduces readability, and makes maintenance harder.
+
+In large-scale systems, KISS means:
+Don’t build over-complicated architectures when a simpler solution works.
+Example:
+If a monolith is enough, don’t jump straight to microservices.
+Don’t introduce Kafka + Redis + RabbitMQ if a single database queue works.
+Prefer clarity and straightforwardness over clever tricks.
+KISS reminds us that simplicity is power. Start simple, avoid over-engineering, and only add complexity when real requirements demand it.
+
+
+**Use a monolith if traffic is low, don’t prematurely split into microservices
+---------------------------------------------------------
+If you do use microservices, make sure each one has single responsibility, clean interfaces, and dependency abstractions
+
+
+DRY - Don't Repeat Yourself
+---------------------------
+1.Every piece of knowledge (logic, code, configuration) should have a single, unambiguous, authoritative representation in a system.”
+
+
+Microservices
+-------------
+Monorepo → Google, Facebook, Uber (they use tooling to manage huge repos).
+Polyrepo → Netflix, Amazon (microservices are owned by independent teams).
+
+Option 1: One Repo (Monorepo)
+All microservices live inside a single code repository.
+✅ Pros
+Easier dependency management → shared libraries/utilities in one place.
+Atomic commits → changes across multiple services can be committed together.
+Consistent tooling → same linting, testing, CI/CD pipelines.
+Simpler onboarding → new devs just clone one repo.
+
+❌ Cons
+Repo can become huge as services grow.
+Coupling risk → devs may unintentionally break or change multiple services.
+Slower builds/tests if not optimized.
+Harder to enforce service independence (teams may “peek” into each other’s services).
+
+
+Option 2: Multiple Repos (Polyrepo / Multi-repo)
+Each microservice has its own repository.
+✅ Pros
+True independence → each service evolves, deploys, and scales independently.
+Ownership clarity → one team = one service = one repo.
+Smaller repo size → faster cloning, builds, and CI/CD.
+Better alignment with autonomous team culture (common in microservices).
+
+❌ Cons
+Shared libraries become harder to manage (versioning, updates).
+Cross-service changes require PRs in multiple repos.
+Onboarding is harder (new devs need access to multiple repos).
+More overhead for repo management & CI/CD pipelines.
+
+
+HLD LLD 
+-------
+HLD[Output: System architecture diagrams, data flow, integration points.] - Bird's eye view of the system 
+components, modules, APIs, databases, external integrations.
+databases, message queues, caching systems, load balancers
+scalability, availability, security, and performance concerns
+Example (E-commerce System HLD)
+Services: Auth Service, Product Service, Order Service, Payment Service.
+Database choices: MySQL for transactions, Redis for caching.
+Communication: REST APIs, Kafka for async events.
+Deployment: Services run in Kubernetes, behind API Gateway & Load Balancer.
+
+LLD - detailed floor plan with wiring & plumbing of that house.
+It answers how each component will be implemented.
+Detailed class diagrams, methods, database schemas, API contracts.
+Focus on logic inside components.
+Defines design patterns to be used (Factory, Observer, Singleton, etc.).
+Deals with error handling, concurrency, and data validation.
+Very close to actual code structure.
+Example (E-commerce System LLD → Order Service)
+Classes: Order, Cart, OrderRepository, OrderController.
+Methods: addItemToCart(), checkout(), calculateTotal().
+DB Schema: orders table, order_items table with foreign keys.
+Patterns: Use Repository pattern for DB access, Observer for sending notifications.
+Output: Class diagrams, sequence diagrams, pseudo-code.
+
+HLD = Big picture (modules, architecture, components).
+LLD = Detailed implementation (classes, methods, schema).
+
+
+
+Software Design Pattern Vs Agentic Design Pattern 
+--------------------------------------------------
+Software Design Pattern
+-----------------------
+Factory 
+Observer 
+Singleton 
+
+
+Agentic Design Pattern 
+----------------------
+
+
+ACID - Database 
+---------------
+ACID is a set of properties in databases that ensures transactions are processed reliably and consistently.
+1.Whenever we talk about transactions (like transferring money, placing an order, updating inventory), ACID guarantees that the database handles them safely.
+A - Atomicity 
+1. A – Atomicity
+A transaction is all-or-nothing.
+If one part fails, the entire transaction rolls back.
+✅ Example: In a bank transfer from Account A → Account B:
+Debit A by $100
+Credit B by $100
+If credit fails, debit must also roll back.
+C – Consistency
+A transaction must take the database from one valid state to another valid state, following all rules (constraints, triggers).
+✅ Example: If a column requires balance ≥ 0, the database should reject a transaction that makes balance negative.
+I – Isolation
+Transactions running at the same time should not interfere with each other.
+Each transaction should behave as if it’s the only one executing.
+✅ Example: Two users buying the last item at the same time:
+Only one purchase succeeds, the other rolls back.
+D – Durability
+Once a transaction is committed, it is permanent, even if the system crashes.
+✅ Example: If you buy a product and receive a confirmation, the order will remain in the system even if the server restarts.
+
+In System Design
+Relational Databases (MySQL, PostgreSQL, Oracle, SQL Server) → follow ACID strictly.
+NoSQL Databases (MongoDB, Cassandra, DynamoDB) → often relax some ACID properties to gain scalability & performance, instead focusing on BASE (Basically Available, Soft-state, Eventually consistent).
+
+Imagine buying something online:
+Atomicity → Either payment succeeds + order placed, or nothing happens.
+Consistency → Your wallet balance, inventory, and order records remain valid.
+Isolation → Another user buying at the same time doesn’t mess up your purchase.
+Durability → Once confirmed, your order won’t vanish even if the site crashes.
+
+BASE (used in distributed systems like NoSQL)
+--------------------------------------------
+
+Distributed Systems 
+-------------------
+A Distributed System is a collection of independent computers (nodes/servers) that appear to the user as a single system and work together to achieve a common goal.
+Instead of running everything on one machine, work is split across multiple machines connected via a network.
+Examples of Distributed Systems
+Google Search → billions of servers working together.
+Netflix → distributed streaming servers across the globe.
+Amazon / Flipkart → microservices + databases spread across multiple regions.
+Apache Hadoop / Spark → distributed data processing.
+
+Key Characteristics
+Multiple nodes (servers/computers).
+Communication via network (not shared memory).
+Transparency → users shouldn’t care which machine handles their request.
+Fault tolerance → even if some nodes fail, the system continues.
+Scalability → can add more machines to handle growth.
+
+Types of Distributed Systems
+Client-Server Systems → e.g., web apps (browser = client, backend = server).
+Peer-to-Peer Systems → e.g., BitTorrent, blockchain.
+Clustered Systems → e.g., Hadoop cluster, Kubernetes cluster.
+Distributed Databases → e.g., Cassandra, MongoDB, DynamoDB.
+
+Advantages
+Scalability → handle more users by adding servers.
+Fault tolerance → some servers can fail without total system failure.
+Performance → tasks can run in parallel.
+Geographical distribution → servers closer to users (CDNs).
+
+Network issues (latency, partitioning).
+Consistency (ensuring all nodes have the same data).
+Fault tolerance (handling crashes gracefully).
+Coordination between distributed services.
+
+This is where concepts like **CAP Theorem, ACID vs BASE, consensus algorithms (Paxos, Raft, Zookeeper) come into play.
+
+Eg:
+Imagine a food delivery system:
+One kitchen (single server) → handles all orders.
+If too many orders come, it gets overloaded.
+Solution → Distributed kitchens (servers) across the city:
+Each kitchen handles orders nearby.
+If one kitchen fails, others still serve customers.
+To the customer, it feels like one app, one system.
+
+
+ACID vs BASE
+------------
+
+
+
+Doubt: What is Interface & Abstraction
+
+
+
+
+
+
+
+
+
+
 
 
 
