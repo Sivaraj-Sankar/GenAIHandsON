@@ -833,6 +833,9 @@ ACID vs BASE
 
 
 Doubt: What is Interface & Abstraction
+How Task can run in parallel in distributed system 
+Client-Server Systems → e.g., web apps (browser = client, backend = server). ? how it will work in the Distributed System 
+Microservices - will run in the Kubernetes and managed - How it will work in Distributed System.
 
 
 
