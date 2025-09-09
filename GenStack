@@ -125,6 +125,9 @@ Claude 3.7 Sonnet (Feb 24, 2025)
   Alibaba Qwen 
       Qwen3 Coder 
 
+  Grok 
+
+
 
          📋 Summary Table
 Model	Release	Notes
@@ -249,6 +252,143 @@ LLaMA 4	Apr 2025	Scout/H ≈ 109B, Maverick/H ≈ 400B, Behemoth (traini
 13) LVM - Transformer + Diffusion = Large Vision Model 
       Sora  - Transformer + Diffusion 
       latte - Open Source can be fine tune with the own image 
+
+14) System Thinking - LLM 
+Daniel Kahneman's Thinking, Fast and Slow 
+System 1 - Fast, intuitive, automatic, handling tasks like simple arithmetic or recognizing patterns
+System 2 - Slow, Deliberate, logical used for complex problem-solving or analytical reasoning 
+How LLMs Mirror Human Thinking 
+System 1 in LLMs - LLMs natively function like System 1, They generate quick, intuitive responses 
+https://arxiv.org/abs/2502.17419?utm_source=chatgpt.com
+https://watercrawl.dev/blog/Unlocking-the-Mind-of-AI-System-1-and-System-2?utm_source=chatgpt.com
+https://en.wikipedia.org/wiki/Neuro-symbolic_AI?utm_source=chatgpt.com
+System 2 in LLMs [https://arxiv.org/abs/2412.20372?utm_source=chatgpt.com]
+To Handle Deliberate reasoning, LLMs adopt System 2-like techniques, such as: 
+Chain-of-Thought (CoT) prompting: models are guided to think step-by-step.
+Branch-Solve-Merge (BSM):break tasks into parts, solve each, then combine.
+System 2 Attention (S2A):focus on key context for accurate answers.
+Monte Carlo Tree Search (MCTS), agentic architectures, reinforcement learning(RL) to refine reasoning
+External tools like knowledge graphs or symbolic reasoning systems serve System 2
+offering structured, transparent logic to support the LLM’s intuitive outputs
+https://jaxon.ai/system-1-system-2/?utm_source=chatgpt.com
+
+Some Frameworks go even further:
+LLM2: combines a fast-generating LLM (System 1) with a “verifier” that judges outputs methodically (System 2), improving accuracy on tasks like math reasoning
+
+
+A 2025 survey paper, "From System 1 to System 2: A Survey of Reasoning Large Language Models," highlights how foundational LLMs rely on fast intuition but evolve with System 2 techniques to handle reasoning with greater accuracy and reduced bias
+Another study demonstrates a spectrum of reasoning alignment: System 2-aligned models do better on symbolic reasoning tasks, while System 1 excels in commonsense ones. Blending both creates more flexible models.
+https://arxiv.org/abs/2502.12470?utm_source=chatgpt.com
+The concept of neuro-symbolic AI underscores this synergy—combining neural (System 1) and symbolic (System 2) reasoning—to reduce hallucinations and boost reliability.
+Additionally, “System 2 distillation” techniques train System 1 models using high-quality System 2 outputs, enabling faster responses with improved reasoning—essentially compressing deep thought into intuition
+https://medium.com/%40EleventhHourEnthusiast/distilling-system-2-into-system-1-ab56e17d01f7?utm_source=chatgpt.com
+https://arxiv.org/html/2407.06023v1?utm_source=chatgpt.com
+
+OpenAI o1 models integrates internal deliberation (System 2) over intuitive answers, dramatically raising performance - 83% on the AIME math 
+Anthropic Claude 3.7 introduces a hybrid reasoning model where users can adjust the level of reasoning and view a Scratchpad showing the model't thought process. 
+
+
+Model	Release / Announcement	Highlights
+Grok-1	Nov 2023	First open-source Grok model, Apache-2.0
+Grok-1.5	Mar/May 2024	Better reasoning, 128k token context, proprietary
+Grok-1.5V	Apr 2024 (announced)	Visual input capable, but never released publicly
+Grok-2	Aug 2024	Image generation, stronger reasoning
+Grok-2 mini	Aug 2024	Lightweight variant of Grok-2
+Grok-3	Feb 2025	10× more compute, advanced modes (Think, Big Brain)
+Grok-3 mini	Feb 2025	Faster, lighter version of Grok-3
+Grok-4	Jul 9, 2025	256k context, tool use, real-time search, multimodal input [Native tool integration, real-time search, both image and text inputs,]
+                    256k token context window, structured outputs, and parallel tool calling
+Grok-4 Heavy	Jul 2025	High-power variant of Grok-4
+Grok Imagine	Jul 28, 2025	Text to short animated video clips, “Spicy” mode available
+Grok-code-fast-1	Sep 5, 2025	Coding workflow specialist, ultra-fast tool integration
+Agentic coding workflows
+Built from the ground up for programming tasks; trained on code and real pull request data, optimized for tool usage (grep, terminal actions, file editing), and integrates seamlessly with IDEs. Emphasizes speed and responsiveness, with over
+Grok-5 (upcoming)	End of 2025 (expected)	Next flagship release — “crushingly good”
+
+Gemini
+------
+Multimodality 
+Reasoning capabilities
+
+Gemini 1.0 (Dec 6 2023) - Multimodality handles text, images, audio 
+Variants 
+Ultra - Flagship for highly complex tasks, excels in multimodal reasoning, outperforming on 30/32 benchmarks and achieving 90% MMLU 
+Pro - 
+Nano 1.8B & 2.5B params quantized to 4 Bits for use on Pixel 8 and smartphones 
+
+Gemini 1.5 (Feb 2024) 
+1M -token context window - over an hour of video/ 11 hours of audio/700K words 
+Gemini 2.0 
+Enhanced for Agentic AI (tool use, automating workflows) 
+Flash and Flash-Lite variants. 
+1.Pro supports multimodal output(images, TTS audio), tool integration (search, code exec), real-time audio/video API's
+Flash-Lite: Lighter cost and footprint 
+Flash Thinking (experiemental) - Shows its chain-of-thought used for high-stakes reasoning, 
+
+Gemini 2.5 Mar - May 20205 
+Built-in reasoning in base model, no separate Thinking mode needed 
+2.5 Flash 
+2.5 Pro GA - native audio output 
+
+Gemini Robotics - On-Device Robotics 
+VLA Launched March2025 
+Vision-Language-action model for robots running in hybrid mode.
+
+Gemini-Robotics On-Device released early June 2025 
+
+BERT 
+XLNet
+T5 Family 
+LaMDA
+PaLM
+PaLM 2
+Gemini (Successor to PaLM)
+AudioPaLM
+
+Open/Weight Models 
+Gemma Series 
+Flan-T5/UL2/Flan-UL2 
+MADLAD & Multilingual MT LMs 
+
+3. Jules – Autonomous Agentic Coding Assistant
+Jules – First unveiled in Google Labs around December 2024; entered public beta by mid-2025 and then generally available.
+Functions autonomously: reads your repository, writes tests, fixes bugs, and suggests pull requests rather than inserting code directly.
+Entirely powered by Gemini 2.5 Pro, leveraging its 1 million-token context window and reasoning capabilities. 
+Introduced a “critic” feature: it reviews its own code proposals adversarially and iteratively improves them before presenting pull requests to the user. 
+
+
+
+Gemini Code Assist & Gemini CLI (agentic tools integrated into IDEs and terminals)
+Gemini Code Assist – Agent Mode – Released August 2025:
+Embedded into IDEs like VS Code and IntelliJ, enabling multi-file edits, full project context, built-in tools, toolchain integration, and human-in-the-loop planning.
+During use, the agent presents a plan before making changes, enabling guided, step-wise coding workflows. 
+
+
+Gemini CLI – Released June 2025:
+An open-source, terminal-based agent tool powered by Gemini 2.5 Pro, allowing natural language interaction with local codebases—covering code explanation, generation, debugging, and execution.
+It also integrates multimedia generation (via Veo/Imagen), supports Model Context Protocol (MCP), and offers generous free usage quotas (~1,000 daily requests). 
+
+
+1. CodeGemma Series (lightweight open code models)
+CodeGemma – Launched around mid-2024, part of the open-source Gemma family.
+Includes 2 billion and 7 billion parameter variants tuned for code tasks like generation, fill-in-the-middle completion, natural language understanding, and mathematical reasoning. 
+These are decoder-only models (text-to-text and text-to-code), supporting multiple programming languages (e.g., Python, Java, C++). 
+
+
+2. Gemini 2.5 Pro (advanced multimodal reasoning & coding model)
+Gemini 2.5 Pro Experimental – Introduced in March 2025.
+A “thinking model” capable of reasoning through steps prior to producing outputs.
+Demonstrates strong performance in code generation, including agentic code applications, scoring 63.8% on SWE-Bench Verified—an industry benchmark for agentic coding. 
+
+
+Gemini 2.5 Pro (General Availability) – Launched by mid-2025 (around Google I/O and supporting production use).
+Offers native multimodal input, long-context capability, Deep Think reasoning mode optimized for complex coding and creative tasks. 
+
+AlphaEvolve – Evolutionary Agent for Algorithm Design
+AlphaEvolve – Announced May 2025 by DeepMind:
+A next-gen agentic system that autonomously evolves and refines algorithms using LLM capabilities (e.g., from Gemini) combined with evolutionary strategies.
+Operates by generating variations of code and programmatically selecting the most effective ones using evaluation functions, aiming for minimal human oversight. 
+
 
 
            
