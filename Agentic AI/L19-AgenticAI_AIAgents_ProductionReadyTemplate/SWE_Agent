@@ -1,0 +1,46 @@
+SWE-Agent - 
+1.SWE-agent—an autonomous software engineering agent designed to solve real-world programming issues. Here's a breakdown
+2.SWE-agent is a system that enables a large language model (LLM)—such as GPT-4o or Claude Sonnet 4—to autonomously interact with a computer environment (e.g., navigating a GitHub repository, editing code, executing tests) to resolve coding issues. It acts through a structured Agent-Computer Interface (ACI) that handles context, actions, and feedback to enable effective decision-making
+3.https://github.com/SWE-agent/SWE-agent?utm_source=chatgpt.com
+4.https://github.com/SWE-agent/SWE-agent?utm_source=chatgpt.com
+
+5.In the foundational 2024 research paper, SWE-agent achieved state-of-the-art results—resolving 12.5% of real-world GitHub issues (pass@1) on the SWE-bench dataset, outperforming prior non-interactive approaches
+6.
+
+
+SWE Bench 
+1.SWE-bench (Software Engineering Benchmark) is the evaluation framework behind SWE-agent. It's a set of real-world software engineering tasks created from actual GitHub issues across Python codebases—each task requires the agent to generate a patch that fixes the issue and doesn’t break existing functionality
+2.https://www.swebench.com/SWE-bench/?utm_source=chatgpt.com
+3.https://machine-learning-made-simple.medium.com/how-swe-agent-uses-large-language-models-and-agent-computer-interfaces-to-improve-software-c2bccc107673?utm_source=chatgpt.com
+
+It includes different variants:
+Full: ~2,294 issues (original dataset)
+Lite: A lighter subset with ~300 curated instances
+Verified: A high-quality subset of ~500 samples with clarity and reliable testing, introduced via collaboration with OpenAI
+4.SWE-bench is notable for its realistic complexity, requiring codebase navigation, multi-file reasoning, execution environment manipulation, and more
+
+Evolution of SWE-agent & Benchmark Performance
+Recent developments have significantly improved SWE-agent performance:
+Mini-SWE-Agent: Achieved ~65% on SWE-bench Verified with just 100 lines of Python code
+1.https://www.swebench.com/?utm_source=chatgpt.com
+2.https://github.com/SWE-agent/SWE-agent?utm_source=chatgpt.com
+AugmentCode Submission: Achieved a 65.4% success rate on SWE-bench Verified by combining Claude Sonnet 3.7 with OpenAI's o1 as an ensembler
+1.https://www.augmentcode.com/blog/1-open-source-agent-on-swe-bench-verified-by-combining-claude-3-7-and-o1?utm_source=chatgpt.com
+Academic Progress:
+SWE-smith: A data pipeline that scales SWE tasks; training on its 50k-instance dataset enabled SWE-agent-LM-32B to reach 40.2% pass@1 on SWE-bench Verified—SOTA for open-source agents
+1.https://arxiv.org/abs/2504.21798?utm_source=chatgpt.com
+SWE-Exp: Introduced experience-driven learning to avoid repeating past errors; achieved 41.6% pass@1 on SWE-bench Verified under open-source frameworks
+2.https://arxiv.org/abs/2507.23361?utm_source=chatgpt.com
+
+Let me know if you'd like a deep dive into any of the specific architectures, such as how the ACI works, how SWE-smith generates training pairs, or how Mini-SWE-Agent keeps its code so compact!
+
+Component	Description
+SWE-agent	An LM-based agent that autonomously edits code, navigates repos, and runs tests to fix issues using an Agent-Computer Interface.
+SWE-bench	A benchmark of real-world GitHub issues used to evaluate LLM-based coding agents. Variants include Full, Lite, and Verified datasets.
+Performance Highlights	- Original SWE-agent: 12.5% pass@1 on Full dataset
+- Mini-SWE-Agent & AugmentCode: ~65% on Verified
+- SWE-smith agent: 40.2% pass@1 (open-source SOTA)
+- SWE-Exp approach: 41.6% pass@1 leveraging experience memory
+
+
+
