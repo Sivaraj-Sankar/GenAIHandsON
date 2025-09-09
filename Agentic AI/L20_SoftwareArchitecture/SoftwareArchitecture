@@ -12,6 +12,9 @@ LLD
 ACID
 BASE
 Distributed System
+Orcale 
+
+
 
 
 
@@ -829,6 +832,61 @@ To the customer, it feels like one app, one system.
 
 ACID vs BASE
 ------------
+
+Oracle
+------
+Visual of Oracle Cloud Infrastructure
+1.1. Oracle Cloud Infrastructure (OCI) - Oracle provides a comprehensive suite of cloud services that support various workloads—from legacy systems to modern cloud-native applications
+Compute, Storage, Networking
+Databases: Autonomous Database, MySQL, Oracle Database, NoSQL 
+Analytics & Big Data, AI & Machine Learning, Data Science, Blockchain, IoT, Observability & Management 
+Integration, Developer Tools, Intelligent Bots: API management, DevOps, low-code tools, blockchain platform, and more
+OCI supports multiple deployment models - public cloud, hybrid deployments, dedicated regional offerings, distributed/hybrid clouds
+across on-premises and data centers
+
+2.Oracle Cloud Applications (SaaS)
+1.Oracle offers a robust lineup of Software-as-a-Service (SaaS) applications for major business functions:
+ERP (Enterprise Resource Planning): Financials, procurement, project management, compliance, supply chain, manufacturing, analytics
+EPM (Enterprise Performance Management): Planning, profitability, financial consolidation, tax, narrative reporting, data management
+SCM (Supply Chain Management): Inventory, logistics, manufacturing, order and lifecycle management
+HCM (Human Capital Management): Recruiting, workforce modeling, talent and compensation, onboarding, payroll (Fusion Cloud HCM)
+Customer Experience (CX) Tools: Sales, Marketing, Service, CPQ (Configure Price Quote)
+These SaaS offerings are tightly integrated with Oracle’s cloud infrastructure, allowing for scalable, seamless enterprise operations
+
+3. Enterprise Software & Middleware - Oracle’s on-premises and hybrid solutions include:
+Enterprise Management: Oracle Enterprise Manager for unified monitoring (databases, middleware, applications, cloud)
+Middleware: Fusion Middleware delivers tools for application servers, SOA, integration, BI, development, identity management, and more
+Components include WebLogic, SOA Suite, ADF, JDeveloper, TopLink (ORM), ESB, Business Intelligence (OBIEE), Identity Management suite
+
+4.Databases & Advanced Data Services
+You can choose from:
+Oracle Database (Enterprise, Standard, Express editions) — the industry-leading RDBMS
+NoSQL Database — scalable key-value store for dynamic workloads, available as managed cloud service
+
+Optional database features include multitenant architecture, Real Application Clusters, OLAP, spatial analytics, machine learning extensions, compression, and lifecycle management tools
+
+5. Applications & Legacy (On-Premise) Solutions
+Oracle continues to support a wide array of longstanding enterprise products:
+ERP Suites: E-Business Suite, PeopleSoft, JD Edwards (EnterpriseOne & World), Fusion ERP
+Planning & Performance Tools: Hyperion Planning, part of Oracle’s financial planning solutions
+
+6.Development, Decision Automation, & Other Specialized Services
+Oracle Intelligent Advisor (formerly Policy Automation) delivers business-rule modeling and decision automation—available as SaaS or on-premise, with integration APIs
+Development Tools: Alongside middleware, Oracle provides tools for ORM, REST services, developer frameworks, and low-code application creation
+
+What Can You Do with Oracle?
+Run infrastructure (private, public, hybrid cloud)
+Host enterprise-grade applications (financials, HR, supply chain)
+Manage data with database and analytics platforms
+Automate business processes and decisions
+Develop custom applications with modern tools and low-code environments
+Modernize existing legacy systems with integrated cloud strategies
+
+
+
+
+
+
 
 
 
