@@ -67,13 +67,127 @@ document.querySelector("css-selector") → Get first matching element.
 document.querySelector(".container p");
 document.querySelectorAll("css-selector") → Get all matching elements (NodeList).
 document.querySelectorAll("li.active");
+DOM Manipulation Methods
+------------------------
+Change content
+element.textContent = "New Text";
+element.innerHTML = "<b>Bold Text</b>";
+innerHTML (String-Based Way)
+You directly replace or add raw HTML markup as a string.
+Faster to write, but less safe (can cause security issues if input is from users — XSS attacks).
+<ul id="list"></ul>
+
+<script>
+  let list = document.getElementById("list");
+
+  // Add HTML directly
+  list.innerHTML += "<li>Item added with innerHTML</li>";
+</script>
+modern alternatives (like append() and prepend()) that are more flexible than appendChild
+Change style
+element.style.color = "red";
+element.style.background = "yellow";
+Change attributes
+element.setAttribute("src", "image.png");
+let value = element.getAttribute("src");
+Create & add elements
+let newDiv = document.createElement("div");
+newDiv.textContent = "Hello!";
+document.body.appendChild(newDiv);   -----> appendChild
+this is one of the most important DOM methods for creating and adding elements dynamically.
+ --------------Create something → Pick a parent → Attach it inside the parent-----------------
+-----------------Now choose a parent (e.g., document.body or another container), and attach the new element:-------
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>My Page</h1>
+    <button id="btn">Add Item</button>
+    <ul id="list"></ul>
+
+    <script>
+      const button = document.getElementById("btn");
+      const list = document.getElementById("list");
+
+      button.addEventListener("click", function() {
+        // 1. Create a new list item
+        let newItem = document.createElement("li");
+
+        // 2. Add content
+        newItem.textContent = "New List Item";
+
+        // 3. Append it to the UL
+        list.appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>
+Remove elements
+element.remove();
+
+Event Handling
+1.Add event
+element.addEventListener("click", () => {
+  console.log("Clicked!");
+});
+2.Remove event
+function sayHi() { console.log("Hi"); }
+element.addEventListener("click", sayHi);
+element.removeEventListener("click", sayHi);
+Common events
+click
+mouseover / mouseout
+keydown / keyup
+submit
+change
+input
+
+DOM Traversal (Moving around the tree)
+element.parentElement     // Get parent
+element.children          // Get all children
+element.firstElementChild // Get first child
+element.lastElementChild  // Get last child
+element.nextElementSibling // Next element
+element.previousElementSibling // Previous element
+
+getElementById / querySelector → Find elements
+.textContent / .style → Change elements
+createElement / appendChild → Add elements
+remove() → Delete elements
+addEventListener → React to events
 
 
+DOM Traversal Properties  [when and why we use them.]
+------------------------
+when you already have one element and want to navigate to related elements in the DOM tree.
+1.element.parentElement
+Used when you have a child but need to access its parent
+Example: You click on a <span> inside a <div>, but you want to style the parent <div>
+let span = document.querySelector("span");
+let parentDiv = span.parentElement;
+parentDiv.style.border = "1px solid red";
+2.element.children
+Used when you want all direct children of an element.
+Example: Style all <li> inside a <ul>
+let list = document.querySelector("ul");
+for (let child of list.children) {
+  child.style.color = "blue";
+}
+3.element.firstElementChild & element.lastElementChild
+Used when you only need the first or last child quickly.
+Example: Highlight the first and last items in a list.
+let list = document.querySelector("ul");
+list.firstElementChild.style.fontWeight = "bold";
+list.lastElementChild.style.fontStyle = "italic";
+4.element.nextElementSibling & element.previousElementSibling
+Used to move sideways in the DOM (between elements on the same level).
+let firstItem = document.querySelector("li");
+let secondItem = firstItem.nextElementSibling;
+secondItem.style.background = "yellow";
 
-
-
-
-
-
+Event handling: When an event happens on one element but you need related elements.
+Example: Clicking a "Delete" button inside a table row → remove the entire row using button.parentElement.
+Form navigation: If you want to move to the next input field (nextElementSibling) after validation.
+Dynamic styling: Change first/last/neighbor elements without using IDs or classes
+Building components: Traversing the DOM tree is often used in UI libraries, custom scripts, or when working with deeply nested HTML.
 
 
