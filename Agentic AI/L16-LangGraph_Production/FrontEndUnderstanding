@@ -1,0 +1,79 @@
+DOM [built-in JavaScript methods provided by the browser through the DOM API.] -browser’s JavaScript engine + DOM API.
+    [you select elements and manipulate them dynamically with JavaScript.]
+    [The DOM is a tree of objects that represents the structure and content of a webpage, which your code can manipulate.]
+The DOM is not the HTML file itself.
+It’s the browser’s live, object-based representation of that HTML.
+You use code (like JavaScript’s document object) to read or modify it.
+
+The browser reads it and turns it into a DOM tree in memory:
+Document
+ └── html
+      └── body
+          ├── h1 ("Hello")
+          └── button ("Click me")
+Now in coding, you can interact with this DOM using JavaScript:
+// Find the button
+let btn = document.querySelector("button");
+
+// Change its text
+btn.textContent = "Clicked!";
+
+---------------------------------------
+DOM = Document Object Model
+It’s a programming interface (API) that lets you use code (like JavaScript, Python, etc. in a browser context) to work with HTML or XML documents.
+----------------------------------------
+
+
+
+Eg:<button id="btn">Click Me</button>
+
+<script>
+  let button = document.getElementById("btn");
+
+  button.addEventListener("click", function() {
+    alert("Button was clicked!");
+  });
+</script>
+
+Tips
+**element.addEventListener("eventType", callbackFunction);
+
+Listen for Events
+click, mouseover, keydown
+
+Built-in JavaScript methods provided by the browser through the DOM API.
+1. document.getElementById("id")
+Purpose: Finds an element in the DOM by its id.
+Returns: A reference to that element (as a JavaScript object).
+<p id="para">Hello</p>
+
+<script>
+  let p = document.getElementById("para");
+  console.log(p.textContent); // Output: Hello
+</script>
+
+Benefit
+If you change the DOM directly, the browser has to repaint the screen and recalculate styles/layout every time
+
+-------------------------------------------------------------------------------------------------------------
+DOM Selection Methods
+document.getElementById("id") → Get element by ID.
+document.getElementById("title");
+document.getElementsByClassName("class") → Get elements by class (HTMLCollection).
+document.getElementsByClassName("item");
+document.getElementsByTagName("tag") → Get elements by tag name.
+document.getElementsByTagName("p");
+document.querySelector("css-selector") → Get first matching element.
+document.querySelector(".container p");
+document.querySelectorAll("css-selector") → Get all matching elements (NodeList).
+document.querySelectorAll("li.active");
+
+
+
+
+
+
+
+
+
+
