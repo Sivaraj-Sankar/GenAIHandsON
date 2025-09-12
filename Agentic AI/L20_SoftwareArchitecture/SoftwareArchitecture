@@ -13,6 +13,8 @@ ACID
 BASE
 Distributed System
 Orcale 
+Design Patterns Cheat Sheet 
+
 
 
 
@@ -908,6 +910,432 @@ LLM-Powered APIs and backend architecture
 https://vitaliihonchar.com/
 
 
+Design Patterns Cheat Sheet 
+---------------------------
+Factory [Creational Design Patterns]
+Provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects 
+that will be created. 
+1.It helps in creating objects without exposing the object creation logic to the client code
+eg: 
+from abc import ABC, abstractmethod 
+
+# Step 1: Define an interface (abstract class)
+class Vehicle(ABC):
+  @abstractmethod
+  def drive(self):
+    pass 
+# Step 2: Concrete implementations
+class Car(Vehicle):
+    def drive(self):
+        return "Driving a Car 🚗"
+class Bike(Vehicle):
+    def drive(self):
+        return "Riding a Bike 🏍️"
+class Truck(Vehicle):
+    def drive(self):
+        return "Driving a Truck 🚚"
+
+# Step 3: Factory class
+class VehicleFactory:
+    @staticmethod
+    def create_vehicle(vehicle_type: str) -> Vehicle:
+        if vehicle_type == "car":
+            return Car()
+        elif vehicle_type == "bike":
+            return Bike()
+        elif vehicle_type == "truck":
+            return Truck()
+        else:
+            raise ValueError(f"Unknown vehicle type: {vehicle_type}")
+
+# Step 4: Client code
+if __name__ == "__main__":
+    factory = VehicleFactory()
+
+# Client does not worry about "how" objects are created
+    vehicles = ["car", "bike", "truck"]
+
+    for v in vehicles:
+        vehicle = factory.create_vehicle(v)
+        print(vehicle.drive())
+1.Encapsulation of object creation -> Client does not know class names or constructors.
+2.Flexibility -> Adding a new type (say Bus) only requires updating the factory, not all client code.
+3.Loose Coupling -> Client depends only on the Vehicle interface, not on concrete implementations.
+
+Step 1: Product (Interface / Abstract Class)
+from abc import ABC, abstractmethod
+
+class Shape(ABC):   # <interface> Product
+    @abstractmethod
+    def draw(self) -> str:
+        pass
+
+Step 2: Concrete Products
+class Circle(Shape):   # ConcreteProduct
+    def draw(self) -> str:
+        return "Drawing a Circle ⭕"
+
+class Square(Shape):   # ConcreteProduct
+    def draw(self) -> str:
+        return "Drawing a Square ◼️"
+
+Step 3: Creator (Abstract Factory Class)
+class ShapeCreator(ABC):   # <abstract> Creator
+    @abstractmethod
+    def create_shape(self) -> Shape:
+        pass
+
+Step 4: Concrete Creators
+class CircleCreator(ShapeCreator):   # ConcreteCreator
+    def create_shape(self) -> Shape:
+        return Circle()
+
+class SquareCreator(ShapeCreator):   # ConcreteCreator
+    def create_shape(self) -> Shape:
+        return Square()
+
+Step 5: Client Code
+if __name__ == "__main__":
+    # Client does not know HOW objects are created
+    creators = [CircleCreator(), SquareCreator()]
+
+    for creator in creators:
+        shape = creator.create_shape()   # Factory method in action
+        print(shape.draw())
+
+<interface> Product → Shape
+ConcreteProduct → Circle, Square
+<abstract> Creator → ShapeCreator
+ConcreteCreator → CircleCreator, SquareCreator
+Client → main function
+
+--------------
+Abstract Factory Pattern
+Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+1.The Factory Method (what we just discussed) creates one product at a time.
+2.The Abstract Factory creates related products (a family) together.
+3.Client code works only with interfaces/abstract types, never concrete classes.
+
+Example in Python: GUI Toolkit (Windows / MacOS)
+Imagine you want to build a GUI library that supports multiple operating systems (Windows, Mac).
+Each OS has its own family of UI elements: buttons and checkboxes.
+We want the client to be able to use them without worrying about which OS is running.
+
+Step 1: Abstract Products
+from abc import ABC, abstractmethod
+
+# Abstract Product A
+class Button(ABC):
+    @abstractmethod
+    def paint(self) -> str:
+        pass
+
+# Abstract Product B
+class Checkbox(ABC):
+    @abstractmethod
+    def paint(self) -> str:
+        pass
+
+Step 2: Concrete Products
+# Windows family
+class WindowsButton(Button):
+    def paint(self) -> str:
+        return "Rendering a Windows Button 🪟"
+
+class WindowsCheckbox(Checkbox):
+    def paint(self) -> str:
+        return "Rendering a Windows Checkbox ☑️"
+
+# Mac family
+class MacButton(Button):
+    def paint(self) -> str:
+        return "Rendering a Mac Button 🍏"
+
+class MacCheckbox(Checkbox):
+    def paint(self) -> str:
+        return "Rendering a Mac Checkbox ✅"
+
+Step 3: Abstract Factory
+class GUIFactory(ABC):   # <interface> AbstractFactory
+    @abstractmethod
+    def create_button(self) -> Button:
+        pass
+
+    @abstractmethod
+    def create_checkbox(self) -> Checkbox:
+        pass
+
+Step 4: Concrete Factories
+class WindowsFactory(GUIFactory):
+    def create_button(self) -> Button:
+        return WindowsButton()
+
+    def create_checkbox(self) -> Checkbox:
+        return WindowsCheckbox()
+
+
+class MacFactory(GUIFactory):
+    def create_button(self) -> Button:
+        return MacButton()
+
+    def create_checkbox(self) -> Checkbox:
+        return MacCheckbox()
+
+Step 5: Client Code
+def client_code(factory: GUIFactory):
+    button = factory.create_button()
+    checkbox = factory.create_checkbox()
+    print(button.paint())
+    print(checkbox.paint())
+
+
+if __name__ == "__main__":
+    print("Using Windows Factory:")
+    client_code(WindowsFactory())
+
+    print("\nUsing Mac Factory:")
+    client_code(MacFactory())
+
+
+------------------
+Builder 
+-------------------
+Constructs a complex object step by step, allowing for greater control over the construction process and enabling different representations of the object.
+When creating complex objects (with many parts), instead of a huge constructor with many parameters, we use a Builder.
+The Builder pattern separates the construction of an object from its representation, so the same construction process can create different kinds of objects.
+
+Example in Python: Building a Computer
+We want to construct a Computer object with multiple parts: CPU, GPU, RAM, and Storage.
+Instead of calling a constructor with many arguments, we use a Builder to assemble it step by step.
+
+
+Step 1: Product (the complex object)
+class Computer:
+    def __init__(self):
+        self.cpu = None
+        self.gpu = None
+        self.ram = None
+        self.storage = None
+
+    def __str__(self):
+        return f"Computer with CPU={self.cpu}, GPU={self.gpu}, RAM={self.ram}, Storage={self.storage}"
+
+Step 2: Builder Interface
+from abc import ABC, abstractmethod
+
+class ComputerBuilder(ABC):
+    @abstractmethod
+    def build_cpu(self): pass
+
+    @abstractmethod
+    def build_gpu(self): pass
+
+    @abstractmethod
+    def build_ram(self): pass
+
+    @abstractmethod
+    def build_storage(self): pass
+
+    @abstractmethod
+    def get_result(self) -> Computer: pass
+
+Step 3: Concrete Builders
+class GamingComputerBuilder(ComputerBuilder):
+    def __init__(self):
+        self.computer = Computer()
+
+    def build_cpu(self):
+        self.computer.cpu = "Intel i9"
+
+    def build_gpu(self):
+        self.computer.gpu = "NVIDIA RTX 4090"
+
+    def build_ram(self):
+        self.computer.ram = "32GB DDR5"
+
+    def build_storage(self):
+        self.computer.storage = "2TB SSD"
+
+    def get_result(self) -> Computer:
+        return self.computer
+
+
+class OfficeComputerBuilder(ComputerBuilder):
+    def __init__(self):
+        self.computer = Computer()
+
+    def build_cpu(self):
+        self.computer.cpu = "Intel i5"
+
+    def build_gpu(self):
+        self.computer.gpu = "Integrated Graphics"
+
+    def build_ram(self):
+        self.computer.ram = "16GB DDR4"
+
+    def build_storage(self):
+        self.computer.storage = "512GB SSD"
+
+    def get_result(self) -> Computer:
+        return self.computer
+
+
+Step 4: Director (orchestrates construction)
+class Director:
+    def __init__(self, builder: ComputerBuilder):
+        self.builder = builder
+
+    def construct_computer(self):
+        self.builder.build_cpu()
+        self.builder.build_gpu()
+        self.builder.build_ram()
+        self.builder.build_storage()
+        return self.builder.get_result()
+
+Step 5: Client Code
+if __name__ == "__main__":
+    # Build a gaming computer
+    gaming_builder = GamingComputerBuilder()
+    director = Director(gaming_builder)
+    gaming_pc = director.construct_computer()
+    print(gaming_pc)
+
+    # Build an office computer
+    office_builder = OfficeComputerBuilder()
+    director = Director(office_builder)
+    office_pc = director.construct_computer()
+    print(office_pc)
+
+Builder is useful when:
+You need to create objects with many optional/mandatory fields.
+You want different representations of the same object (gaming vs office computer).
+
+
+--------------------------
+Prototype Design Pattern
+----------------------
+Prototype Design Pattern
+Specify the kinds of objects to create using a prototypical instance, and create new objects by cloning this prototype.
+Key Idea
+Instead of creating objects from scratch (with new or constructors), you make a copy of an existing object (the prototype).
+Useful when:
+Object creation is expensive (time-consuming or resource-heavy).
+You want to keep the initial state of an object and reuse it.
+You need copies of objects with slight modifications.
+
+Example in Python: Cloning Shapes
+We want to create Circle and Rectangle objects. Instead of instantiating from scratch every time, we clone prototypes.
+
+Step 1: Prototype Interface
+from abc import ABC, abstractmethod
+import copy
+
+class Prototype(ABC):
+    @abstractmethod
+    def clone(self):
+        pass
+
+Step 2: Concrete Prototypes
+class Circle(Prototype):
+    def __init__(self, radius, color):
+        self.radius = radius
+        self.color = color
+
+    def clone(self):
+        return copy.deepcopy(self)
+
+    def __str__(self):
+        return f"Circle(radius={self.radius}, color={self.color})"
+
+
+class Rectangle(Prototype):
+    def __init__(self, width, height, color):
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def clone(self):
+        return copy.deepcopy(self)
+
+    def __str__(self):
+        return f"Rectangle(width={self.width}, height={self.height}, color={self.color})"
+
+Step 3: Client Code
+if __name__ == "__main__":
+    # Create prototypes
+    circle1 = Circle(5, "red")
+    rectangle1 = Rectangle(10, 20, "blue")
+
+    # Clone them
+    circle2 = circle1.clone()
+    rectangle2 = rectangle1.clone()
+
+    # Modify the clones
+    circle2.color = "green"
+    rectangle2.width = 15
+
+    print(circle1)   # Original
+    print(circle2)   # Cloned + modified
+    print(rectangle1)
+    print(rectangle2)
+
+
+Prototype is particularly powerful when you need many copies of a configured object, e.g., game objects, GUI elements, or database records.
+
+-------------
+Singleton 
+-------------
+Ensure a class has only one instance, and provide a global point of access to it.
+
+Key Idea
+Sometimes, you want to restrict a class so that only one object can exist.
+Common in cases like:
+Configuration managers (only one config should exist across app).
+Logging systems (a single logger instance).
+Database connections (only one connection pool).
+
+Example in Python: Logger Singleton
+class Logger:
+    _instance = None   # Class-level private variable
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            print("Creating new Logger instance...")
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def log(self, message: str):
+        print(f"[LOG]: {message}")
+Step 2: Client Code
+if __name__ == "__main__":
+    logger1 = Logger()
+    logger2 = Logger()
+
+    logger1.log("First message")
+    logger2.log("Second message")
+
+    print("logger1 is logger2:", logger1 is logger2)
+
+Mapping back to the diagram
+Singleton class → Logger
+Static instance → _instance variable
+Global access point → __new__ ensures only one object is created
+
+In Python, Singleton is often implemented using __new__, metaclasses, or decorators.
+It ensures only one instance, but remember: overusing Singleton can make testing harder if abused.
+
+------------------
+Creational Patterns - Factory - Abstract Factory  - Builder - Prototype - Singleton 
+-------------------------
+Structural Design Patterns   - Adapter - Bridge - Composite - Decorator - Facade - Flyweight - Proxy 
+--------------------------
+Behavioral Design Patterns - chain of Responsibility - Command - Interpreter - Iterator - Mediator - Memento
+--------------------------
+Adapter - Adapter is super useful when integrating old code (legacy) with new systems without modifying either.
+
+
+
+
 
 
 
@@ -919,6 +1347,8 @@ Client-Server Systems → e.g., web apps (browser = client, backend = server). ?
 Microservices - will run in the Kubernetes and managed - How it will work in Distributed System.
 How to Handle the More Number of Users 
 How to Handel More Number of Users 
+
+
 
 
 
