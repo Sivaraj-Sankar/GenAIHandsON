@@ -383,3 +383,72 @@ function Person() {
 
 new Person();
 If we had used a normal function inside setInterval, this would not work as expected.
+
+Why Do We Use Props in Components
+---------------------------------
+1.Props (short for “properties”) are how you pass data from a parent component to a child component.
+2.Think of them like function parameters but for React components.
+
+Analogy 
+-------
+A Function takes arguments
+function greet(name: string) {
+  return `Hello ${name}`;
+}
+
+greet("Alice"); // Hello Alice
+
+A React component takes props:
+const Greeting = ({ name }: { name: string }) => <h1>Hello {name}</h1>;
+<Greeting name="Alice" />  // renders: Hello Alice
+
+In both cases, you provide input → it produces output.
+
+Key Reasons We Use Props
+1.Reusability
+One component can be reused with different data.
+<Greeting name="Alice" />
+<Greeting name="Bob" />
+<Greeting name="Charlie" />
+2.Dynamic Content
+Instead of hardcoding, you can pass dynamic values:
+<Greeting name={user.username} />
+3.Parent → Child Communication
+Props let parents send data to children.
+function App() {
+  return <Greeting name="Sivaraj" />;
+}
+
+Component Customization
+You can make components behave differently using props.
+const Button = ({ label, color }: { label: string; color: string }) => (
+  <button style={{ backgroundColor: color }}>{label}</button>
+);
+
+<Button label="Save" color="green" />
+<Button label="Delete" color="red" />
+
+Stateless → Controlled by Parent
+Props make components stateless and predictable.
+Example: Parent controls what child displays.
+
+Props vs State
+Props: Passed into a component, controlled by the parent.
+State: Managed inside a component, controlled by the component itself.
+
+
+const Counter = ({ start }: { start: number }) => {
+  const [count, setCount] = React.useState(start);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+};
+
+Here:
+start (prop) = given by parent
+count (state) = managed inside Counter
+
+We use props to make components reusable, dynamic, and customizable — they are the "inputs" that flow down from parent to child in React.
+
+
+
+
+
