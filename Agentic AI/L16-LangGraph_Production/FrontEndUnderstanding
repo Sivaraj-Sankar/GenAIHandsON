@@ -190,4 +190,196 @@ Form navigation: If you want to move to the next input field (nextElementSibling
 Dynamic styling: Change first/last/neighbor elements without using IDs or classes
 Building components: Traversing the DOM tree is often used in UI libraries, custom scripts, or when working with deeply nested HTML.
 
+Interface 
+---------
+1.An interface is like a blueprint for an object.
+2.It defines what properties (and types) an object should have, but not the actual values.
 
+interface User {
+  id: number;
+  name: string;
+  isAdmin: boolean;
+}
+
+const user1: User = { id: 1, name: "Alice", isAdmin: true }; ✅
+const user2: User = { id: 2, name: "Bob" }; ❌ // Error: missing isAdmin
+
+Why interfaces in React?
+In React, we often pass props to components.
+TypeScript + interface = makes sure props are the right shape.
+
+---------------------------------------------------
+import React from "react";
+
+// Step 1: Define interface for props
+interface GreetingProps {
+  name: string;
+  age?: number;  // optional prop
+}
+
+// Step 2: Use it in the component
+const Greeting: React.FC<GreetingProps> = ({ name, age }) => {
+  return (
+    <h1>
+      Hello {name}! {age && `You are ${age} years old.`}
+    </h1>
+  );
+};
+
+// Step 3: Use the component
+export default function App() {
+  return (
+    <div>
+      <Greeting name="Alice" age={25} />
+      <Greeting name="Bob" /> {/* works because age is optional */}
+    </div>
+  );
+}
+
+1.React.FC stands for React Functional Component.
+2.It’s a generic type provided by React to type a functional component.
+3.When you write React.FC<GreetingProps>, you’re telling TypeScript
+4."Greeting is a functional component that accepts props of type GreetingProps."
+
+Alternative way (without React.FC):
+const Greeting = ({ name, age }: GreetingProps) => {
+  return <h1>Hello {name}! {age && `You are ${age} years old.`}</h1>;
+};
+
+
+
+-----------------------------------------------------
+Typing State with Interface
+
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+const TodoApp: React.FC = () => {
+  const [todos, setTodos] = React.useState<Todo[]>([]);
+
+  return (
+    <div>
+      {todos.map(todo => (
+        <p key={todo.id}>
+          {todo.text} - {todo.completed ? "Done" : "Pending"}
+        </p>
+      ))}
+    </div>
+  );
+};
+Here, todos must always be an array of objects shaped like Todo
+-----------------------------------------------------------------
+Example 3: Interface for Event Handlers
+
+interface ButtonProps {
+  label: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const MyButton: React.FC<ButtonProps> = ({ label, onClick }) => {
+  return <button onClick={onClick}>{label}</button>;
+};
+
+**Why not just use type instead of interface
+Both work, but:
+interface = extendable (great for objects, props).
+type = more flexible (unions, intersections).
+
+
+An interface in React + TypeScript defines the shape of props, state, or objects.
+It’s like saying: “This component only accepts props that look like this.”
+Helps catch bugs early and makes code easier to understand.
+
+
+---------------------------------
+Arrow functions (() => {}) are modern JavaScript functions introduced in ES6
+-------------------------------------------------
+// Traditional function
+function sayHello() {
+  return "Hello!";
+}
+
+// Arrow function
+const sayHello = () => {
+  return "Hello!";
+};
+
+Short Version Implicit Return 
+const sayHello = () => "Hello!";
+
+1.Arrow Functions with Parameters
+// One parameter (no need for parentheses)
+const square = x => x * x;
+console.log(square(4)); // 16
+// Multiple parameters
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+2.Returning Objects
+Important: Wrap objects in () when returning directly.
+const makeUser = (name, age) => ({ name, age });
+console.log(makeUser("Alice", 25)); // { name: "Alice", age: 25 }
+4. Arrow Functions in Callbacks
+Arrow functions are great for short, inline functions.
+const numbers = [1, 2, 3, 4];
+
+// Using map with arrow
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+5. Arrow Functions in React
+React loves arrow functions for components & event handlers.
+const Greeting = ({ name }: { name: string }) => <h1>Hello {name}</h1>;
+-----
+Step 1: Without Destructuring
+Normally, a React functional component receives props:
+const Greeting = (props: { name: string }) => {
+  return <h1>Hello {props.name}</h1>;
+};
+props is an object.
+Step 2: Destructuring Props
+Instead of writing props.name, we can destructure props directly in the function parameter:
+const Greeting = ({ name }: { name: string }) => {
+  return <h1>Hello {name}</h1>;
+};
+Here:
+{ name } → pulls name directly out of props.
+: { name: string } → tells TypeScript that this destructured object must contain a string name.
+So instead of props.name, you can directly use name.
+Step 3: Using an Interface (Cleaner Way)
+Often, we declare a type or interface for props:
+interface GreetingProps {
+  name: string;
+}
+
+const Greeting = ({ name }: GreetingProps) => {
+  return <h1>Hello {name}</h1>;
+};
+Step 4: Usage
+<Greeting name="Alice" />
+If you try <Greeting /> without passing name, TypeScript will give an error.
+If you pass <Greeting name={123} />, also an error, since it expects a string.
+Step 5: Short Cut of using Props - Alternative Way 
+const Greeting = (props: { name: string }) => {
+  const { name } = props;
+  return <h1>Hello {name}</h1>;
+};
+
+
+Event Handler
+<button onClick={() => alert("Clicked!")}>Click Me</button>
+6. Lexical this (Important Difference)
+Unlike normal functions, arrow functions don’t have their own this.
+They use this from the surrounding scope.
+function Person() {
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // 'this' refers to Person, not setInterval
+    console.log(this.age);
+  }, 1000);
+}
+
+new Person();
+If we had used a normal function inside setInterval, this would not work as expected.
