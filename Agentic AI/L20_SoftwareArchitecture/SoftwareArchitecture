@@ -1333,6 +1333,397 @@ Behavioral Design Patterns - chain of Responsibility - Command - Interpreter - I
 --------------------------
 Adapter - Adapter is super useful when integrating old code (legacy) with new systems without modifying either.
 
+-------
+Mediator
+--------
+Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly.
+Key Idea
+Instead of objects talking to each other directly, they communicate via a Mediator.
+This reduces tight coupling and makes the system easier to maintain.
+Example: In a chatroom, users don’t send messages to each other directly — they go through the chatroom (mediator).
+
+Example in Python: Chatroom Mediator
+Step 1: Mediator Interface
+from abc import ABC, abstractmethod
+
+class ChatMediator(ABC):
+    @abstractmethod
+    def send_message(self, message: str, user): pass
+
+    @abstractmethod
+    def add_user(self, user): pass
+
+Step 2: Concrete Mediator
+class ChatRoom(ChatMediator):
+    def __init__(self):
+        self.users = []
+
+    def add_user(self, user):
+        self.users.append(user)
+
+    def send_message(self, message: str, sender):
+        for user in self.users:
+            if user != sender:
+                user.receive(message, sender)
+Step 3: Colleagues (Users)
+class User:
+    def __init__(self, name: str, mediator: ChatMediator):
+        self.name = name
+        self.mediator = mediator
+        mediator.add_user(self)
+
+    def send(self, message: str):
+        print(f"{self.name} sends: {message}")
+        self.mediator.send_message(message, self)
+
+    def receive(self, message: str, sender):
+        print(f"{self.name} receives from {sender.name}: {message}")
+Step 4: Client Code
+if __name__ == "__main__":
+    chatroom = ChatRoom()
+
+    alice = User("Alice", chatroom)
+    bob = User("Bob", chatroom)
+    charlie = User("Charlie", chatroom)
+
+    alice.send("Hi everyone!")
+    bob.send("Hello Alice!")
+    charlie.send("Hey folks!")
+Output
+Alice sends: Hi everyone!
+Bob receives from Alice: Hi everyone!
+Charlie receives from Alice: Hi everyone!
+
+Bob sends: Hello Alice!
+Alice receives from Bob: Hello Alice!
+Charlie receives from Bob: Hello Alice!
+
+Charlie sends: Hey folks!
+Alice receives from Charlie: Hey folks!
+Bob receives from Charlie: Hey folks!
+
+Mapping back to the diagram
+Mediator → ChatMediator
+ConcreteMediator → ChatRoom
+Colleague → User
+Client → Sets up chatroom and users
+
+Mediator is useful when:
+You have many-to-many object interactions.
+You want to avoid objects being too dependent on each other.
+Common in UI frameworks, messaging systems, air traffic control systems.
+
+
+------------
+Iterator
+-------------
+Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+Key Idea
+Iterator lets you traverse a collection (like lists, trees, custom objects) without knowing its internal structure.
+You get a standard interface: has_next(), next() (or Python’s __iter__ / __next__).
+Example: Think of flipping through a playlist of songs without caring if it’s an array, linked list, or database.
+
+Example in Python: Custom Playlist Iterator
+Step 1: Aggregate (Collection)
+class Playlist:
+    def __init__(self):
+        self.songs = []
+
+    def add_song(self, song: str):
+        self.songs.append(song)
+
+    def __iter__(self):
+        return PlaylistIterator(self.songs)
+
+Step 2: Iterator
+class PlaylistIterator:
+    def __init__(self, songs):
+        self._songs = songs
+        self._index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < len(self._songs):
+            song = self._songs[self._index]
+            self._index += 1
+            return song
+        else:
+            raise StopIteration
+Step 3: Client Code
+if __name__ == "__main__":
+    playlist = Playlist()
+    playlist.add_song("Song A")
+    playlist.add_song("Song B")
+    playlist.add_song("Song C")
+
+    print("Playing songs in playlist:")
+    for song in playlist:
+        print("🎵", song)
+
+Mapping back to the diagram
+Aggregate → Playlist
+Iterator → PlaylistIterator
+Client → for song in playlist:
+
+You want to standardize traversal of collections.
+You don’t want to expose the internal structure of the collection.
+Great for lists, trees, graphs, database cursors.
+
+-----------
+Interpreter
+-----------
+Interpreter Design Pattern
+Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language
+Key Idea
+The Interpreter pattern is used to define a grammar for a simple language and an interpreter to evaluate sentences written in that language.
+Each rule in the grammar is represented by a class.
+Useful when you need to repeatedly parse and evaluate expressions (e.g., calculators, queries, filters, regex engines).
+
+Example in Python: Simple Boolean Expression Interpreter
+
+Step 1: Abstract Expression
+from abc import ABC, abstractmethod
+
+class Expression(ABC):
+    @abstractmethod
+    def interpret(self, context: dict) -> bool:
+        pass
+Step 2: Terminal Expressions (basic variables)
+class VariableExpression(Expression):
+    def __init__(self, name: str):
+        self.name = name
+
+    def interpret(self, context: dict) -> bool:
+        return context.get(self.name, False)
+Step 3: Non-Terminal Expressions (AND, OR, NOT)
+class AndExpression(Expression):
+    def __init__(self, left: Expression, right: Expression):
+        self.left = left
+        self.right = right
+
+    def interpret(self, context: dict) -> bool:
+        return self.left.interpret(context) and self.right.interpret(context)
+
+class OrExpression(Expression):
+    def __init__(self, left: Expression, right: Expression):
+        self.left = left
+        self.right = right
+
+    def interpret(self, context: dict) -> bool:
+        return self.left.interpret(context) or self.right.interpret(context)
+
+class NotExpression(Expression):
+    def __init__(self, expr: Expression):
+        self.expr = expr
+
+    def interpret(self, context: dict) -> bool:
+        return not self.expr.interpret(context)
+
+Step 4: Client Code
+if __name__ == "__main__":
+    # Context (variable values)
+    context = {
+        "x": True,
+        "y": False,
+        "z": True
+    }
+
+    # Build expression: (x AND y) OR (NOT z)
+    expr = OrExpression(
+        AndExpression(VariableExpression("x"), VariableExpression("y")),
+        NotExpression(VariableExpression("z"))
+    )
+
+    result = expr.interpret(context)
+    print("Result:", result)
+
+Ouput 
+Result: False
+
+(because (x AND y) = True AND False = False, and (NOT z) = NOT True = False. So False OR False = False.)
+
+Mapping back to the diagram
+AbstractExpression → Expression
+TerminalExpression → VariableExpression
+NonTerminalExpression → AndExpression, OrExpression, NotExpression
+Context → dict with variable values
+Client → builds and interprets expression tree
+
+Interpreter is useful when:
+You have a simple language or grammar to evaluate.
+You want to make expressions composable as trees.
+Commonly applied in query languages, calculators, rule engines.
+
+
+----------------------
+Command Design Pattern
+-----------------------
+Encapsulate a request as an object, thereby letting you parameterize clients with queues, requests, and operations. It also allows undo/redo functionality
+
+Key Idea
+Instead of calling a method directly, wrap the request in a Command object.
+The command object knows:
+Receiver (who does the work)
+Action (what to do)
+Useful for undo/redo, task queues, macro recording.
+
+Example in Python: Remote Control
+
+Step 1: Command Interface
+from abc import ABC, abstractmethod
+
+class Command(ABC):
+    @abstractmethod
+    def execute(self): pass
+
+    @abstractmethod
+    def undo(self): pass
+
+Step 2: Receiver (Actual Work)
+class Light:
+    def on(self): print("💡 Light is ON")
+    def off(self): print("💡 Light is OFF")
+
+Step 3: Concrete Commands
+class LightOnCommand(Command):
+    def __init__(self, light: Light):
+        self.light = light
+
+    def execute(self):
+        self.light.on()
+
+    def undo(self):
+        self.light.off()
+
+class LightOffCommand(Command):
+    def __init__(self, light: Light):
+        self.light = light
+
+    def execute(self):
+        self.light.off()
+
+    def undo(self):
+        self.light.on()
+Step 4: Invoker (Remote Control)
+class RemoteControl:
+    def __init__(self):
+        self.history = []
+
+    def press(self, command: Command):
+        command.execute()
+        self.history.append(command)
+
+    def press_undo(self):
+        if self.history:
+            last_command = self.history.pop()
+            last_command.undo()
+Step 5: Client Code
+if __name__ == "__main__":
+    light = Light()
+
+    on_command = LightOnCommand(light)
+    off_command = LightOffCommand(light)
+
+    remote = RemoteControl()
+
+    remote.press(on_command)   # Light ON
+    remote.press(off_command)  # Light OFF
+    remote.press_undo()        # Undo -> Light ON
+💡 Light is ON
+💡 Light is OFF
+💡 Light is ON
+
+Mapping back to the diagram
+Command → Command (abstract interface)
+ConcreteCommand → LightOnCommand, LightOffCommand
+Receiver → Light (knows how to perform actions)
+Invoker → RemoteControl (triggers commands, keeps history)
+Client → Creates commands and assigns them to the invoker
+
+Command is useful when:
+You want to decouple request senders from executors.
+You need undo/redo functionality.
+You want to implement task queues or macros.
+
+------------------------------
+Chain of Responsibility Design Pattern
+----------------------------------
+Avoid coupling the sender of a request to its receiver by giving multiple objects the chance to handle the request. Chain the receiving objects and pass the request along until an object handles it.
+Key Idea
+Requests are passed along a chain of handlers.
+Each handler decides either:
+✅ to process the request, or
+👉 pass it to the next handler.
+Example: Customer support tickets → First-level support → Second-level → Manager.
+
+Example in Python: Support Ticket System
+Step 1: Handler Interface
+from abc import ABC, abstractmethod
+
+class Handler(ABC):
+    def __init__(self):
+        self.next_handler = None
+
+    def set_next(self, handler):
+        self.next_handler = handler
+        return handler  # allows chaining
+
+    @abstractmethod
+    def handle(self, request: str):
+        pass
+Step 2: Concrete Handlers
+class Level1Support(Handler):
+    def handle(self, request: str):
+        if request == "password reset":
+            print("Level 1 handled: Password reset ✅")
+        elif self.next_handler:
+            self.next_handler.handle(request)
+
+class Level2Support(Handler):
+    def handle(self, request: str):
+        if request == "software install":
+            print("Level 2 handled: Software install ✅")
+        elif self.next_handler:
+            self.next_handler.handle(request)
+
+class Manager(Handler):
+    def handle(self, request: str):
+        if request == "budget approval":
+            print("Manager handled: Budget approval ✅")
+        else:
+            print(f"No one could handle request: {request} ❌")
+Step 3: Client Code
+if __name__ == "__main__":
+    # Build the chain
+    level1 = Level1Support()
+    level2 = Level2Support()
+    manager = Manager()
+
+    level1.set_next(level2).set_next(manager)
+
+    # Test requests
+    level1.handle("password reset")
+    level1.handle("software install")
+    level1.handle("budget approval")
+    level1.handle("server outage")
+
+Output 
+Level 1 handled: Password reset ✅
+Level 2 handled: Software install ✅
+Manager handled: Budget approval ✅
+No one could handle request: server outage ❌
+
+Mapping back to the diagram
+Handler → Handler (abstract class with handle() and set_next())
+ConcreteHandler → Level1Support, Level2Support, Manager
+Client → Sends requests into the chain (level1.handle(...))
+
+Chain of Responsibility is useful when:
+Multiple objects may handle a request, but you don’t want to hardcode the handler.
+You want to decouple sender from receiver.
+Common in event handling, logging, middleware pipelines.
 
 
 
@@ -1347,6 +1738,13 @@ Client-Server Systems → e.g., web apps (browser = client, backend = server). ?
 Microservices - will run in the Kubernetes and managed - How it will work in Distributed System.
 How to Handle the More Number of Users 
 How to Handel More Number of Users 
+
+
+How to Access Variables Inside Class and different Files 
+Abstract, static, class --> method & variables 
+Iterator 
+Generator 
+
 
 
 
