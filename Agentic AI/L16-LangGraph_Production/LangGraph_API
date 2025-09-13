@@ -1,4 +1,8 @@
-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
+LANGSMITH_API_KEY = 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
+AZURE_ENDPOINT = "https://bfsi-genai-demo.openai.azure.com/"
+API_KEY = "2X9keHUzB41HzJBaJ8w705nPbdrFpKPvemWrs7aBCXzhLYHdmmF8JQQJ99BDACHYHv6XJ3w3AAABACOGqyX6"
+API_VERSION = "2024-02-15-preview"
+MODEL = "bfsi-genai-demo-gpt-4o"
 Stateful, Event-driven, Agent workflows
 graph-based execution engine
 nodes (steps), edges (transitions), and state
