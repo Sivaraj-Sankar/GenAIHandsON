@@ -1,0 +1,127 @@
+https://rdi.berkeley.edu/events/agentic-ai-summit
+https://agenticai-learning.org/f25
+
+https://llmagents-learning.org/f24
+https://llmagents-learning.org/sp25
+https://rdi.berkeley.edu/llm-agents-hackathon/
+https://docs.google.com/forms/d/e/1FAIpQLSevYR6VaYK5FkilTKwwlsnzsn8yI_rRLLqDZj0NH7ZL_sCs_g/viewform
+https://docs.google.com/forms/d/e/1FAIpQLSdKesnu7G_7M1dR-Uhb07ubvyZxcw6_jcl8klt-HuvahZvpvA/viewform
+
+
+https://forms.gle/gKFNDMiUBaKddUh36
+
+Course Staff
+Dawn Song
+Xinyun Chen
+
+Fundamental reasoning techniques
+Tool using in agents
+Agents for software engineering
+Agents Stack & Infrastructure
+Agentic workflows, real-world applications
+Safety and security
+
+Semester-long course project
+Agent Track
+Research Track
+
+
+
+Project
+-------
+Focus on designing agents for both evaluation and task solving
+Phase 1: Each team designs “green agents” for evaluating different task - Green Agents
+Phase 2: Top-3 green agents are selected and each team designs
+“white/competition agents” to compete in the tasks of top-3 green agents.
+
+AgentBeat 
+---------
+An Open Platform for Agent
+Evaluation and Risk Assessment
+
+Standardization → Unified SDK + A2A/MCP + consistent workflows
+▪ Openness → Public agents, benchmarks, and hosted environments
+▪ Reproducibility → Auto-reset + hosted runs + automatic multi-level trace logging
+▪ Easy-to-use → One-file instantiation with CLI + on-platform & self-hosted options
+▪ Rich integration → Web agents / coding agent / prompt injection scenario / jailbreaking…
+
+
+Agent Card TOML 
+Python tool Functions
+MCP Tools
+Other Resources 
+
+Supported Evaluation Mode 
+Benchmark Mode with Single-Agent
+Arena Mode with Multi-Agent - Best for adversarial multi-agent evaluation & competitions.
+Exploit/Defense 
+FFA Infiltrate & Occupy 
+Team Fight (E.g: CTF-style Attack/Defense 
+
+AgentBeats Agents
+- Any service with A2A interface that supports task fulfilling, tool using, memory, etc.
+Agent Types
+- In AgentBeats, “Benchmarks” are managed by hosting agents named green agents
+- Agents participating in benchmarks or adversarial evaluations are named white agents
+- E.g. for a chess game between a GPT-4o agent and a GPT-5 agent
+- Green agent: chess match judge that maintains the board status and ask white agents to
+submit when their turn comes (with A2A)
+- White agents: GPT-4o and GPT-5 based game agents
+
+- Assessment
+- An assessment is a multi-agent procedure between one green agent and many white
+agents
+- Each assessment reflects one or more metrics of the participating white agents
+- Green agent is responsible for reporting the assessment result in the end
+
+Basic features (for completing the assessment)
+- Agent Registry for discovery
+- Agent Controller for state management
+- Assessment kickoff and management, metrics tracing
+
+
+Extended use
+- Assessment tracing & recording
+- Leaderboard for each green agent
+- MCP proxy and access control
+- Agent hosting & auto-scaling
+- Environment container hosting (via MCP)
+- SDK for config-based a2a agent scaffolding
+- Templates for fast development
+
+
+Different Levels of Green Agents
+Level 1 - Green Agents [2 Units only]
+Just a matter of understanding what is in the existing
+benchmark / task description, and connect the interface.
+No specific system construction requires. 
+
+Level 2 - Green Agents [2 or 3 Units]
+Integrate existing benchmarks that requires moderate
+interface conversion effort or some system building.
+Or, design simple and intuitive new assessments.
+
+Level 3 - Green Agents [2,3 or 4 Units]
+Integrate existing benchmarks that requires significant
+interface translation effort or complicated environment.
+Or, propose new assessments that require significant
+design, data collection, and implementation effort.
+
+Computer Use 
+https://thenuancedperspective.substack.com/p/3-cheaper-alternatives-to-openais?utm_source=chatgpt.com
+https://algocademy.com/blog/openai-operator-vs-anthropic-computer-use-comparing-two-ai-powerhouses/?utm_source=chatgpt.com
+https://simple.ai/p/ai-agents-are-learning-to-use-your-computer?utm_source=chatgpt.com
+https://www.helicone.ai/blog/browser-use-vs-computer-use-vs-operator?utm_source=chatgpt.com - Best Web Agents 
+https://anthemcreation.com/en/artificial-intelligence/openai-operator-vs-anthropic-computer-use-ai-agents/?utm_source=chatgpt.com
+https://www.reddit.com/r/singularity/comments/1ga3l0e/openai_has_been_working_on_agents_for_computer/?utm_source=chatgpt.com    - from 2016 Computer Use
+https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/computer-use-tool?utm_source=chatgpt.com - Computer Use Tool 
+https://workos.com/blog/anthropics-computer-use-versus-openais-computer-using-agent-cua?utm_source=chatgpt.com
+https://www.anthropic.com/news/3-5-models-and-computer-use?utm_source=chatgpt.com
+https://openai.com/index/introducing-operator/?utm_source=chatgpt.com
+https://www.theverge.com/2024/10/26/24280431/google-project-jarvis-ai-system-computer-using-agent?utm_source=chatgpt.com
+
+
+
+
+
+
