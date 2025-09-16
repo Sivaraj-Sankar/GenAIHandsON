@@ -39,3 +39,18 @@ https://www.maryammiradi.com/ai-agents-mastery
 LangGraph Example 
 https://github.com/langchain-ai/agent-inbox-langgraph-example
 
+
+LangGraph Agent - Graph 
+--------------- 
+Shared State 
+But Memory haven't explored with Model 
+Common Model using at Different nodes, 
+For Self Reflect and coming back to the generation the Documents will be accumlate with the Shared state again 
+
+How we include the memory - For Different Agent Graph 
+How we use the different model 
+How we Return the state for different node - just to show or is there something 
+
+
+
+
