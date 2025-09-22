@@ -109,7 +109,7 @@ generator
 
 
 1.RAG - Different Chunking, VB, Retrieval, Caching, Fallback, Prompting, Testing, LangGraph 
-2.Previous Project Compliance Ready Project - Obscure, Data Privacy and Governance , DDD Design , FastAPI, Azure Service to Deploy
+2.Previous Project Compliance Ready Project - Obscure, Data Privacy and Governance , DDD Design , FastAPI, Azure Service to Deploy, Onion Layer Approach of System, Adapter , Controller, 
 3.General GenAI Topic - Different Parameter, Transformer Usage and Mathematical, Agentic AI
 4.General Machine Learning - Trade-Off, Bias, Variance, Gradient Descent, Not Convergence Reason, Neural Network
 5.Software Engineering Principles - SOLID,KISS, Design Pattern, LLD, HLD[Architecting]
@@ -117,8 +117,11 @@ generator
 Where I will Stuck 
 1. In Services I have Used - Memory for Agent[How I Stored the Response]
 2. In Coding related to framework Specific 
-3. In FastAPI & ReactJS - Related to web technology 
+3. In FastAPI & ReactJS - Related to web technology - Authentication, Authorization, Fallback, Callback, Caching, Load Balancing, DataBase Optimizing(Indexing)
 4. Actual Deployment of my Project 
+5. Responsible AI Approach 
+
+
 
 
 
