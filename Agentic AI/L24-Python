@@ -63,9 +63,33 @@ str.replace(old, new[, count]) → Replaces occurrences of a substring.
 
 
 
+1. Decorator 
+def dec(func):
+    def wrapper():
+        print("Before the main function")
+        func()
+    return wrapper
+    
+    
+@dec
+def say_hello():
+    print("This is the main function")
+    
+say_hello()
+
+
 To Revise 
 popitem
 iterator 
 generator 
+
+
+1.RAG - Different Chunking, VB, Retrieval, Caching, Fallback, Prompting, Testing, LangGraph 
+2.Previous Project Compliance Ready Project - Obscure, Data Privacy and Governance , DDD Design , FastAPI, Azure Service to Deploy
+3.General GenAI Topic - Different Parameter, Transformer Usage and Mathematical, Agentic AI
+4.General Machine Learning - Trade-Off, Bias, Variance, Gradient Descent, Not Convergence Reason, Neural Network
+5.Software Engineering Principles - SOLID,KISS, Design Pattern, LLD, HLD[Architecting]
+
+
 
 
