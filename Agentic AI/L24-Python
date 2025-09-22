@@ -60,6 +60,30 @@ str.split(sep=None, maxsplit=-1) → Splits string into list.
 str.rsplit(sep=None, maxsplit=-1) → Splits string from right.
 str.splitlines(keepends=False) → Splits string at line breaks.
 str.replace(old, new[, count]) → Replaces occurrences of a substring.
+Trimming/Stripping
+str.strip([chars]) → Removes leading/trailing whitespace or characters.
+str.lstrip([chars]) → Removes leading characters.
+str.rstrip([chars]) → Removes trailing characters.
+str.removeprefix(prefix) → Removes prefix if present (Python 3.9+).
+str.removesuffix(suffix) → Removes suffix if present (Python 3.9+).
+Joining/Formatting
+str.join(iterable) → Joins elements of iterable with the string as separator.
+str.format(*args, **kwargs) → Formats string with placeholders.
+str.format_map(mapping) → Like format(), but uses a mapping (dict).
+str.maketrans(x, y=None, z='') → Returns translation table for translate().
+str.translate(table) → Translates string using a translation table.
+Padding/Aligning
+str.center(width[, fillchar]) → Centers string.
+str.ljust(width[, fillchar]) → Left-aligns string.
+str.rjust(width[, fillchar]) → Right-aligns string.
+str.zfill(width) → Pads string with zeros on the left.
+Encoding/Decoding
+str.encode(encoding='utf-8', errors='strict') → Encodes string to bytes.
+str.decode() → Only on bytes, not string.
+Other Useful Methods
+str.isnumeric() → Checks if all chars are numeric.
+str.isprintable() → Checks if all chars are printable.
+str.expandtabs(tabsize=8) → Replaces tabs \t with spaces.
 
 
 
