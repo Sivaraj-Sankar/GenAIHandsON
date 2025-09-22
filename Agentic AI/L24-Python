@@ -47,8 +47,25 @@ print(a.isspace())
 1.# True if there is any non-alphanumeric character
 has_special = any(not ch.isalnum() for ch in s)  --> any(iterable)
 
+str.count(sub[, start[, end]]) → Count occurrences of substring.
+str.find(sub[, start[, end]]) → Index of first occurrence, -1 if not found.
+str.rfind(sub[, start[, end]]) → Index of last occurrence, -1 if not found.
+str.index(sub[, start[, end]]) → Like find(), but raises ValueError if not found.
+str.rindex(sub[, start[, end]]) → Like rfind(), but raises ValueError if not found.
+str.startswith(prefix[, start[, end]]) → Checks if string starts with prefix.
+str.endswith(suffix[, start[, end]]) → Checks if string ends with suffix.
+str.partition(sep) → Splits into tuple (before, sep, after) at first occurrence.
+str.rpartition(sep) → Splits at last occurrence.
+str.split(sep=None, maxsplit=-1) → Splits string into list.
+str.rsplit(sep=None, maxsplit=-1) → Splits string from right.
+str.splitlines(keepends=False) → Splits string at line breaks.
+str.replace(old, new[, count]) → Replaces occurrences of a substring.
+
 
 
 To Revise 
 popitem
+iterator 
+generator 
+
 
