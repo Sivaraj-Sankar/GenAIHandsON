@@ -216,6 +216,10 @@ print(response[0].content)
 
 Redis Chat Memory History 
 ------------------------
+https://python.langchain.com/docs/how_to/chat_model_caching/?utm_source=chatgpt.com
+https://python.langchain.com/docs/how_to/chat_model_caching/?utm_source=chatgpt.com
+http://python.langchain.com/docs/integrations/memory/redis_chat_message_history/
+https://python.langchain.com/docs/integrations/llm_caching/?utm_source=chatgpt.com
 
 
 
