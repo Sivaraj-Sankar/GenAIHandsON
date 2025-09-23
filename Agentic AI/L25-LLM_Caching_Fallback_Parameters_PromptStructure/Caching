@@ -1,0 +1,235 @@
+from langchain_core.globals import set_llm_cache
+from langchain_openai import OpenAI
+
+# To make the caching really obvious, let's use a slower and older model.
+# Caching supports newer chat models as well.
+llm = OpenAI(model="gpt-3.5-turbo-instruct", n=2, best_of=2)
+n --> return 
+best_of --> internally generates the response 
+----------------------------------------------
+from langchain_core.caches import InMemoryCache
+set_llm_cache(InMemoryCache())
+
+# The first time, it is not yet in cache, so it should take longer
+llm.invoke("Tell me a joke")
+---------------------------------------------
+SQLite database (a lightweight file-based database).
+# We can do the same thing with a SQLite cache
+from langchain_community.cache import SQLiteCache
+
+set_llm_cache(SQLiteCache(database_path=".langchain.db"))
+
+
+Redis Caching 
+-------------
+Redis (Remote Dictionary Server)
+is an open-source in-memory storage
+used as a distributed, in-memory key–value database, cache and message broker
+with optional durability
+Because it holds all data in memory and because of its design, Redis offers low-latency reads and writes,
+making it particularly suitable for use cases that require a cache.
+Redis is the most popular NoSQL database, and one of the most popular databases overall.
+
+pip install redis
+docker run --name langchain-redis -d -p 6379:6379 redis redis-server --save 60 1 --loglevel warning
+docker stop langchain-redis
+docker start langchain-redis
+
+We need a redis url connection string to connect to the database support either a stand alone Redis server or a High-Availability setup with Replication and Redis Sentinels.
+"from_url()" method Redis.from_url
+Example: redis_url = "redis://:secret-pass@localhost:6379/0"
+
+from langchain.cache import RedisCache
+from langchain.globals import set_llm_cache
+import redis
+
+redis_client = redis.Redis.from_url(...)
+set_llm_cache(RedisCache(redis_client))
+
+Semantic caching allows users to retrieve cached prompts based on semantic similarity between the user input and previously cached results. Under the hood it blends Redis as both a cache and a vectorstore
+from langchain.cache import RedisSemanticCache
+
+from langchain.globals import set_llm_cache
+import redis
+
+# use any embedding provider...
+from tests.integration_tests.vectorstores.fake_embeddings import FakeEmbeddings
+
+redis_url = "redis://localhost:6379"
+
+set_llm_cache(RedisSemanticCache(
+    embedding=FakeEmbeddings(),
+    redis_url=redis_url
+))
+
+The vectorstore wrapper turns Redis into a low-latency vector database for semantic search or LLM content retrieval.
+from langchain_community.vectorstores import Redis
+
+
+Links
+----
+https://python.langchain.com/docs/how_to/llm_caching/?utm_source=chatgpt.com
+https://python.langchain.com/api_reference/core/globals/langchain_core.globals.set_llm_cache.html
+https://python.langchain.com/docs/integrations/providers/redis/
+VectorStore
+https://python.langchain.com/docs/integrations/vectorstores/redis/
+Retriever
+Memory
+Vector Store Retriever Memory - https://python.langchain.com/api_reference/langchain/memory/langchain.memory.vectorstore.VectorStoreRetrieverMemory.html
+Chat Message History Memory   - https://python.langchain.com/docs/integrations/memory/redis_chat_message_history/
+Redis can be used to persist LLM conversations.
+
+
+https://python.langchain.com/api_reference/langchain/memory/langchain.memory.vectorstore.VectorStoreRetrieverMemory.html
+
+https://python.langchain.com/docs/integrations/vectorstores/redis/
+Redis is a popular open-source, in-memory data structure store that can be used as a database, cache, message broker, and queue.
+It now includes vector similarity search capabilities, making it suitable for use as a vector store.
+Redis provides additional capabilities like the Search and Query capability that allows users to create secondary index structures within Redis. This allows Redis to be a Vector Database, at the speed of a cache.
+Redis is primarily an in-memory database, and its vector store capabilities (via Redis Stack / RediSearch) are designed for in-memory vector search.
+Redis Stack (or Redis with the redisearch and redisjson modules
+1.Store vectors in Redis
+You can store dense vectors (e.g., embeddings from OpenAI, HuggingFace, or other ML models) as fields in a Redis hash or JSON document.
+2.Index vectors with RediSearch
+Using the FT.CREATE command, you can create an index with a VECTOR field, specifying:
+3.Perform similarity search
+With FT.SEARCH or FT.AGGREGATE, you can query for the top-K nearest neighbors given a query vector. Redis efficiently retrieves the most similar embeddings.
+
+
+
+Chat Memory Storage - https://python.langchain.com/v0.1/docs/modules/memory/types/buffer/
+from langchain.chat_models import ChatOpenAI
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from langchain.schema import messages_from_dict, messages_to_dict
+import sqlite3
+import json
+
+# --- Set up SQLite DB for persistent storage ---
+conn = sqlite3.connect("chat_history.db")
+c = conn.cursor()
+c.execute('''
+    CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY,
+        role TEXT,
+        content TEXT
+    )
+''')
+conn.commit()
+
+# --- Helper functions to load and save messages ---
+def save_message(role, content):
+    c.execute("INSERT INTO messages (role, content) VALUES (?, ?)", (role, content))
+    conn.commit()
+
+def load_messages():
+    c.execute("SELECT role, content FROM messages")
+    rows = c.fetchall()
+    return [{"type": row[0], "data": {"content": row[1]}} for row in rows]
+
+# --- Load previous messages into memory ---
+memory = ConversationBufferMemory(
+    memory_key="chat_history",
+    return_messages=True
+)
+
+# If there’s previous history, load it
+previous_messages = load_messages()
+if previous_messages:
+    memory.chat_memory.messages = messages_from_dict(previous_messages)
+
+# --- Initialize LLM ---
+llm = ChatOpenAI(temperature=0)
+
+# --- Example interaction ---
+user_input = "Hello, how are you?"
+
+# Get response
+response = llm.predict_messages([{"type": "human", "data": {"content": user_input}}])
+
+# Store messages persistently
+save_message("human", user_input)
+for msg in response:
+    save_message("ai", msg.content)
+
+print(response[0].content)
+
+
+
+from langchain.chat_models import ChatOpenAI
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from langchain.schema import messages_from_dict, messages_to_dict
+import sqlite3
+import json
+
+# --- Set up SQLite DB for persistent storage ---
+conn = sqlite3.connect("chat_history.db")
+c = conn.cursor()
+c.execute('''
+    CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY,
+        role TEXT,
+        content TEXT
+    )
+''')
+conn.commit()
+
+# --- Helper functions to load and save messages ---
+def save_message(role, content):
+    c.execute("INSERT INTO messages (role, content) VALUES (?, ?)", (role, content))
+    conn.commit()
+
+def load_messages():
+    c.execute("SELECT role, content FROM messages")
+    rows = c.fetchall()
+    return [{"type": row[0], "data": {"content": row[1]}} for row in rows]
+
+# --- Load previous messages into memory ---
+memory = ConversationBufferMemory(
+    memory_key="chat_history",
+    return_messages=True
+)
+
+# If there’s previous history, load it
+previous_messages = load_messages()
+if previous_messages:
+    memory.chat_memory.messages = messages_from_dict(previous_messages)
+
+# --- Initialize LLM ---
+llm = ChatOpenAI(temperature=0)
+
+# --- Example interaction ---
+user_input = "Hello, how are you?"
+
+# Get response
+response = llm.predict_messages([{"type": "human", "data": {"content": user_input}}])
+
+# Store messages persistently
+save_message("human", user_input)
+for msg in response:
+    save_message("ai", msg.content)
+
+print(response[0].content)
+
+
+
+Redis Chat Memory History 
+------------------------
+
+
+
+
+
+
+
+
+
+
+All keys/values are in memory (fast read/write).
+Redis can be configured with a max memory limit.
+When memory is full, eviction policies apply (e.g., volatile-lru, allkeys-lru, noeviction).
+Persistence (RDB/AOF) just saves snapshots or logs on disk, but runtime operations are always in memory.
+
+
+
