@@ -121,6 +121,13 @@ Where I will Stuck
 4. Actual Deployment of my Project 
 5. Responsible AI Approach 
 
+Services I used 
+1. Postgresql in the Azure - used to store the Converstation History [Window Buffer, Semanitc, Summarizing, Long-Term[Need Vector Store and Indexing to Search], Short-Term]
+2. Redis for Caching the LLM Response - in the Azure 
+3. MongoDB Vector Store 
+4. 
+
+
 
 
 
