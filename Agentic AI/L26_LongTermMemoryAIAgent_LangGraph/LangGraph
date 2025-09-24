@@ -1,0 +1,22 @@
+Long-Term Agentic Memory with LangGraph - Triage - Ignoring, Responding, Notifying 
+1.Learn how memory works and how the three types of memory – semantic, episodic, and procedural – are used in agentic workflows.
+1.Build a personal email agent with routing, writing, scheduling tools to automatically ignore, respond to, or notify about incoming emails.
+2.Add long-term memory to your agent by adding facts, user preferences, and **evolving system prompts to a memory store that can be searched for on-going interactions.
+
+
+PitFall 
+Add long-term memory to your agent by adding facts, user preferences, and evolving system prompts to a memory store that can be searched for on-going interactions.
+
+Important 
+1.The main use cases for agents include personal assistance and productivity tasks. One core aspect of these tasks is long-term memory.
+
+Solution 
+1.to build an agent with long-term memory by creating a personal email agent that can respond, ignore, and notify the user using writing, scheduling, and memory tools
+2.You’ll develop your agent’s memory by adding facts to its memory store, providing examples to learn the user’s preferences, and optimizing system prompts to evolve instructions based on previous responses.
+3.foundational mental framework to build an agent with long-term memory using LangGraph.
+
+1.Learn how the three types of memory–semantic, episodic, and procedural–and the two mechanisms–via hot path and in the background– apply to your agent.  
+2.Build an email agent with writing, scheduling, and availability tools, along with a router that triages incoming email and handles it accordingly by ignoring, responding, or notifying the user.
+3.Add tools to your email agent that allow it to operate on semantic memory by learning facts about the user, storing them in a long-term memory store, and searching over them in future interactions.
+4.Incorporate episodic memory in the form of few-shot examples in the triage step of your agents to help them learn and update user preferences.  
+5.Add procedural memory as system prompts, optimized with feedback to improve the instructions the agent follows.
