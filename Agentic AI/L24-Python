@@ -138,12 +138,92 @@ def Quick(a):
     right = [i for i in a if i>pivot]
     return Quick(left) + middle + Quick(right)
 
+d = Quick(a)
+print(d)
+
+#Merge Sorting 
+
+def Merge(arr):
+    if len(arr) <=1:
+        return arr
+    middle = len(arr)//2 
+    left   = Merge(arr[:middle])
+    right  = Merge(arr[middle:])
+
+    retrun Merge_sort(left,right) 
+def Merge_sort(left,right):
+    sorted_list = [] 
+    i = j = 0 
+    While i < len(left) and j < len(right):
+        if left[i] <  right[j]:
+            sorted_list.append(left[i])
+            i+=1  
+        else:
+            sorted_list.append(right[j])
+            j+=1 
+    sorted_list.extend(left[i:])
+    sorted_list.exten(right[j:])
+
+Best Time to Buy and Sell Stock   ---> Set the min_price by looping, that is buy 
+prices = [13,2,54,2,5,3]
+max_profit = 0 
+min_price = float('inf')
+
+for i in range(len(prices)):
+    if prices[i] < min_price:
+        min_price = prices[i] #Buy
+    else: 
+        max_profit = max(max_profit, prices[i] - min_price)
+print(max_profit)
+
+
+Maximum Subarray --->       Finding the Maximum Subarray --> continuous Sub Array 
+Find the contiguous subarray (containing at least one number) which has the largest sum, and return its sum
+This is a classic Dynamic Programming problem, known as Kadane's Algorithm.
+You track the maximum sum ending at each index, and the global maximum so far.
+# Finding the Maximum SubArray 
+
+a = [1,3,-4,3,5,3,5]
+max_global = max_current = a[0]
+for i in range(1,len(a)):
+    max_current = max(a[i],max_current + a[i])
+    max_global = max(max_global, max_current)
+print(max_global)
+print(sum(a))
+
+
+Binary Search ---> 
+# Binary Search  --> left, right 
+
+
+def search(nums,target):
+    left, right = 0,len(nums)-1
+    
+    while left <= right:
+        mid = (left+right)//2
+        if nums[mid] == target:
+            return num[mid]
+        elif nums[left] < target:
+            left = mid + 1 
+        else
+            right = mid -1 
+    return -1
+
+Top K Frequent Elements
+number of top of K frequent elements 
+
+
+
+
+Buy --> finding the min_price 
+SubArray  -> Kadane's Algo -> simple, current, global 
+binary_search -> simple 
+
 
     
     
     
-d = Quick(a)
-print(d)
+
 
 
 
