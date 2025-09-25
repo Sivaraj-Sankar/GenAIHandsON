@@ -228,6 +228,38 @@ def topKFrequent(nums, k):
                 return result
 
 
+Backtracking (DFS Recursion)
+Subsets
+❓ Problem Statement:
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution must not contain duplicate subsets, and you can return the answer in any order.
+We'll build subsets by recursively adding or skipping each element.
+
+Recursively adding or skipping the element
+def subsets(nums):
+    res = []
+
+    def backtrack(start, path):
+        res.append(path[:])  # Add a copy of the current subset
+        for i in range(start, len(nums)):
+            path.append(nums[i])            # Choose
+            backtrack(i + 1, path)          # Explore
+            path.pop()                      # Un-choose (backtrack)
+
+    backtrack(0, [])
+    return res
+
+def subsets(nums):
+    res = [[]]
+    for num in nums:
+        res = res + [item + [num] for item in res]
+    return res
+
+
+
+
+
+
 
 
 
