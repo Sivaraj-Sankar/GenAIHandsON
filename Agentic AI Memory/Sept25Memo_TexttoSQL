@@ -5,6 +5,34 @@ https://arxiv.org/pdf/2504.19413
 
 
 
+Denodo is a data virtualization platform.
+Instead of physically moving or copying data into a single repository (like a data warehouse or data lake), Denodo lets you access, combine, and deliver data in real time from multiple heterogeneous sources (databases, APIs, cloud services, files, etc.) — as if it were a single unified source.
+
+Key Features
+Data Virtualization → Query data where it lives, no need for ETL pipelines.
+Unified Data Layer → Exposes all enterprise data through a single semantic layer.
+Real-Time Access → Data is retrieved and combined on demand.
+Data Governance & Security → Centralized access control, auditing, and masking.
+Connectivity → Works with relational DBs, NoSQL, cloud storage, REST/SOAP APIs, etc.
+Performance → Query optimization, caching, and smart federation.
+
+Typical Use Cases
+Data Integration → Combine customer, sales, and product data from different systems.
+BI & Analytics → Provide a single data access layer for reporting tools (Tableau, Power BI, etc.).
+Data Services → Deliver enterprise data as APIs (REST/GraphQL).
+Cloud & Hybrid Data Management → Unify on-prem and cloud data without replication.
+
+Benefits
+Faster time-to-insight (no heavy ETL pipelines).
+Lower data duplication and storage costs.
+Greater agility (data consumers don’t care where the data is stored).
+Strong security & governance.
+
+You can think of Denodo as a “virtual database” that doesn’t store data itself but connects and queries multiple data sources in real time.
+Would you like me to also compare Denodo vs. a traditional Data Warehouse (e.g., Snowflake, BigQuery)?
+
+
+
 
 
 
