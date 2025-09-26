@@ -20,3 +20,13 @@ Solution
 3.Add tools to your email agent that allow it to operate on semantic memory by learning facts about the user, storing them in a long-term memory store, and searching over them in future interactions.
 4.Incorporate episodic memory in the form of few-shot examples in the triage step of your agents to help them learn and update user preferences.  
 5.Add procedural memory as system prompts, optimized with feedback to improve the instructions the agent follows.
+
+
+**What to Store 
+**What to Retrieve 
+**Update the Memory - Each iteration of the agent loop - or update in the background 
+Semantic Memory - Knowing the Things 
+Procedural Memory - Its a kind of Rule 
+Episodic Memory - Its like a Few Shot Example 
+
+
