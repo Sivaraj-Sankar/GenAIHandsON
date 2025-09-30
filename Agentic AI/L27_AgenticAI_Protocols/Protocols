@@ -21,6 +21,99 @@ Discovery / Capability Discovery - Before interacting, an agent can discover wha
 Security / Authentication / Authorization - The protocol is designed “secure by default” — requiring identity, authentication, authorization, encryption, etc.
 Long-Running Tasks & Streaming Updates - Agents should support operations that take long time — providing intermediate status, partial results, or streaming updates.
 
+Use A2A in a multi-agent system
+-------------------------------
+1. Define & Publish Agent Card(s)
+* For each agent you build (remote or client), create an Agent Card in JSON. This should include:
+  Agent name and description
+  Endpoint(s) (e.g. HTTP URL)
+  Supported modalities / message content types (text, JSON, files)
+  Authentication / security requirements
+  Versioning, metadata, etc.
+Make this Agent Card retrievable (e.g. host at a well-known URL). Agents that want to interact can fetch it to know how to talk to you.
+2. Discovery & Matching
+A client agent (or an orchestration layer) should look up potential remote agents via their Agent Cards.
+Based on the capabilities advertised, decide which agent(s) to send tasks to.
+3. Establish Secure Communication
+Use the authentication & authorization mechanisms defined (e.g. API keys, OAuth, mutual TLS, JWTs) for trust.
+Ensure encryption (TLS / HTTPS) for message transport.
+Implement any access control (which agent can do what).
+
+4.Initiate a Task / Send a Message
+* The client agent sends a task request to the remote agent’s endpoint per the A2A spec.
+* Include a task ID, initial message parts, context, etc
+* The remote agent acknowledges, transitions the task into “in progress,” “pending,” etc.
+
+5.Collaboration & Messaging
+Agents exchange messages with parts (text, JSON, files) as work proceeds.
+If a remote agent needs to delegate a subtask further, it could itself act as a “client” and talk to another agent.
+Streaming updates (via SSE or push notifications) let client and remote agents stay in sync.
+
+6.Handle Completion / Failure / Cancellation
+Once the task is done, remote agent responds with result parts/artifacts.
+If failure or cancellation occurs, send error messages, partial artifacts, or rollback instructions.
+Agents update statuses, logs, and optionally notify users.
+
+7.Logging, Audit & Observability
+For real-world systems, maintain logs, audit trails, metrics, error tracking, observability—key for debugging, reliability, compliance.
+Monitor agent interactions, latencies, error rates.
+
+
+You have multiple autonomous agents that need to collaborate (not just a single agent calling APIs).
+Those agents are built in different frameworks, possibly by different organizations, and you want interoperability.
+Tasks are complex, multi-step, involving delegation, back-and-forth, or long-running processes.
+You care about security, governance, modularity, and want to avoid point-to-point, ad-hoc integrations.
+You want each agent’s internal implementation, memory, or tools to remain opaque (hidden) — only exposing the interface via A2A.
+
+It’s less useful if your system is simple (one agent, direct API calls) or when all logic lives in a monolithic system without need for cross-agent communication.
+
+
+Limitations
+Inter-agent micropayments, decentralized identity, or ledger-based discoverability are being explored in research to extend A2A. For example, a paper proposes integrating distributed ledger tech to publish AgentCards and support micropayments
+https://arxiv.org/abs/2507.19550?utm_source=chatgpt.com
+Ensuring security, trust, and preventing malicious agents is a non-trivial aspect in open ecosystems.
+While A2A handles agent-to-agent collaboration, agents still need to use MCP (or similar) to access tools, APIs, data, etc.
+
+LangGraph Agent - Low Level Framework 
+Task lifecycle semantics: A2A defines task states, messaging conventions (e.g. task/send, task/subscribe, task/get, etc.).
+Streaming, push notifications, etc. Agents can send status messages, intermediate updates, partial results, etc.
+
+
+Key
+You want standardized discovery / capability matching
+So one agent can query “which agents can do X?” without hardcoding endpoints.
+You need robust task protocols
+With error states, retries, streaming updates, cancellations, long-running tasks.
+You need secure agent communication boundaries
+
+Complexity 
+Added complexity: You’ll have to implement or adopt A2A compliance (Agent Cards, endpoints, task APIs, messaging, error handling).
+Library / ecosystem maturity: A2A is relatively new; supporting libraries, tooling, documentation, community support may be evolving.
+Overhead: Protocol overhead (serialization, network, authentication) may introduce latency.
+Versioning & compatibility: You’ll need to coordinate versions of A2A spec, LangGraph integration, and agents built in different frameworks.
+Debugging & observability: You’ll want tooling to trace cross-agent calls, logs, failures, boundary transitions.
+
+https://medium.com/google-cloud/getting-started-with-google-a2a-a-hands-on-tutorial-for-the-agent2agent-protocol-3d3b5e055127
+https://www.youtube.com/watch?v=1LlX45CMc84&utm_source=chatgpt.com
+Eg in multi-tenant environments, or where agents cross trust domains.
+
+
+Factory ai
+----------
+Task-specific software development agent.
+Droids handle complex tasks that require your engineering context and tools.
+Agent-native developers use Droids for coding, incident response, and technical writing.
+
+You can setup Droids in Slack, Linear, Jira, and more later after onboarding.
+Terminal
+Ship faster with our terminal interface or automate tasks with the headless CLI.
+IDE
+Run Droids inside your editor of choice, with rich context, IDE Diagnostic access, and smoother end to end coding.
+Browser
+Access remote or local background agents you can delegate from the web or mobile.
+
+
+
 MCP - agents access tools, data, and services
 ACP 
 
