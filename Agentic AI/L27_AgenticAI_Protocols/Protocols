@@ -1,5 +1,27 @@
-A2A
-MCP 
+A2A - AI agents to communicate, collaborate, and coordinate with each other across different platforms, frameworks, or organizations
+    - A2A builds on existing web & messaging standards like HTTP, JSON-RPC, Server-Sent Events (SSE),
+https://github.com/a2aproject/A2A
+https://www.solo.io/topics/ai-infrastructure/what-is-a2a
+https://www.oreilly.com/radar/designing-collaborative-multi-agent-systems-with-the-a2a-protocol/
+https://www.oreilly.com/radar/designing-collaborative-multi-agent-systems-with-the-a2a-protocol/?utm_source=chatgpt.com
+https://www.a2aprotocol.org/en
+https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents
+https://auth0.com/blog/mcp-vs-a2a/
+https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/?utm_source=chatgpt.com
+https://codelabs.developers.google.com/intro-a2a-purchasing-concierge?utm_source=chatgpt.com
+https://a2aprotocol.ai/?utm_source=chatgpt.com
+https://www.solo.io/topics/ai-infrastructure/what-is-a2a?utm_source=chatgpt.com
+
+Component
+Agent Card   - A JSON metadata descriptor agents publish. It describes the agent’s capabilities, supported modalities, endpoint URLs, authentication requirements, etc.
+Client Agent / Remote Agent   - A “client” agent can initiate tasks; a “remote” agent receives and acts on tasks.
+Task / Task Lifecycle         - Tasks are units of work with well-defined states (e.g. pending, in progress, completed, failed). Agents exchange messages about task progress.
+Message / Parts               - Messages exchanged between agents often contain “parts” (text, structured JSON, file attachments, etc.). Agents negotiate the best modality (text, JSON, file, UI elements) via messages.
+Discovery / Capability Discovery - Before interacting, an agent can discover what remote agents exist and what they can do (via Agent Cards) so tasks can be dispatched appropriately.
+Security / Authentication / Authorization - The protocol is designed “secure by default” — requiring identity, authentication, authorization, encryption, etc.
+Long-Running Tasks & Streaming Updates - Agents should support operations that take long time — providing intermediate status, partial results, or streaming updates.
+
+MCP - agents access tools, data, and services
 ACP 
 
 
