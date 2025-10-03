@@ -1,0 +1,112 @@
+Context Engineering Series: Building Better   [The fundamental shift is this: agents don't just consume information, they explore information spaces.]
+[Context engineering is about designing systems that support this exploration]
+[giving agents not just the right data, but the right understanding of what data exists and how to navigate it.]
+** Multi-level response architectures that provide navigational context.
+** Agent-friendly data organization patterns.
+
+**Subsequent Search for the RAG Agent 
+
+
+Context Engineering Series for Agentic RAG Systems 
+--------------------------------------------------
+1.build agentic RAG systems and studying **coding agents from Cognition, **Claude Code, **Cursor, and others.
+2.While this Context Engineering series focuses on technical implementation patterns, the Speaker Series reveals strategic insights and architectural decisions.
+3.RAG Master Series: Comprehensive guide to building and scaling retrieval-augmented generation systems. Context Engineering principles directly enhance RAG implementations—structured tool responses and **faceted[noticable] search are foundational RAG optimization techniques.
+4.Now we're designing portfolios of tools (directory listing, file editing, web search), slash commands like /pr-create that inject prompts
+5.Now we're designing portfolios of tools((directory listing, file editing, web search))
+6.specialized subagents such as @pr-creation-agent, and instruction files like AGENT.md that work across IDEs, command lines, GitHub, and Slack.
+7.Context engineering is designing tool responses and interaction patterns that give agents situational awareness to navigate complex information spaces effectively.
+8.**Context Engineering: Designing tool responses and interaction patterns that teach agents how to navigate data landscapes, not just consume chunks.
+9.**Faceted Search: Returning metadata aggregations (counts, categories) alongside results so agents can refine queries strategically.
+10.Agent Peripheral Vision: Structured hints about the broader information space beyond top‑k results.
+11.Tool Response as Prompt Engineering: Using structure (XML/JSON), metadata, and inline system instructions in tool outputs to shape future behavior.
+12.Context Rot: Reliability degrading as conversations get longer and messier.
+13.Subagents: Specialized sidecar agents that do token-heavy, messy reads in isolation and return distilled summaries.
+14.Compaction[Stick Together]: Summarizing conversation history to preserve essential trajectory while freeing **context; treated as **“momentum” in this series.
+15.Agent Trajectory: The full sequence of tool calls, steps, and messages that accomplish a task.
+16.Form Factors: Chatbots (conversational), workflows (side‑effect engines), and research artifacts (reports/tables).
+17.MCP (Model Context Protocol): A protocol for reusable tools across clients; best when reuse and client diversity justify the overhead.
+18.RAG: Retrieval‑augmented generation; here, evolved from chunks to structured, faceted information landscapes.
+
+Injecting Chunk is - One-Shot Operation 
+
+Now Building Agents are Incredibly easy 
+---------------------------------------
+1.All you need is a messages array and a bunch of tools.
+2.They're persistent, make multiple tool calls, and build understanding across conversations
+
+Series Cover
+------------
+1.This series explores practical approaches to context engineering across different domains and use cases
+2.The focus is on implementation strategies, real-world examples, and measurable business outcomes from companies making this transition.
+
+Topics include:
+** Moving beyond chunks to structured information landscapes. [https://jxnl.co/writing/2025/08/27/facets-context-engineering/]
+** Multi-level response architectures that provide navigational context.
+** Agent-friendly data organization patterns.
+** Performance optimization for agentic workloads.
+** Business metrics and ROI measurement strategies.
+
+
+
+Key Tips for Context Engineering 
+--------------------------------
+Designing Tool Responses 
+Interaction Patterns 
+Gives Agents Situational Awareness to navigate complex information spaces effectively. 
+**They don't just need the right chunk—they need to understand the landscape of available information.
+**The fundamental shift is this: agents don't just consume information, they explore information spaces.
+
+
+
+
+
+
+
+RAG Improvement Crash Course 
+----------------------------
+
+
+Claude Code's Agentic - Sub-Agents
+---------------------
+-> Claude Code's Agentic Data Extraction from Google Drive, Converting Investment data to CSV
+-> Pushing Beyond Simple Scripting into autonomous workflows. 
+-> Real Power Lies in Sub-Agents Processing massive Datasets, delivering dynamic, real-time insights that traditional pipelines simply cannot match. 
+
+Coding AI Agents
+----------------
+https://jxnl.co/writing/2025/09/11/coding-series-index/
+Coding Agents Speaker Series: Deep insights from the teams behind leading coding agents including Cognition (Devin), Sourcegraph (Amp), Cline, and Augment.
+https://jxnl.co/writing/2025/09/11/rag-series-index/
+RAG Master Series
+https://ampcode.com/how-to-build-an-agent
+How to Build an Agent.  - > If you give a coding agent literally just this blog post. it will write a coding agent for you. The barrier to entry has never been lower. 
+
+
+
+Reference 
+Dong - 1
+jason liu - RAG Improvement Crash Course 
+
+
+
+Subscribing Newsletters
+------------------------
+Ford Lascari
+I'm a entrepreneur who loves to talk about science and technology. Subscribe to my newsletter.
+
+Recommended Creator
+
+Skylar Payne
+Ship AI that works. Fast. With Confidence.
+Building AI used to be fun. But now you're drowning in hard to debug errors. User complaints. That pit in your stomach that you might not know how to do this. I have been there too. And after a decade of building AI systems, I'm ready to show you how to get out of it.
+
+Recommended Creator
+
+Applied LLMs
+Sharing how to apply LLMs effectively to build reliable, scalable products
+We share practical resources and hard-won lessons from building with
+
+
+Skylar Payne
+Ford Lascari
