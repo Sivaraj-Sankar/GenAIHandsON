@@ -1,0 +1,84 @@
+Index 
+Obfuscation 
+HydroX AI - PII Masking 
+Zilliz[Milvus] : PII Masking 
+
+
+PII Data
+https://medium.com/@abdourahmanebah112/data-obfuscation-in-the-bronze-layer-of-fabric-lakehouse-framework-507791c470f8
+
+
+Obfuscation - Microsoft Fabric Lakehouse (Encryption & Masking)
+1.Bronze layer using encryption, partial masking, and full masking.
+2.When ingesting raw data into Microsoft Fabric Lakehouse, it’s critical to protect sensitive information such as names, emails, and healthcare identifiers before it flows into downstream layers.
+3.Implementing dynamic data obfuscation is crucial for protecting personally Identifiable Information (PII) and ensuring compliance with regulatory requirements.
+4.However, applying obfuscation within the Fabric Lakehouse comes with certain challenges due to current platform limitations
+5.At this time, Fabric Lakehouse does not support native row-level or column-level security, meaning users can still access full datasets through Fabric notebooks or the Lakehouse browser
+6.The Row-Level Security (RLS) can only be implemented when accessing the data through a SQL Endpoint or a Warehouse in Fabric
+
+1.In contrast, platforms like Databricks offer built-in functions such as **is_member to enforce dynamic to enforce dynamic, user-based access controls, capabilities that are not yet available in Fabric.
+
+Architecture - Fabric 
+1.we introduced a Landing Zone for secure obfuscation before data reaches the Bronze layer
+2.1. Raw data is first ingested into the Landing Zone (restricted workspace).
+2.2. Obfuscation logic is applied using notebooks, including encryption, partial, and full masking and other data security actions.
+2.3. Once secured, the data is exposed to Bronze Lakehouses via shortcuts.
+
+Procedures
+----------
+1.Raw data enters temporary schemas (e.g., temp) in the Landing Zone.
+2.Data is retained in temporary schemas until obfuscation is successfully applied.
+3.In case of any issues during the process, the temporary tables should be dropped to prevent non-obfuscated data from remaining in the landing zone.
+4.In case of any issues during the process, the temporary tables should be dropped to prevent non-obfuscated data from remaining in the landing zone.
+5.Obfuscated data is moved to clean schemas and then shortcut to the Bronze layer.
+6.Temporary tables are deleted post-obfuscation.
+This approach ensures consistent, secure data handling across all environments.
+7.Access to the Landing Zone is restricted and should be granted only to users who are authorized to view unmasked data
+
+
+Code Example 
+------------
+Data Obfuscation Methods:
+PySpark Code Example
+1. Data Encryption functions
+Install the ‘cryptography’ package in your Fabric workspace
+
+
+
+
+Limitations
+This makes implementing fine-grained security controls more complex in Fabric Lakehouse
+
+------------------------------------------------------------------
+Safe RAG with HydroX AI and Zilliz: PII Masking for Responsible AI 
+https://zilliz.com/blog/safe-rag-with-hydrox-ai-and-zilliz-pii-masking-for-responsible-genai
+https://github.com/HydroXai/pii-masker
+
+1. Data Masking/PII Masking/Privacy for AI/Vector Databases 
+2.HydroX AI is a platform focused on AI Safety, governance and privacy. 
+3.PII Masker is their offering, Detect & Mask Personally Identifiable Information (PII) in text, 
+  especially before data enters AI Pipelines or vector databases. 
+4.PII Masker uses Machine Learning/NLP (for Example the DeBERTa-v3 model) to identify sensitive entities (names, addresses, etc) and mask or **anonymize them
+
+
+
+1.HydroX Data Masking about preprocessing/filtering sensitive text before ingestion. 
+ - To prevent the unstructured text might leak PII 
+2.So the Integration ensures responsible AI/Privacy compliance in vector data workflows, especially when Text is embedded and stored. 
+
+Steps
+1. Text or Documents may contain PII(Names, Addresses, Phone Numbers) etc
+2. Before ingesting these into a Vector Database(for Embedding, search, retrieval etc) one runs PII Masker(HydroX AI) to detect and mask the PII 
+3. The Masked output is what gets sent to a vector database like Milvus/Zilliz. That way, even if embeddings or metadata leak, the PII is already hidden
+4.Organizations can ensure privacy at every layer of their data pipeline by anonymizing or masking PII using the PII Marker before data reaches the vector database.
+5.allowing users to confidently build GenAI applications while keeping their knowledge bases and RAG applications compliant with privacy regulations and protecting user data.
+
+PII Masker automatically detects and masks PII with high precision. Using the DeBERTa-v3 NLP model, PII Masker identifies sensitive information and provides structured output for easy handling
+With support for up to 1,024 tokens, PII Masker efficiently processes large datasets while safeguarding PII
+This capability helps prevent RAG and various GenAI applications from accidentally exposing sensitive information in responses, reducing data leakage risks and ensuring queries remain private.
+
+Improved Detection of Contextual PII
+Currently, the PII Masker detects explicit PII such as names, addresses, and phone numbers. In future iterations, it aims to enhance its ability to identify and mask contextually implied PII—information that might not be explicitly sensitive but could reveal identity when combined with other data.
+
+
+
