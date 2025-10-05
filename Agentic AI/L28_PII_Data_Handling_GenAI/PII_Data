@@ -3,6 +3,8 @@ Obfuscation
 HydroX AI - PII Masking 
 Zilliz[Milvus] : PII Masking 
 Azure Data Masking Services - AI Application 
+Presidio - Safe Place 
+
 
 
 PII Data
@@ -159,4 +161,40 @@ Anonymization (Anonymizer) → masks or replaces detected entities.
 Extensibility → allows custom rules (e.g., company IDs, internal codes).
 Works on text, structured data, images, and audio.
 
+----------------------------------
+Privacy Preserving GenAI at Scale: Anonymize your Text without GPUs for hundredth the Cost
+
+1.Production-grade tools that utilize business-critical text require strict data compliance guardrails
+2.Most enterprises have compliance policies regarding the type of text that can be shown to customers and what can be sent to third-party AI API services like OpenAI GPT-4.
+
+
+ThirdAI --> NER (Named Entity Recognition) Pipeline for indentifying sensitive information. 
+https://medium.com/thirdai-blog/privacy-preserving-genai-at-scale-anonymize-your-text-without-gpus-for-a-hundredth-the-cost-81d643a9d5fb
+
+1.Before using any text chunk with an external API
+2.for example an embedding service or prompting GPT-4, we need to redact any PII from the text chunks that leave the secure environment to ensure compliance
+
+
+ThirdAI’s CPU-Only NER Models: Quick Fine-Tuning, Ultra-Fast Latency, SOTA Accuracy. Free your GPU cycles.
+showcase our purpose-built pre-trained foundational models for NER, designed to deliver state-of-the-art (SOTA) accuracy with ultra-fast latency, 30–50x better than BERT or DistillBERT
+Remarkably, even with up to 1000 tokens, our models maintain about 50ms latency for all the 1000 label predictions on a single CPU core
+For developers interested in leveraging our technology, we provide a simple script for deploying our pre-trained NER model
+
+Demo Implementation - NER 
+https://github.com/ThirdAILabs/Demos/blob/main/universal_deep_transformer/named_entity_recognition/pretrained_pii_model.ipynb
+For Fine Tuning 
+https://github.com/ThirdAILabs/Demos/blob/main/universal_deep_transformer/named_entity_recognition/train_your_own_ner_model.ipynb
+
+
+LlamaIndex 
+----------
+https://readmedium.com/masking-pii-data-in-rag-pipeline-326d2d330336
+This article explores how to mask Personal Identifiable Information (PII) data with LlamaIndex in an RAG pipeline
+1.Focusing on the importance of PII data masking and the implementation of LlamaIndex's **NERPIINodePostprocessor.
+2.citing standards such as GDPR and HIPAA
+3.comply with regulations like GDPR and HIPAA.
+
+Limitations
+-----------
+The NERPIINodePostprocessor has limitations, such as not recognizing certain named entities like Date of Birth (DOB) by default, which may require fine-tuning for specific use cases
 
