@@ -144,7 +144,7 @@ Types of Projects
 ------------------
 https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry#project-types
 
-Presidio 
+Presidio [https://microsoft.github.io/presidio/text_anonymization/?utm_source=chatgpt.com]
 --------
 The project gained traction in privacy-aware data pipelines — especially in Azure, Databricks, and data governance workflows.
 Microsoft expanded Presidio’s capabilities with:
