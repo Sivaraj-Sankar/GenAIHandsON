@@ -2,6 +2,7 @@ Index
 Obfuscation 
 HydroX AI - PII Masking 
 Zilliz[Milvus] : PII Masking 
+Azure Data Masking Services - AI Application 
 
 
 PII Data
@@ -80,5 +81,82 @@ This capability helps prevent RAG and various GenAI applications from accidental
 Improved Detection of Contextual PII
 Currently, the PII Masker detects explicit PII such as names, addresses, and phone numbers. In future iterations, it aims to enhance its ability to identify and mask contextually implied PII—information that might not be explicitly sensitive but could reveal identity when combined with other data.
 
+----------------------------------------------
+Azure Services Mask or Redact PII Data 
+
+PII Detection & Masking in unstructured text or documents
+1.Azure AI Language - Text PII/Conversational PII Detection 
+      -> Detects PII/PHI in unstructured text, conversation transcripts etc.
+         It can also redact or mask detected entities 
+1.1Azure AI Language PII detection uses Named Entity Recognition (NER) to identify and redact sensitive information from input data
+1.2The service classifies sensitive personal data into predefined categories
+1.3These categories include phone numbers, email addresses, and identification documents. This classification helps to efficiently detect and eliminate such information.
+
+
+
+
+Foundry AI Projects - Azure AI Foundry project - managed under an Azure AI Foundry resource
+-------------------
+https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-code?tabs=python
+Hub Projects - A hub-based project is hosted by an Azure AI Foundry hub
+------------
+https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/hub-create-projects
+Azure AI Foundry Resource Creation 
+-----------------------------------
+https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal
+Azure AI Foundry Projects 
+-------------------------
+https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry
+Content Saftey 
+--------------
+https://learn.microsoft.com/en-us/azure/ai-services/content-safety/
+PII Data Detection Using the Language Service 
+---------------------------------------------
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview?utm_source=chatgpt.com&tabs=text-pii
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/quickstart?tabs=windows&pivots=ai-foundry-portal
+PII Detection Native Documnet Single Language 
+---------------------------------------------
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-document-pii?utm_source=chatgpt.com
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-document-pii?utm_source=chatgpt.com
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview?utm_source=chatgpt.com&tabs=text-pii
+Azure Cognitive Search Skills
+-----------------------------
+https://learn.microsoft.com/en-gb/azure/search/cognitive-search-skill-pii-detection?utm_source=chatgpt.com
+
+
+
+Important Steps to Implement with Azure AI Services 
+----------------------------------------------------
+When ingesting data (text / documents), run it through Azure AI Language PII detection or the Document PII detection API.
+Mask or redact sensitive entities — either by replacing with labels (e.g. [PERSON]) or using placeholders / characters.
+Store both the masked text (used for embeddings, search, retrieval) and optionally the metadata about what was masked (so you know what was removed).
+If you need to serve or show documents to end users, use the redacted version, so no original PII leaks.
+If you need custom masking rules (company names, internal terms, etc.), possibly combine with open source tools like Presidio, or build custom entity recognizers.
+
+
+Delphix Compliance Services 
+----------------------------
+Provides automated sensitive data / PII discovery and masking in Azure data flows (e.g. Azure Data Lake, Databricks, Synapse).
+Best if you are dealing with large datasets / data lakes / structured + unstructured mixed, and want automated masking within ETL or data pipeline flows.
+https://web-assets2.delphix.com/f/137721/x/77b0675b62/432-ds-compliant-services-azure.pdf?utm_source=chatgpt.com
+
+Types of Projects
+------------------
+https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry#project-types
+
+Presidio 
+--------
+The project gained traction in privacy-aware data pipelines — especially in Azure, Databricks, and data governance workflows.
+Microsoft expanded Presidio’s capabilities with:
+Integration with spaCy and Stanza NLP libraries
+Support for custom recognizers (user-defined PII patterns)
+Additions for image anonymization and voice redaction |
+| 2024+ | Widely adopted across industries for responsible AI and LLM data preprocessing — many teams use it before embedding documents into vector stores or RAG systems. |
+
+
+PII detection (Analyzer) → finds entities like names, emails, phone numbers, etc.
+Anonymization (Anonymizer) → masks or replaces detected entities.
+Extensibility → allows custom rules (e.g., company IDs, internal codes).
+Works on text, structured data, images, and audio.
 
 
