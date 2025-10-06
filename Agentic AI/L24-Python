@@ -1,5 +1,36 @@
 Generator 
 Iterator 
+  def my_iterator(data):
+    for item in data:
+        yield item 
+        
+for i in my_iterator([10,20,30]):
+    print(i)
+
+
+a = [10,20,30]
+
+c = iter(a)
+print(next(c))
+print(next(c))
+
+
+def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+gen = my_generator()
+
+print(next(gen))  # 1
+print(next(gen))  # 2
+print(next(gen))  # 3
+# next(gen) → StopIteration
+
+
+
+
+
 Deep Agents Working Prototype 
 sotring and key function --> how to use 
 Data Base Connection , PostgreSQL, MongoDB Connection
