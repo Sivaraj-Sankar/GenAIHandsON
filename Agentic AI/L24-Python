@@ -32,9 +32,9 @@ print(next(gen))  # 3
 
 
 Deep Agents Working Prototype 
+LangGraph State Concepts - different State Concepts 
 sotring and key function --> how to use - Done
 Data Base Connection , PostgreSQL, MongoDB Connection - Done
-LangGraph State Concepts - different State Concepts 
 Content Safety Concepts - https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering?utm_source=chatgpt.com
                         - https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering?utm_source=chatgpt.com
 RAI - API's - Responsible AI 
