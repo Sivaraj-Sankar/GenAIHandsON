@@ -1,6 +1,10 @@
 Generator 
 Iterator 
 Deep Agents Working Prototype 
+sotring and key function --> how to use 
+Data Base Connection , PostgreSQL, MongoDB Connection
+LangGraph State Concepts - different State Concepts 
+
 
 from collections import Counter 
 1. Counter(numbers).most_common(1)
