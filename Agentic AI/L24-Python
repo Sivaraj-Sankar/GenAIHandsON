@@ -59,6 +59,178 @@ A metaclass defines how a class behaves, just like a class defines how its insta
 
 
 
+----------------------
+Instance , Static, Class 
+Instance Method
+The first argument is always self, which refers to the current instance.
+Can access instance variables and class variables.
+Called using the Objects
+
+
+class BaseClass():
+    
+    a = "10"
+    
+    @staticmethod
+    def method1():
+        return "sivaraj"
+        
+    @classmethod
+    def method2(cls):
+        print(cls)
+        return "Sivaraj1" + cls.a
+        
+    def method(self):
+        print(self)
+        return "Sivaraj" + self.a
+
+
+B = BaseClass()
+print(B.method())
+#print(BaseClass.method("self"))
+print(BaseClass.method1())
+print(B.method1())
+print(B.method2())
+#print(BaseClass.method2())
+-----------------------------------------
+Public(everywhere) Protected{class & subclass) Private{within class}
+
+class MyClass:
+    def __init__(self):
+        self.public_var = "Public"
+        self._protected_var = "Protected"
+        self.__private_var = "Private"
+
+    def display(self):
+        print("Inside class:")
+        print(self.public_var)
+        print(self._protected_var)
+        print(self.__private_var)
+
+
+
+C = MyClass()
+C.display()
+print(C.public_var)
+print(C._protected_var)
+print(C.__private_var)
+
+---------------------
+Docker File 
+
+# 1️⃣ Base image
+FROM python:3.10-slim
+
+# 2️⃣ Set working directory inside container
+WORKDIR /app
+
+# 3️⃣ Copy project files into container
+COPY . .
+
+# 4️⃣ Install dependencies
+RUN pip install -r requirements.txt
+
+# 5️⃣ Command to run your app
+CMD ["python", "app.py"]
+
+docker build -t my-python-app .
+docker run my-python-app
+
+
+
+Instruction	Description
+FROM	Base image (e.g., python:3.10, ubuntu:20.04)
+WORKDIR	Set working directory inside the container
+COPY	Copy files from host to container
+RUN	Run commands while building the image (e.g., install dependencies)
+CMD	Default command that runs when container starts
+EXPOSE	Inform Docker which port the app listens on
+ENV	Set environment variables
+ENTRYPOINT	Similar to CMD, but fixed entry command
+ARG	Build-time variables
+
+
+FROM python:3.10
+
+WORKDIR /app
+COPY . .
+
+RUN pip install fastapi uvicorn
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+docker build -t fastapi-app .
+docker run -p 8000:8000 fastapi-app
+host_port	The port number on your local machine (laptop/server)
+container_port	The port number inside the container where the app is running
+
+
+Docker Compose 
+-------------------
+environment, ports, volumes, networks, dependencies —
+in one single file.
+docker-compose up
+
+
+version: "3.9"
+
+services:
+  web:
+    build: .                                            -----> Build Image using the Docker file in the Current Directory 
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    depends_on:                                        -------> Ensures FastAPI starts after the database
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
+
+  db:
+    image: postgres:15
+    container_name: fastapi-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+
+
+docker-compose up	Start all services defined in the file
+docker-compose up -d	Run in detached (background) mode
+docker-compose down	Stop and remove containers, networks, volumes
+docker-compose build	Rebuild all images
+docker-compose logs	View combined logs from all services
+
+
+__slots__
+---------------------------------------------
+Normally, every Python object (like an instance of a class) stores its attributes in a dictionary (__dict__)
+That makes it flexible — you can add or remove attributes dynamically at runtime.
+But this flexibility uses more memory and slows down attribute access.
+
+
+class Person:
+    __slots__ = ['name', 'age']   # only these two attributes allowed
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p = Person("Sivaraj", 25)
+print(p.name)  # Sivaraj
+
+
+
+
 
 Generator 
 Iterator 
