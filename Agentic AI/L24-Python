@@ -229,6 +229,53 @@ p = Person("Sivaraj", 25)
 print(p.name)  # Sivaraj
 
 
+--------------------
+import sys
+
+class Normal:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+class Slotted:
+    __slots__ = ['x', 'y']
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+n = Normal(10, 20)
+s = Slotted(10, 20)
+
+print(sys.getsizeof(n.__dict__))  # More memory
+print(sys.getsizeof(s))           # Less memory
+
+
+list, tuple(shallow immutable, deep immutable), str, set, frozenset(immutable)
+---------------------
+s.add(10)
+l.append(10)
+
+
+dict 
+---------------
+len(d) --> 
+d1 == d2 --> check two dicts of same length
+del d[0] 
+del d["sivaraj"]
+"d" in dict --> check the keys 
+d = dict(a=1,b=2) --> creates new dict
+d.popitem() --> removes the last entered items
+d.pop('x', 0) --> removes and return the values 
+
+
+What is shallow copy and deep copy 
+----------------
+you might be copying the reference or copying the entire structure
+
+copy 
+copy.copy()  --> original impact 
+copy.deepcopy() --> inner object everything nested , to the other variable --> no original impact, if changes 
+
 
 
 
