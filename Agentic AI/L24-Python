@@ -1,3 +1,65 @@
+MRO - Method Resolution Object
+print(SubClass.__mro__)
+print(SubClass.mro())
+class BaseClass:
+    def method(self):
+        print("Sivaraj")
+        
+class BaseClass1:
+    def method(self):
+        print("Sivaraj1")
+        
+class SubClass(BaseClass,BaseClass1):
+    pass
+    
+subclass = SubClass()
+print(type(subclass))
+subclass.method()
+print(type(subclass))
+--------------
+Factory pattern: returning Base instead of Sub
+                  ---------------------------
+<class '__main__.Base'>
+This technique is often used in:
+Singletons
+Wrappers
+Proxy objects
+Custom class factories
+
+--------------------------
+Case 1: Overriding __new__ Method   [__new__ is responsible for creating the instance (before __init__ is called).]
+If Sub explicitly returns a BaseClass object from its __new__ method,
+class Base:
+    def method(self):
+        print("Sivaraj")
+
+class Sub(Base):
+    def __new__(cls):
+        print("Creating Sub instance...")
+        # Instead of creating Sub, return Base instance
+        return Base()
+        
+s = Sub()
+print(type(s))
+
+---------------------------------------------------------------------------------
+Case 3: Using __init_subclass__ or Metaclasses (Advanced)
+In advanced frameworks (like Django ORM, SQLAlchemy, Pydantic, etc.),
+metaclasses or __init_subclass__ can dynamically replace or modify subclasses during creation.
+you might actually see Base or even a proxy class — because the metaclass changed what Sub() produces.
+Metaclass or framework manipulation
+Object creation overridden dynamically
+
+----------------------------------------------
+MetaClasses
+In Python, everything is an object — even classes themselves are objects.
+The “class” of a class is called a metaclass.
+
+A metaclass defines how a class behaves, just like a class defines how its instances behave.
+
+
+
+
 Generator 
 Iterator 
   def my_iterator(data):
