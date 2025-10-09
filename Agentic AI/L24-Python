@@ -700,8 +700,288 @@ Services I used
 3. MongoDB Vector Store 
 4. 
 
+----------------------------------------------
+Front End [FC, Functional Component is very important 
+DOM[object-based representation of that HTML.][tree of objects that represents the structure and content of a webpage]-- Tree Like Structure In Memory - JavaScript will Talk & Interact -- React - Virtual DOM 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Example</title>
+  </head>
+  <body>
+    <h1 id="title">Hello World</h1>
+    <button id="btn">Click Me</button>
+
+    <script>
+      // Access the DOM element
+      const title = document.getElementById("title");
+      const button = document.getElementById("btn");
+
+      // Add a click event
+      button.addEventListener("click", function() {
+        // Change the text of the h1
+        title.textContent = "You clicked the button!";
+      });
+    </script>
+  </body>
+</html>
 
 
+-----------------------------
+document.getElementById
+document.querySelector
+document.querySelector("button")
+document.getElementsByClassName("item"); ---> HTML Collection
+document.getElementsByTagName("p");   
+                           css-selector
+document.querySelector(".container p"); - Get First Matching Element 
+document.querySelectorAll("li.active");
+
+---------------------------
+Manipulation 
+element.textContent = "New Text";
+element.innerHTML = "<b>Bold Text</b>";
+element.style.color = "red";
+element.style.background = "yellow";
+element.setAttribute("src", "image.png");
+let value = element.getAttribute("src");
+
+let newDiv = document.createElement("div");
+newDiv.textContent = "Hello!";
+document.body.appendChild(newDiv);
+
+element.remove();
+
+append() and prepend() ---> flexible than appendChild 
+
+----------------------
+let 
+const
+
+
+----------------------Listen for events click, mouseover, keydown, 
+event, callback function
+element.addEventListener("event", function)
+
+button.addEventListener("click", function() {
+        // Change the text of the h1
+        title.textContent = "You clicked the button!";
+      });
+
+element.addEventListener("click", () => {
+  console.log("Clicked!");
+});
+
+Remove Event 
+function sayHi() { console.log("Hi"); }
+element.addEventListener("click", sayHi);
+element.removeEventListener("click", sayHi);
+
+click
+mouseover / mouseout
+keydown / keyup
+submit
+change
+input
+
+
+-----------------
+console.log(p.textContent)
+
+-------------------
+ alert("Button was clicked!");
+
+
+Interface is blueprint of the object 
+------------------
+interface User {
+  id: number;
+  name: string;
+  isAdmin: boolean;
+}
+
+const user1: User = { id: 1, name: "Alice", isAdmin: true }; ✅
+const user2: User = { id: 2, name: "Bob" }; ❌ // Error: missing isAdmin
+
+
+Both work, but:
+interface = extendable (great for objects, props).
+type = more flexible (unions, intersections).
+👉 In React props, people often use interface, but type works too.
+React Props 
+---------------
+In React, we often pass props to components.
+TypeScript + interface = makes sure props are the right shape.
+import React from "react";
+
+// Step 1: Define interface for props
+interface GreetingProps {
+  name: string;
+  age?: number;  // optional prop
+}
+
+import React from "react";
+
+// Step 1: Define interface for props
+interface GreetingProps {
+  name: string;
+  age?: number;  // optional prop
+}
+
+// Step 2: Use it in the component
+const Greeting: React.FC<GreetingProps> = ({ name, age }) => {
+  return (
+    <h1>
+      Hello {name}! {age && `You are ${age} years old.`}
+    </h1>
+  );
+};
+
+// Step 3: Use the component
+export default function App() {
+  return (
+    <div>
+      <Greeting name="Alice" age={25} />
+      <Greeting name="Bob" /> {/* works because age is optional */}
+    </div>
+  );
+}
+
+
+
+
+Typing State with Interface 
+-------------------------
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+const TodoApp: React.FC = () => {
+  const [todos, setTodos] = React.useState<Todo[]>([]);
+
+  return (
+    <div>
+      {todos.map(todo => (
+        <p key={todo.id}>
+          {todo.text} - {todo.completed ? "Done" : "Pending"}
+        </p>
+      ))}
+    </div>
+  );
+};
+
+
+
+Example 3: Interface for Event Handlers
+----------------------------
+interface ButtonProps {
+  label: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const MyButton: React.FC<ButtonProps> = ({ label, onClick }) => {
+  return <button onClick={onClick}>{label}</button>;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------when you already have one element and want to navigate to related elements in the DOM tree.
+DOM Traversal Moving around the Tree 
+element.parentElement     // Get parent
+element.children          // Get all children
+element.firstElementChild // Get first child
+element.lastElementChild  // Get last child
+element.nextElementSibling // Next element
+element.previousElementSibling // Previous element
+
+
+
+
+
+Examples: 
+Adding New Element 
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>My Page</h1>
+    <button id="btn">Add Item</button>
+    <ul id="list"></ul>
+
+    <script>
+      const button = document.getElementById("btn");
+      const list = document.getElementById("list");
+
+      button.addEventListener("click", function() {
+        // 1. Create a new list item
+        let newItem = document.createElement("li");
+
+        // 2. Add content
+        newItem.textContent = "New List Item";
+
+        // 3. Append it to the UL
+        list.appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>
+
+InnerHTML
+-------------
+<ul id="list"></ul>
+
+<script>
+  let list = document.getElementById("list");
+
+  // Add HTML directly
+  list.innerHTML += "<li>Item added with innerHTML</li>";
+</script>
+
+
+Inside Div, span 
+--------------
+let span = document.querySelector("span");
+let parentDiv = span.parentElement;
+parentDiv.style.border = "1px solid red";
+
+Inside UL, LI
+-------
+let list = document.querySelector("ul");
+for (let child of list.children) {
+  child.style.color = "blue";
+}
+
+
+Fist and Last Child
+-----------
+let list = document.querySelector("ul");
+list.firstElementChild.style.fontWeight = "bold";
+list.lastElementChild.style.fontStyle = "italic";
+
+
+move between the element quickly in the same element
+-----------------------------------------------
+let firstItem = document.querySelector("li");
+let secondItem = firstItem.nextElementSibling;
+secondItem.style.background = "yellow";
+
+Event handling
+Form navigation: If you want to move to the next input field (nextElementSibling) after validation.
+Dynamic Styling: Change first/last/neighbor elements without using IDs or classes
+Building components: Traversing the DOM tree is often used in UI libraries, custom scripts, or when working with deeply nested HTML.
 
 
 
