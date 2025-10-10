@@ -413,11 +413,17 @@ with MyContext():
     print("Inside context")
 
 
+Transformer Architecture layer and components, and splitting of the parameter
+Google, Gemini, Anthropic, LLama model prompting 
+embedding difference 
+Lamaindex state and workflow
+Langgraph state and workflow 
+sorting 
 Pytest, Unit Test, Validation
 Python
 SQL 
 Class OOPS Concept
-NLP Metrics, LLM Evaluations 
+NLP Metrics, LLM Evaluations for RAG, Agentic AI Applications
 Tokenization, Token Count 
 Deep Agents Working Prototype 
 LangGraph State Concepts - different State Concepts 
