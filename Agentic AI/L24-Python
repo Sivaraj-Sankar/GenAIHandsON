@@ -412,6 +412,36 @@ class MyContext:
 with MyContext():
     print("Inside context")
 
+---------------------------------
+Overloading Polymorphism - Same name, different behavior 
+class Math:
+def add(self,a=0,b=0,c=0):
+    return a + b + c
+m = Math()
+print(m.add(2,3))
+print(m.add(2,3,4))
+-------
+Overriding 
+class Animal:
+    def sound(self):
+        print("Animal")
+
+class Dog(Animal):
+    def sound(self):
+        print("Dog")
+d = Dog()
+d.sound()
+-------
+Inheritance
+Multiple Inheritance = Derived class inherits from more than one parent 
+Multilevel Inheritance - Chain of Inheritance 
+Hierarchical Inheritance 
+Hybrid Inheritance - Hierachical - Multiple + MultiLevel --> Uses Method Resolution Order (MRO) to decide which parent to call. 
+
+
+
+
+
 
 Definitely Adapter Concept
 Design Pattern - Behaviour, like that, 
