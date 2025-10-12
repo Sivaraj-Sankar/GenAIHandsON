@@ -438,6 +438,19 @@ Multilevel Inheritance - Chain of Inheritance
 Hierarchical Inheritance 
 Hybrid Inheritance - Hierachical - Multiple + MultiLevel --> Uses Method Resolution Order (MRO) to decide which parent to call. 
 
+===================
+Super() ---> 
+class Base:
+    def method(self):
+        return "Sivaraj da"
+        
+        
+class SubClass(Base):
+    def method(self):
+        return super().method()
+
+a = SubClass()
+print(a.method())
 
 
 
