@@ -618,7 +618,20 @@ Database - Model
 
 ACID and Database Concepts 
 -------------------------
+ACID - set of properties that ensures transaction are processed reliably and consistently. 
+1. Atomicity - A transaction is all or nothing - If one part fails entire transaction rolls back. 
+2. Consistency - A transaction must take the database from one valid state to another valid state. following all rules(constraints, triggers)
+       eg: Reject the transaction if not follows the constraint 
+3.Isolation - Transactions running at the same time should not interface with each other. 
+    EG; if one person books the last ticket, and other person also, one should roll back 
+4.Durability - Once a transaction is comitted, it is permanent, even if the system crashes. 
 
+
+
+
+KISS 
+Keep it Simple Stupid,
+DRY - Don't Repeat Yourself 
 
 SOLID [that promote maintainability, scalability, and flexibility]
 S - Single Responsibility Principle 
@@ -634,19 +647,45 @@ L - Liskov Substitution Principle (LSP)
 Subtypes must be substitutable for their base types without breaking behavior. 
 Derived Class Should honor the contracts of their base class
 I - Interface - Interface Segregation Principle 
-No clients should forced to depend on methods it does not use
+No clients should forced to depend on methods it does not use - Create the API simply, not Gaintly 
 avoid large, bloated interface God Interface 
 Dependency Inversion Principle (DIP) 
 Depend on abstractions, not concrete implementation 
 
 
+Key Points - SOLID
+----------
 1.abstract, 
 subclass have method 
 2.Subtypes must be substitutable for their base types --Base fly , sub don't want to use fly, then don't inherit 
-Derived class should honor the base class contracts 
+Derived class should honor the base class contracts --
 4.High level modules shouldn't depend on low-level modules, 
    High Level - Interface  -                         Low level 
  Order Service   V Database Interace               X Database service 
+
+
+LLD
+---------------------
+1.Class Diagram, methods, database schemas, API contracts 
+2.Defines the Design Patterns to be used(Factory, Observer, Singleton etc) 
+3.Deals with Error Handling, Concurrency and data validation.
+
+
+
+Design Patterns Cheat Sheet
+---------------------------
+
+
+
+
+
+
+
+
+
+
+Duck Typing - Passing Class object in the global function, 
+Interface - Understood, 
 
 
 
@@ -664,11 +703,12 @@ System Design - HLD
 
 
 
-SOLID - KISS 
+SOLID - KISS - Done
 AI Service Architecture 
-Database Related Concepts 
+Database Related Concepts - Done
 Design Patterns - Check ChatGPT and Notes 
 Adapters - Controllers - Repository 
+Resume Edit
 
 
 
