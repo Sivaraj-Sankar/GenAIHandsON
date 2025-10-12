@@ -503,16 +503,35 @@ Embedding Model - 768, 1536, 3072
 text-ada 
 1536 --> output dimensionality 
 8192 tokens = context up to 
-Embed v3
+Embed v3 - Architecture of Embed V3 - Cohere 
 Nomic Embed
 E5 family (by Zhang et al.) used in retrieval systems
 GTE
 
-Embedding Model Input, Size of the Context, Size of the Model, Size of the Embedding 
+Embedding Model Input, Size of the Context, Size of the Model, Size of the Embedding and Tranining 
+--------
+Contrastive Learning, - You take pair of text that are semantically related 
+Eg: Query-Document, Paraphrases, Sentence + Augmentd Version) and Push their embeddings to be close, 
+while pushing unrelated pairs far apart. Many Embedding models are trained this way. 
+-Supervised/paired Data 
+Use Labeled Pairs, (similar vs dissimilar) eg: Question-Answer Pairs, Paraphrase datasets, translation paris, 
+Fine-tuning from a base model
+Sometimes you start with a pretrained language model and fine-tune one of its layers (or add projection heads) to become a good embedding model.
+
+
+Limitations of two different embedding models
+-----
+* The two models might map semantically similar texts to very different regions of the vector space
+* So even if a document is relevant, the query embedding might not “land close enough” to it. In effect, retrieval can degrade significantly.
+* If the two embedding models output vectors of different lengths (e.g. one outputs 1536 dims, the other 3072), then you can’t directly compute similarity (dot product, cosine) between them. The vectors must be in the same dimension.
+* Models might differ in scaling, normalization, or how they treat common vs rare terms. One embedding model might cluster certain topics differently. This mismatch adds noise to similarity comparisons.
+* Many vector databases require a fixed dimension per index. They expect all indexed vectors to have the same dimension. If your query embedding dimension doesn’t match the index’s dimension, the search query will fail. Also, vector search is optimized for homogeneous embeddings.
 
 
 ------------------------
 
+
+LLM Model Inference , decode strategies(Causal,), Sampling, Reasoning Strategies)
 Definitely Adapter Concept
 Design Pattern - Behaviour, like that, 
 Transformer Architecture layer and components, and splitting of the parameter
