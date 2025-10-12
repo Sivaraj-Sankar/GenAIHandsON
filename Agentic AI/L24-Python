@@ -453,8 +453,65 @@ a = SubClass()
 print(a.method())
 
 
+About Transformers & LLM 
+-----------------------
+Model Parameter 
+Embedding Layer - Vocabulary * d_model == 50,000 X 2048 = 102.4M ---> Embedding Model Layer I guess 
+Transformer Block 
+Multi Head Attention - 
+        Q,K,V ---> Each Head projects queries, keys and values 
+        4 * (d_model * d_model) --> 16.8M parameters per layer 
+Feed-Forward Network (FFN) - 33.6M 
+Per Layer 50M Parameters 
+Total 24 Layers 
+       24*50M -> 1.2B Parameters 
+Output (LM Head) --> language Modeling Head 
+1.2B + 102M --> 1.3B 
 
 
+Embedding Layer 
+---------------
+Parameter Matrix Stored inside the Transformer Block --> Wembed Belongs R (V*dmodel)
+Text Tokenizer + Embedding Layer + Transformer Layer + Output Head 
+
+not Separately trained embedding model like 
+Word2Vec or BERT Embeddings 
+
+Tokenization 
+A tokenizer (like Byte Pair Encoding or SentencePiece) splits text into subwords and assigns each subword an integer ID.
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+tokens = tokenizer("The bank approved the loan.")
+print(tokens.input_ids)
+
+But the tokenizer must match (or be compatible with) the model’s vocabulary and tokenization scheme
+Byte-level / Byte-pair
+Subword-level
+Character-level
+
+Byte-Pair Encoding (BPE) - GPT-Style 
+WordPiece, Subword - Often used in BERT-like models
+SentencePiece - Often used for multilingual models; can implement both BPE or unigram models
+Mistral uses a “tekken” tokenizer based on BPE with tiktoken.
+TikToken is OpenAI’s official tokenizer library used to encode and decode text for GPT-family models.
+Text  →  Tokens  →  Token IDs
+Token IDs  →  Tokens  →  Text
+
+
+Embedding Model - 768, 1536, 3072
+text-ada 
+1536 --> output dimensionality 
+8192 tokens = context up to 
+Embed v3
+Nomic Embed
+E5 family (by Zhang et al.) used in retrieval systems
+GTE
+
+Embedding Model Input, Size of the Context, Size of the Model, Size of the Embedding 
+
+
+------------------------
 
 Definitely Adapter Concept
 Design Pattern - Behaviour, like that, 
