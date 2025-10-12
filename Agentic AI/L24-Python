@@ -413,6 +413,8 @@ with MyContext():
     print("Inside context")
 
 
+Definitely Adapter Concept
+Design Pattern - Behaviour, like that, 
 Transformer Architecture layer and components, and splitting of the parameter
 Google, Gemini, Anthropic, LLama model prompting 
 embedding difference 
