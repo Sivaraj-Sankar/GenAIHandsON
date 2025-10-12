@@ -597,11 +597,36 @@ State is derived from events, not overwritten [Event-Sourced Systems]
 7.Enable Real-time reaction - Publish events whenever something happens, EDA, reactive streams 
 8.Domain Logic is decoupled from infrastructure 
 
+Business Service --> its kind of separate service to store the business logic 
+      that cannot be naturally expressed in an entity or value object. 
+
+
+Thin Adapter 
+REST Controller 
+MVC - Model - View - Controller 
+MTV - Model - Template - View
+
+UI     - Controller 
+Action  - View --> API logic 
+Database - Model 
+
+
+
+
+
 
 
 ACID and Database Concepts 
 -------------------------
 
+
+
+
+SOLID - KISS 
+AI Service Architecture 
+Database Related Concepts 
+Design Patterns - Check ChatGPT and Notes 
+Adapters - Controllers - Repository 
 
 
 
