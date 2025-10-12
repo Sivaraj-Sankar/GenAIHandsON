@@ -529,6 +529,66 @@ Limitations of two different embedding models
 
 
 ------------------------
+Model View Controller 
+
+Event Driven Architecture - Decoupled components react to events on a publish/subscribe channel. 
+                            High Scalability, natural async patterns, easy to add new customers 
+                            Event Ordering guarantees. 
+Message-Driven/Message-Queue - Tasks are serialized into messages that are queued and processed asynchronoulsy. 
+                             - Background jobs, batch pipelines, order processing, | Asynchronous Flow, Decoupling of producer/consumer 
+                             - Potential Message loss if not **idempotent, latency 
+
+Saga/Orchestration[Temporal, Zeebe, Netflix Conductor]   ----> Long-Running distributed transactions broken into compensating actions. 
+                                                           Order-fullfillment, booking systems, micro-service workflows 
+                                                           Consistency without distributed ACID 
+                                                           Complex Orchestration logic, need for persistence 
+
+
+Hexagonal (Ports & Adapters)/Clean/Onion[Spring] - Outer Adapters plug into inner domain, business logic is isolated from the frameworks. 
+                                    ---> Domain-Heavy apps, test-first development, maintainability
+                                    ---> clear separation, testable domain, easier migration. 
+                                    ---> Requires discipline to keep inner layers pure 
+
+Event‑Sourced [Axon, EventStore, Kafka]    ----> State is derived from an immutable stream of events
+                  ----> current state is the result of replaying the stream.
+                  ----> Auditable systems, finance, analytics pipelines
+                  ----> Full audit trail, easy replay, time‑travel debugging.
+                  ----> Event schema evolution, large storage footprint, complexity of read‑models.
+
+Event 
+Event Store - Immutable - Logs, 
+Aggregate or Entity - Business Object whose state is reconstructed by replaying the sequence of events related to it 
+Command 
+Event Handler / Projector/Read Model --> Components listen to the event 
+Banking systems: Every transaction is an event
+E-commerce: Order lifecycle tracked via events
+Git: Commits are events; state is built from history
+Financial systems
+Auditable systems
+Collaborative apps
+Domain-driven systems
+
+
+Message-Driven/Message-Queue 
+Event Sourcing  - 
+
+***Requires thinking in events 
+
+
+
+Domain Driven Design  (DDD) approach in your architecture 
+1.DDD is not a “new architecture” per se—
+2.it is a set of principles and patterns that help you model [complex business domains] in code. 
+3.The benefits translate into multiple layers of the architecture
+Domain model captures real concepts (aggregates, entities, value objects). [Domain‑centric layers (hexagonal, clean).] -    Domain‑event, repository, service objects
+
+
+
+ACID and Database Concepts 
+-------------------------
+
+
+
 
 
 LLM Model Inference , decode strategies(Causal,), Sampling, Reasoning Strategies)
