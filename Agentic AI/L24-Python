@@ -537,6 +537,12 @@ Event Driven Architecture - Decoupled components react to events on a publish/su
 Message-Driven/Message-Queue - Tasks are serialized into messages that are queued and processed asynchronoulsy. 
                              - Background jobs, batch pipelines, order processing, | Asynchronous Flow, Decoupling of producer/consumer 
                              - Potential Message loss if not **idempotent, latency 
+**idempotent - denoting an element of a set which is unchanged in value when multiplied or otherwise operated on by itself.
+**
+https://newsletter.systemdesignclassroom.com/p/every-outbox-needs-an-inbox
+https://softwarepatternslexicon.com/18/19/10/
+https://hackernoon.com/the-idempotence-principle-in-software-architecture
+https://www.linkedin.com/pulse/idempotence-system-design-full-example-lukas-nie%C3%9Fen-j3i4e
 
 Saga/Orchestration[Temporal, Zeebe, Netflix Conductor]   ----> Long-Running distributed transactions broken into compensating actions. 
                                                            Order-fullfillment, booking systems, micro-service workflows 
@@ -580,7 +586,16 @@ Domain Driven Design  (DDD) approach in your architecture
 1.DDD is not a “new architecture” per se—
 2.it is a set of principles and patterns that help you model [complex business domains] in code. 
 3.The benefits translate into multiple layers of the architecture
-Domain model captures real concepts (aggregates, entities, value objects). [Domain‑centric layers (hexagonal, clean).] -    Domain‑event, repository, service objects
+
+1.Domain model captures real concepts (aggregates, entities, value objects). [Domain‑centric layers (hexagonal, clean).] -    Domain‑event, repository, service objects
+2.**Outer Frameworks are adapters 
+3.Bounded Context isolate different areas of the domain 
+4.Provide an audit trail 
+State is derived from events, not overwritten [Event-Sourced Systems]
+5.Scale reads & writes independently 
+6.Separate read/write concerns [CQRS or read-model services]
+7.Enable Real-time reaction - Publish events whenever something happens, EDA, reactive streams 
+8.Domain Logic is decoupled from infrastructure 
 
 
 
