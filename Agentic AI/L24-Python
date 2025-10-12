@@ -620,6 +620,48 @@ ACID and Database Concepts
 -------------------------
 
 
+SOLID [that promote maintainability, scalability, and flexibility]
+S - Single Responsibility Principle 
+Class/Module should have only one reason to change. 
+Each Component should focus on only one thing.
+Avoid God Objects or services that do too much.
+Eg: UsService - Handling Authentication, Profile Management, Payments, Splits them into 
+AuthService, ProfileService, Payment Service 
+O - Open/ Closed Principle (OCP)
+Software Entities should be open for extension but closed for modification. 
+use an interface & implement. 
+L - Liskov Substitution Principle (LSP) 
+Subtypes must be substitutable for their base types without breaking behavior. 
+Derived Class Should honor the contracts of their base class
+I - Interface - Interface Segregation Principle 
+No clients should forced to depend on methods it does not use
+avoid large, bloated interface God Interface 
+Dependency Inversion Principle (DIP) 
+Depend on abstractions, not concrete implementation 
+
+
+1.abstract, 
+subclass have method 
+2.Subtypes must be substitutable for their base types --Base fly , sub don't want to use fly, then don't inherit 
+Derived class should honor the base class contracts 
+4.High level modules shouldn't depend on low-level modules, 
+   High Level - Interface  -                         Low level 
+ Order Service   V Database Interace               X Database service 
+
+
+
+
+
+
+Abstract
+Interface
+Implement 
+Deriving Class 
+Derived Class 
+
+Software Design - LLD
+System Design - HLD 
+
 
 
 SOLID - KISS 
