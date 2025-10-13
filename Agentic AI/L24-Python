@@ -638,7 +638,43 @@ from end to end
 15.**Synchronous - run on thread worker for handling concurrent workloads. 
    Asynchronous - main thread on the main event loop 
    Synchronous - thread worker 
-16.Build routes capable of handling long-running tasks 
+16.Build routes capable of handling long-running tasks (e.g sending emails) without the 
+need of external libraries, (e.g., celery) 
+17.Long Running operations to a background task running on a separate thread. after you respond 
+   to the client. 
+18.Custom Middleware and CORS support 
+   Intercept the communication between your API endpoints and the clients. 
+   middleware [CORS Requests, log and monitor communication]
+   Request
+   Response 
+   middleware [such as modifying headers, logging operations, and setting cookies before sending it off to the 
+               client]
+19.Break the limitations of your current web framework. FASTAPI
+   Fastapi provides the custom classes that inherit base classes of starlette. 
+20. Pydantic to automatically serialize common data types(e.g., lists, dictionaries, 
+    primitives) when returning them in API routes. 
+
+21. Plug-Ins 
+    Plug-ins are python packages that hook into FASTAPI internals and existing features. 
+    FastAPI Filters, 
+    Auth Users, 
+    Rate Limiting and several others. 
+22. Redirect from the base URL / to the /docs endpoints to facilitate quicker access 
+    to the documentation page. 
+23. Dependency Injection System 
+    Development pattern called inversion of control 
+    Breakdown function into the series of function that you inject into other functions as 
+    dependencies 
+    Eg: Open Database connections, 
+        enforce security such as authentication, authorization requirements and much more. 
+
+
+
+
+
+
+
+
 
 
 
@@ -667,6 +703,7 @@ ts,
 jsx
 websockets, 
 logging using webscokets, have to check 
+plug in , authentication, azure authentication, etc. 
 
 thread operations is overheaded.
 concurrent requests won't block the main server thread. 
