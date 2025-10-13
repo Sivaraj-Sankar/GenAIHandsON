@@ -766,6 +766,54 @@ main.py
        Dependency inversion principle - Which states that high-level modules should not 
        directly depend on the implementation of low-level modules but declare what they need 
        from the low-level modules. 
+51. Outer layer 
+                Mappers, 
+                Exception Filters 
+                Guards 
+                API Routers 
+                Controllers  
+
+                Dependencies 
+                Providers 
+                Services 
+                Pipes
+
+     Inner Layer 
+                Models 
+                Repositories 
+   52. As you move from outer to inner layers 
+          API Routers - APIRouter - grouping multiple controllers to apply common logic across 
+                                    several controllers. 
+         Controllers/Route Handlers - responsible for handling incoming requests
+         and returning responses to the client via a logical execution of services or
+         providers.
+        -services/providers - multiple internal operations to implement a business logic 
+              services typically use repositories for data access to implement complex 
+              business logic rather than simple data retrieval and mutation operations. 
+        - Repositories (data adapters) 
+                uses -  Object-Relational Mapping (ORM) or raw SQL commands to execute queries 
+                on your infrastructure like a database, or a memory store for retrieving or mutating 
+                data. 
+        - Schemas/models 
+                      enforcing type-safety, structure and validation logic on your data
+                as it flows throughout your service. 
+        - Dependencies 
+        - Pipes - Data transformer functions that you can use across application layers. 
+                  Example include data aggregations, cleaners, parsers, translators etc
+        - Mappers - data mappers from one schema into another, often passing data across 
+                    layers such as from the UserRequest schema at a router layer to the UserInDB Schema 
+                    at the data access layer. 
+        - Exception Filters
+        - Guards - authenticaion, authorization logic can be implemented as dependencies or middleware to act as guards 
+
+
+   53.Websocket endpoints - which are used for maintaining a persistent bidirectional communication 
+      channel between a client and a server. 
+
+ 
+         
+  
+   
 
 
   
@@ -799,6 +847,7 @@ celery
 multi threading vs multi processing 
 fastapi workers, 4 I guess -> get the details in the  chatgpt , get.state 
 main thread on the main event loop 
+worker processes or threads 
 
 ReactJS - package working 
 ts, 
