@@ -616,7 +616,7 @@ FastAPI (Concurrency to process web requests)
 1. asynchronous Gateway Interface (ASGI)
 2. Data Validation and Serialization features via pydantic 
 3. FastAPI is a wrapper over the Starlette framework 
-4. Formatters, loggers and linters - that you can set up to enhance your development workflow 
+4. Formatters, loggers and linters - type annotations and doc-strings)  - that you can set up to enhance your development workflow 
 5. uvicorn package is the bare-bones web server that FastAPI runs on. 
 6.File Watcher process is listening for changes in your project 
 7.Converts your python function with a decorator into a HyperText Transfer Protocol (HTTP) endpoint. 
@@ -667,6 +667,108 @@ need of external libraries, (e.g., celery)
     dependencies 
     Eg: Open Database connections, 
         enforce security such as authentication, authorization requirements and much more. 
+24.FastAPI Dependency are also cached within the context of a single request to prevent 
+   duplicate computations. 
+25. You can also have dependencies injected into other dependencies to create a 
+    hierarchical dependency graph, Which is extremely useful for building cached authentication
+    and authorization flows. 
+  Eg: Nested Data retrieval logic 
+      Complex decision trees when implementing your application's business logic 
+26. Lifespan Events 
+         Handling initialization and clean up of your service when you need to set up resources 
+         that can be shared between requests. 
+
+27. Lifespan events, 
+     Eg: databse connection pools and load GenAI models into memory for reuse across 
+         requests. 
+        Afterward, before server shutdown, you can clean up by unloading AI models. 
+     closing connection pools, 
+     deleting temporary artifacts and logging events. 
+28. third-party authentication providers for single sign-on flows in FastAPI in enterprise 
+    environments
+29. Bidirectional WebSocket, GraphQL, and Custom Response Support. 
+30. Real-time Client Server Communication or long-duration connections where data 
+    is streamed in a direction. 
+31. Websocket, and server-sent events(SSE) can help you stream generateive model outputs 
+    to the client. 
+32.**Strawberry -  GraphQL in FastAPI to expose endpoints that can return dynamic schemas 
+   based on the request. 
+   So clients can select fields they want from a resource to avoid over-fetching data 
+   from your service. 
+33. FastAPI Project Structures 
+    Building services that will span multiple modules, packages, and nested directories. 
+
+34. Avoid Import Errors or circular dependencies. 
+35.Cookie-cutter templates for starting FastAPI projects. 
+36. Recommend following a structure popularized by the Netflix Dispatch FastAPI project 
+    for larger applications that has inspired other templates. 
+37. Flat - application files remain at the root of your project with no nested directories.
+    Nested
+    Modular 
+38. Flat - Microservice 
+       app 
+         services.py 
+         database.py 
+         models.py 
+         routers.py 
+         main.py 
+       requirements.txt 
+       .env 
+       .gitignore 
+39. Project Grows, --> break down the gloabl python modules into packages of their own using the 
+nested structure. 
+40. Nested Structure groups similar modules into packages,
+    as you add AI models, and several external services and databases to your project. 
+    Pitfall 
+       --> project structure is the ambiguous coupling of modules. 
+       --> changes in one module can cascade into other modules. 
+41. Modular Structure 
+    Netflix Dispatch FastAPI project, 
+    modules 
+       --> auth 
+              routers.py 
+              models.py 
+              dependencies.py 
+              guards.py 
+              services.py 
+      -->  users 
+              router.py 
+              models.py 
+              dependencies.py 
+              services.py    
+              mappers.py 
+ routers
+    users.py 
+providers
+    email.py
+    stripe.py 
+
+settings.py #gloabl configs
+middlewares.py 
+models.py 
+exceptions.py 
+main.py 
+
+42. Thinking about the structure of your Large FastAPI application is only the first 
+    step 
+43. Next Step, Software Design Pattern 
+44. Onion or Layered, application design pattern, 
+     Separateion of concerns between the different parts of your application to simplify the process
+     Adding, removing and modifying features. 
+45. Nest.js - onion design pattern has also influenced web frameworks in other languages.
+46. Onion Layer contains consists of layers. 
+      each with specific responsibility and dependency direction. 
+      specific 
+47. Innermost layer contains the domain models and business logic
+48. outer layer contain route handling (in an API service) or user-interface code 
+49. Onion --> domain center - surrounded by layers of increasing abstraction promoting testability 
+50. Main Idea behind this pattern is the 
+       Dependency inversion principle - Which states that high-level modules should not 
+       directly depend on the implementation of low-level modules but declare what they need 
+       from the low-level modules. 
+
+
+  
 
 
 
