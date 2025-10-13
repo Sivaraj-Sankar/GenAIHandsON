@@ -606,9 +606,71 @@ REST Controller
 MVC - Model - View - Controller 
 MTV - Model - Template - View
 
+
 UI     - Controller 
 Action  - View --> API logic 
 Database - Model 
+
+FastAPI (Concurrency to process web requests)
+-------
+1. asynchronous Gateway Interface (ASGI)
+2. Data Validation and Serialization features via pydantic 
+3. FastAPI is a wrapper over the Starlette framework 
+4. Formatters, loggers and linters - that you can set up to enhance your development workflow 
+5. uvicorn package is the bare-bones web server that FastAPI runs on. 
+6.File Watcher process is listening for changes in your project 
+7.Converts your python function with a decorator into a HyperText Transfer Protocol (HTTP) endpoint. 
+8.Once your endpoint signatures are further established, you can write pytest tests to systematically test your web service  
+from end to end 
+9.Auto-Serialization and validation of data. 
+  Data must first be serialized from a Python Object such as a dictionary or a list into a 
+  JavaScript Object Notation(JSON) string first. 
+  it's transferred over the web and deserialized back into a JavaScript object by your browser client. 
+10. Serialization is required When using HTTP for data transmissions, as only text or binary data can be transferred via HTTP.
+11. FastAPI Features & Advantages 
+    Security 
+    Authentication
+    Performance 
+12. Resource Intensive AI workloads may require specialized web frame-works or solutions. 
+13. Route Patterns 
+    Configure the routes to accept and validate headers, cookies, body path and query parameters 
+14.**Asynchronous route using async def fastapi will run it on the main thread on the main event loop. 
+15.**Synchronous - run on thread worker for handling concurrent workloads. 
+   Asynchronous - main thread on the main event loop 
+   Synchronous - thread worker 
+16.Build routes capable of handling long-running tasks 
+
+
+
+from fastapi import FastAPI 
+
+app = FastAPI()
+
+@app.get("/")
+def root_controller():
+    return {"status":"healthy"}
+fastapi dev 
+
+
+
+-----------
+parallel execution 
+concurreny 
+async programming 
+celery 
+multi threading vs multi processing 
+fastapi workers, 4 I guess -> get the details in the  chatgpt , get.state 
+main thread on the main event loop 
+
+ReactJS - package working 
+ts, 
+jsx
+websockets, 
+logging using webscokets, have to check 
+
+thread operations is overheaded.
+concurrent requests won't block the main server thread. 
+
 
 
 
