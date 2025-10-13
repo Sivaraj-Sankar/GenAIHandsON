@@ -674,6 +674,52 @@ LLD
 
 Design Patterns Cheat Sheet
 ---------------------------
+Factory 
+Observer 
+Singleton 
+
+Creational Design Patterns 
+Factory[Object Creation Logic, without exposing] - Provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created. 
+          Creating Objects without exposing the object creation logic to the client code. 
+ - Loose Coupling - Client Depends only on the Vehicle interface. not on concrete implementation 
+
+Interface - Class
+Concrete Implementation - for each - each class
+Client Code - Class
+
+
+Abstract Factory Pattern 
+Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+Builder - Constructs a complex object step by step, allowing for greater control over the construction process and enabling different representations of the object. 
+Instead of calling a constructor with many arguments, we use a Builder to assemble it step by step.
+
+Protoype Desgin Pattern 
+- Specify the kinds of objects to create using a prototypical instance, and create new objects by cloning this prototype. 
+
+Singleton - Ensure a class has only one instance, and provide a global point of access to it. 
+Sometimes, you want to restrict a class so that only one object can exist. 
+Eg: Configuration managers [only one config should exist across app].
+Logging Systems[a single logger instance].
+Database Connections[only one connection pool].
+
+Creational Design Pattern 
+Factory 
+Abstract Factory Pattern 
+Builder 
+Prototype Design Pattern 
+Singleton [In Python, Singleton is often implemented using __new__, metaclasses, or decorators.]
+
+Structural Design Pattern - Adapter - Bridge - Composite - Decorator - Facade - Flyweight - Proxy 
+
+Behavioral Design Pattern - Chain of Responsibility - Command - Interpreter - Iterator - Mediator - Memento 
+
+
+
+
+          
+          
+
 
 
 
