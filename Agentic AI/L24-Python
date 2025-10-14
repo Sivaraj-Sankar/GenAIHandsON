@@ -810,6 +810,33 @@ main.py
    53.Websocket endpoints - which are used for maintaining a persistent bidirectional communication 
       channel between a client and a server. 
 
+54.Asynchronous server gateway interface ASGI - based frameworks can process multiple 
+   requests by running concurrent asynchronous operations on the main event loop
+55. Main Event Loop 
+    Thread Pool - thread workers, 
+    perform synchronous tasks concurrently without blocking the main server thread.
+
+56. Once Task is finished, these threads return control to the main web server thread. 
+57. FastAPI uses an event loop for concurrent workloads, 
+58. **FastAPI does provide built-in mechanisms for sharing model memory between multiple 
+    instances or processes of the same container. 
+  web workers horizontally, you need to load a whole new model instances into the container's 
+memory. 
+59.** Limited number of threads that FASTAPI creates on application startup in the internal 
+    thread pool 
+60. FastAPI leverages the multithreading via internal threadpool - when sync web request hits 
+61. AI inference requests can still block the main event loop. 
+    preventing all other requests from being processed in the main web serving thread
+because 
+AI infrence workloads are CPU/GPU intensive. Non I/O operations, such as serving an 
+expensive model or aggregating large amounts of data on a worker. 
+will cause threads to wait , because not multi core for threading 
+
+62. Model runtime's deep coupling with native librarires and hardware. 
+
+
+
+
  
          
   
@@ -858,6 +885,9 @@ plug in , authentication, azure authentication, etc.
 
 thread operations is overheaded.
 concurrent requests won't block the main server thread. 
+
+multithreading[not using multiple cores for threading] can produce unintuitive - GIL 
+multiprocessing or process pool 
 
 
 
@@ -982,12 +1012,6 @@ Behavioral Design Pattern - Chain of Responsibility - Command - Interpreter - It
 
 Duck Typing - Passing Class object in the global function, 
 Interface - Understood, 
-
-
-
-
-
-
 Abstract
 Interface
 Implement 
@@ -996,15 +1020,10 @@ Derived Class
 
 Software Design - LLD
 System Design - HLD 
-
-
-
-SOLID - KISS - Done
-AI Service Architecture 
 Database Related Concepts - Done
-Design Patterns - Check ChatGPT and Notes 
-Adapters - Controllers - Repository 
-Resume Edit
+
+
+
 
 
 
