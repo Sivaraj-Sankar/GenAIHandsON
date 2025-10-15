@@ -1883,8 +1883,40 @@ export function Counter() {
     </div>
   );
 }
-Many APIs or async logic
-Redux Thunks or RTK Query simplify it
+Many APIs or async logic - > Redux Thunks or RTK Query simplify it
+Redux Toolkit now includes:
+createSlice() – for reducers + actions in one place
+createAsyncThunk() – for API calls
+RTK Query – built-in data fetching and caching
+
+Provider is important to give the store access to the components 
+// index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+Redux Store
+   ↓
+{ counter: { value: 0 } }
+   ↓
+useSelector((state) => state.counter.value)
+   ↓
+Component gets "0"
+   ↓
+dispatch(increment()) changes state
+   ↓
+Store updates → useSelector runs again
+   ↓
+Component re-renders with "1"
+
 
 
 
