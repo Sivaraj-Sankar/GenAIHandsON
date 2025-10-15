@@ -1790,6 +1790,104 @@ count (state) = managed inside Counter
 We use props to make components reusable, dynamic, and customizable — they are the "inputs" that flow down from parent to child in React.
 
 
+------------------------------------
+General Front End Concepts 
+1.Utility Functions, Services(API calls), Type Definitions, Redux Slices, Configs --> these uses the .ts files 
+eg:// utils.ts 
+      export function add(a: number, b:number): number { return a + b }; 
+2. .tsx files 
+      TypeScript that inlcude JSX - JSX is a React uses to describe UI like (<div>, <button>) 
+    React Components that return JSX must use .tsx 
+3. Typescript will active, when we install 
+     npm install typescript @types/react @types/react-dom
+     A tsconfig.json file (TypeScript compiler config)
+     The TypeScript compiler (tsc) is being used
+     The dependencies include TypeScript:
+     Implicit type inference
+     Error detection during compile time
+     Type checking of JSX
+src/
+ ├── App.tsx
+ ├── utils.ts
+ ├── components/
+ │    └── Button.tsx
+tsconfig.json
+
+4. Redux - state management in large react applications 
+   It helps you manage global state (data that multiple components need to share) in a predictable, centralized way.
+   User authentication info (user name, token)
+   Shopping cart items
+   Theme (light/dark)
+   App-wide notifications
+5. Redux is a centralized store that holds the state of your app, and changes to that state happen through actions and reducers.
+6. Core Concepts of Redux 
+        Store 
+           A single Source of Truth for all your app's state 
+           const store = configureStore({
+                    reducer: counterReducer, 
+                   });
+        Actions 
+                  they describe what happened (not how to change state) 
+        {type : 'counter/increment'}
+
+         Reducers
+                  Function that describe how state changes in respone to an action 
+            const counterReducer = (state = { value: 0 }, action) => {
+  switch (action.type) {
+    case 'counter/increment':
+      return { value: state.value + 1 };
+    default:
+      return state;
+  }
+};
+
+7. Counter Slice 
+// counterSlice.ts
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1 },
+    decrement: (state) => { state.value -= 1 },
+  },
+});
+
+export const { increment, decrement } = counterSlice.actions;
+export default counterSlice.reducer;
+
+Create the Store 
+// store.ts
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from './counterSlice';
+
+export const store = configureStore({
+  reducer: { counter: counterReducer },
+});
+
+Use it in your component 
+// Counter.tsx
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './counterSlice';
+
+export function Counter() {
+  const count = useSelector((state: any) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
+    </div>
+  );
+}
+Many APIs or async logic
+Redux Thunks or RTK Query simplify it
+
+
+
 
 
 ------------------------------------------------------------------------------------------------------------
