@@ -2015,6 +2015,19 @@ Response: If confidence score is low, i'd wrap the output in a disclaimer or ask
    Monitor Hallucination, drift/latency, add rollback safety + feeback loops 
    Interoperability (MCP) 
          Cross-tool context sharing, plus fallback design when a workflow step fails 
+
+9. Understanding Prompting Injection Attacks
+    Prompt Injections - Application created by LLM is allowed for vulnerability  
+     Prompt Injections is essentially a form of manipulation where attackers craft inputs to trick an AI model into ignoring its original instructions
+     or safeguards, 
+     The model can be hijacked to reveal sensitive data, spread misinformation, or even execute harmful actions. 
+      Think of it as slipping a rouge command into a conversation the AI can't always tell the difference between legitimate user input and malicious overrides. 
+
+There are two main types: 
+     Direct Injection: - The Attacker directly inputs, commands, like telling the AI to forget previous rules and do something unintended 
+     InDirect Injection - More subtle, where malicious prompts are hidden in external data sources eg(webpage or document) that AI processes 
+              Embedding instructions that blend in, often using techniques like obfuscation (eg: encoding text, or using symbols) to evade basic filters. 
+
   
 
 
@@ -2038,5 +2051,16 @@ other security measures
 Project Discussion 
 
 1. SDLC Tollage Review Automated Tool using GenAI
+
+
+
+
+_______________
+Reference Links for - Base Class Implementing 
+https://sweets.chat/blog/article/implementing-a-custom-chat-model-with-langchain
+https://python.langchain.com/docs/how_to/custom_chat_model/
+https://vitalflux.com/completion-model-vs-chat-model-python-examples/
+
+
  
 
