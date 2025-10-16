@@ -2070,6 +2070,13 @@ https://idp-leaderboard.org/
 https://github.com/NanoNets/docext
 https://parsio.io/blog/top-document-extraction-tools/
 https://idp-leaderboard.org/
+https://huggingface.co/learn/agents-course/unit2/llama-index/workflows
+https://developers.llamaindex.ai/python/examples/agent/agent_workflow_basic/ - HITL 
+https://mlflow.org/docs/3.0.1/llms/llama-index/notebooks/llama_index_workflow_tutorial/ - ToolCall Agents 
+https://developers.llamaindex.ai/python/examples/agent/agent_workflow_basic/ - Functioncalling agent
+https://developers.llamaindex.ai/python/examples/workflow/parallel_execution/
+https://github.com/run-llama/llama_index/discussions/18282 - Initial State is empty 
+https://colab.research.google.com/drive/1HB-x4_laWEtxXu8M3hLGvc5Jac7XJvfe - Multi Strategy 
 
 
 
