@@ -2080,6 +2080,7 @@ https://colab.research.google.com/drive/1HB-x4_laWEtxXu8M3hLGvc5Jac7XJvfe - Mult
 https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html
 https://python.langchain.com/api_reference/core/language_models/langchain_core.language_models.base.BaseLanguageModel.html
 https://python.langchain.com/docs/how_to/#chat-models - Manage Large Chat History 
+https://github.com/langchain-ai/langchain/tree/v0.3/cookbook - LangChain Cookbook 
 
 
 
