@@ -148,6 +148,42 @@ Protocol Integration: MCP servers and tool ecosystems
 
 
 
+Deep Agent - Planning Agent 
+--------------------------
+Complex 
+Long Running 
+Operate Complex Task over long time horizon
+sophisticated agent architecture capable of handling real-world research and analysis tasks.
+
+https://github.com/langchain-ai/deep-agents-from-scratch
+https://github.com/langchain-ai/deepagents
+https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+
+Task planning (e.g., todo), often with recitation
+Context offloading to file systems
+Context isolation through sub-agent delegation
+
+Planning 
+File System 
+Sub Agents 
+Prompting 
+
+
+1.Create Agent 
+2.Todo Lists
+3.Files 
+4.SubAgents
+
+key Points
+1. LLM Agent can interact with all our computing infrastructure. 
+2. Anthropic Claude Code is a long Running Agent. and OpenAI's Deep Research 
+3. Agent Will lose their way over long sequences. 
+
+
+
+
+
+
 
 
 
