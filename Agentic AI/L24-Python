@@ -2077,6 +2077,10 @@ https://developers.llamaindex.ai/python/examples/agent/agent_workflow_basic/ - F
 https://developers.llamaindex.ai/python/examples/workflow/parallel_execution/
 https://github.com/run-llama/llama_index/discussions/18282 - Initial State is empty 
 https://colab.research.google.com/drive/1HB-x4_laWEtxXu8M3hLGvc5Jac7XJvfe - Multi Strategy 
+https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html
+https://python.langchain.com/api_reference/core/language_models/langchain_core.language_models.base.BaseLanguageModel.html
+https://python.langchain.com/docs/how_to/#chat-models - Manage Large Chat History 
+
 
 
 
