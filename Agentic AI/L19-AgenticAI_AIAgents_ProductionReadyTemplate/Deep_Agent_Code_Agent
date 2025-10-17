@@ -168,16 +168,79 @@ File System
 Sub Agents 
 Prompting 
 
+Put all this things into agent with the custom tools 
+Plan 
+Offload Context 
+Sub-Agent 
+
+
 
 1.Create Agent 
-2.Todo Lists
+2.Todo Lists    
 3.Files 
 4.SubAgents
+
+
+
+Manus Agent 
+1. TODO list writes in the md file , and then reads by the agent. and loads into the context to steer the agent. 
+2. read back iteratively and update it over the time. 
+
+
 
 key Points
 1. LLM Agent can interact with all our computing infrastructure. 
 2. Anthropic Claude Code is a long Running Agent. and OpenAI's Deep Research 
 3. Agent Will lose their way over long sequences. 
+4. Manus Agent can do more tool calls 
+5. Claude Anthropic can do more turn of conversation spanning hundreds of turns. 
+6. Offloading the context is very important, and then reads on demand
+7. File System also useful to offload the token heavy tool call 
+8. Offloading the context is very important, and then reads on demand, update over time, compare the final answer whether it is grounded 
+it with the plan, asking for approval. 
+9. Use Files for long term memory - Ambient Agent. 
+10. Offload the token heavy tool call context, and save the summary in the agent message.
+     then can assess if full context required of particular tool call. for agent's trajectory. 
+11. File System is serves as external memory. [perpetuity - the state or quality of lasting forever:]
+12. Sub-Agents for Context Isolation
+13. Sub-Agents have Lower Risk - They make Implicit and sometimes conflicting decisions. 
+       Walden Yan - Congition. 
+    Issue can be fix if subagents are work parallelizable. 
+For Example: Open DeepResearch - uses subagents only for research and collect the conext, and only one time report will generate 
+14. Often much of the steering is pushed by agent system prompt itself. 
+15. Very Thoughtful prompting really what charaterizes many of these long running agents. 
+
+
+
+All uses subagents for delegation of tasks 
+Claude Code
+Anthropic Multi Agent Research
+Open Deep Research 
+Google Deep Research 
+Manus Agent - has Sub Agents
+
+
+Deep Agent Abstraction 
+-----------------------
+To build different agents from this abstraction 
+
+
+Reconcile 
+1. Files Upload - node one 
+2. Validate if it matches with the column or not - node two otherwise route to the user. 
+         Conditional edge to end or continue or route to user for clarification
+3.
+
+
+Reference - ReactAgent
+https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent
+
+
+    
+
+
+
+
 
 
 
