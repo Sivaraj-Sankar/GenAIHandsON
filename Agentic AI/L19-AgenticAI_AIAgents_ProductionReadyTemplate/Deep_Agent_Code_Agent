@@ -173,6 +173,13 @@ Plan
 Offload Context 
 Sub-Agent 
 
+Planning 
+1. Use the Scheduling tools to keep track of what i need to do when, while, 
+2. Planning tool to keep track what they need to do. 
+3.Planning: TODO Lists
+4.files is a virtual file system contained in state which you will explore in the next lesson.
+
+
 
 
 1.Create Agent 
@@ -209,6 +216,8 @@ it with the plan, asking for approval.
 For Example: Open DeepResearch - uses subagents only for research and collect the conext, and only one time report will generate 
 14. Often much of the steering is pushed by agent system prompt itself. 
 15. Very Thoughtful prompting really what charaterizes many of these long running agents. 
+16.files is a virtual file system contained in state which you will explore in the next lesson.
+17.The challenge with TODO lists lies in maintaining attention as context windows grow—the average Manus task uses approximately 50 tool calls, creating substantial risk of context rot.
 
 
 
@@ -250,6 +259,8 @@ https://github.com/langchain-ai/langgraph/blob/e365b2b8bd695e03d758b19ff109152b2
 
 https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor
 
+
+https://www.anthropic.com/engineering/claude-code-best-practices - Claude Code Agents Best Practices 
 
 
 
