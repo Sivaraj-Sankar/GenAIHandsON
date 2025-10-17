@@ -231,6 +231,14 @@ Reconcile
          Conditional edge to end or continue or route to user for clarification
 3.
 
+Tool with LangGraph State
+Access and Modify 
+Access and modify state within tools
+You can use this to store information to share between nodes, to debug the graph, and to reset a long-running graph to an earlier time.
+When you define state for a graph, you define the data types and a 'reducer' function.  
+**Reducer Function 
+The reducer describes how information is added to that element.
+This is especially useful when a task is mapped to multiple nodes, which are executed in parallel and update state simultaneously.
 
 Reference - ReactAgent
 https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent
@@ -238,9 +246,9 @@ https://docs.langchain.com/oss/python/langchain/agents#what-is-an-agent
 
 Chat Agent Executor - Implementation
 https://github.com/langchain-ai/langgraph/blob/c37c9cbab3287f0988fabe2b853569a23960e3db/libs/prebuilt/langgraph/prebuilt/chat_agent_executor.py
+https://github.com/langchain-ai/langgraph/blob/e365b2b8bd695e03d758b19ff109152b2e342a87/libs/prebuilt/langgraph/prebuilt/tool_node.py#L239-L293
 
-
-    
+https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor
 
 
 
