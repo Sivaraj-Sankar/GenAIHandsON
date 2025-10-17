@@ -236,6 +236,9 @@ Reference - ReactAgent
 https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent
 https://docs.langchain.com/oss/python/langchain/agents#what-is-an-agent
 
+Chat Agent Executor - Implementation
+https://github.com/langchain-ai/langgraph/blob/c37c9cbab3287f0988fabe2b853569a23960e3db/libs/prebuilt/langgraph/prebuilt/chat_agent_executor.py
+
 
     
 
