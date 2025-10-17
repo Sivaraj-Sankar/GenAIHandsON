@@ -234,6 +234,7 @@ Reconcile
 
 Reference - ReactAgent
 https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent
+https://docs.langchain.com/oss/python/langchain/agents#what-is-an-agent
 
 
     
