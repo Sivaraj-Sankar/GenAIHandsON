@@ -218,6 +218,22 @@ For Example: Open DeepResearch - uses subagents only for research and collect th
 15. Very Thoughtful prompting really what charaterizes many of these long running agents. 
 16.files is a virtual file system contained in state which you will explore in the next lesson.
 17.The challenge with TODO lists lies in maintaining attention as context windows grow—the average Manus task uses approximately 50 tool calls, creating substantial risk of context rot.
+18.context offloading through filesystem operations.
+19.maintaining focus while preserving access to critical information - through context offloading. 
+20.provides another compelling example, where subagents store their work in external systems and pass lightweight references back to coordinators.
+21.This prevents the "game of telephone" effect—information degradation as it passes through multiple agents
+22.while enabling fresh subagents to spawn with clean contexts and retrieve stored context like research plans from memory when needed.
+By writing token-heavy context to files in sandboxed environments, agents can effectively manage memory while maintaining the ability to retrieve detailed information when necessary
+23.This pattern is particularly valuable for structured outputs like code, reports, or data visualizations where specialized prompts produce better results than filtering through general coordinators,
+and for long-running research tasks where intermediate results need preservation without constant attention.
+File System - 
+24 This approach provides short-term, thread-wise persistence that's ideal for maintaining context within a single agent conversation
+25 though it's not suited for information that needs to persist across different conversation threads.
+26.**Storing information prior to compression and retrieving it when it's needed is smart context engineering.
+27.**context clash or confusion, where mixed objectives within the same context window can lead to suboptimal performance
+28.**SubAgents Prevents 
+This approach prevents context clashes, confusion, poisoning, and dilution while enabling focused, specialized task execution.
+29.allowing the main agent to delegate work through a task(description, subagent_type) tool call
 
 
 
@@ -261,6 +277,11 @@ https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat
 
 
 https://www.anthropic.com/engineering/claude-code-best-practices - Claude Code Agents Best Practices 
+
+Reference - Open Deep Research Agent 
+https://huggingface.co/blog/open-deep-research
+https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+https://www.anthropic.com/engineering/multi-agent-research-system#:~:text=Subagent%20output%20to%20a%20filesystem%20to%20minimize%20the%20%E2%80%98game%20of%20telephone.%E2%80%99
 
 
 
