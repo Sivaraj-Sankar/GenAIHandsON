@@ -283,6 +283,8 @@ https://huggingface.co/blog/open-deep-research
 https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
 https://www.anthropic.com/engineering/multi-agent-research-system#:~:text=Subagent%20output%20to%20a%20filesystem%20to%20minimize%20the%20%E2%80%98game%20of%20telephone.%E2%80%99
 
+Reference - DeepAgents Abstractiong Package 
+https://github.com/langchain-ai/deepagents - DeepAgents Package 
 
 
 
