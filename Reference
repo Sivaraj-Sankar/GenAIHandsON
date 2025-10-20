@@ -1,3 +1,4 @@
+Friday Oct 3 - Continue to Reference 
 Reference - UC Berkeley
 https://rdi.berkeley.edu/agentx-agentbeats
 https://docs.google.com/presentation/d/1TjtEjh6g9dZBsGxmAmcSp2EFakbmHpU_z31vnkf0c2Y/edit?slide=id.g3848816033c_0_19#slide=id.g3848816033c_0_19
@@ -34,6 +35,7 @@ Reference - RAG Building
 https://raga.ai/blogs/rag-llm-example-building-guide
 https://medium.com/%40chatdocai/revolutionizing-rag-with-enhanced-pdf-structure-recognition-22227af87442
 https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1?utm_source=chatgpt.com
+https://medium.com/%40chatdocai/revolutionizing-rag-with-enhanced-pdf-structure-recognition-22227af87442
 
 Reference - Microsoft Azure - Langchain Connector 
 https://techcommunity.microsoft.com/blog/adforpostgresql/build-enterprise-ready-ai-agents-with-the-new-azure-postgres-langchain--langgrap/4453420
@@ -51,11 +53,111 @@ Reference - https://x.com/schickling/status/1969756133263823358 - Multi Step Con
 https://github.com/openai/agents.md?tab=readme-ov-file
 https://agents.md/#examples
 
+Reference - Claude Code 
+https://github.com/hesreallyhim/awesome-claude-code
+https://www.anthropic.com/engineering/multi-agent-research-system
+https://www.youtube.com/watch?v=XSZP9GhhuAc
+
+Reference - Idempo
+https://softwarepatternslexicon.com/18/19/10/
+https://hackernoon.com/the-idempotence-principle-in-software-architecture
+https://www.linkedin.com/pulse/idempotence-system-design-full-example-lukas-nie%C3%9Fen-j3i4e/
+https://newsletter.systemdesignclassroom.com/p/every-outbox-needs-an-inbox
+
+Reference - Event Driven Architecture 
+https://www.technologyreview.com/2025/10/06/1124323/enabling-real-time-responsiveness-with-event-driven-architecture/
+
+Reference - Building Effective Agents
+https://www.youtube.com/watch?v=aHCDrAbH_go
+
+Reference - Human Layer 
+https://github.com/humanlayer/humanlayer
+https://github.com/ai-that-works/ai-that-works/tree/main/2025-08-05-advanced-context-engineering-for-coding-agents
+https://github.com/humanlayer/humanlayer
+
+Reference - YC - MCP 
+https://www.ycombinator.com/companies/metorial
+
+Reference - Copilotkit 
+https://www.copilotkit.ai/blog/heres-how-to-build-fullstack-agent-apps-gemini-copilotkit-langgraph
+
+Reference - RunBook 
+https://blog.atuin.sh/atuin-desktop-open-source/
+
+Reference - AgentKit - OpenAI
+https://www.livemint.com/technology/tech-news/openai-launches-agentkit-to-make-building-ai-agents-faster-and-safer-how-it-works-11759824536958.html
+
+Reference - E2B - Agent SandBox 
+https://e2b.dev/
+https://github.com/e2b-dev/infra/
+https://inf.news/en/news/2a079af7e54cd0e59e6e530d7e6a1634.html - Manus Sandbox
+https://deepwiki.com/e2b-dev/infra/1-overview
+https://ai-agent-news.com/posts/e2b-raises-21m-ai-agent-infrastructure/
+https://jimmysong.io/en/blog/e2b-browserbase-report/
+https://github.com/automationkit/e2b-infra
+
+
+Reference - Quantum Physics 
+https://www.threads.com/@mindfulphysicist/post/DOYtXm3ig0F?xmt=AQF02gFWZlLF8OwWGO0jSNo658wZNh-3Feao_z8JEvLcuxs
+
+Reference - Context Engineering for Agents
+https://www.youtube.com/watch?v=4GiqzUHD5AA
+https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+https://blog.langchain.com/context-engineering-for-agents/
+
+Reference - 12 Factor Agents
+https://github.com/humanlayer/12-factor-agents/blob/main/README.md#related-resources
+https://github.com/humanlayer/12-factor-agents/blob/main/README.md#12-factor-agents
+https://github.com/humanlayer/agentcontrolplane
+https://github.com/humanlayer/12-factor-agents/blob/main/README.md#related-resources
+https://github.com/humanlayer/12-factor-agents/blob/main/README.md#12-factor-agents
+https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md
+https://www.youtube.com/watch?v=IS_y40zY-hc
+https://maven.com/p/6cbf01/advanced-context-engineering
+https://medium.com/@adhiguna.mahendra/advanced-context-engineering-for-agents-10609a373f54
+
+
+Reference - Luma Event 
+https://luma.com/aitw-hypereng
+
+Reference - DataBricks Project 
+https://github.com/JANHMS/Databricks-on-Azure-Data-Engineering-project?utm_source=chatgpt.com
+
+Reference - LLamaIndex Workflow - Parralel & Multi Strategy 
+https://www.youtube.com/watch?v=06kJ390a-O8&t=225s
+https://developers.llamaindex.ai/python/workflows/retry_steps/
+https://huggingface.co/learn/agents-course/unit2/llama-index/workflows
+https://colab.research.google.com/drive/1HB-x4_laWEtxXu8M3hLGvc5Jac7XJvfe#scrollTo=QHocfe0Hi610
+
+Reference - Extraction of Document  - Parsing 
+https://github.com/NanoNets/docext
+https://github.com/icip-cas/READoc
+
+Reference - LLM Evaluation - Application 
+https://colab.research.google.com/github/shahules786/openai-cookbook/blob/ragas/examples/evaluation/ragas/openai-ragas-eval-cookbook.ipynb#scrollTo=1ee49bc5-4661-4435-8463-197877c18fa3
+https://hamel.dev/blog/posts/llm-judge/index.html
+
+Reference - DeepAgents - UI 
+https://www.youtube.com/watch?v=0CE_BhdnZZI
+
+Reference - LangGraph - Gemini 
+https://github.com/google-gemini/gemini-fullstack-langgraph-quickstart/tree/main/frontend
+
+Reference - Long Context Fails 
+https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html
+
+
+LLM Applications Github
+https://github.com/ray-project/llm-applications?tab=readme-ov-file
+
+LLM CaseStudy 
+https://github.com/lucifertrj/case-study-series
 
 LLM Application Security 
 https://github.com/dewitt4/LLMGuardian
 https://github.com/Ashfaaq98/awesome-genai-cyberhub?tab=readme-ov-file
 https://github.com/hesreallyhim/awesome-claude-code
+https://github.com/HydroXai/pii-masker?utm_source=chatgpt.com
 
 LLM Deployment Inference - Optimization 
 https://thenewstack.io/six-frameworks-for-efficient-llm-inferencing/
@@ -73,10 +175,21 @@ Research Paper
 -------------
 https://drive.google.com/file/d/1AlABrxh1boH3933qU8kCYZJu4l_mm2Mq/view - LLM OS 
 https://drive.google.com/file/d/1mKxQyia51XGOvva-V-aT35GvO2JPG6Gu/view - Social Network Simulator 
+https://www.nature.com/articles/s41467-025-63804-5 - Brain Inspired Agentic Architecture 
+https://www.nature.com/articles/s41467-025-64574-w - SafeTraffic Copilot 
+https://arxiv.org/html/2505.10468v1#:~:text=Agents%20as%20modular%20systems%20driven,task%20decomposition%2C%20persistent%20memory%2C%20and - AI Agent Taxonomy 
+
+
+Survey Research Paper 
+---------------------
+https://arxiv.org/html/2504.18875v1#:~:text=operate%20with%20less%20data,world%20interactions
+
+
 
 Business Use Case 
 -----------------
 https://github.com/johnsonhk88/AI-Bank-Statement-Document-Automation-By-LLM-And-Personal-Finanical-Analysis-Prediction 
+https://deepwiki.com/johnsonhk88/AI-Bank-Statement-Document-Automation-By-LLM-And-Personal-Finanical-Analysis-Prediction/4.3-yolo-layout-analysis
 
 
 
@@ -85,6 +198,7 @@ Leaders
 -------
 Jerry Liu - https://aiconference.com/speakers/jerry-liu-2024/
             https://aiconference.com/speakers/jerry-liu-2024/
+ https://medium.com/llamaindex-blog/llamaindex-gemini-8d7c3b9ea97e
 
 Jason Liu  - Context Engineering 
 https://jxnl.co/writing/2025/09/11/coding-series-index/#what-are-the-key-insights
