@@ -1,0 +1,120 @@
+Reference - UC Berkeley
+https://rdi.berkeley.edu/agentx-agentbeats
+
+Reference - AgentBeats - About Agent Evaluation 
+https://docs.google.com/document/d/1Gs4ccq5cIFoQuTGMWqH1LcdHBUNvIjzOsJhEHHM-ByE/edit?tab=t.0#heading=h.a2wi5a9j79uf
+https://github.com/agentbeats/tutorial
+
+Reference - Context Engineering 
+https://docs.google.com/presentation/d/16aaXLu40GugY-kOpqDU4e-S0hD1FmHcNyF0rRRnb1OU/edit?slide=id.p#slide=id.p
+https://www.youtube.com/watch?v=nyKvyRrpbyY
+
+Reference - Multi Turn Memory = Agent 
+https://medium.com/@bravekjh/building-a-custom-multi-turn-memory-multi-agent-system-with-llamaindex-9db5f55b2b32
+
+Reference - Deep Research 
+https://huggingface.co/spaces/Ayanami0730/DeepResearch-Leaderboard
+
+Reference - LlamaIndex
+https://github.com/run-llama/llama_index
+
+Reference - AgentBox 
+https://www.youtube.com/watch?v=gF341XMN8cY
+https://www.youtube.com/watch?v=gF341XMN8cY
+https://github.com/langchain-ai/agent-inbox
+https://github.com/langchain-ai/agent-inbox-langgraph-example
+
+Reference - Local Deep Research 
+https://github.com/langchain-ai/local-deep-researcher
+
+Reference - RAG Building 
+https://raga.ai/blogs/rag-llm-example-building-guide
+https://medium.com/%40chatdocai/revolutionizing-rag-with-enhanced-pdf-structure-recognition-22227af87442
+https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1?utm_source=chatgpt.com
+
+Reference - Microsoft Azure - Langchain Connector 
+https://techcommunity.microsoft.com/blog/adforpostgresql/build-enterprise-ready-ai-agents-with-the-new-azure-postgres-langchain--langgrap/4453420
+
+Tools 
+Reference  - Git - Spec Driven Software 
+https://github.com/github/spec-kit
+
+Tools 
+Reference - OpenHands 
+https://github.com/All-Hands-AI/OpenHands
+
+Tool - Approach - Agents.md
+Reference - https://x.com/schickling/status/1969756133263823358 - Multi Step Context Engineering
+https://github.com/openai/agents.md?tab=readme-ov-file
+https://agents.md/#examples
+
+
+
+
+Blog Posts 
+----------
+https://medium.com/%40Mattia_Dallago/the-ai-agent-stack-a-product-managers-guide-to-architecting-autonomous-systems-f467d610d76d
+https://eastgate-software.com/ai-agent-components-key-elements-behind-smart-ai-agents-2025/
+
+Research Paper 
+-------------
+https://drive.google.com/file/d/1AlABrxh1boH3933qU8kCYZJu4l_mm2Mq/view - LLM OS 
+https://drive.google.com/file/d/1mKxQyia51XGOvva-V-aT35GvO2JPG6Gu/view - Social Network Simulator 
+
+Business Use Case 
+-----------------
+https://github.com/johnsonhk88/AI-Bank-Statement-Document-Automation-By-LLM-And-Personal-Finanical-Analysis-Prediction 
+
+
+
+
+Leaders 
+-------
+Jerry Liu - https://aiconference.com/speakers/jerry-liu-2024/
+            https://aiconference.com/speakers/jerry-liu-2024/
+
+Jason Liu  - Context Engineering 
+https://jxnl.co/writing/2025/09/11/coding-series-index/#what-are-the-key-insights
+https://github.com/jxnl/blog/blob/main/docs/writing/posts/context-engineering-agent-frameworks.md
+https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-is-this-series-for
+https://x.com/jxnlco/status/1963599205949198829?t=YtzBmNETC_HIwJVuz-rl5A&s=08
+https://x.com/jxnlco/status/1963599205949198829?t=YtzBmNETC_HIwJVuz-rl5A&s=08
+https://github.com/ai-that-works/ai-that-works/tree/main/2025-08-05-advanced-context-engineering-for-coding-agents
+
+Improving RAG - https://fivesixseven.kit.com/2994ff4e37
+
+Agent Mastery - https://www.maryammiradi.com/ai-agents-mastery
+
+
+Templates for Agentic AI 
+https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template?tab=readme-ov-file
+
+
+
+Valuable Reference 
+https://langchain-ai.github.io/langgraph/tutorials/workflows/#building-blocks-the-augmented-llm - Workflow and Agents - In LangGraph 
+https://llamahub.ai/ - LamaIndex Examples
+https://www.llamaindex.ai/blog?tag=RAG&page=1 - Blog Post
+https://www.llamaindex.ai/blog/introducing-llama-datasets-aadb9994ad9e - LlamaIndex Datasets
+https://www.llamaindex.ai/blog/multi-modal-rag-621de7525fea - LlamaIndex MultiModal RAG
+https://www.llamaindex.ai/blog/new-in-llamaparse-multi-page-tables-beta-and-excel-spreadsheet-output
+https://landing.llamaindex.ai/llamaagents - LlamaAgents
+https://docs.langchain.com/langsmith/interrupt-concurrent - LangChain Documents 
+https://colab.research.google.com/github/LangChain-OpenTutorial/LangChain-OpenTutorial/blob/main/17-LangGraph/01-Core-Features/06-LangGraph-Human-in-the-loop.ipynb - Human In the Loop 
+https://github.com/humanlayer/humanlayer - Human Layer 
+
+Valuable Reference1 
+https://hackernoon.com/introducing-a-flagship-mcp-sample-app-powered-by-azure-ai-foundry-and-llamaindexts
+https://hackernoon.com/introducing-a-flagship-mcp-sample-app-powered-by-azure-ai-foundry-and-llamaindexts
+
+
+Priority 
+https://fivesixseven.kit.com/2994ff4e37 - Improving RAG
+https://www.youtube.com/watch?v=aHCDrAbH_go - Building Effective Agents
+https://lilianweng.github.io/posts/2023-06-23-agent/
+https://interrupt.langchain.com/video - LangChain Interrupt Recording 
+https://colab.research.google.com/github/LangChain-OpenTutorial/LangChain-OpenTutorial/blob/main/17-LangGraph/01-Core-Features/06-LangGraph-Human-in-the-loop.ipynb#scrollTo=c52807f7
+https://medium.com/data-science-collective/building-a-text2sql-agent-with-long-term-memory-a-production-grade-architecture-for-user-memory-9d6fc3509e92 - Production Agent Memory 
+https://github.com/MKcodeshere/Text2SQl-Agent-with-Long-Term-Memory/blob/main/memory_agent.py - TexttoSQL Agent Memory 
+
+
