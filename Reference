@@ -1,6 +1,8 @@
 Reference - UC Berkeley
 https://rdi.berkeley.edu/agentx-agentbeats
 https://docs.google.com/presentation/d/1TjtEjh6g9dZBsGxmAmcSp2EFakbmHpU_z31vnkf0c2Y/edit?slide=id.g3848816033c_0_19#slide=id.g3848816033c_0_19
+https://docs.google.com/presentation/d/1TjtEjh6g9dZBsGxmAmcSp2EFakbmHpU_z31vnkf0c2Y/edit?slide=id.g3848816033c_0_0#slide=id.g3848816033c_0_0
+https://agenticai-learning.org/slides/AgenticAI_Jiantao%20Jiao.pdf
 
 Reference - AgentBeats - About Agent Evaluation 
 https://docs.google.com/document/d/1Gs4ccq5cIFoQuTGMWqH1LcdHBUNvIjzOsJhEHHM-ByE/edit?tab=t.0#heading=h.a2wi5a9j79uf
@@ -50,12 +52,22 @@ https://github.com/openai/agents.md?tab=readme-ov-file
 https://agents.md/#examples
 
 
+LLM Application Security 
+https://github.com/dewitt4/LLMGuardian
+https://github.com/Ashfaaq98/awesome-genai-cyberhub?tab=readme-ov-file
+https://github.com/hesreallyhim/awesome-claude-code
+
+LLM Deployment Inference - Optimization 
+https://thenewstack.io/six-frameworks-for-efficient-llm-inferencing/
+http://bentoml.com/llm/getting-started/choosing-the-right-inference-framework
+
 
 
 Blog Posts 
 ----------
 https://medium.com/%40Mattia_Dallago/the-ai-agent-stack-a-product-managers-guide-to-architecting-autonomous-systems-f467d610d76d
 https://eastgate-software.com/ai-agent-components-key-elements-behind-smart-ai-agents-2025/
+
 
 Research Paper 
 -------------
@@ -107,13 +119,16 @@ https://landing.llamaindex.ai/llamaagents - LlamaAgents
 https://docs.langchain.com/langsmith/interrupt-concurrent - LangChain Documents 
 https://colab.research.google.com/github/LangChain-OpenTutorial/LangChain-OpenTutorial/blob/main/17-LangGraph/01-Core-Features/06-LangGraph-Human-in-the-loop.ipynb - Human In the Loop 
 https://github.com/humanlayer/humanlayer - Human Layer 
+https://github.com/hesreallyhim/awesome-claude-code
 
 Valuable Reference1 
 https://hackernoon.com/introducing-a-flagship-mcp-sample-app-powered-by-azure-ai-foundry-and-llamaindexts
 https://hackernoon.com/introducing-a-flagship-mcp-sample-app-powered-by-azure-ai-foundry-and-llamaindexts
 
 
+
 Priority 
+https://github.com/anthropics/prompt-eng-interactive-tutorial - Prompt Engineering
 https://fivesixseven.kit.com/2994ff4e37 - Improving RAG
 https://www.youtube.com/watch?v=aHCDrAbH_go - Building Effective Agents
 https://lilianweng.github.io/posts/2023-06-23-agent/
