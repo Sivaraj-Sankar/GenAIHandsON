@@ -1052,6 +1052,53 @@ Content Safety Concepts - https://learn.microsoft.com/en-us/azure/ai-foundry/con
 RAI - API's - Responsible AI 
 Guardrails 
 
+--------
+Fine Tuning - Why Fine Tuning, where it fits, [Data Preparation - Training Process - Evaluation & Iteration - 
+1. Fine Tuning - to adjust the LLM tone.
+2. Fine Tuning - To Specializing in Something. 
+3. Fine Tuning - Able to Learn New Information. 
+4. Fine Tuning - Can Steer the Model to consistent outputs. 
+5. Fine Tuning - Reducing the Hallucination. 
+6. Fine Tuning - Customize the Model to Specific Use Case. 
+7. Fine Tuning is Useful for the Privacy 
+8. Fine Tuning - Need Quality Data to train 
+9. Fine Tuning - Learn the New Information, unlearn the wrong information learned
+10. Fine Tuning - Is better at moderating 
+11. Fine Tuning will include the guardrails in the Tuning itself for moderation. 
+2. Specific Variant of Fine Tuning 
+3. Instruction Fine Tuning 
+
+
+Pytorch - Meta - Low Level Interface 
+Hugging Face - On Top of Pytorch - Much higher level, import the datasets, 
+Lamini Lib - Llama - High Level Interface 
+
+Fine Tuning - Code  Lamini Helps to run the open source code hosted on the GPU 
+from llama import BasicModelRunner ----> 
+non_finetuned = BasicModelRunner("meta-llama/Llama-2-7b-hf")
+finetuned_model = BasicModelRunner("meta-llama/Llama-2-7b-chat-hf")
+non_finetuned_output = non_finetuned("Tell me how to train my dog to sit")
+print(non_finetuned_output)
+print(finetuned_model("[INST]Tell me how to train my dog to sit[/INST]")) --> To Get rid of auto complete - continuing with the instructions
+
+
+PreTraining - Self-Supervised Learning - Supervising itself to predict the next word prediction
+FineTuning - Turn the Model like Chatbot Experience
+  Self-Supervised Learning - Unlabeled Data
+  Supervised Learning - Labeled Data
+FineTuning for Discriminative Tasks - is not well defined 
+  Images/ImageNet - 
+Generative Tasks - Updating the Weights of the entire model. 
+Same Training Objective as Pretraining, 
+Change the Data more Structured in a way - and outputing and mimicking that structure 
+How much to update the model -- More Advanced ways to do that
+
+
+DataSet Preparation 
+-------------------
+1.EleutherAI - Dataset called - The Pile - 22 Diverse Dataset Scraped from the 
+2.Intellectual Datasets that curated together to actually infuse these models. 
+
 
 
 
