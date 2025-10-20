@@ -1053,7 +1053,12 @@ RAI - API's - Responsible AI
 Guardrails 
 
 --------
-Fine Tuning - Why Fine Tuning, where it fits, [Data Preparation - Training Process - Evaluation & Iteration - 
+Fine Tuning[Behavior Change & Gaining the New Knowledge] - Why Fine Tuning, where it fits, [Data Preparation - Training Process - Evaluation & Iteration -
+Extracting Text in - Low Text Out 
+Lot of Work in Reading - Keywords, topics, routing, agents(Planning, reasoning, self-critic, tool use) etc
+Expansion - Text in - More Text Out 
+Writing - Chating - Write Emails - Write Code. 
+Task Clarity is key indicator of success - Good Vs Bad Vs Better ouptuts looks like 
 1. Fine Tuning - to adjust the LLM tone.
 2. Fine Tuning - To Specializing in Something. 
 3. Fine Tuning - Able to Learn New Information. 
@@ -1080,10 +1085,66 @@ finetuned_model = BasicModelRunner("meta-llama/Llama-2-7b-chat-hf")
 non_finetuned_output = non_finetuned("Tell me how to train my dog to sit")
 print(non_finetuned_output)
 print(finetuned_model("[INST]Tell me how to train my dog to sit[/INST]")) --> To Get rid of auto complete - continuing with the instructions
+-DataSet of Pretraining and FineTuning 
+import jsonlines
+import itertools
+import datasets
+from datasets import load_dataset
+#pretrained_dataset = load_dataset("EleutherAI/pile", split="train", streaming=True)
+pretrained_dataset = load_dataset("c4", "en", split="train", streaming=True)
+-FineTuning Dataset 
+filename = "lamini_docs.jsonl"
+instruction_dataset_df = pd.read_json(filename, lines=True)
+instruction_dataset_df
+examples = instruction_dataset_df.to_dict()
+text = examples["question"][0] + examples["answer"][0]
+text
+if "question" in examples and "answer" in examples:
+  text = examples["question"][0] + examples["answer"][0]
+elif "instruction" in examples and "response" in examples:
+  text = examples["instruction"][0] + examples["response"][0]
+elif "input" in examples and "output" in examples:
+  text = examples["input"][0] + examples["output"][0]
+else:
+  text = examples["text"][0]
+prompt_template_qa = """### Question:
+{question}
+
+### Answer:
+{answer}"""
+question = examples["question"][0]
+answer = examples["answer"][0]
+
+text_with_prompt_template = prompt_template_qa.format(question=question, answer=answer)
+text_with_prompt_template
+prompt_template_q = """### Question:
+{question}
+
+### Answer:"""
+num_examples = len(examples["question"])
+finetuning_dataset_text_only = []
+finetuning_dataset_question_answer = []
+for i in range(num_examples):
+  question = examples["question"][i]
+  answer = examples["answer"][i]
+
+  text_with_prompt_template_qa = prompt_template_qa.format(question=question, answer=answer)
+  finetuning_dataset_text_only.append({"text": text_with_prompt_template_qa})
+
+  text_with_prompt_template_q = prompt_template_q.format(question=question)
+  finetuning_dataset_question_answer.append({"question": text_with_prompt_template_q, "answer": answer})
+pprint(finetuning_dataset_text_only[0])
+pprint(finetuning_dataset_question_answer[0])
+with jsonlines.open(f'lamini_docs_processed.jsonl', 'w') as writer:
+    writer.write_all(finetuning_dataset_question_answer)
+finetuning_dataset_name = "lamini/lamini_docs"
+finetuning_dataset = load_dataset(finetuning_dataset_name)
+print(finetuning_dataset)
+
 
 
 PreTraining - Self-Supervised Learning - Supervising itself to predict the next word prediction
-FineTuning - Turn the Model like Chatbot Experience
+FineTuning - Turn the Model like Chatbot Experience   - Prepare the DataSet like Question Answer Pair/ Instruction Reponse Pair / Input Output Pair 
   Self-Supervised Learning - Unlabeled Data
   Supervised Learning - Labeled Data
 FineTuning for Discriminative Tasks - is not well defined 
@@ -1094,10 +1155,17 @@ Change the Data more Structured in a way - and outputing and mimicking that stru
 How much to update the model -- More Advanced ways to do that
 
 
+
+
+
 DataSet Preparation 
 -------------------
 1.EleutherAI - Dataset called - The Pile - 22 Diverse Dataset Scraped from the 
 2.Intellectual Datasets that curated together to actually infuse these models. 
+
+Hugging Face - https://huggingface.co/C4/datasets - Common Crawl Datasets 
+https://docs.lamini.ai/ - Framework for FineTuning the OpenSource Models 
+
 
 
 
