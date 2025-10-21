@@ -1073,6 +1073,8 @@ Task Clarity is key indicator of success - Good Vs Bad Vs Better ouptuts looks l
 2. Specific Variant of Fine Tuning 
 3. Instruction Fine Tuning 
 
+1.There is a difference in preparing the dataset for Instruction fine tuning & other types of fine tuning 
+  Change & tailor your data to sepcific task of fine-tuning 
 
 Pytorch - Meta - Low Level Interface 
 Hugging Face - On Top of Pytorch - Much higher level, import the datasets, 
@@ -1140,11 +1142,22 @@ with jsonlines.open(f'lamini_docs_processed.jsonl', 'w') as writer:
 finetuning_dataset_name = "lamini/lamini_docs"
 finetuning_dataset = load_dataset(finetuning_dataset_name)
 print(finetuning_dataset)
+-Instruction Fine Tuning 
+import itertools
+import jsonlines
+
+from datasets import load_dataset
+from pprint import pprint
+
+from llama import BasicModelRunner
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
 
 
 
 PreTraining - Self-Supervised Learning - Supervising itself to predict the next word prediction
-FineTuning - Turn the Model like Chatbot Experience   - Prepare the DataSet like Question Answer Pair/ Instruction Reponse Pair / Input Output Pair 
+FineTuning[Reasoning, routing, agents, copilot, chat] - Turn the Model like Chatbot Experience   - Prepare the DataSet like Question Answer Pair/ Instruction Reponse Pair / Input Output Pair 
   Self-Supervised Learning - Unlabeled Data
   Supervised Learning - Labeled Data
 FineTuning for Discriminative Tasks - is not well defined 
@@ -1153,20 +1166,41 @@ Generative Tasks - Updating the Weights of the entire model.
 Same Training Objective as Pretraining, 
 Change the Data more Structured in a way - and outputing and mimicking that structure 
 How much to update the model -- More Advanced ways to do that
+Instruction Fine Tuning - Instruction Following 
+    - Turns the GPT3 to ChatGPT to give the chat power 
+    - Dataset - FAQ, Slack Messages, Support Conversation
+    - Another LLM will to produce the Q&A data format, - [Alpaca]
 
 
+7Billion
+70Billion
+70Million
 
 
-
-DataSet Preparation 
+DataSet Preparation [High Quality - Diverse Inputs - Real - More]
 -------------------
 1.EleutherAI - Dataset called - The Pile - 22 Diverse Dataset Scraped from the 
 2.Intellectual Datasets that curated together to actually infuse these models. 
 
+Steps to Prepare the Data 
+1. Collect Instruction-Response Pairs
+2. Concatenate Pairs 
+3. Tokenize: Pad, Truncate. [ING Tokenizers]
+4. Split into Train&Test. 
+
+
 Hugging Face - https://huggingface.co/C4/datasets - Common Crawl Datasets 
 https://docs.lamini.ai/ - Framework for FineTuning the OpenSource Models 
 
-
+Common Steps for Fine Tuning 
+1. Data Preparation - Crawl - By LLM Data Prepartaion Tool - Easy 
+2. Preparing DataSet for Train & Test - Need to Know what features will be in train & Test 
+3. Model Training - Self-Supervised or Labeled one ?  - Decoding Only Transformer - How it's working 
+4. What is the Loss function for the Fine Tuning - 
+5. Training vs Validation vs Testing 
+6. About the Loss Function - Analogy to Regression vs Classification - Scale Free Error Function
+7. What is about Loss Function & Cost Function 
+8. 
 
 
 
