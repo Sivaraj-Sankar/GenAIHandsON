@@ -1202,6 +1202,21 @@ Common Steps for Fine Tuning
 7. What is about Loss Function & Cost Function 
 8. 
 
+Hyper Parameter Tuning 
+1. Learning Rate 
+2. Learning Rate Scheduler 
+3. Optimizer Hyperparameter 
+
+Training Configuration - 
+1. Max_Steps - Batch of Training Data 
+2. Learning_Rate - 
+3. Per_Device Train Batch Size - 
+4. Output Dir 
+5. Gradient Accumulation Steps - 
+
+Calculating the Number of Floating Point Operations. 
+
+
 
 
 from collections import Counter 
