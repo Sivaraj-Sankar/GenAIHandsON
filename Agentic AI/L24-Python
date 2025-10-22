@@ -1217,6 +1217,111 @@ Training Configuration -
 Calculating the Number of Floating Point Operations. 
 
 
+-------------------------
+Microsoft Power Automate  Differs from Azure Logic Apps
+--------------------------
+Automating repetitive tasks
+1.Example: When an email arrives in Outlook with an attachment, automatically save it to OneDrive or SharePoint.
+Approvals and workflows
+1.Example: When an employee submits a leave request form, route it for manager approval, and then send a confirmation email automatically.
+Data collection and synchronization
+1.Example: Automatically update a SharePoint list or Excel file when a record changes in Dynamics 365 or Salesforce.
+Notifications and alerts
+1.Example: Send a Teams message or push notification when a new record is added to a database or form.
+RPA (Robotic Process Automation)
+1.Example: Automate legacy desktop applications that don’t have APIs using Power Automate Desktop (attended or unattended RPA).
+AI automation
+1.Example: Use AI Builder in Power Automate to extract data from documents (like invoices or forms) and process them automatically.
+
+Connects with 
+Microsoft 365 (Outlook, Teams, SharePoint, Excel, etc.)
+Dynamics 365
+Power BI and Power Apps
+Dataverse
+Non-Microsoft services like Salesforce, Google Drive, Dropbox, Twitter, Slack, etc.
+
+Types of Flows 
+Cloud Flows – Automate across online services (triggered by events or schedules).
+Desktop Flows – Automate on your PC using RPA.
+Business Process Flows – Guide users through defined stages (used in Dynamics/Power Apps).
+
+
+-----------------------
+Azure Logic Apps - https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview
+-------------------
+1.completing common tasks, such as getting data, sending data, and managing data.
+2.use a visual designer along with prebuilt operations to make building workflows as easy as possible.
+3.work with resources from different components, such as services, systems, apps, and data sources.
+4.Route and process customer orders across on-premises systems and cloud services.
+5.Move uploaded files from an SFTP or FTP server to Azure Blob Storage.
+6.The following example workflow uses conditions and switches to determine the next action
+
+
+----------------
+Dynamic 365 - 
+----------------
+Microsoft Dynamics 365 is a cloud-based suite of business applications that combines ERP (Enterprise Resource Planning) and CRM (Customer Relationship Management)
+
+It’s part of the Microsoft Business Applications ecosystem, which includes:
+Power BI (analytics)
+Power Automate (workflow automation)
+Power Apps (custom app building)
+Power Virtual Agents (chatbots)
+Dataverse (data layer that stores all D365 and Power Platform data)
+
+-------------------
+Microsoft Power Apps 
+--------------------
+Microsoft Power Apps is a low-code / no-code application development platform that lets you build custom business apps — web or mobile — without writing much code.
+
+1.A tool to build custom apps easily using drag-and-drop + data connections — without needing to be a software developer.
+
+Many organizations depend on Excel, paper forms, or manual processes.
+Power Apps helps convert those manual workflows into digital apps that:
+Run on web and mobile
+Connect to company data (SharePoint, Excel, Dataverse, SQL, SAP, etc.)
+Integrate seamlessly with other Microsoft tools
+
+Imagine your company tracks employee travel requests using Excel and email.
+You can use Power Apps to build a Travel Request App in hours:
+Employees fill out a travel request form in Power Apps (web/mobile).
+Power Automate triggers an approval flow (manager approval).
+The data is stored in Dataverse or SharePoint.
+HR can view or approve requests directly from Teams or Power BI dashboards.
+
+Types of Power Apps
+1.Canvas App
+You start with a blank canvas and design the UI (drag-and-drop).
+2.Model-Driven App
+Based on Dataverse data model — UI auto-generated from schema.
+3.Portal App
+Public or private web portal accessible by external users.
+
+----------
+DataVerse
+----------
+Dataverse (data layer that stores all D365 and Power Platform data)
+
+Before Dataverse, business data was scattered — in Excel, SharePoint, SQL, Dynamics 365, etc.
+Dataverse provides a single, unified data platform where:
+1.Dataverse stores data in tables (previously called entities), similar to a database like SQL.
+Each table has:
+Columns (fields, like "Name", "Email", "Order Amount")
+Rows (records, like each customer or transaction)
+2.You can also define:
+
+Relationships (like “Customer → Orders”)
+Business rules
+Validation logic
+Calculated or lookup fields
+
+
+----------------
+OpenAI AgentKit
+----------------
+1.Learn how to build, deploy, and optimize agent workflows with AgentKit.
+2.AgentKit is a modular toolkit for building, deploying, and optimizing agents.
+
 
 
 from collections import Counter 
