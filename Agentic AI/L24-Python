@@ -1332,6 +1332,7 @@ Microsoft Copilot Studio
 3. Publish your agent 
 4. Add Knowledge - Azure AI Search, Dynamics 365, Salesforce, ServiceNow, Azure SQL, Dataverse, SharePoint, Public websites, Confluence, SnowFlake, Azure Databricks, Oracle Database
 
+1.Channels - 
 
 
 from collections import Counter 
