@@ -146,6 +146,10 @@ https://github.com/google-gemini/gemini-fullstack-langgraph-quickstart/tree/main
 Reference - Long Context Fails 
 https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html
 
+Reference - Fine Tuning LLM's
+https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_VL_(8B)-Vision.ipynb
+https://docs.unsloth.ai/new/vision-reinforcement-learning-vlm-rl
+https://arxiv.org/pdf/2408.13296
 
 LLM Applications Github
 https://github.com/ray-project/llm-applications?tab=readme-ov-file
