@@ -1322,6 +1322,16 @@ OpenAI AgentKit
 1.Learn how to build, deploy, and optimize agent workflows with AgentKit.
 2.AgentKit is a modular toolkit for building, deploying, and optimizing agents.
 
+========================
+Microsoft Copilot Studio 
+========================
+1. Add Tools - Excel Online, Microsoft Dataverse, Microsoft Teams, Office 365 Outlook, Office 365 Users, PLanner -- all are connector 
+          - Power Automate Flow - Power Virtual Agents Flow Template, 
+          - Search Dynamics 365 Knowledge Article flow 
+2. Add Triggers 
+3. Publish your agent 
+4. Add Knowledge - Azure AI Search, Dynamics 365, Salesforce, ServiceNow, Azure SQL, Dataverse, SharePoint, Public websites, Confluence, SnowFlake, Azure Databricks, Oracle Database
+
 
 
 from collections import Counter 
