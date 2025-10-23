@@ -166,6 +166,9 @@ Microsoft Develop New Skills
 https://www.microsoft.com/en-in/events/search-catalog?q=Agent+in+a+Day&filters=primary-language%3Aenglish%2CTime%3A5b96005c-760d-48a4-9599-a1af59f0ed3f&startTime=08%3A00&endTime=10%3A00&timeZone=Asia%2FCalcutta&scenario=events
 https://www.microsoft.com/en-in/events/search-catalog?scenario=events
 
+Reference - Reconcil Agent 
+https://github.com/gudakeshin/fs-reconciliation-agents/blob/main/src/core/agents/data_ingestion/agent.py
+
 
 LLM Applications Github
 https://github.com/ray-project/llm-applications?tab=readme-ov-file
