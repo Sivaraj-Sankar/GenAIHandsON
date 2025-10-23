@@ -2394,6 +2394,38 @@ https://langchain-ai.github.io/langgraph/tutorials/workflows/#agent -  Agent Arc
 
 
 
+InterView Python Questions
+--------------------------
+def is_valid_brackets(s: str) -> bool:
+    stack = []
+    pairs = {')': '(', ']': '[', '}': '{'}
+    
+    for char in s:
+        if char in pairs.values():  # opening bracket
+            stack.append(char)
+        elif char in pairs:         # closing bracket
+            if not stack or stack[-1] != pairs[char]:
+                return False
+            stack.pop()
+        else:
+            return False  # invalid character (not a bracket)
+    
+    return not stack
+
+print(is_valid_brackets("()"))        # True
+print(is_valid_brackets("()[]{}"))    # True
+print(is_valid_brackets("(]"))        # False
+print(is_valid_brackets("([)]"))      # False
+print(is_valid_brackets("{[]}"))      # True
+
+
+Got it 👍 — you want to check if a string made of brackets ({}, [], ()) is valid.
+A bracket string is valid if:
+Every opening bracket has a matching closing bracket of the same type.
+Brackets are closed in the correct order.
+Let’s write a simple and clean solution in Python
+
+
 
 
 
