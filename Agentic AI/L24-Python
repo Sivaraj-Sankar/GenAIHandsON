@@ -1,11 +1,44 @@
 Index 
 -----
+Memory Management in Python 
 OOps Concept
 Docker 
 About Transformers & LLM 
 FastAPI (Concurrency to process web requests)
 Fine Tuning Behaviour 
 
+
+
+Memory Management in Python 
+===========================
+1.memory management is handled automatically by the Python Memory Manager and the Garbage Collector (GC)
+2.Python uses a layered approach for memory management:
+3.Python memory manager: Handles small object allocations (usually < 512 bytes). It manages memory pools and blocks efficiently.
+4.Object-specific allocators: Each Python object type (like lists, dicts, strings) has its own allocator optimized for that type.
+5.System allocator: For large objects or when PyMalloc needs more memory, it requests it directly from the OS via C library functions like malloc() and free().
+6.Reference Counting
+      Every Python object has a reference count, which tracks how many variables or structures refer to it.
+      When the count becomes zero, the object is automatically deallocated.
+7.Garbage Collection (GC)
+      Reference counting works well, but it can’t handle circular references (e.g., objects referring to each other).
+That’s where the garbage collector comes in.
+The gc module detects and cleans up cyclic references that are no longer reachable.
+it uses a generational approach, meaning:
+Objects that survive longer are checked less frequently.
+Younger objects are collected more often.
+import gc
+
+gc.collect()       # manually trigger garbage collection
+gc.get_stats()     # view collection statistics
+
+Memory Pools and Blocks
+Small objects are allocated in pools and arenas.
+The PyMalloc allocator keeps memory fragmentation low and reuses freed space efficiently.
+This makes allocation fast and avoids frequent calls to the OS.
+5. Other Memory Management Features
+del keyword → decreases reference count manually.
+sys.getrefcount(obj) → returns reference count of an object.
+weakref module → allows referencing an object without increasing its reference count (useful to avoid memory leaks).
 
 
 
