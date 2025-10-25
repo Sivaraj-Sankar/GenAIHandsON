@@ -1,3 +1,14 @@
+Index 
+-----
+OOps Concept
+Docker 
+About Transformers & LLM 
+FastAPI (Concurrency to process web requests)
+Fine Tuning Behaviour 
+
+
+
+
 MRO - Method Resolution Object
 print(SubClass.__mro__)
 print(SubClass.mro())
@@ -2197,6 +2208,23 @@ Store updates → useSelector runs again
    ↓
 Component re-renders with "1"
 
+Navigation in the Menu Items 
+---------------------------
+1.React Query to create a well-structured web application.
+2.BrowserRouter (Router)
+Wraps your app to enable navigation and routing (URL → page mapping).
+3.Routes & Route
+Define which component should be shown for a specific URL path.
+4.Navigate
+Used for redirecting (e.g., any unknown path → /).
+QueryClient & QueryClientProvider
+Comes from React Query. Used to manage API data fetching, caching, and synchronization efficiently.
+5.const queryClient = new QueryClient();
+queryClient: manages all React Query state (caching API data, invalidation, etc.)
+6.Wraps the entire app → gives all components access to React Query features like:
+useQuery() → to fetch data
+useMutation() → to send data
+Built-in caching and background refetching
 
 
 
