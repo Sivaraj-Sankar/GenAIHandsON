@@ -169,6 +169,12 @@ https://www.microsoft.com/en-in/events/search-catalog?scenario=events
 Reference - Reconcil Agent 
 https://github.com/gudakeshin/fs-reconciliation-agents/blob/main/src/core/agents/data_ingestion/agent.py
 
+Reference - Agent Builder [Visually assemble, debug, and export multi-step agent workflows]
+https://openai.com/index/introducing-agentkit/
+https://platform.openai.com/docs/guides/agents/agent-builder
+1.A workflow is a combination of agents, tools, and control-flow logic
+
+
 
 LLM Applications Github
 https://github.com/ray-project/llm-applications?tab=readme-ov-file
