@@ -201,6 +201,8 @@ https://github.com/langchain-ai/langgraph/blob/main/docs/docs/concepts/human_in_
 https://colab.research.google.com/github/LangChain-OpenTutorial/LangChain-OpenTutorial/blob/main/17-LangGraph/01-Core-Features/06-LangGraph-Human-in-the-loop.ipynb#scrollTo=41c54ff9
 https://dev.to/jamesbmour/interrupts-and-commands-in-langgraph-building-human-in-the-loop-workflows-4ngl - HITL
 1.Allow access to graph’s state after execution, several powerful capabilities including human-in-the-loop, memory, time travel, and fault-tolerance are all possible
+https://www.youtube.com/watch?v=6BJDKf90L9A
+https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/
 
 
 
