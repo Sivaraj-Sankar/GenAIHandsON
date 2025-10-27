@@ -190,6 +190,13 @@ https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AqcM6WDL0r9Ak_wU3yIBgwg.png
 https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AA1mas3IHYxCNdNzyZ_sgNA.png
 https://images.openai.com/thumbnails/url/tbQF4nicu5meUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4xMAuqKs2KsswJi3Q1LSwr1_WIL4pyyjdKSnP0dK_I98jzyKoMtnTN9HN3VCu2NTQAAA8EJQE
 
+Reference - LangGraph - [Multi-Agent] [Command]
+https://langchain-ai.github.io/langgraph/concepts/multi_agent/#multi-agent-architectures
+https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/
+https://docs.langchain.com/oss/python/langgraph/persistence
+https://docs.langchain.com/oss/python/langgraph/durable-execution - Very Important Topics 
+https://docs.langchain.com/oss/python/langgraph/interrupts - Very Important Topics 
+1.Allow access to graph’s state after execution, several powerful capabilities including human-in-the-loop, memory, time travel, and fault-tolerance are all possible
 
 
 
