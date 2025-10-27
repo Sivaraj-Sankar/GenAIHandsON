@@ -196,6 +196,9 @@ https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/
 https://docs.langchain.com/oss/python/langgraph/persistence
 https://docs.langchain.com/oss/python/langgraph/durable-execution - Very Important Topics 
 https://docs.langchain.com/oss/python/langgraph/interrupts - Very Important Topics 
+https://sangeethasaravanan.medium.com/human-in-the-loop-with-langgraph-a-beginners-guide-8a32b7f45d6e - Human in the Loop with input,
+https://github.com/langchain-ai/langgraph/blob/main/docs/docs/concepts/human_in_the_loop.md
+https://colab.research.google.com/github/LangChain-OpenTutorial/LangChain-OpenTutorial/blob/main/17-LangGraph/01-Core-Features/06-LangGraph-Human-in-the-loop.ipynb#scrollTo=41c54ff9
 1.Allow access to graph’s state after execution, several powerful capabilities including human-in-the-loop, memory, time travel, and fault-tolerance are all possible
 
 
