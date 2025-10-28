@@ -633,6 +633,54 @@ Event Sourcing  -
 ***Requires thinking in events 
 
 
+--------
+--------
+-----------------
+Agent = 
+1. maybe a user message, maybe a cron fired, maybe a webhook, etc)
+2. Agents get lost when the context window gets too long 
+3. they spin out trying the same broken approach over and over again
+4. literally thats it, but that's enough to kneecap the approach
+5. In the "deploybot" example, we gain a couple benefits from owning the control flow and context accumulation:
+6. In our switch statement and for loop, we can hijack control flow to pause for human input or to wait for completion of long-running tasks.
+7.Instead, own your prompts and treat them as first-class code:
+8.Role Hacking: take advantage of APIs that support nonstandard usage of user/assistant roles - for example, the now-deprecated non-chat flavor of OpenAI "completions" API. This includes some so-called "model gaslighting" techniques
+9.the most token- and attention-efficient way you can.
+
+
+prompt
+switch statement 
+accumulated context
+
+
+Long Running Agent Important 
+1. In our switch statement and for loop, we can hijack control flow to pause for human input or to wait for completion of long-running tasks
+2. We can trivially serialize the context window for pause+resume
+
+Unify Execution State and Business State 
+1.Even outside the AI world, many infrastructure systems try to separate "execution state" from "business state". For AI apps, this might involve complex abstractions to track things like current step, next step, waiting status, retry counts, etc. This separation creates complexity that may be worthwhile, but may be overkill for your use case.
+2.Execution state: current step, next step, waiting status, retry counts, etc.
+Business state: What's happened in the agent workflow so far (e.g. list of OpenAI messages, list of tool calls and results, etc.)
+3.In reality, you can engineer your application so that you can infer all execution state from the context window. In many cases, execution state (current step, waiting status, etc.) is just metadata about what has happened so far.
+4.You may have things that can't go in the context window, like session ids, password contexts, etc, but your goal should be to minimize those things. By embracing factor 3 you can control what actually goes into the LLM
+Simplicity: One source of truth for all state
+Serialization: The thread is trivially serializable/deserializable
+Debugging: The entire history is visible in one place
+Flexibility: Easy to add new state by just adding new event types
+Recovery: Can resume from any point by just loading the thread
+Forking: Can fork the thread at any point by copying some subset of the thread into a new context / state ID
+Human Interfaces and Observability: Trivial to convert a thread into a human-readable markdown or a rich Web app UI
+
+ Launch/Pause/Resume with simple APIs
+Agents are just programs, and we have things we expect from how to launch, query, resume, and stop them.
+It should be easy for users, apps, pipelines, and other agents to launch an agent with a simple API.
+Agents and their orchestrating deterministic code should be able to pause an agent when a long-running operation is needed.
+External triggers like webhooks should enable agents to resume from where they left off without deep integration with the agent orchestrator.
+Note - often AI orchestrators will allow for pause and resume, but not between the moment of tool selection and tool execution. See also
+
+
+
+
 
 Domain Driven Design  (DDD) approach in your architecture 
 1.DDD is not a “new architecture” per se—
