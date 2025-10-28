@@ -7,6 +7,9 @@ About Transformers & LLM
 FastAPI (Concurrency to process web requests)
 Fine Tuning Behaviour 
 
+Python - Bracket Program 
+
+
 
 
 Memory Management in Python 
@@ -581,6 +584,11 @@ Event Driven Architecture - Decoupled components react to events on a publish/su
 Message-Driven/Message-Queue - Tasks are serialized into messages that are queued and processed asynchronoulsy. 
                              - Background jobs, batch pipelines, order processing, | Asynchronous Flow, Decoupling of producer/consumer 
                              - Potential Message loss if not **idempotent, latency 
+                             - Tasks are serialized into messages that are queued and processed asynchronously.
+                             - Background jobs, batch pipelines, order processing.  
+                             - Asynchronous flow, decoupling of producer/consumer. 
+                             - Potential message loss if not idempotent, latency. | ActiveMQ, Amazon SQS, Kafka 
+
 **idempotent - denoting an element of a set which is unchanged in value when multiplied or otherwise operated on by itself.
 **
 https://newsletter.systemdesignclassroom.com/p/every-outbox-needs-an-inbox
