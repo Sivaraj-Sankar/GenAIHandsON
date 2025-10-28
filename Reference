@@ -205,6 +205,28 @@ https://www.youtube.com/watch?v=6BJDKf90L9A
 https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/
 
 
+Reference - Human Layer 
+https://github.com/humanlayer/12-factor-agents
+https://12factor.net/ - 12 Factor Net
+https://github.com/humanlayer/12-factor-agents/discussions/61 - Discussion 
+https://www.youtube.com/watch?v=8kMaTybvDUw - Youtube Video 
+https://github.com/humanlayer/humanlayer/tree/main?tab=readme-ov-file#even-with-state-of-the-art-agentic-reasoning-and-prompt-routing-llms-are-not-sufficiently-reliable-to-be-given-access-to-high-stakes-functions-without-human-oversight
+OuterLoop Agent - https://theouterloop.substack.com/p/openais-realtime-api-is-a-step-towards
+https://www.youtube.com/watch?v=8bIHcttkOTE
+https://www.anthropic.com/engineering/building-effective-agents#agents
+https://www.humanlayer.dev/
+https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-10-small-focused-agents.md#what-if-llms-get-smarter
+https://github.com/got-agents/agents/tree/main/deploybot-ts - deploy Bot - Open Source Agent 
+https://x.com/chainlit_io/status/1858613325921480922 - Chatbot 
+https://github.com/humanlayer/12-factor-agents/blob/main/README.md#12-factor-agents - 12 Factor Template Pattern 
+https://github.com/humanlayer/12-factor-agents?tab=readme-ov-file#visual-nav - Related Resources 
+https://github.com/dexhorthy/mailcrew  - Stripe Agents 
+https://hamel.dev/blog/posts/prompt/ - Prompting Pattern 
+https://thedataexchange.media/baml-revolution-in-ai-engineering/ - Data Exchange 
+
+
+
+
 
 
 
