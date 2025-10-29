@@ -11,6 +11,85 @@ Python - Bracket Program
 
 
 
+SQL Statements
+--------------
+Data Analysis 
+Backend Development 
+AI/ML Data Pipelines 
+
+DBMS 
+RDBMS
+SQL 
+NoSQL
+
+1.MySQL, PostgreSQL, SQLite, SQL Server, Oracle DB 
+2.Create Database, Create Table, 
+3.Insert into, Update, Delete, Select 
+4.Where, order by, limit, Distinct, asc, desc
+WHere = , >, <, != 
+Between, in, like 
+5.Joins + Aggregations 
+Aggregate function, Count(), Sum(), Avg(), Min(), Max()
+Group by 
+Having ---> filtering groups with Having 
+6.Joins 
+ INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN
+7.Self-Joins
+8.Scalar SubQuery 
+9.Correlated SubQuery 
+10.Subqueries - IN, EXISTS 
+11.Set Operations, 
+UNION, INTERSECT, EXCEPT
+12.Window Functions 
+       ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE()
+13.LAG(), LEAD()
+Paritions and frames 
+14.CTEs and Views 
+        WITH Clause (Common Table Expressions)
+15.Creating and using Views 
+16.Transactions and Constraints
+     BEGIN, COMMIT, ROLLBACK 
+   Primary key, Foreign Key, Unique, Check Constraints
+ 17.Performance Tuning [Indexes, Query Execution Plan, Normalization & Denormalization]
+18. DDL - Data Definition Language
+     Create - CREATE TABLE employees (...);
+     Alter  - ALTER TABLE employees ADD COLUMN age INT;
+     Drop   - DROP TABLE employees;
+     TRUNCATE TABLE employees;
+     RENAME TABLE employees TO staff;
+19. DML - Data Manipulation Language 
+      SELECT - Select * from 
+      INSERT - INSERT INTO Employ VALUES 
+      UPDATE - UPDATE Employ SET Salary = ----- where id = 1
+      DELETE FROM Employee
+3.   DCL - Data Control Language 
+    Grant = Give User access Privileges - Grant SELECT on employees TO user1;
+    Revoke - Take Back privileges   - REVOKE SELECT on Employees FROM user1;
+21. TCL - Transaction Control Language 
+  BEGIN/START Transaction - BEGIN;
+  COMMIT          - COMMIT;
+  ROLLBACK        - ROLLBACK;
+  SAVEPOINT       - SAVEPOINT before_update
+22. DQL - Data Query Language 
+23. 
+
+
+
+Questions
+1. Where we can do normalization
+2. ACID
+3. Views and Temporary Table
+4.Foreign Keys
+
+
+
+
+
+
+
+
+
+
 
 Memory Management in Python 
 ===========================
