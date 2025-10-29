@@ -71,15 +71,48 @@ Paritions and frames
   ROLLBACK        - ROLLBACK;
   SAVEPOINT       - SAVEPOINT before_update
 22. DQL - Data Query Language 
-23. 
-
-
+23. Attacker (offensive) and Defending (Security Analyst) (Defensive) 
+24. SQL in Offensive Security (Attacks & Exploitation) 
+25. SQL in Defensive Security (Detection, Hardening, Forensics) 
+26. Database Architecture (DBMS, RDBMS) 
+27. Database Metadata Tables (information Schema) 
+28.Offensive Side (Read Team) SQL Exploitation
+    SQL Injection and related attack vectors 
+    Types of SQL Injection 
+    1) Classic (String-Based) 
+    2) Blind SQLi
+    3) Error-Based SQLi
+    4) Union-Based SQLi
+    5) Out-of-band SQLi
+29.Tools & Labs To Practice 
+PortSwigger Web Security Academy
+DVWA (Damn Vulnerable Web App)
+bWAPP, Mutillidae, HackTheBox
+SQLMap (automation tool for testing SQLi)
+30.ByPass Techniques 
+Bypass Techniques
+Comment-based bypass (--, #)
+Case variation
+Encoding (URL, Hex)
+Stacking queries (where allowed)
+31. Defensive Side - SQL Security Hardening (Blue Team) 
+Always use Parameterized Queries/ Prepared Statements 
+cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+Use ORMs (like SQLAlchemy, Django ORM) to reduce raw query risk.
+Validate input type, length, and characters.
+Auditing & Logging
+Enable query logging, especially failed login attempts
 
 Questions
 1. Where we can do normalization
 2. ACID
 3. Views and Temporary Table
 4.Foreign Keys
+5.PostrgeSQL is DBMS or RDBMS
+
+Read Team & Blue Team 
+
+
 
 
 
