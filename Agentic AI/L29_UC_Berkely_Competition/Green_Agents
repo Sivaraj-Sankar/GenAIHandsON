@@ -1,0 +1,36 @@
+1.AgentBeats provides a prompt-based toolkit to help developers
+quickly spin up a prototype green agent, making it easy to get started
+2.For more rigorous or complex testing—say, strict workflows or custom
+environments—developers can also hand-code the logic of a green
+agent. 
+3.Ultimately, as long as it complies with the A2A protocol, any web
+service can serve as a green agent
+
+Type 1
+Goal: Adapt an existing benchmark (already published/tested) and
+integrate as a green agent in AgentBeats
+– E.g. SWE-bench Verified, Terminal bench
+• Largely reuse existing evaluation metrics or rubrics
+
+
+Examples of Green Agents
+Reference 
+1. https://docs.google.com/presentation/d/1TjtEjh6g9dZBsGxmAmcSp2EFakbmHpU_z31vnkf0c2Y/edit - Example Ideas of Green Agents 
+2. https://arxiv.org/pdf/2502.06559v2 - Can we Trust the AI Benchmarks 
+3.https://www.youtube.com/watch?v=VfOA2a0dj4w - Agent Evaluation - Green Agent Case Studies
+
+4. Agentifying the Agent Assessment - https://docs.google.com/document/d/1Gs4ccq5cIFoQuTGMWqH1LcdHBUNvIjzOsJhEHHM-ByE/edit?tab=t.sldyg6giq4b
+https://docs.google.com/document/d/1Gs4ccq5cIFoQuTGMWqH1LcdHBUNvIjzOsJhEHHM-ByE/edit?tab=t.0#heading=h.a2wi5a9j79uf
+5. Benchmarks Ideas - https://docs.google.com/spreadsheets/d/1PDkqgGEsu4IFmD4Wvjh6A9-3t-zzN7V16i9F559DzeI/edit?gid=0#gid=0
+https://docs.google.com/spreadsheets/d/1PDkqgGEsu4IFmD4Wvjh6A9-3t-zzN7V16i9F559DzeI/edit?gid=0#gid=0
+
+AI Studio 
+6.Nebius - https://studio.nebius.com/playground?_gl=1*127jdpq*_ga*Njg2NDkzMzU5LjE3NjE5MzUyMTY.*_ga_DHKV2ZED15*czE3NjE5MzUyMTUkbzEkZzAkdDE3NjE5MzUyMTckajYwJGwwJGgxNTg0NDI0NjY3*_gcl_au*NTEwNTIyMTA5LjE3NjE5MzUyMTc.&models=deepseek-ai/DeepSeek-V3-0324-fast
+https://nebius.com/
+https://auth.nebius.com/ui/contact-details
+AI Cloud
+https://console.nebius.com/
+https://console.nebius.com/project-e00bqv61pr00adcc51ccpj
+
+7. (https://cloud.lambdalabs.com/sign-up)
+
