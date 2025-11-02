@@ -17,6 +17,11 @@ Pharmacovigilance
 Biostatistics and Statistical Programming
 Medical Writing and Publishing 
 
+Vocabulary 
+1. Pathology 
+2.Therapeutics
+
+
 
 Question on HealthCare
 1. Health Care and Life Science is different Domain or Same Domain
@@ -30,7 +35,49 @@ Question on HealthCare
 8. What are the Compliance Standards & Certificates need to be audited & tested 
 9. What are the Different Medical Applictions usually use in the LSHC domain 
 10.What are the Different Security Measures taken in HealthCare & LifeScience Domain 
-  
+11.Data Privacy and Data Security and Handling PII data 
+12. Clinical Trial Means
+
+
+Answers;
+1. Health Care: Delivery of health services: hospitals, clinics, payers/insurers, providers(doctor, nurses), 
+health systems, Focus: Patient care, clinical workflows, operations, billing and care delivery. 
+2. Life Science: Research, Discovery, development and manufacture of therapeutics, Biologics, Diagnostics, Medical Devices
+Focus: R&D, clinical trials, regulatory submissions and manufacturing and quality 
+3. Health System consumes LS outputs(Drugs, devices, diagnostics)
+
+1.Electronic Health Record(EHR)/Electronic Medical Record (EMR) - Users: Patient Clinical Records, Documentation, orders, medications
+       Clinical Informatics, Vendor(Epic/Cerner/Allscripts) 
+2.Picture Archiving & Communication System (PACS)/Radiology Information System (RIS)
+Store, view, transmit medical images(CT/MRI/X-ray),reporting 
+Users: Radiologists, Technicians, imaging centers
+Interoperates with DICOM
+3.Laboratory Information Management Systems (LIMS)/LIS
+Lab Result Management
+Sample Tracking
+Quality Control 
+Integration with EHRs
+Users: Lab Technologists, Pathologists, Researchers
+4.Clinical Decision Support Systems (CDSS) 
+Use Case: alerts, diagnostics support, drug interaction checks, care pathways
+Users: Clinicians, pharmacists
+5. TeleHealth/Virtual Care/Remote Patient Monitoring (RPM)
+chronic disease management 
+6.mHealth/Health Apps Wearable integrations
+Health Tracking, medication reminders, wellness apps
+7.Clinical Trial Management System (CTMS)/eClinical/Regulatory submission software
+Use Case: Trial Operations, Patient recruitment, 
+Users: CROs, Clinical Search teams 
+8.Health Information Exchange (HIE)/Interoperability gateways (APIs) 
+Use Case: Share Patient records across providers, API-Based Exchange(FHIR) 
+Users: providers, public health, payers
+Managers: HIE Operators, Health System Integration Teams
+9.Revenue Cycle Management(RCM)/Billing/Claims
+Use Case: Billing, Claims Submission, denials management 
+Users: Hospital Finance, billing offices
+10. Population Health & Analytics/ Real-World Evidence (RWE) / AI/ML Platforms
+Use Case: Risk Stratification, Outcomes research, RWE for life sciences 
+
 
 
 1.CDS - Clinical Decision Support System 
@@ -81,6 +128,10 @@ EHRs provide insights into health care costs, utilization and outcomes.
 
 What Citius Tech Will Do
 ------------------------
+Health Information Technology company 
+Data Management 
+Digital Engineering 
+Artifical Intelligence to health and healthcare companies 
 1. MedTech 
     EHRs and Clinical Decision Support Systems 
     Medical Imaging 
