@@ -9,6 +9,104 @@ Fine Tuning Behaviour
 
 Python - Bracket Program 
 
+HealthCare 
+-----------
+1.KPI repository
+across Healthcare domains
+2.Clinical Decision Support System 
+https://www.multimodal.dev/post/examples-of-clinical-decision-support-systems-applications
+3.CitiusTech Services - https://www.citiustech.com/services
+4.IHE is an initiative by healthcare professionals and industry to improve the way computer systems in healthcare share information. IHE promotes the coordinated use of established standards such as DICOM and HL7 to address specific clinical needs in support of optimal patient care. Systems developed in accordance with IHE communicate with one another better, are easier to implement, and enable care providers to use information more effectively.
+https://www.ihe.net/
+5.Clinical - relating to the observation and treatment of actual patients rather than theoretical or laboratory studies:
+6.Turnkey - Project or product constructed so it can be sold to a buyer as complete
+
+
+
+Citius Knewron 
+--------------
+1.Healthcare-native AI platform
+2.CitiusTech, a leading healthcare technology and solutions provider, has stepped into this space with the launch of CitiusTech Knewron.
+3.a healthcare-native AI platform built to design, build, and operate enterprise-grade AI solutions without compromising on governance, safety, or clinical trust.
+4.unified Gen AI and agentic platform engineered to transform software delivery in healthcare
+5.It embeds intelligent agents across every phase of the engineering
+6.activating institutional knowledge, codebases, and policy frameworks as live AI context.
+7.The result is faster, safer, and more intelligent engineering, from concept to compliance.
+
+
+Engineering Workbenches
+Business Studios
+Prior auth: Model authorization rules, auto-draft requests, track approvals
+1.Denial management: Triage denials, generate appeals, recovery analytics
+2.CDS: Design CDS flows, embed guidelines, provide decision rationale
+3.DICOM: Build/validate DICOM pipelines, enforce IHE profiles, audit logs
+  DICOM - Open standard from the medical computer science
+1.Digital Imaging and Communications in Medicine (DICOM) is a technical standard for the digital storage and transmission of medical images and related information.
+1.1.It includes a file format definition
+1.2.which specifies the structure of a DICOM file, as well as a network communication protocol that uses TCP/IP to communicate between systems
+
+Transformation Kits 
+1.Legacy modernization: Auto-migrate legacy code, update APIs at scale
+2.Cloud migration: Scaffold IaC, detect drift, optimize multi-cloud spend
+3.Upgrades: Bulk library/framework upgrades, regenerate tests
+4.Data pipelines: Scaffold ETL pipelines, convert schemas, enforce data quality
+
+Agent Creation & Orchestration
+Visual Workflow Designer 
+Custom Agent Builder 
+Agent-to-Agent Connectors 
+
+Healthcare Domain Native 
+Healthcare Knowledge Graphs 
+Agentic RAG/RAG 
+Continuous Learning 
+
+Dev Experience & Integration
+Plugins for all common IDEs
+Custom Agent Builder 
+CLI Toolkits 
+
+Multi-LLM Gateway & Cost Optimization 
+Model Agnosticism 
+Cost-Aware Router 
+Realtime Telemetry 
+
+Security Compliance & Audit 
+In-VPC Deployment 
+Policy-as-Code Enforcement 
+Immutable Audit Trail 
+
+Monitoring & Analytics 
+AI-Ops Dashboard 
+Quality & Trust Metrics
+FinOps/Business KPIs 
+
+1.CitiusTech Knewron’s agentic pipelines are built for real-world scale.
+2.Observability > Accuracy
+85% accuracy is table stakes. We go beyond with audit logs, reasoning trails, and trust validators.
+3.1.running compliance scans
+3.2.orchestrating clinical workflows
+
+
+1.Gen AI/Agentic Architecture.
+2.Multidisciplinary core Team.
+3.Phased Roadmap with KPI's and measurable ROI
+4.Integration with Top Hyperscaler AI Platforms 
+5.Governance, Change Management 
+6.Frugal Scalability - frugal is used to describe things that reflect a fastidious dedication to foregoing the fancy
+
+
+1.Fragmented Tool, 
+2.Lack of Context
+3.Compliance Overhead keep Slowing Teams Down. 
+
+
+
+1.Governance.
+2.Safety.
+3.Clinical Trust.
+
+
 Agile Process 
 ------------
 Eg: Personal Finance Tracker App
