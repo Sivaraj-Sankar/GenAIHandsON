@@ -9,10 +9,52 @@ Fine Tuning Behaviour
 
 Python - Bracket Program 
 
+LSHC - LSHCERU  - Life Sciences, Healthcare, Energy & Resources, Utilities
+bio-pharma and medical devices companies accelerate drug discovery, advance clinical trial efficiencies, and improve sales & marketing effectiveness
+Clinical Data Management
+Regulatory Affairs
+Pharmacovigilance
+Biostatistics and Statistical Programming
+Medical Writing and Publishing 
+
+
+Question on HealthCare
+1. Health Care and Life Science is different Domain or Same Domain
+1. Health Care Providers
+2. Top 10 Medical E-Commerce 
+3. What are the applications build in Healthcare & LifeScience Domain 
+4. How Data Management Will be taken in Healthcare & LifeScience Domain 
+5. How Data Transmission Happening in different applications & Devices, 
+6. What are the Different Formats of Data Types 
+7. What are medical Devices uses 
+8. What are the Compliance Standards & Certificates need to be audited & tested 
+9. What are the Different Medical Applictions usually use in the LSHC domain 
+10.What are the Different Security Measures taken in HealthCare & LifeScience Domain 
+  
+
+
 1.CDS - Clinical Decision Support System 
 2.EHR - Electronic Health Record 
 3.HFS - High-Fidelity Simulation
-4.DICOM - Digital Imaging and Communication
+4.DICOM - Digital Imaging and Communication Standard 
+4.1 FHIR - Fast Healthcare Interoperability Resources - standard is a set of rules and specifications for the secure exchange of electronic health care data
+It is designed to be flexible and adaptable, so that it can be used in a wide range of settings and with different health care information systems
+The standard describes data formats and elements (known as "resources")
+and an application programming interface (API) for exchanging electronic health records (EHR)
+he standard was created by the Health Level Seven International (HL7) health-care standards organization
+FHIR builds on previous data format standards from HL7, like HL7 version 2.x and HL7 version 3.x. But it is easier to implement because it uses a modern web-based suite of API technology
+including a HTTP-based RESTful protocol, and a choice of JSON, XML or RDF for data representation.
+One of its goals is to facilitate interoperability between legacy health care systems, to make it easier to provide health care information to health care providers and individuals on a wide variety of devices from computers to tablets to cell phones.
+and to allow third-party application developers to provide medical applications which can be easily integrated into existing systems.
+FHIR provides an alternative to document-centric approaches by directly exposing discrete data elements as services
+For example, basic elements of healthcare like patients, admissions, diagnostic reports and medications can each be retrieved and manipulated via their own resource
+5.IHE - Integrating the Healthcare Enterprise
+6.HealthSPARX - Improve data management and analytics
+6.1HealthSPARX aims to improve data management and analytics for clinical research
+   medical studies, and commercial operations.
+   It supports advanced analytics, including the development of Software as a Medical Device (SaMD), 
+   helping organizations use data more effectively.
+
 
 HealthCare 
 -----------
@@ -36,6 +78,61 @@ at the point of care.
 EHRs provide insights into health care costs, utilization and outcomes. 
 9.1.in the life of a person. An Electronic Health Record (EHR) is a collection of various medical records that get generated during any clin
 9.2.https://www.mohfw.gov.in/sites/default/files/EMR-EHR_Standards_for_India_as_notified_by_MOHFW_2016_0.pdf
+
+What Citius Tech Will Do
+------------------------
+1. MedTech 
+    EHRs and Clinical Decision Support Systems 
+    Medical Imaging 
+    Medical Device Solutions 
+    Revenue Cycle Management 
+    Patient Engagement 
+    Patient Services 
+    Speciality Healthcare Services 
+    Digital Pathology - the science of the causes and effects of diseases, especially the branch of medicine that deals with the laboratory examination of samples of body tissue for diagnostic or forensic purposes:
+2. Payers
+    Interoperability 
+    Digital Modernization 
+    Quality Management 
+    Payer-Provider Modernization 
+    Member Experience 
+    Payer Analytics & AI 
+    Value-Based Care 
+    Payer Core 
+3. Providers 
+      Consumer Engagement 
+      Cloud Migration
+      Data Management 
+      Intelligent Automation 
+4. Life Sciences 
+      Real-World Data
+      Next-Gen Commercialization
+      Patient Engagement 
+      Medical Imaging
+      HealthSPARX
+5. Services 
+      AI 
+      GenAI
+      Analytics
+      Cloud
+      Digital Engineering
+      Digital Experience
+      Healthcare Platforms
+      Quality & Validation 
+      CyberSecurity 
+      Data Engineering & Data On Cloud 
+      Interoperability & Integration 
+6.Consulting 
+          Citius Healthcare Consulting 
+7.Products 
+           Perfrom + RealSight 
+           Perform + Contracts
+           Perfrom + Stars
+           Perform + DataScale 
+           Perform + Regulatory 
+ 8. Industry Solut
+
+
 
 Citius Knewron 
 --------------
