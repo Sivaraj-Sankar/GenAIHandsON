@@ -79,6 +79,21 @@ Backlog Refinement Sessions.
                Uses Releases/Versions in Jira to tag deployable builds 
 Navigation
 Releases --> Create Version -> Assign Issues -> Release 
+A Release (sometimes called a Fix Version) represents a deliverable package of software shipped to customers (or deployed internally).
+It defines what work is included in that version of the product.
+A release can have a name like v1.0, Q2-2025 Release, etc.
+Release (Fix Version)
+   └── Epic (large initiative planned for release)
+         └── Feature (business capability delivered in release)
+               └── Story / Task (actual sprint work to implement feature)
+                     └── Sub-task (smallest work unit for developers)
+               └── Defect / Bug (fixes linked to Stories/Features)
+Release is not an issue type, but a Version field in Jira.
+Issues (Epic, Feature, Story, Bug, Task) are assigned to a Release by filling the Fix Version field.
+Defects in Releases
+Defects are tagged with the release where they were:
+Introduced (Affects Version field)
+Fixed (Fix Version field)
 11. Confluence - Documentation Linked to Jira Stories 
 12. Commits and PRS linked to issues. 
 13. Notification for issues update. 
