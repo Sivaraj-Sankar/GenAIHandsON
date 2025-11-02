@@ -9,6 +9,89 @@ Fine Tuning Behaviour
 
 Python - Bracket Program 
 
+Agile Process 
+------------
+Eg: Personal Finance Tracker App
+1. Entire Agile Lifecycle.
+2. Idea -> Release -> Imrpovement. 
+3. Product Owner: Defines the Goal 
+     Artifacts Created: 
+                  Product Vision Statement 
+                  Initial Business Requirements/Epics 
+                  Roadmap - (3-6 months)
+4. Team Roles: 
+        Product Owner(PO): Owns the vision and priorities. 
+        Scrum Master:      Ensures process adherence, removes blockers
+        Developement Team: Engineers, Designers, QA 
+5. Product Backlog Creation:  --> Deliverable Features (Called User Stories)
+      Product Owner Writes the User Stories 
+      Acceptance Criteria 
+      Priority 
+      Story Points Effort Estimate 
+6. Sprint Planning - Plan what the team will deliver in the next sprint (typically 2 weeks) 
+     Team Velocity: 30 story points per sprint 
+     Product Owner selects high-priority stories. 
+7. Sprint Backlog - Team Commits to deliverables - its a subset of Product Backlog 
+8. Daily Scrum - 
+9. Sprint Review 
+        Show Stakesholders what's been built. 
+        At the End of 2 weeks.
+10. Sprint Retrospective[Process Improvement] - looking back on or dealing with past events or situations
+11. Incremental Delivery - After 3 sprints (6 weeks) 
+12. Continuous Feedback & Iteration[Continuous Enhancement]  - Product Owner Prioritizes this for next sprint 
+13. Scaling Agile   - After MVP - Multiple Agile Teams form. 
+       Scrum of Scrums 
+       Scaled Agile Framework (SAFe)
+       Kanban for maintenance teams 
+
+1. Agile Frameworks like Scrum or Kanban.
+1.1 Manage User Stories and backlog.
+1.2 Plan Sprints and track progress.
+1.3 Visualize work (boards).
+1.4 Automate Workflows.
+1.5 Report Team Velocity and burndown.
+
+Step 1: Create an Agile Project 
+1. Projects - Create Project -> Choose Template - Scrum (Software Development) 
+2. Jira Automatically Creates 
+       Product Backlog 
+       Scrum Board 
+       Active Sprint View 
+       Reports Section(Velocity, Burndown) 
+3. Product Backlog - User stories, Epics - Parent for all expenser-related stories. 
+4. Each Story in Jira have Summary, Description, Acceptance Criteria, Story Points, Assignee, Status 
+5. Organize Using Epics and Stories 
+   Epic 
+   Story 
+   Sub-Tasks 
+6. Estimation & Prioritization - Use the Planning Poker app in Jira for collaborative Estimation. 
+Backlog Refinement Sessions. 
+7. Tracking Progress - Burndown Chart - Showing Remaining Work (story points) vs Time. 
+                      Ideal for tracking if the team is on schedule. 
+8. Velocity Chart - Shows how many story points were completed per sprint. 
+
+9. Sprint Retrospective - Retrospective Templates(via add-ons like "Easy Agile TeamRhythm" or 
+                          Confluence integration. 
+    What went well
+    What can improve 
+    Action Items - 
+10. Release Management - Integrates with CI/CD tools like Github Actions, Jenkins, BitBucket Pipelines. 
+               Uses Releases/Versions in Jira to tag deployable builds 
+Navigation
+Releases --> Create Version -> Assign Issues -> Release 
+11. Confluence - Documentation Linked to Jira Stories 
+12. Commits and PRS linked to issues. 
+13. Notification for issues update. 
+14. 
+
+
+Jira, 
+Release, 
+Jenkins Pipelines - Github Actions -> Jenkins -> BitBucket Pipelines
+
+
+    
+
 
 
 SQL Statements
