@@ -78,6 +78,78 @@ Users: Hospital Finance, billing offices
 10. Population Health & Analytics/ Real-World Evidence (RWE) / AI/ML Platforms
 Use Case: Risk Stratification, Outcomes research, RWE for life sciences 
 
+1. Medical Devices vs Medical Applications - FDA Food & Drug Administration
+Medical Devices - Instrument, Apparatus, Implement, Machine, Contrivance, Implant, 
+                  In Vitro Reagent, intended for use in diagnosis, cure, mitigation treatment
+                   or prevention
+      Examples: MRI, Ventilators, Infusion Pumps, Pacemakers, Device Classification(Class I/II/III) depends on risk.
+
+Medical Application / SaMD (Software as a Medical Devices) -- Software that performs medical functions(diagnosis, monitoring, decision support) 
+         Example: Algorithm that analyzes imaging for tumor Detection. 
+2. How Devices and Applications connect 
+      Data Flow: Medical Devices produce clinical data(vital signs, imaging, lab results) 
+data commonly flows into hospital systems (PACS[Picture Archiving and Communications System], EHR, LIMS) for storage, display, and clinical decision making. 
+3.Integration can be direct (device-to-EHR) or via middleware/medical device integration(MDI) platforms
+
+4. Standards that enable connectivity: 
+DICOM for Imaging
+IEEE 11073(device Communication/ personal health devices).
+HL7(V2/FHIR) for clinical data exchange 
+IHE (Integrating the Healthcare Enterprise) profiles to orchestrate how standards are used in workflows.
+
+Standards, Regulations and Privacy Practices(Data is highly sensitive) 
+1. HIPAA(Privacy & Security Rules)Health Care Portability and Accountability Act
+protect heath information and health insurance coverage- Legal Baseline for protecting PHI(Protected health Information)
+Physical and Technical Safeguards, 
+HHS[Health and Human Service] OCR - HHS office for Civil Rights
+2.HITECH (promotes EHR adoption, breach reporting) 
+      Medicare       Medicaid 
+
+HITRUST [Framework]- provides practical way to meet those rules, maps controls across multiple standards, not just HIPAA 
+HITECH [Legislation] Enforces stricter HIPAA Rules -  Health Information for Economic and Clinical Health Act 
+https://valuementor.com/blogs/blogs-hitrust-vs-hitech-compliance-overview
+
+3. FDA - Regulates medical devices and certain software as medical devices, 
+
+4. GDPR - General Data Protection Regulation (GDPR) - Comprehensive Legal Framework implemented
+
+5. EU Medical Device Regulation (MDR) - 
+
+6. Gloabl  /Standards Organizations - ISO 13485 - Quality Management for medical devices 
+                                      IEC 62304 - Medical Device Software lifecycle 
+                                      IEC 60601 (electrical safety) - 
+                                      ISO/IEC - 27001 - Information Security Management 
+7. Interoperability & Semantic Standards - How systems speak same language   
+      HL7 FHIR - modern API-style standard for clinical data exchange (gaining broad adoption) 
+      HL7 v2.x - Legacy messaging still used widely for lab/results/orders 
+      DICOM - imaging format/transfer standard 
+      Terminologies & Code Sets: SNOMED CT (Clinical Terms), LOINC (Lab tests), ICD-10 (Diagnoses)
+                                 RxNorm(Drugs). These enable Semantic interoperability.
+
+Security & Data Governance Best Practices (Practical) 
+1. Encryption at rest & in Transit; strong identity & access control (RBAC), MFA.
+2. Audit Logging and immutable audit trails (required under HIPAA security Rule and for Regulated Clinical Systems) 
+3. De-Identification/anonymization for secondary uses(research/analytics) - follow HIPAA de-identification methods or GDPR
+                                                                            anonymization/pseudonymization guidance. 
+4. Data Use Agreements (DUAs), consent capture, minimal data sharing policies for third parties and vendors
+5. Software validation, QA, Lifecycel management for SaMD and device-connected software
+                             (IEC 62304, GxP for pharma) 
+
+Practical Compliance Topics 
+---------------------------
+1.Who is responsible: HIPAA covered entities - (Providers, Health Plans, ClearingHouses) 
+and business associates (software vendors, cloud providers) - both have obligations, 
+Mention "shared Responsibility with cloud vendors and need for BAAs
+2.Privacy by Design and security by design - embed controls early in product lifecycle.
+threat modeling for PHI flows 
+3. Interoperability trend: Show Knowledge for FHIR-based APIs, SMART on FHIR apps, and the movement to API-first integration
+
+
+
+
+
+
+
 
 
 1.CDS - Clinical Decision Support System 
