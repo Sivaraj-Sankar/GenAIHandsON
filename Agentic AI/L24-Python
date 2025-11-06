@@ -35,6 +35,17 @@ IEEE 11073(device Communication/ personal health devices).
 HL7(V2/FHIR) for clinical data exchange 
 IHE (Integrating the Healthcare Enterprise) profiles to orchestrate how standards are used in workflows.
 
+Act 
+HIPAA(Privacy & Security Rules)Health Care Portability and Accountability Act
+Protect the privacy and security of patient health information (PHI).
+Standardize electronic healthcare transactions (EHR, billing, insurance claims).
+Ensure health insurance portability (when people change or lose jobs).
+Improve healthcare efficiency by encouraging digital data exchange (EHR, HIE)
+
+HITRUST [Framework]- provides practical way to meet those rules, maps controls across multiple standards, not just HIPAA 
+HITECH [Legislation] Enforces stricter HIPAA Rules -  Health Information for Economic and Clinical Health Act 
+
+----------------------------------------------------------
 
 LSHC - LSHCERU  - Life Sciences, Healthcare, Energy & Resources, Utilities
 bio-pharma and medical devices companies accelerate drug discovery, advance clinical trial efficiencies, and improve sales & marketing effectiveness
