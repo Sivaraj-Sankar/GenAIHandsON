@@ -9,6 +9,33 @@ Fine Tuning Behaviour
 
 Python - Bracket Program 
 
+Citius Manager Interview Today 
+-------------------------------
+1. health information technology
+2. Data Management [Clinical Data Management]
+3. Consulting 
+4. Digitial Engineering
+5. Artifical Intelligence to health and healtcare compaines 
+
+1.EHR, EMR, PACS, Laboratory[LIMS], Clinicial Decision Support System 
+2.CDSS can be rule-based (if-then logic, medical guidelines) or AI-based (machine learning, NLP on clinical data).
+3.Clinical Trial Management System - CTMS 
+4.Health Information Exchange & Interoperability Gateways (API's) 
+5.Fast Healthcare Interoperability Resources [FHIR] 
+6.CT (Computed Tomography), also called CAT Scan (Computerized Axial Tomography)
+7.Magnetic Resonance Imaging - MRI uses strong magnetic fields and radio waves (NOT X-rays) to generate detailed images of soft tissues in the body.
+Each slice is digitized and stored as a DICOM file (Digital Imaging and Communications in Medicine)
+Images are transferred over a hospital network (LAN) to the PACS (Picture Archiving and Communication System).
+Protocol used: DICOM (Digital Imaging and Communications in Medicine) → the global standard for storing and transmitting medical imaging data.
+
+Protocol 
+Standards that enable connectivity: 
+DICOM for Imaging
+IEEE 11073(device Communication/ personal health devices).
+HL7(V2/FHIR) for clinical data exchange 
+IHE (Integrating the Healthcare Enterprise) profiles to orchestrate how standards are used in workflows.
+
+
 LSHC - LSHCERU  - Life Sciences, Healthcare, Energy & Resources, Utilities
 bio-pharma and medical devices companies accelerate drug discovery, advance clinical trial efficiencies, and improve sales & marketing effectiveness
 Clinical Data Management
