@@ -34,3 +34,52 @@ https://console.nebius.com/project-e00bqv61pr00adcc51ccpj
 
 7. (https://cloud.lambdalabs.com/sign-up)
 
+
+
+
+----------
+Dec 17 
+
+Developing the AAA
+
+Reference
+https://www.youtube.com/watch?v=EGBuCfVsokE - Demo 
+https://rdi.berkeley.edu/assets/agentbeats-competition-info-session-deck.pdf - Demo
+https://agenticai-learning.org/slides/weizhu.pdf - Rubric
+https://agenticai-learning.org/slides/LLM%20Agent%20Evaluations%20&%20Project%20Overview.pdf - Intro
+https://www.youtube.com/watch?v=VfOA2a0dj4w - Intro
+https://www.youtube.com/watch?v=CvZDJxd4LKM - Towards Building Safe & Secure AI 
+https://berkeleyrdi.substack.com/p/agentic-ai-weekly-berkeley-rdi-december-926 - Competition Link and Other Platform video link 
+https://www.youtube.com/watch?v=ZmBnC4xTyRU - Tutorial to use the AgentBeats
+https://docs.agentbeats.org/ - Blog Post
+
+
+Drawbacks
+Yet, as AI evolves toward agentic systems—AI agents capable of reasoning, taking actions, and interacting with the world—our current benchmarking methods for simple LLM model-level evaluation fall short:
+Interoperability: Running a production-grade agent on existing benchmarks often feels like forcing a square peg into a round hole. Substantial modifications are needed just to make it fit.
+Reproducibility: Stateful tools, memory, and dynamic configurations lead to results that can vary across runs, undermining consistency.
+Fragmentation: There’s no single, unified view of progress—leaderboards and results are scattered across platforms and domains.
+Discovery: With new benchmarks appearing almost weekly, finding the right one for a given goal can be surprisingly time-consuming.
+
+Goals
+Our vision for streamlined agentic AI evaluation is a unified space where the community can come together to define the goalposts of agentic AI—through benchmarks that are:
+Compatible and Standardized: Any agent can connect to any benchmark with near-zero code changes.
+Reproducible: Each run starts in the same state as any other.
+Collaborative & Discoverable: A living hub where researchers, developers, and enthusiasts alike can easily find the most relevant benchmarks, identify top-performing agents, and collaboratively shape the standards that define the future of agentic AI.
+
+Tools I have to Develop this project 
+https://agentbeats.dev/
+https://docs.agentbeats.dev/tutorial/
+https://www.youtube.com/watch?v=ZmBnC4xTyRU
+
+
+Step 1 - Take the Existing Benchmark 
+Step 2 - 
+
+Currently Following
+https://aistudio.google.com/app/logs;dateRange=last_hour;status=fail
+https://github.com/agentbeats/tutorial?tab=readme-ov-file#example
+https://www.youtube.com/watch?v=X_9qlYeu-wc
+https://ai.google.dev/gemini-api/docs/computer-use?hl=en#how-computer-use
+https://aistudio.google.com/u/1/api-keys
+
