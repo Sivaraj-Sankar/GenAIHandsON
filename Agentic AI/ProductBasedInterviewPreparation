@@ -1,6 +1,13 @@
 
-
+User Request → State Event → Node Processing → State Update Event → Next Node → ... → Final State
 Design Pattern 
+Strategy Pattern (for interchangeable agents)
+Chain of Responsibility (for workflow stages)
+Template Method (for base classes)
+Builder Pattern (for workflow construction)
+Observer Pattern (for state management)
+Event-Driven Architecture (for asynchronous workflow execution)
+--------------------------------------
 1. Structural Design Pattern - Facade Pattern is a structural design pattern
    simplified interface to a complex subsystem
    Reduces coupling between client code and complex libraries/subsystems.
@@ -56,6 +63,377 @@ Builder	Response / reasoning / entity builders
 Facade	Wraps multiple agents
 Chain of Responsibility	Agent routing
 Builder + Template	Structured output generation
+
+Topic 1
+-------------------------------------
+State transitions = events
+Async processing with astream()
+Nodes communicate via immutable state objects
+Observable event streams for real-time updates
+
+Topic 2
+-------------------------------------------
+Execution flow with decorators/lifecycle hooks
+State transformation patterns
+Event flow and async processing model
+
+Topic 3 
+------------------------------------------
+# BaseNode with template method pattern
+class QueryParsingNode(BaseNode[SubWorkflowState]):
+    def process(self, state: SubWorkflowState, config: Dict) -> SubWorkflowState:
+        agent = AgentRegistry.get_agent(AgentType.QUERY_PARSER.id)
+        response = agent.perform_action(query=state.data["query"])
+        state.data["query_components"] = response
+        return state
+
+# Workflow composition with builder pattern
+query_workflow = (
+    WorkflowBuilder(SubWorkflowState, "QueryWorkflow")
+    .create_linear_workflow([
+        ("query_parsing", QueryParsingNode()),
+        ("entity_extraction", EntityExtractionNode())
+    ])
+    .compile()
+)
+
+# Event-driven execution
+async for event_type, event_data in workflow.process_workflow(workflow_info):
+    # Each state change is an event
+    print(f"Event: {event_type}")
+--------------------------------------------
+
+base_react_agent - Template + Strategy - Wrapper for LangChain ReAct agents
+query_workflow - Chain of Responsibility - Parse and understand user queries
+base_node/query_parsing_node - Template Method - Template for workflow processing nodes
+abstract_workflow/core_rag_workflow - Full chatbot workflow lifecycle management - Template Method + Facade - AbstractChatbotWorkflow (rag_workflow/core usage)
+base_workflow - Builder + Template Method Foundation for building LangGraph state machines - base_workflow.py (Used by AbstractWorkflow)
+
+--------------------------------------------
+State Transitions as Events: Each node execution produces state changes that trigger subsequent nodes
+Asynchronous Processing: Uses async/await for non-blocking operations
+Message Passing: State objects act as events flowing through the workflow
+Decoupled Components: Nodes communicate only through state
+Observable Streams: Built-in event streaming via LangGraph
+
+
+--------------------------------------------
+Hierarchical Multi-Agent Architecture
+  │
+  ├─→ Event-Driven (overall pattern)
+  ├─→ Template Method (base classes)
+  ├─→ Strategy (interchangeable agents)
+  ├─→ Chain of Responsibility (workflow stages)
+  ├─→ Builder (workflow construction)
+  ├─→ Facade (AbstractChatbotWorkflow)
+  └─→ Composite (workflows contain sub-workflows)
+
+What you'll see:
+
+Workflow initialization
+Node-by-node execution with logging
+Agent processing
+State transformations
+Event streaming
+Final results
+Output includes:
+
+Workflow construction logs
+Node execution traces
+Agent reasoning output
+State updates
+Event notifications
+Architecture pattern summary
+
+Questions
+----------------------
+BaseReactAgent: Consistent agent interface
+BaseNode: Common node behavior (logging, timing, tracing)
+BaseWorkflow: State machine construction
+AbstractChatbotWorkflow: Full application lifecycle
+WorkflowBuilder: Simplified workflow creation
+
+Easy addition of new workflows (just inherit and compose)
+Reusable components across multiple workflows
+Type-safe state management
+Built-in observability
+Testable components in isolation
+
+Is this over-engineered?
+How do I add a new workflow?
+Define your state class
+Create nodes (inherit from BaseNode)
+Build workflow using WorkflowBuilder
+Optionally extend AbstractChatbotWorkflow for full features
+
+state_persistence_service
+conversation_history_service
+Repository pattern
+
+**
+------------
+Initial state is an event
+Each node processes and emits updated state (new event)
+State changes trigger next nodes
+Events can be streamed to clients in real-time
+All asynchronous with async/await
+
+Abstraction	Real Implementation
+BaseReactAgent	src/com/enverus/agents/base_react_agent.py
+BaseNode	src/com/enverus/workflows/base/base_node.py
+BaseWorkflow	src/com/enverus/workflows/base/base_workflow.py
+AbstractChatbotWorkflow	src/com/enverus/workflows/abstract_workflow.py
+Query Subworkflow	src/com/enverus/workflows/rag_workflow/query/
+CoreRagWorkflow	src/com/enverus/workflows/rag_workflow/core/core_rag_workflow.py
+
+-------------------------
+User Request
+    ↓
+AbstractChatbotWorkflow (Initialize + Process)
+    ↓
+CoreRagWorkflow (Orchestrate)
+    ↓
+Sub-Workflows (Query, Retrieval, Generation, etc.)
+    ↓
+Nodes (BaseNode implementations)
+    ↓
+Agents (BaseReactAgent implementations)
+    ↓
+Response (Event stream to user)
+
+----------------------------
+Each layer is:
+
+✅ Independently testable
+✅ Loosely coupled
+✅ Type-safe
+✅ Observable
+✅ Reusable
+
+
+--------------------------------------
+1. Hierarchical Multi-Agent Pattern
+Core Workflow orchestrates multiple Sub-Workflows
+Each sub-workflow contains specialized Nodes (agents)
+Nodes inherit from common base classes providing shared behavior
+2. Template Method Pattern
+Base classes define the workflow structure
+Subclasses implement specific behavior
+Examples: BaseNode, BaseWorkflow, AbstractChatbotWorkflow
+3. Strategy Pattern
+Interchangeable agents registered in AgentRegistry
+Different agents for different tasks (query parsing, retrieval, response generation)
+4. Chain of Responsibility
+Request flows through multiple handler nodes
+Each node processes and passes to the next
+5. Builder Pattern
+WorkflowBuilder provides fluent API for constructing workflows
+Simplifies complex workflow creation
+
+
+-----------------------
+Provides a foundation for creating LangChain ReAct agents with tools.
+┌─────────────────────────────────────┐
+│      BaseReactAgent                 │
+├─────────────────────────────────────┤
+│  - llm: LanguageModel              │
+│  - tools: List[Tool]               │
+├─────────────────────────────────────┤
+│  + validate_attributes()            │
+│  + run(query): response            │
+│  + arun(query): response           │
+└─────────────────────────────────────┘
+          │
+          │ uses
+          ▼
+┌─────────────────────────────────────┐
+│   create_react_agent()              │
+│   (LangChain)                       │
+└─────────────────────────────────────┘
+Key Characteristics
+Abstraction Level: Agent wrapper
+Responsibility: Execute ReAct reasoning loop
+Dependencies: LangChain's create_react_agent
+Customization: Override for custom agent behavior
+
+
+
+Base class for all workflow nodes providing common execution patterns.
+┌─────────────────────────────────────────────┐
+│          BaseNode<S>                        │
+├─────────────────────────────────────────────┤
+│  - node_name: str                           │
+│  - logger: Logger                           │
+├─────────────────────────────────────────────┤
+│  + __call__(state: S, config): S           │
+│  + process(state: S, config): S            │  ← Must Override
+└─────────────────────────────────────────────┘
+          │
+          │ provides
+          ▼
+┌─────────────────────────────────────────────┐
+│  Decorators Applied:                        │
+│  - @time_it                                 │
+│  - @log_node_exceptions                     │
+│  - OpenTelemetry tracing                    │
+└─────────────────────────────────────────────┘
+Execution Flow
+Request → __call__() → [Context Setup] → [Tracing Start] 
+                                      ↓
+                              process() ← Implemented by subclass
+                                      ↓
+                              [Update State] → [Tracing End] → Response
+
+Key Characteristics
+Abstraction Level: Node/Task processor
+Responsibility: Process state transformations
+Pattern: Template Method
+Generic Type: S represents state type
+-------------------------------------------------------
+BaseWorkflow
+Foundation for creating LangGraph state machines with node management.
+┌───────────────────────────────────────────────────────┐
+│              BaseWorkflow<S>                          │
+├───────────────────────────────────────────────────────┤
+│  - state_class: Type[S]                               │
+│  - name: str                                          │
+│  - graph: StateGraph                                  │
+│  - compiled_app: CompiledGraph                        │
+├───────────────────────────────────────────────────────┤
+│  + add_node(name, node)                               │
+│  + add_edge(start, end)                               │
+│  + add_conditional_edges(node, router, routes)        │
+│  + set_entry_point(node)                              │
+│  + set_finish_point(node)                             │
+│  + compile(): CompiledGraph                           │
+│  + run(state, config): S                              │
+│  + arun(state, config): S                             │
+│  + astream(state, config): AsyncIterator[S]           │
+└───────────────────────────────────────────────────────┘
+          │
+          │ builds
+          ▼
+┌───────────────────────────────────────────────────────┐
+│         LangGraph StateGraph                          │
+│         (State Machine)                               │
+└───────────────────────────────────────────────────────┘
+
+BaseWorkflow Creation
+    │
+    ├─→ Add Nodes (processing units)
+    ├─→ Add Edges (direct transitions)
+    ├─→ Add Conditional Edges (routing logic)
+    ├─→ Set Entry/Exit Points
+    │
+    ▼
+Compile → StateGraph → Executable Workflow
+
+Abstraction Level: Workflow orchestrator
+Responsibility: Build and execute state machines
+Pattern: Builder + Template Method
+State Management: Generic type S for type safety
+
+------------------------------------------
+AbstractChatbotWorkflow
+Specialized workflow base for chatbot applications with full lifecycle management.
+
+1. initialize_workflow()
+       │
+       ├─→ Create WorkflowState
+       ├─→ Setup feature toggles
+       ├─→ Configure checkpointer
+       ├─→ Initialize conversation
+       │
+       ▼
+2. process_workflow()
+       │
+       ├─→ Stream events
+       ├─→ Parse responses
+       ├─→ Update conversation
+       │
+       ▼
+3. Complete
+
+Abstraction Level: Application workflow
+Responsibility: Full chatbot lifecycle
+Integration: Database, features, auth, history
+Pattern: Facade + Template Method
+
+RAG Workflow - Query Subworkflow
+Specialized subworkflow for query processing and understanding.
+┌──────────────────────────────────────────────────────┐
+│           Query Workflow (Subworkflow)               │
+├──────────────────────────────────────────────────────┤
+│                                                      │
+│   ┌──────────────┐      ┌──────────────────┐       │
+│   │ Query        │─────→│ Entity           │       │
+│   │ Parsing      │      │ Extraction       │       │
+│   │ Node         │      │ Node             │       │
+│   └──────────────┘      └──────────────────┘       │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+        │                           │
+        │ State Transformation      │
+        ▼                           ▼
+┌──────────────────────────────────────────────────────┐
+│            SubWorkflowState                          │
+│  - query_components                                  │
+│  - entities                                          │
+│  - internal_query                                    │
+└──────────────────────────────────────────────────────┘
+
+Input State (CoreWorkflowState)
+    │
+    ▼
+enter_query_team_chain() ← Transforms core state to sub-state
+    │
+    ▼
+QueryParsingNode.process()
+    │ Updates state with:
+    │ - query_components
+    │ - query_intent
+    │ - fragments
+    ▼
+EntityExtractionNode.process()
+    │ Updates state with:
+    │ - extracted entities
+    │
+    ▼
+Output State (SubWorkflowState) → Merged back to Core
+
+
+┌──────────────────────────────────────────────────────────┐
+│        CoreRagWorkflow                                   │
+│        extends AbstractChatbotWorkflow                   │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Composition of Sub-Workflows:                          │
+│                                                          │
+│  1. Request Validation Team                             │
+│  2. Caching Team                                        │
+│  3. Query Team              ← Query Subworkflow         │
+│  4. Pre-Retriever Team                                  │
+│  5. Retriever Team                                      │
+│  6. Response Generation Team                            │
+│  7. Response Augmentation Team                          │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+
+
+BaseNode provides:
+Automatic timing via @time_it
+Exception handling via @log_node_exceptions
+OpenTelemetry tracing
+Context management
+Aggregate tracking
+Node Implementation provides:
+
+Business logic in process()
+State transformations
+Agent orchestration
+
+
+
 
 
 Facade Pattern Example 
@@ -202,4 +580,50 @@ text_report = generator.generate(TextReportBuilder())
 html_report = generator.generate(HtmlReportBuilder())
 print(text_report)
 print(html_report)
+
+
+Template + Strategy Pattern 
+from abc import ABC, abstractmethod
+
+class ScoringStrategy(ABC):
+    @abstractmethod
+    def score(self, data):
+        pass
+
+class SimpleScoring(ScoringStrategy):
+    def score(self, data):
+        return sum(data)
+
+class WeightedScoring(ScoringStrategy):
+    def score(self, data):
+        return sum(v * 2 for v in data)
+
+class DataProcessor:
+    def __init__(self, strategy: ScoringStrategy):
+        self.strategy = strategy
+
+    def process(self, data):
+        # Template Method
+        cleaned = self.clean(data)
+        result = self.calculate(cleaned)
+        return self.format(result)
+
+    def clean(self, data):
+        return [d for d in data if d > 0]
+
+    def calculate(self, data):
+        # STRATEGY USED HERE
+        return self.strategy.score(data)
+
+    def format(self, result):
+        return f"Final Score: {result}"
+
+data = [1, -2, 3, 4]
+
+processor1 = DataProcessor(SimpleScoring())
+processor2 = DataProcessor(WeightedScoring())
+
+print(processor1.process(data))
+print(processor2.process(data))
+
 
