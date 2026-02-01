@@ -15,7 +15,26 @@ Design Pattern
 Pattern	Responsibility
 Template Method	Controls the workflow / order of steps
 Builder	Controls what is produced at each step
-3. Template Method + Strategy 
+3. Template Method + Strategy - 
+Strategy defines:
+A family of interchangeable behaviors
+Behavior can be selected at runtime
+do_task(strategy):
+    strategy.execute()
+Behavior can change, structure stays the same
+Template Method controls the FLOW
+Strategy controls the BEHAVIOR of a step
+📌 Template Method = WHEN & ORDER
+📌 Strategy = HOW
+Because:
+You want a stable workflow
+But pluggable logic inside steps
+This avoids:
+Huge inheritance trees
+if/else explosions
+Hardcoded behaviors
+
+
 4. Chain of Responsibility - behavioral design pattern - its main idea is to pass a request along a chain of handlers until one of the handlers processes it
   This decouples the sender of a request from its receivers.
   Think of it as a help desk system: you ask a question, it goes from the first level of support to the next level until someone can answer.
