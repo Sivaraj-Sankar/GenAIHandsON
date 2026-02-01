@@ -1,0 +1,186 @@
+
+
+Design Pattern 
+1. Structural Design Pattern - Facade Pattern is a structural design pattern
+   simplified interface to a complex subsystem
+   Reduces coupling between client code and complex libraries/subsystems.
+   Clients don’t need to know about the multiple classes, their interactions, or dependencies
+2. Builder + Template Method 
+   Builder is a creational pattern.
+   An Object is complex - Separate how an object is built from what the final object looks like.
+   Template Method is a behavioral pattern.
+   You have a fixed algorithm skeleton
+   Some steps must be customized by subclasses
+   Define the algorithm in a base class, let subclasses override specific steps.
+Pattern	Responsibility
+Template Method	Controls the workflow / order of steps
+Builder	Controls what is produced at each step
+3. Template Method + Strategy 
+4. Chain of Responsibility - behavioral design pattern - its main idea is to pass a request along a chain of handlers until one of the handlers processes it
+  This decouples the sender of a request from its receivers.
+  Think of it as a help desk system: you ask a question, it goes from the first level of support to the next level until someone can answer.
+  Handlers: Objects that can handle a request.
+  Next in Chain: Each handler knows the next handler to forward the request if it cannot process it.
+  Decoupling: The client only sends the request, it doesn’t care who handles it.
+  Flexible: You can add or remove handlers without changing the client code.
+Client
+   |
+   v
+Handler1 ---> Handler2 ---> Handler3 ---> None
+In AI/Agent systems, the CoR pattern is often used for workflow of agents: a query is passed through multiple agents 
+(like extraction → analysis → summarization) until it’s fully processed.
+
+AI example mapping
+Pattern	In your system
+Template Method	Agent execution pipeline
+Builder	Response / reasoning / entity builders
+Facade	Wraps multiple agents
+Chain of Responsibility	Agent routing
+Builder + Template	Structured output generation
+
+
+Facade Pattern Example 
+# Complex subsystem classes
+class DVDPlayer:
+    def on(self): print("DVD Player on")
+    def play(self, movie): print(f"Playing {movie}")
+
+class Projector:
+    def on(self): print("Projector on")
+    def set_input(self, device): print(f"Projector input set to {device}")
+
+class SoundSystem:
+    def on(self): print("Sound system on")
+    def set_volume(self, level): print(f"Volume set to {level}")
+
+# Facade
+class HomeTheaterFacade:
+    def __init__(self, dvd, projector, sound):
+        self.dvd = dvd
+        self.projector = projector
+        self.sound = sound
+
+    def watch_movie(self, movie):
+        print("Get ready to watch a movie...")
+        self.dvd.on()
+        self.dvd.play(movie)
+        self.projector.on()
+        self.projector.set_input("DVD")
+        self.sound.on()
+        self.sound.set_volume(20)
+
+# Client code
+dvd = DVDPlayer()
+projector = Projector()
+sound = SoundSystem()
+home_theater = HomeTheaterFacade(dvd, projector, sound)
+
+home_theater.watch_movie("Inception")
+
+
+Chain of Responsibility - Design Pattern 
+from abc import ABC, abstractmethod
+
+# Abstract Handler
+class Handler(ABC):
+    def __init__(self, successor=None):
+        self.successor = successor
+    
+    @abstractmethod
+    def handle(self, request):
+        pass
+
+# Concrete Handlers
+class LowLevelHandler(Handler):
+    def handle(self, request):
+        if request < 10:
+            print(f"LowLevelHandler handled request: {request}")
+        elif self.successor:
+            self.successor.handle(request)
+
+class MidLevelHandler(Handler):
+    def handle(self, request):
+        if 10 <= request < 20:
+            print(f"MidLevelHandler handled request: {request}")
+        elif self.successor:
+            self.successor.handle(request)
+
+class HighLevelHandler(Handler):
+    def handle(self, request):
+        if request >= 20:
+            print(f"HighLevelHandler handled request: {request}")
+        elif self.successor:
+            self.successor.handle(request)
+
+# Client code
+handler_chain = LowLevelHandler(MidLevelHandler(HighLevelHandler()))
+
+requests = [5, 14, 25]
+
+for req in requests:
+    handler_chain.handle(req)
+
+
+Builder + Template Method 
+from abc import ABC, abstractmethod
+
+class ReportBuilder(ABC):
+    @abstractmethod
+    def add_header(self): pass
+
+    @abstractmethod
+    def add_body(self): pass
+
+    @abstractmethod
+    def add_footer(self): pass
+
+    @abstractmethod
+    def get_result(self): pass
+
+class TextReportBuilder(ReportBuilder):
+    def __init__(self):
+        self.parts = []
+
+    def add_header(self):
+        self.parts.append("=== REPORT ===")
+
+    def add_body(self):
+        self.parts.append("This is the report body.")
+
+    def add_footer(self):
+        self.parts.append("=== END ===")
+
+    def get_result(self):
+        return "\n".join(self.parts)
+
+class HtmlReportBuilder(ReportBuilder):
+    def __init__(self):
+        self.parts = []
+
+    def add_header(self):
+        self.parts.append("<h1>Report</h1>")
+
+    def add_body(self):
+        self.parts.append("<p>This is the report body.</p>")
+
+    def add_footer(self):
+        self.parts.append("<footer>End</footer>")
+
+    def get_result(self):
+        return "".join(self.parts)
+
+class ReportGenerator:
+    def generate(self, builder: ReportBuilder):
+        # Template Method
+        builder.add_header()
+        builder.add_body()
+        builder.add_footer()
+        return builder.get_result()
+
+generator = ReportGenerator()
+
+text_report = generator.generate(TextReportBuilder())
+html_report = generator.generate(HtmlReportBuilder())
+print(text_report)
+print(html_report)
+
