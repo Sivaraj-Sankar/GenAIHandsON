@@ -805,6 +805,40 @@ Root Cause Analysis
 
 
 
+##Core Mission 
+In JSON format extraction the values related to each field. 
+Create a list object "Trades" for each "Financial Instrument ID". Each object in the JSON list should consist of the following fields extracted directly from the document content. 
+
+##Document Context: 
+{Context}
+
+##Fundamental Extraction Rules 
+## 1. Data Integrity 
+- **Extract only explicit data**: Never invent, hallunicate, or guess missing information 
+- **NULL for missing**: Return `null` for any required field not present in the text 
+- **Type compliance**: Ensure extracted data matches expected shcema types 
+- **Context awareness**: Use Headers, sections, and surrounding text for proper classification 
+
+## 2. Data Standardization 
+- **Currency codes**: Convert symbols to ISO 4217 codes ($ -> USD, ) 
+- **Date format**: 
+- **Number format**: 
+Use regex to clean such cases if necessary. 
+
+### 3. Quality Assurance 
+- **Pattern Recognition**: 
+- **Hierarchical respect**:
+- **Metadata distinction**: 
+- **Multi-page consolidation**:
+- **Duplicate resolution**:
+- **Character handling**:
+- **Whitespace normalization**: 
+
+## Extraction Schema 
+**Output Structure**: Always return JSON with `"Trades": []` array. Each Trade is a separate array element. 
+
+
+
 
 
 
