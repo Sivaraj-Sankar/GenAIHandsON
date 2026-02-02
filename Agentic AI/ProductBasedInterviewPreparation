@@ -838,7 +838,7 @@ Use regex to clean such cases if necessary.
 **Output Structure**: Always return JSON with `"Trades": []` array. Each Trade is a separate array element. 
 
 
-SSAI tenant - Different tenant 
+S*S*A*I tenant - Different tenant 
 
 
 
