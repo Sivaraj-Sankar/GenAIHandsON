@@ -879,8 +879,52 @@ Accuracy Reporting & Validation (interpret dashboards, metrics)
 Gen AI & Prompt Engineering 
 
 Scope / Problem Statement 
-To Reduce the manual effort by the collateral Onboarding team associated with 
-Collateral Onboarding team 
+To Reduce the manual effort by the collateral Onboarding team associated with Credit Support Annex Document & ISDA. This initiative would enable automation to reduce time spent 
+extracting account data details from ISDAs by creating and saving an output file. 
+
+ISDA Master Agreement (that governs the derivatives b/w two parties)- Standardized legal agreement for OTC derivatvies that defines the rights, obligations and risk management terms between counterparties. 
+CSA (what types are allowed, eligibiltiy rule etc) - is an annex to ISDA that sets rules for collateral exchange to reduce credit risk in those derivative transactions. 
+
+DIP is Document Intelligence Platform that automates the extraction and processing of critical data from legal agreements like ISDAs and CSAs, 
+It leverages workflow automation, structured data output, and integration with existing collateral management systems to reduce manual effort, improve accuracy. 
+and accelerate onboarding for the collateral team 
+
+C*ollateral Plus or C*olline 
+
+
+Manual Process 
+Client Provides Legal Document Information in different forms (pdf documents, Excel, word etc) 
+User to read and extract documentation/add into Excel/normalize data 
+Review by 2nd user to ensure data accuracy 
+Load data into CollateralPlus/Colline 
+Approve Entries in CollateralPlus/Colline 
+Active Agreements in CollateralPlus/Colline 
+
+
+Data Flow 
+DIP for mulimodal LLM extraction 
+                                     RAI -> EAM [Enterprise API Mangement Gateway] 
+Collateral+ EAM     Ingest - AFR/OCR - MultiModal LLM - BBox - HTTP Callback                 EAM + Collateral+ 
+
+                  CSA Workflow   - Uses Dynamic workflow editor to create workflow (manage prompts, settings, model names etc) 
+
+
+            Collateral Use Case Tenant     App RAI Credentials, data isolation, security via entitlements, 
+  
+                  DIP Platform - Shared core platform, with reusable features 
+
+
+IT Architecture for APIs and Dataflow 
+DIP AKS Endpoints via EAM will receive the request and trigger the databricks workflow Postgres and AKS are used for metadata and APIs. 
+Databricks Executes the actual extraction workflow 
+Callback API to C+ with the result is triggered from the databricks environment. 
+C+ review the output and complete manual edits where AI is not accurate 
+
+
+
+
+
+
 
 
 
