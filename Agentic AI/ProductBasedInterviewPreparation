@@ -627,3 +627,192 @@ print(processor1.process(data))
 print(processor2.process(data))
 
 
+Data Preprocessing 
+------------------
+DIP 
+1) Workflows - View/Edit/Access 
+2) Prompts & Governance 
+3) G-C-S-E Prompt Design 
+4) Testing & Metrics 
+
+Enterprise Document Intelligence Platform 
+Multimodal Extraction 
+Field-level Validation 
+Traceable Workflows 
+HTTP Callback integration  - An event hook is a callback function that runs automatically when a specific event happens inside a library.
+In botocore (the low-level library behind boto3), AWS request execution is broken into well-defined stages. Botocore emits events at each stage, and you can hook into those events to run your own code.
+
+Layout + OCR + LLM Extraction 
+- Retry & Timeout Handling 
+- Error Categorization 
+- Prompt Governance 
+- DIP Console + Databricks orchestration 
+
+Input Sources PDFS/Images/Emails -> DIP Extraction Enigne OCR + Layout + LLM -> Workflow Layer Validation + Retry -> Ouput/Callback JSON + API's 
+
+Bayern FUT, 
+Union FUT
+MEAG CDS are the active workflows 
+
+Future 
+Bayern FUT and Union FUT focus on futures processing, showcasing DIP's ability to handle diverse futures instruments 
+Credit Default SWAP Workflow - MEAG CDS manages credit default swaps, highlighting DIP's adaptability to complex credit instruments and documents 
+
+Configuration and Automation 
+Understanding workflow setups, prompts is essential for applying best practices in automation.
+
+
+Application Setup 
+Access and Workflow Setup 
+1) DIP Portal - 
+2) Verify Permissions - 
+3) Create & Edit workflows via Workflow Configuration 
+Document Ingestion Configuration 
+1) Choose Between Manual Upload or SFTP for document ingestion, ensuring backup paths are defined correctly.
+Indexing and Classification Setup 
+1) Setup index fields with Tagged or Ordered formats and enable classification with confidence thresholds for accuracy. 
+Testing and Deploymet 
+1) Test Workflows by reviewing logs at multiple stages, then deploy and monitor performance to handle exceptions. 
+
+
+Worklfow Overview 
+Document Ingestion 
+System Prompt 
+Pydantic 
+Output JSON & Storage 
+Callback -> Downstream  IDPP will use the API to extract our output 
+
+DIP Console Access 
+1) View Inputs & Outputs
+2) Inspect Extraction 
+3) Review run History 
+4) Playground Testing 
+5) GT vs Output Comparison 
+
+Databricks Access 
+Job Logs & Artifacts 
+1) Parameter inspection 
+2) Model/gateway/parsing error diagnosis 
+3) DWC-created workflows need admin 
+
+Prompt Governance 
+1) Centralized Prompt Hub 
+2) Versioning & Tagging 
+3) Change History 
+4) Rollback Support 
+5) Cross-Workflow reuse 
+
+Draft Prompt -> Review Approval -> Prompt Hub Versioning -> Tag as `latest` / Rollback 
+
+Stable Predictable Output 
+- Avoid Silent Drift 
+- Support Audits 
+- Improve Collaboration 
+
+----------------------------
+Key Prompt Elements 
+1) Effective Prompt include Goal, Context, Expected Output, Source Reference to guide extraction tasks clearly. 
+2) Prompt Tuning and Enhancement - Iterative Prompt Refinement and use of system and user prompts improve model accuracy and task performance.
+3) Review and version Control - Regular reviews and version control via Prompt Hub ensure consistent and traceable prompt updates. 
+
+
+G-C-S-E Framework 
+G - Goal      - Goal - Task Objective 
+C - Context   - Context - Business / Document Context 
+S - Source    - Source - Rules & References 
+E - Expectations - Expectations - Schema, formats, examples 
+
+Prompt Best Practices 
+1) Explicit Schemas  - strict output structure (schema) so the model knows exactly what fields to return and in what format. 
+2) Avoid ambiguity   - Remove vague or unclear instructions. Prompts should be precise, direct, and leave no room for multiple interpretations. 
+3) Use positive examples  - Provide correct, representative examples that show the model what a good output looks like. Positive samples lead to more reliable extraction. 
+4) Concise Deterministic prompts  - keep prompts short, focused, and deterministic - designed to produce consistent results every time without randomness. 
+5) Avoid long Chain-of-Thought - Do not encourage the model to produce lengthy reasoning. For extraction tasks, shorter reasoning reduces errors and keeps output structured. 
+6) No Hallucination - Ensure the model does not invent or guess values. It must extract only what explicitly exists in the document. 
+7) Normalize formats - force standardized formats (eg: YYYYMMDD for dates, 2-decimal numbers, ISO currency codes) to ensure consistency across outputs. 
+8) Fallback to null - if a field does not exist in the document. 
+9) Table alignment rules - Specify how rows and columns should align when extracting data from tables. Define how to handle merged cells, blank rows, or inconsistent formatting. 
+
+
+Tuning Methodology 
+Single-Factor iteration 
+ - Modify model OR examples OR rules. 
+ - Track changes.
+UAT A/B testing 
+ - Compare accuracy.
+ - Promote winner -> latest.
+
+Testing & Metrics 
+Field - Level Accuracy - (correct field predictions) / (total field predictions)
+Completeness - (fields present) / (fields required)
+Correctness 
+Accuracy - (fully correct records) / (total records)
+If one field is wrong → record is wrong.
+Record	Status
+Record 1	❌
+Record 2	✅
+Record 3	❌
+
+Case Pass Rate - Percentage of test cases that pass all acceptance criteria.
+(passed test cases) / (total test cases)
+
+Latency - end_time - start_time
+Usually tracked as:
+Average latency
+P95 / P99 latency
+Max latency
+
+Accuracy Targets 
+----------------
+> 95% field Accuracy 
+> 98% mandatory fields 
+Use real UAT samples 
+
+Accuracy Dashboard 
+------------------
+Field Accuracy - 95% 
+Mandatory - 98%
+Null Rate - 2% 
+Case Pass - 98% 
+Latency - 10s 
+
+
+Demo Flow 
+Open Workflow 
+- Review Extraction 
+- Run Playground Tests 
+
+Databricks logs 
+- Error Categorization 
+- Prompt Versioning & Rollback 
+
+Run Failure 
+Check Logs 
+Categorize: Model/Gateway/Parsing/Timeout 
+Fix Prompt/ Retry/ Adjust Config 
+
+Understand DIP 
+   - Access Workflows 
+   - Design & Tune Prompts 
+   - Validate Accuracy 
+
+Derivatives Doc Intelligence Project 
+
+Prompt Support 
+Testing Support 
+Root Cause Analysis 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
