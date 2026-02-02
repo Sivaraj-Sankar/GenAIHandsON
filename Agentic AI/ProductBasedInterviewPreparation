@@ -840,6 +840,50 @@ Use regex to clean such cases if necessary.
 
 S*S*A*I tenant - Different tenant 
 
+-----------------------------------------------
+Collateral
+D*I*P - K*T 
+
+CSA Docs in D*I*P
+Onboard New Doct Type - Without Extra Development 
+Platform Architecture 
+Databricks Demo 
+
+Eligibilty 
+Triparty 
+
+Session 1 
+Solution Overview 
+IT Architecture for APIs and DataFlow 
+LLM for Structured Output with JSON and JSON Schema 
+RAI Gateway and SDK Client 
+
+Session 2  with live demo on Databricks
+Deep Dive of CSA Bilateral Prompt 
+Testing the prompt with Ground Truth and Scripts on Databricks (Without self service capability) 
+DIP Admin UI for onboarding new use-cases and updating prompts on existing workflows 
+
+
+JSON Schema Design 
+Azure Could and SSC SDLC 
+API Integrations, RAI SDK, PDF Plumber, LangChain -
+Databricks Workflow Automation (Scripts for accuracy testing)  - How to navigate notebooks, 
+Prompt Optimization(Design and optimise prompts) 
+
+Test Automation (accuracy scripts, workflow validation, Python) 
+API Testing (integration points) - DIP Interacts with several systems, so making sure the data flow is correct. 
+Data validation eligibility fields, schema checks) 
+
+Collateral Management Domain Knowledge (asset eligibility, governance) 
+Accuracy Reporting & Validation (interpret dashboards, metrics) 
+Gen AI & Prompt Engineering 
+
+Scope / Problem Statement 
+To Reduce the manual effort by the collateral Onboarding team associated with 
+Collateral Onboarding team 
+
+
+
 
 
 
