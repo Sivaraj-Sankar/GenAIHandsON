@@ -919,6 +919,109 @@ DIP AKS Endpoints via EAM will receive the request and trigger the databricks wo
 Databricks Executes the actual extraction workflow 
 Callback API to C+ with the result is triggered from the databricks environment. 
 C+ review the output and complete manual edits where AI is not accurate 
+Reviewed results are submitted back to the GT Metrics API for accuracy and metrics dashboard calculations on DIP Platform.
+
+                                          Extraction Fields Requirement/Business Inputs 
+
+                                      CSA Fields       Eligibility Fields 
+                                         Ref Fields            Business Discription 
+ DIP Collateral Tenant + Workflow 
+                 
+                                       Prompt Json Schema 
+                                             |
+Collateral Plus --->   Ingest API --> MultiModal Extraction  -> AFR Layout 
+                                                                   |
+                                                                  Bounding Box Info Extraction      C+ Push API Call ---> Push    C+   Business Review 
+                                                                    |                                |
+                                                                   Validation ----->        Post Processing 
+
+
+Feedback and Review will again ingest it back into the Collateral 
+DIP Collateral Tenant + Review Result Capture 
+
+View API -> Store to volume[Databrics Volume] -> Populate to metrics Dashboard - Dashboard features 
+
+RAI Gateway 
+RAI Credentials 
+EAM Onboarding 
+
+
+Apigee  - API Proxies 
+
+Send the Business Review data back to the DIP team or Onboarded EAM Team 
+
+
+
+APP Subnet                                                                           Data Subnet 
+       Azure Kubernetes Service  
+                   NameSpace                              
+                       PodNOde 
+                               Container DIP Service 
+                                                                    Log Agent 
+                                                                                     Data Subnet 
+
+
+
+Postgres for metadata and configuration data wrt to DIP and then we used the Log Analytics for identifying all the f
+Azure Blob Storage - Ingest Document, Extracted Document, Processed Document 
+Aunthentication leverages the Azure AD
+Azure Key valut 
+Internal Communication we used the Event Driven Platform within Azure which is Event Hub 
+ACR
+JFrog - Artifacts 
+
+
+DataBricks (DIP Core) 
+      Compute Engine 
+         Workflows 
+
+
+Databricks and App is running Azure VM 
+
+
+Workflow Components 
+-------------------
+Dynamic Workflow Components on DIP 
+1) Basic Info: Use case Details, JOB Type Multimodal 
+2) Ingestion: Select Manual Upload and disable SFTP Transfer
+3) Classification: Disabled 
+4) OCR: Select Azure Document Intelligence, Prebuilt Layout and Plain text 
+5) Multimodal, visible only when selecting job type MultiModal), turn off image stitching and choose prompt and model.
+6) Bounding Box: Enable and choose prompt and model.
+7) HTTP Callback: Enable and provide endpoint details for result callback 
+8) Review: Disable (Handled outside DIP Platform) 
+9) Export: Choose JSON 
+
+C*+ --> Collateral Plus --> Collateral Agreements and profiles are managed here. T*O*T app code 
+DIP -> T*X*T is the app code hosting serveral reusable services including  D*I*P
+EAM -> Enterprise API Management -> an API Gateway for inter application endpoint management. Provides authentication using Client ID
+RAI - 
+PDF Plumber - G*M*A*S -> approved python package for creating images from PDF Files for use with the multimodal LLMs. 
+Databricks - A Cloud-Based data processing platform with compute clusters, access management, data connectors for data sources such as blobs and databases 
+workflow mangement features and metrics features 
+GPT 4.1 - Multimodal LLM model used for the extraction from openai 
+
+
+https://a*r*i*e*l-uat-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DIP Core 
+DR Collateral 
+
+
 
 
 
