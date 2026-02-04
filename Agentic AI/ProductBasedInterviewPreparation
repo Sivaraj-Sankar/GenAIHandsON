@@ -1036,7 +1036,24 @@ Eg: Eligibility criteria, Triparty, UMR etc)
 
 1. Deep Dive of CSA Bilateral Prompt 
 2. Testing the prompt with Ground Truth and Scripts on Databricks (without self-service capability) 
-3. 
+
+----
+JSON Schema 
+used for CSA Document extraction is organized into three primary sections: Document Metadata, Main CSA Terms and Parties, and Eligibility Rules and Constraints.
+Properties defined in the schema includes the following key attributes
+Description: Human-readable explanation of the field, no validation effect. 
+$comment: Maintainer note; ignored by validators; useful guidance for extractors/tools 
+type: Expected JSON Type (eg: "object", "array", "string", "number", "boolean", or unions like ["string","null"] for nullable). 
+enum: Allowed literal values; include null when null is acceptable. 
+pattern: Regex the string must match (ECMA 262), eg: dates or time formats. 
+examples: Sample instance values; informational only.
+$ref: Reference another schema (from local definitions here); replaces other keywords at that location. 
+definitions: Container of reusable local schemas referenced via $ref (draft-07 style). 
+allOf: Combine subschemas; used here to merge a $ref with additional annotations (e.g., description). 
+properties: Declares named child fields for an object, each with its own schema. 
+required: Array of property names that must be present on the object. 
+items: Schema for elements of an array (all elements follow this schema). 
+x_default: Non-standard vendor extension (OpenAPI-style) indicating a suggested default. 
 
 
 
