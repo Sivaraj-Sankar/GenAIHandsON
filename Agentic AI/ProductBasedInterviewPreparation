@@ -1029,6 +1029,16 @@ Bounding Box Flow - PDF - LLM Multi-Modal Extraction(Extraction JSON) - AFR (Lay
  Merge + Post Processing - Result JSON. 
 
 
+Prompt Engineering - Accuracy Validation for collateral agreements using DIP Workflows:
+Same approach can be used to onboard additional document types on DIP without need extra Development 
+Eg: Eligibility criteria, Triparty, UMR etc) 
+
+
+1. Deep Dive of CSA Bilateral Prompt 
+2. Testing the prompt with Ground Truth and Scripts on Databricks (without self-service capability) 
+3. 
+
+
 
 
 
