@@ -1002,7 +1002,34 @@ workflow mangement features and metrics features
 GPT 4.1 - Multimodal LLM model used for the extraction from openai 
 
 
-https://a*r*i*e*l-uat-
+https://a*r*i*e*l-uat2-azp.s*ta*te*str.com/dip
+
+Enable that Databricks service 
+Dedicated SPN to trigger the workflow from outside, not only from DIP 
+
+
+
+Extraction Logic 
+----------------
+After the AKS Endpoint receives the PDF Input. it will invoke the Databricks dynamic workflow. 
+the multimodal extraction is a task within this workflow 
+
+The previous task to multimodal extraction already uses AFR and outputs the plain text file to the blob folder 
+and has the input PDF stored in the same blob folder. 
+This python module will read the PDF and convert it into PNG Image which are encoded as base64 strings
+
+To construct a chat message with prompt (instructions + JSON schema), base64 image strings, AFR text output 
+and send this to LLM and get the JSON response. 
+
+
+Input PDF --> (PDF Plumber - Azure Form Recognizer) - (Image as PNG - Plain Text) - (Prompt with JSON Schema) RAI Multimodal LLM Model - JSON Output 
+
+Bounding Box Flow - PDF - LLM Multi-Modal Extraction(Extraction JSON) - AFR (Layout JSON)  -> Extraction k/v csv , layout csv ( LLM BB Matching) BB Match CSV 
+
+ Merge + Post Processing - Result JSON. 
+
+
+
 
 
 
