@@ -1036,6 +1036,8 @@ Eg: Eligibility criteria, Triparty, UMR etc)
 
 1. Deep Dive of CSA Bilateral Prompt 
 2. Testing the prompt with Ground Truth and Scripts on Databricks (without self-service capability) 
+    - A Tes Suite was developed on the Databricks environment to automate the feedback loop, enabling rapid iterations so changes can be made and their impact assessed quickly. 
+
 
 ----
 JSON Schema 
