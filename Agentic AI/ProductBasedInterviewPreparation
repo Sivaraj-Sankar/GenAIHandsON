@@ -1087,6 +1087,29 @@ Models
 Serving 
 
 
+Ground Truth and validation approach/strategy 
+---------------------------------------------
+
+Eighteen CSA PDF documents were randomly selected, and ground truth files were generated for reach. 
+A feedback loop was implemented using scripts to efficiently test and refine prompt changes across all documents 
+
+Workflow 
+CSA PDF documents are used as input to simulate the extraction pipeline. 
+Where prompts and JSON schemas guide the generation of results in JSON format. 
+
+Ground Truth files are then used to compare the extracted results, and the outcomes are compiled into a CSV file for validation and analysis 
+
+Input CSA Documents 
+   |
+  Prompt/JSON Schema / Field Descriptions 
+   |
+   Results 
+   | 
+   Script for validation and analysis with GT 
+   | 
+  Compare Excel - Match Scores 
+   | 
+  Dev Review - Feedback Loop to edit the prompt change or json schema change 
 
 
 
