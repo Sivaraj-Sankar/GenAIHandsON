@@ -1162,6 +1162,20 @@ So we were batching the prompt changes
 around 1 Minute or 40 seconds to complete the LLM output 
 
 
+DIP Admin UI for onboarding new use-cases and updating prompts on existing workflows 
+
+DIP is a multitenant platform. each tenant has sandboxed data and control planes. 
+The hierarchy is Tenant -> Project -> Workflow. 
+An extraction is built as a workflow and managed under projects for organization purpose in each tenant. 
+
+Collateral Tenant and DIP Platform 
+EID_TXTDIP_DEV_TENANT_COLLATERAL
+EID_TXTDIP_UAT_TENANT_COLLATERAL 
+EID_TXTDIP_PROD_TENANT_COLLATERAL 
+
+
+
+
 
 
 
