@@ -1112,6 +1112,56 @@ Input CSA Documents
   Dev Review - Feedback Loop to edit the prompt change or json schema change 
 
 
+Databricks Environment 
+----------------------
+Workflow 
+1. Generate Extraction Results 
+       Install Dependencies and set up environment 
+       Load Schema and prepare prompt 
+       For Each PDF. 
+            Convert pages to images.
+            Optionally Extract OCR Text. 
+            Send Prompt and images to LLM.
+            Parse and Validate JSON Output.
+            Save Results for evaluation.
+
+2. Accuracy Report. 
+      Install Dependencies and set up environment. 
+      Generate comparison results b/w ground truth and llm extracted outputs. 
+      Results saved to volumes, review and validate. 
+
+
+Metrics Sample 
+--------------
+Different CSA Files 
+ABSA_CSA_2024
+CITI_CSA_2013
+GSI_CSA_2016 
+BARC_CSA_2012 
+CCAT1_CSA_2020
+CCAT1_CSA_2019
+BNP_CSA_2019
+CSA_GSBUS_US_2025
+CSA_GSI_GF_2025
+CITI_CSA_2024
+CSA_SG_2025
+CSA_SG_LUX_2012
+CSA_SSBT_2025
+CSA_UBS_2025
+CSA_HSBCFR_BARC_A_2015
+Morgan_Stanley_CSA_2025
+CSA_BARC_2025
+CSA_BNPPAR_2025
+
+
+Every time we run the script, we actually running 18 documents 
+It would be quite expensive to do this experiment for one field at a time. 
+So we were batching the prompt changes 
+   -> If 4 or 5 fields consistently failing for all the documents  
+      She was able to do it by applying filters on the CSV file Excel 
+around 1 Minute or 40 seconds to complete the LLM output 
+
+
 
 
 
