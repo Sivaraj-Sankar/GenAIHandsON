@@ -1,0 +1,58 @@
+
+
+
+ls ~/.claude/skills
+ls ~/.claude/skills
+ls ~/.claude/skills/ai-course-generator
+cp -r my-skill/* ~/.claude/skills/ai-course-generator/
+mkdir -p ~/.claude/skills
+mkdir -p .claude/skills/ai-course-generator
+ls ~/.claude 
+ cd /.claude
+mkdir -p ~/.claude/skills 
+cd /.claude 
+ls ~/.claude 
+claude "Hi" 
+ls ~/.claude/logs 
+
+
+pwd -> 
+/Users/shafiahmedshaik/.claude
+/Users/shafiahmedshaik/.local/bin/claude
+/Users/shafiahmedshaik/.claude
+/Users/shafiahmedshaik
+
+cd opt - Done
+cd library - Done
+cd usr
+    cd lib 
+       cd usd 
+       cd local 
+          cd lib
+       cd opt 
+    cd include 
+cd bin
+
+cd etc 
+
+
+Claude Commands 
+claude
+claude -p "Generate an advanced Python AI course which cover event driven architecture with diagram and examples to show How Multi Agent Architecture to work and orchestrate and co-ordinate each other using the ai-course-generator skill"
+
+
+
+Things to Check in the claude code folder 
+enabledPlatforms error is NON-FATAL
+Missing .claude/skills directories are expected
+No plugins installed → normal
+MCP (IDE bridge) connected successfully
+Auth, API, LSP, REPL all initialized correctly
+Claude CLI session ran normally and exited cleanly
+
+
+openbb
+uv init
+uv sync 
+uv add "openbb[all]"
+openbb-build
