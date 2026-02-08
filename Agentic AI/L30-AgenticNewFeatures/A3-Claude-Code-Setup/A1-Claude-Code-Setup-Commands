@@ -1,3 +1,39 @@
+.claude/
+├─ CLAUDE.md
+├─ agents/
+│  ├─ refactor.md
+│  ├─ reviewer.md
+│  └─ tester.md
+├─ tools.json
+└─ memory/
+   └─ session-summary.json
+
+
+Location	Contains	Loaded When	Shared?
+~/.local/share/claude/ or ~/.claude/	Global config, auto memory, sessions	Every session	Personal
+~/.claude/CLAUDE.md	User defaults	Every session	Personal
+./CLAUDE.md	Project instructions	Session start	Team
+.claude/CLAUDE.md	Project instructions	Session start	Team
+.claude/rules/*.md	Project rules	Session start	Team
+~/.claude/projects/.../memory/MEMORY.md	Learned memory	Every session	Personal/Project
+
+
+
+Commands and Setup 
+cache                   history.jsonl           projects                stats-cache.json
+debug                   ide                     session-env             statsig
+downloads               plans                   shell-snapshots         telemetry
+file-history            plugins                 skills                  todos
+
+skills
+  -> ai-course-generator 
+SKILL.md        examples        resources       scripts
+
+
+Instruction Files - Override 
+CLAUDE.md (repo root)
+.claude/CLAUDE.md
+.claude/agents/*.md
 
 
 
