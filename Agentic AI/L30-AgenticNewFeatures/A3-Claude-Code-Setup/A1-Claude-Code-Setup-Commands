@@ -15,6 +15,23 @@ ls ~/.claude
 claude "Hi" 
 ls ~/.claude/logs 
 
+https://code.claude.com/docs/en/overview
+
+Slack me if error happens - tail -f app.log | claude -p "Slack me if this error appears"
+
+Projects may have persistent memory that the agent auto-loads across sessions (like MEMORY.md) — different from docs but observed on Reddit
+https://www.reddit.com/r/ClaudeAI/comments/1qw9hr4/claude_code_has_an_undocumented_persistent_memory/?utm_source=chatgpt.com
+
+With newer models (Opus 4.6), behavior around linked files from CLAUDE.md may have changed.
+https://www.reddit.com/r/ClaudeAI/comments/1qykjha/claudemd_referenced_filesdirectories_no_longer/?utm_source=chatgpt.com
+
+
+New task systems store things persistently (~/.claude/tasks/) for long multi-step projects
+https://www.reddit.com/r/ClaudeAI/comments/1qkjznp/anthropic_replaced_claude_codes_old_todos_with/?utm_source=chatgpt.com
+
+
+
+
 
 pwd -> 
 /Users/shafiahmedshaik/.claude
@@ -42,6 +59,8 @@ claude -p "Generate an advanced Python AI course which cover event driven archit
 
 
 
+
+
 Things to Check in the claude code folder 
 enabledPlatforms error is NON-FATAL
 Missing .claude/skills directories are expected
@@ -56,3 +75,8 @@ uv init
 uv sync 
 uv add "openbb[all]"
 openbb-build
+
+
+
+Reference 
+https://claude.com/skills
